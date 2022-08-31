@@ -6,7 +6,7 @@
 
 <mapper namespace="com.cgv.modules.codegroup.CodeGroupMapper">
 
-    <resultMap id="resultMapObj" type="com.cgv.modules.codegroup.CodeGroupMapper"></resultMap>
+    <resultMap id="resultMapObj" type="com.cgv.modules.codegroup.CodeGroup"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
