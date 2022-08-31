@@ -46,6 +46,23 @@ public class CodeGroup {
 	 private String ifcgSeqAnother;
 	 private String ifcgName;
 	 private String ifcgNameEng;
+	 private Integer ifcguseNy;
+	 private integer ifcgOrder;
+	 private String ifcgRegerenceV1;
+	 private String ifcgRegerenceV2;
+	 private String ifcgRegerenceV3;
+	 private Integer ifcgRegerenceI1;
+	 private Integer ifcgRegerenceI2;
+	 private Integer ifcgRegerenceI3;
+	 private String ifcgDesc;
+	 private Integer ifcgDelNy;
+	 private String regIp;
+	 private String regSeq;
+	 private String regId;
+	 private Integer reDeviceCd;
+	 private Date regDateTime;
+	 private Date regDateTimeSyr;
+	 
 	 */
 	
 	
