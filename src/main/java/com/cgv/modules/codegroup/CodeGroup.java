@@ -6,7 +6,14 @@ public class CodeGroup {
 	private String reference;
 	private Integer ccgUseNy;
 	private Integer ccgOrder;
+	private Integer cnt;
 	
+	public Integer getCnt() {
+		return cnt;
+	}
+	public void setCnt(Integer cnt) {
+		this.cnt = cnt;
+	}
 	public String getCcgSeq() {
 		return ccgSeq;
 	}

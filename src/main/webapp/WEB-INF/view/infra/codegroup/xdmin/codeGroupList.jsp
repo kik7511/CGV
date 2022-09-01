@@ -159,6 +159,7 @@
 						<th scope="col">#</th>
 						<th scope="col">코드그룹</th>
 						<th scope="col">참조</th>
+						<th scope="col">코드갯수</th>
 						<th scope="col">사용여부</th>
 						<th scope="col">순서</th>
 					</tr>
@@ -171,7 +172,13 @@
 							<th scope="col">${list.ccgSeq}</th>
 							<td>${list.codeGroup}</td>
 							<td>${list.reference}</td>
-							<td>${list.ccgUseNy}</td>
+							<td>${list.cnt}</td>
+							<td>
+								<c:choose>
+               						<c:when test="${list.ccgUseNy == 0 }">N</c:when>
+               						<c:otherwise>Y</c:otherwise>
+               					</c:choose>
+               				</td>
 							<td>${list.ccgOrder}</td>
 						</tr>	
 						</c:forEach>
