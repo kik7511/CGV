@@ -11,9 +11,8 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
-		FROM coca.CCG a
-		WHERE 1=1
-			AND ccgUseNy = 1
+		FROM CCG a
+		LIMIT 5
 	</select>
 
 </mapper>	

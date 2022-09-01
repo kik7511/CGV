@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+code
+
+<br>
+
+<c:forEach items="${list}" var="list" varStatus="status">
+	<c:out value="${list.ccSeq}"/> / <c:out value="${list.ccgSeq}"/> / <c:out value="${list.ccCodeName}"/>
+	<br>		
+</c:forEach>
