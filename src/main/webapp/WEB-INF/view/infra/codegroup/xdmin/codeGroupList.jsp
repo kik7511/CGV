@@ -157,20 +157,22 @@
 							<input type="checkbox" class="form-check-input" onclick="selectAll(this);" name=check>
 						</th>
 						<th scope="col">#</th>
-						<th scope="col">코드그룹</th>
+						<th scope="col">코드그룹(영어)</th>
+						<th scope="col">코드그룹(한글)</th>
 						<th scope="col">참조</th>
 						<th scope="col">코드갯수</th>
 						<th scope="col">사용여부</th>
 						<th scope="col">순서</th>
 					</tr>
 					<tbody id="cursor">
-						<c:forEach items="${list}" var="list" varStatus="status">
+						<c:forEach items="${list}" var="list" varStatus="status" end = "5">
 						<tr onclick="location.href='memberModForm.html'">
 							<td onclick="event.cancelBubble=true">
 								<input type="checkbox" class="form-check-input" name=check>
 							</td>
 							<th scope="col">${list.ccgSeq}</th>
 							<td>${list.codeGroup}</td>
+							<td>${list.codeGroupK}</td>
 							<td>${list.reference}</td>
 							<td>${list.cnt}</td>
 							<td>

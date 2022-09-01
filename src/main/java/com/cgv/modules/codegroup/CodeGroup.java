@@ -3,11 +3,18 @@ package com.cgv.modules.codegroup;
 public class CodeGroup {
 	private String ccgSeq;
 	private String codeGroup;
+	private String codeGroupK;
 	private String reference;
 	private Integer ccgUseNy;
 	private Integer ccgOrder;
 	private Integer cnt;
 	
+	public String getCodeGroupK() {
+		return codeGroupK;
+	}
+	public void setCodeGroupK(String codeGroupK) {
+		this.codeGroupK = codeGroupK;
+	}
 	public Integer getCnt() {
 		return cnt;
 	}

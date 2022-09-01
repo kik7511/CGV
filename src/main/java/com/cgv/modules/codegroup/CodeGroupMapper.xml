@@ -13,7 +13,6 @@
 			a.*
 			,(SELECT COUNT(*) FROM CC b where b.ccgSeq = a.ccgSeq) as cnt
 		FROM CCG a
-		LIMIT 5
 	</select>
 
 </mapper>	
