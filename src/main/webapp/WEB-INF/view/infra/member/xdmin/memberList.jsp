@@ -184,8 +184,15 @@
 										</td>
 										<th scope="col">${list.ifMmSeq}</th>
 										<td>${list.ifMmName}</td>
-										<td>${list.ifMmGender}</td>
-										<td>${list.ifMmDob}</td>
+										<td>
+											<c:choose>
+												<c:when test="${list.ifMmGender == 1}">남</c:when>
+												<c:otherwise>여</c:otherwise>
+											</c:choose>
+										</td>
+										<td>
+											<fmt:formatDate value="${list.ifMmDob}" pattern="yyyy.MM.dd" />
+										</td>
 										<td>${list.ifMmId}</td>
 										<td>${list.ifMmPassWord}</td>
 										<td>${list.ifMmEmail}@
