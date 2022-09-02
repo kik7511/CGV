@@ -8,7 +8,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>codeGroupList</title>
+	<title>memberList</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<style type="text/css">
 		div {display: block;}
@@ -62,8 +62,8 @@
 											<span>아라비아</span>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-											<button type="button" class="btn btn-primary">로그인</button>
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save changes</button>
 										</div>
 									</div>
 								</div>
@@ -82,10 +82,10 @@
 					<a class="nav-link" aria-current="page" href="#" style="color: black;">코드그룹관리</a>					
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" href="#" style="color: black;">코드관리</a>
+					<a class="nav-link" href="#" style="color: black;">코드관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#" style="color: black;">회원관리</a>
+					<a class="nav-link  active" href="#" style="color: black;">회원관리</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#" style="color: black;">현황관리</a>
@@ -105,14 +105,16 @@
 					<div class="row px-2 row-cols-6">
 						<div class="col">
 							<select class="form-select form-select-sm" id="">
-								<option value="">N</option>
+								<option value="">::삭제여부::</option>
+
+								
 								<option value="1">삭제</option>
 								<option value="2">미삭제</option>
 							</select>
 						</div>
 						<div class="col">
 							<select class="form-select form-select-sm" id="">
-								<option value="">수정일</option>
+								<option value="">::날짜::</option>
 								<option value="1">가입일</option>
 								<option value="2">생일</option>
 							</select>
@@ -140,7 +142,7 @@
 								<button type="submit" class="btn btn-outline-secondary" id="">
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button>
-								<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='./codeList.html'">
+								<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='memberList.html'">
 									<i class="fa-solid fa-rotate-right"></i>
 								</button>
 							</div>
@@ -156,42 +158,51 @@
 						<th scope="col">
 							<input type="checkbox" class="form-check-input" onclick="selectAll(this);" name=check>
 						</th>
-						<th scope="col">#</th>
-						<th scope="col">코드그룹(영어)</th>
-						<th scope="col">코드그룹(한글)</th>
-						<th scope="col">참조</th>
-						<th scope="col">코드갯수</th>
-						<th scope="col">사용여부</th>
-						<th scope="col">순서</th>
+						<th scope="col">NO</th>
+						<th scope="col">이름</th>
+						<th scope="col">성별</th>
+						<th scope="col">생년월일</th>
+						<th scope="col">아이디</th>
+						<th scope="col">연락처</th>
+						<th scope="col">이메일</th>
+						<th scope="col">마케팅 동의여부</th>
 					</tr>
 					<tbody id="cursor">
 						<c:choose>
 							<c:when test="${fn:length(list) eq 0}">
 								<tr>
-									<td colspan="8">
+									<td colspan="9">
 										there is no data.
 									</td>
 								</tr>					
 							</c:when>
-							<c:otherwise>
-								<c:forEach items="${list}" var="list" varStatus="status" end = "5">
-								<tr onclick="location.href=''">
-									<td onclick="event.cancelBubble=true">
-										<input type="checkbox" class="form-check-input" name=check>
-									</td>
-									<th scope="col">${list.ccgSeq}</th>
-									<td>${list.codeGroup}</td>
-									<td>${list.codeGroupK}</td>
-									<td>${list.reference}</td>
-									<td>${list.cnt}</td>
-									<td>
-										<c:choose>
-		               						<c:when test="${list.ccgUseNy == 0 }">N</c:when>
-		               						<c:otherwise>Y</c:otherwise>
-		               					</c:choose>
-		               				</td>
-									<td>${list.ccgOrder}</td>
-								</tr>	
+							<c:otherwise>	
+								<c:forEach items="${list}" var="list" varStatus="status" end="5">
+									<tr onclick="location.href='memberModForm.html'">
+										<td onclick="event.cancelBubble=true">
+											<input type="checkbox" class="form-check-input" name=check>
+										</td>
+										<th scope="col">${list.ifMmSeq}</th>
+										<td>${list.ifMmName}</td>
+										<td>${list.ifMmGender}</td>
+										<td>${list.ifMmDob}</td>
+										<td>${list.ifMmId}</td>
+										<td>${list.ifMmPassWord}</td>
+										<td>${list.ifMmEmail}@
+											<c:choose>
+												<c:when test="${list.ifMmEmailAddress == 44}">naver.com</c:when>
+												<c:when test="${list.ifMmEmailAddress == 45}">daum.net</c:when>
+												<c:when test="${list.ifMmEmailAddress == 46}">gogle.com</c:when>
+												<c:otherwise>직접입력하시오</c:otherwise>
+											</c:choose>
+										</td>
+										<td>
+											<c:choose>
+												<c:when test="${list.ifMmMarketing == 6} }">Y</c:when>
+												<c:otherwise>N</c:otherwise>
+											</c:choose>
+										</td>
+									</tr>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>

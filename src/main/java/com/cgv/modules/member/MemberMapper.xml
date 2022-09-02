@@ -4,17 +4,15 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.cgv.modules.codegroup.CodeGroupMapper">
+<mapper namespace="com.cgv.modules.member.MemberMapper">
 
-    <resultMap id="resultMapObj" type="com.cgv.modules.codegroup.CodeGroup"></resultMap>
+    <resultMap id="resultMapObj" type="com.cgv.modules.member.Member"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
-			,(SELECT COUNT(*) FROM CC b where b.ccgSeq = a.ccgSeq) as cnt
-		FROM CCG a
+		FROM infrMember a
 		Where 1=1
-			and a.ccgUseNy=0
 	</select>
 
 </mapper>	
