@@ -14,7 +14,7 @@
 			,(SELECT COUNT(*) FROM CC b where b.ccgSeq = a.ccgSeq) as cnt
 		FROM CCG a
 		Where 1=1
-			and a.ccgUseNy=0
+			and a.ccgUseNy= 0
 	</select>
 
 </mapper>	
