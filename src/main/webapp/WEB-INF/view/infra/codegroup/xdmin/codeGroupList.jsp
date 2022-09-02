@@ -99,7 +99,7 @@
 		<div class="container py-2">			
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 1300px;">						
 		</div>		
-		<form method="post" action="./member/memberList.html" id="">
+		<form method="post" action="/codeGroup/codeGroupList" id="">
 			<div class="container py-1">				
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
@@ -126,14 +126,15 @@
 					</div>			
 					<div class="row px-2 py-2 row-cols-sm-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="">
-								<option value="">::검색구분::</option>
-								<option value="1">이름</option>
-								<option value="2">아이디</option>
+							<select class="form-select form-select-sm" id="shOption" name="shOption">
+								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
+								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
+								<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영어)</option>
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="검색어" class="form-control form-control-sm" id="">
+							<input type="text" autocomplete="off" placeholder="검색어" class="form-control form-control-sm" id="shValue" name="shValue" value="">
 						</div>
 						<div class="col">
 							<div class="btn-group me-2 btn-group-sm" role="group" aria-label="First-gropu">

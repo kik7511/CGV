@@ -13,7 +13,6 @@
 			a.*
 		FROM infrMember a
 		Where 1=1
-			and UseNy = 1;
 	</select>
-
+	
 </mapper>	
