@@ -194,7 +194,7 @@
 											<fmt:formatDate value="${list.ifMmDob}" pattern="yyyy.MM.dd" />
 										</td>
 										<td>${list.ifMmId}</td>
-										<td>${list.ifMmPassWord}</td>
+										<td>${list.ifMmPhone}</td>
 										<td>${list.ifMmEmail}@
 											<c:choose>
 												<c:when test="${list.ifMmEmailAddress == 44}">naver.com</c:when>
