@@ -125,7 +125,7 @@
 		<div class="container py-2">			
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 1300px;">						
 		</div>		
-		<form method="post" action="./member/memberList.html" id="">
+		<form method="post" action="/code/codeList" id="">
 			<div class="container py-1">				
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
@@ -195,7 +195,7 @@
 								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
 								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
 								<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영어)</option>
-								<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드 이름(한글)</option>
+								<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드 이름</option>
 							</select>
 						</div>
 						<div class="col">
@@ -223,19 +223,22 @@
 							<input type="checkbox" class="form-check-input" onclick="selectAll(this);" name=check>
 						</th>
 						<th scope="col">#</th>
-						<th scope="col">코드그룹</th>
+						<th scope="col">코드그룹 이름(영어)</th>
+						<th scope="col">코드그룹 이름(한글)</th>
 						<th scope="col">코드 이름</th>
 						<th scope="col">사용여부</th>
 						<th scope="col">순서</th>
+						<th scope="col">등록일</th>
 					</tr>
 					<tbody id="cursor">
-						<c:forEach items="${list}" var="list" varStatus="status">
+						<c:forEach items="${list}" var="list" varStatus="status" end="4">
 							<tr onclick="location.href='memberModForm.html'">
 								<td onclick="event.cancelBubble=true">
 									<input type="checkbox" class="form-check-input" name=check>
 								</td>
 								<th scope="col">${list.ccSeq}</th>
 								<td>${list.codeGroup}</td>
+								<td>${list.codeGroupK}</td>
 								<td>${list.ccCodeName}</td>
 								<td>
 									<c:choose>
@@ -244,6 +247,7 @@
                 					</c:choose>
                 				</td>
 								<td>${list.ORDER}</td>
+								<td>${list.ccDate}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
