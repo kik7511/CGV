@@ -1,6 +1,6 @@
-package com.cgv.modules.codegroup;
+package com.cgv.modules.code;
 
-public class CodeGroupVo {
+public class CodeVo {
 	private Integer shOption;
 	private String shValue;
 	private Integer shDelNy;
@@ -44,5 +44,4 @@ public class CodeGroupVo {
 	public void setShValue(String shValue) {
 		this.shValue = shValue;
 	}
-
 }

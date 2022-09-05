@@ -108,8 +108,6 @@
 						<div class="col">
 							<select class="form-select form-select-sm" id="">
 								<option value="">::삭제여부::</option>
-
-								
 								<option value="1">삭제</option>
 								<option value="2">미삭제</option>
 							</select>

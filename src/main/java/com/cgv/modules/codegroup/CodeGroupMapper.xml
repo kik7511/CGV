@@ -15,7 +15,20 @@
 		FROM CCG a
 		Where 1=1
 			and a.ccgUseNy= 1
-			and a.codeGroup LIKE CONCAT('%',#{shValue},'%')
+			<!-- and a.codeGroupK LIKE CONCAT('%',#{shValue},'%') -->
+			<if test="shDelNy != null and !shDelNy.equals('')">AND ccgDelNy = #{shDelNy}</if>
+			<choose>
+				<when test="shOption == 1">AND a.ccgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND a.codeGroupK LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND a.codeGroup LIKE CONCAT('%',#{shValue},'%')</when>
+				<otherwise></otherwise>
+			</choose>
+			<choose>
+				<when test="shOptionDate == 1">AND a.ccgDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<otherwise></otherwise>
+			</choose>
+			
+		
 	</select>
 
 </mapper>	

@@ -10,6 +10,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>codeGroupList</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<style type="text/css">
 		div {display: block;}
 		#cursor {cursor: pointer;}
@@ -104,26 +108,64 @@
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="">
-								<option value="">N</option>
-								<option value="1">삭제</option>
-								<option value="2">미삭제</option>
+							<select class="form-select form-select-sm" id="shDelNy" name="shDelNy">
+								<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
+								<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+								<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-select form-select-sm" id="">
-								<option value="">수정일</option>
-								<option value="1">가입일</option>
-								<option value="2">생일</option>
+							<select class="form-select form-select-sm" id="" name="shOptionDate">
+								<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+								<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+								<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>삭제일</option>
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="">
+							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="shStartDate" name="shStartDate">
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="">
+							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" name="shEndDate">
 						</div>
-					</div>			
+					</div>		
+					<!-- 시작날짜 끝날짜 검색하기 -->
+					<script>
+						$(document).ready(function () {
+						    $.datepicker.regional['ko'] = {
+						        closeText: '닫기',
+						        prevText: '이전달',
+						        nextText: '다음달',
+						        currentText: '오늘',
+						        monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+						        '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+						        monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+						        '7월','8월','9월','10월','11월','12월'],
+						        dayNames: ['일','월','화','수','목','금','토'],
+						        dayNamesShort: ['일','월','화','수','목','금','토'],
+						        dayNamesMin: ['일','월','화','수','목','금','토'],
+						        weekHeader: 'Wk',
+						        dateFormat: 'yy-mm-dd',
+						        firstDay: 0,
+						        showMonthAfterYear: true,
+						        changeMonth: true,
+						        changeYear: true,
+						        yearRange: 'c-99:c+99',
+						    };
+						    $.datepicker.setDefaults($.datepicker.regional['ko']);
+					
+						    $('#shStartDate').datepicker();
+						    $('#shStartDate').datepicker("option", "maxDate", $("#shEndDate").val());
+						    $('#shStartDate').datepicker("option", "onClose", function ( selectedDate ) {
+						        $("#shEndDate").datepicker( "option", "minDate", selectedDate );
+						    });
+					
+						    $('#shEndDate').datepicker();
+						    $('#shEndDate').datepicker("option", "minDate", $("#shStartDate").val());
+						    $('#shEndDate').datepicker("option", "onClose", function ( selectedDate ) {
+						        $("#shStartDate").datepicker( "option", "maxDate", selectedDate );
+						    });
+						});
+					</script>	
 					<div class="row px-2 py-2 row-cols-sm-6">
 						<div class="col">
 							<select class="form-select form-select-sm" id="shOption" name="shOption">
@@ -164,6 +206,7 @@
 						<th scope="col">코드갯수</th>
 						<th scope="col">사용여부</th>
 						<th scope="col">순서</th>
+						<th scope="col">등록일</th>
 					</tr>
 					<tbody id="cursor">
 						<c:choose>
@@ -175,7 +218,7 @@
 								</tr>					
 							</c:when>
 							<c:otherwise>
-								<c:forEach items="${list}" var="list" varStatus="status" end = "5">
+								<c:forEach items="${list}" var="list" varStatus="status" end = "4">
 								<tr onclick="location.href=''">
 									<td onclick="event.cancelBubble=true">
 										<input type="checkbox" class="form-check-input" name=check>
@@ -192,6 +235,7 @@
 		               					</c:choose>
 		               				</td>
 									<td>${list.ccgOrder}</td>
+									<td><fmt:formatDate value="${list.ccgDate}" pattern="yyyy.MM.dd" /></td>
 								</tr>	
 								</c:forEach>
 							</c:otherwise>

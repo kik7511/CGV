@@ -1,5 +1,7 @@
 package com.cgv.modules.codegroup;
 
+import java.util.Date;
+
 public class CodeGroup {
 	private String ccgSeq;
 	private String codeGroup;
@@ -8,7 +10,21 @@ public class CodeGroup {
 	private Integer ccgUseNy;
 	private Integer ccgOrder;
 	private Integer cnt;
+	private Integer ccgDelNy;
+	private Date ccgDate;
 	
+	public Date getCcgDate() {
+		return ccgDate;
+	}
+	public void setCcgDate(Date ccgDate) {
+		this.ccgDate = ccgDate;
+	}
+	public Integer getCcgDelNy() {
+		return ccgDelNy;
+	}
+	public void setCcgDelNy(Integer ccgDelNy) {
+		this.ccgDelNy = ccgDelNy;
+	}
 	public String getCodeGroupK() {
 		return codeGroupK;
 	}
