@@ -1,16 +1,12 @@
 package com.cgv.modules.code;
 
-import com.cgv.modules.codegroup.CodeGroup;
 
-public class Code extends CodeGroup {
+public class Code {
 	private String ccSeq;
-	private String ccgSeq;
 	private String ccCodeName;
 	private Integer ccUseNy;
 	private Integer ORDER;
 	private String ccDate;
-	private String codeGroupK;
-	private String codeGroup;
 	private Integer ccDelNy;
 	
 	public String getCcSeq() {
@@ -18,12 +14,6 @@ public class Code extends CodeGroup {
 	}
 	public void setCcSeq(String ccSeq) {
 		this.ccSeq = ccSeq;
-	}
-	public String getCcgSeq() {
-		return ccgSeq;
-	}
-	public void setCcgSeq(String ccgSeq) {
-		this.ccgSeq = ccgSeq;
 	}
 	public String getCcCodeName() {
 		return ccCodeName;
@@ -49,29 +39,11 @@ public class Code extends CodeGroup {
 	public void setCcDate(String ccDate) {
 		this.ccDate = ccDate;
 	}
-	public String getCodeGroupK() {
-		return codeGroupK;
-	}
-	public void setCodeGroupK(String codeGroupK) {
-		this.codeGroupK = codeGroupK;
-	}
-	public String getCodeGroup() {
-		return codeGroup;
-	}
-	public void setCodeGroup(String codeGroup) {
-		this.codeGroup = codeGroup;
-	}
 	public Integer getCcDelNy() {
 		return ccDelNy;
 	}
 	public void setCcDelNy(Integer ccDelNy) {
 		this.ccDelNy = ccDelNy;
 	}
-	
-	
-	
-	
-	
-	
 	
 }

@@ -116,6 +116,7 @@
 						</div>
 						<div class="col">
 							<select class="form-select form-select-sm" id="" name="shOptionDate">
+								<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜구분</option>
 								<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
 								<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
 								<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>삭제일</option>
@@ -128,49 +129,12 @@
 							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" name="shEndDate">
 						</div>
 					</div>		
-					<!-- 시작날짜 끝날짜 검색하기 -->
-					<script>
-						$(document).ready(function () {
-						    $.datepicker.regional['ko'] = {
-						        closeText: '닫기',
-						        prevText: '이전달',
-						        nextText: '다음달',
-						        currentText: '오늘',
-						        monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
-						        '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
-						        monthNamesShort: ['1월','2월','3월','4월','5월','6월',
-						        '7월','8월','9월','10월','11월','12월'],
-						        dayNames: ['일','월','화','수','목','금','토'],
-						        dayNamesShort: ['일','월','화','수','목','금','토'],
-						        dayNamesMin: ['일','월','화','수','목','금','토'],
-						        weekHeader: 'Wk',
-						        dateFormat: 'yy-mm-dd',
-						        firstDay: 0,
-						        showMonthAfterYear: true,
-						        changeMonth: true,
-						        changeYear: true,
-						        yearRange: 'c-99:c+99',
-						    };
-						    $.datepicker.setDefaults($.datepicker.regional['ko']);
 					
-						    $('#shStartDate').datepicker();
-						    $('#shStartDate').datepicker("option", "maxDate", $("#shEndDate").val());
-						    $('#shStartDate').datepicker("option", "onClose", function ( selectedDate ) {
-						        $("#shEndDate").datepicker( "option", "minDate", selectedDate );
-						    });
-					
-						    $('#shEndDate').datepicker();
-						    $('#shEndDate').datepicker("option", "minDate", $("#shStartDate").val());
-						    $('#shEndDate').datepicker("option", "onClose", function ( selectedDate ) {
-						        $("#shStartDate").datepicker( "option", "maxDate", selectedDate );
-						    });
-						});
-					</script>	
 					<div class="row px-2 py-2 row-cols-sm-6">
 						<div class="col">
 							<select class="form-select form-select-sm" id="shOption" name="shOption">
 								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
+								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 번호</option>
 								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
 								<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영어)</option>
 							</select>
@@ -347,6 +311,42 @@
 				$(a).remove();
 			});
 		});
-	</script>
+	<!-- DatePicker -->
+		$(document).ready(function () {
+		    $.datepicker.regional['ko'] = {
+		        closeText: '닫기',
+		        prevText: '이전달',
+		        nextText: '다음달',
+		        currentText: '오늘',
+		        monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+		        '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+		        monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+		        '7월','8월','9월','10월','11월','12월'],
+		        dayNames: ['일','월','화','수','목','금','토'],
+		        dayNamesShort: ['일','월','화','수','목','금','토'],
+		        dayNamesMin: ['일','월','화','수','목','금','토'],
+		        weekHeader: 'Wk',
+		        dateFormat: 'yy-mm-dd',
+		        firstDay: 0,
+		        showMonthAfterYear: true,
+		        changeMonth: true,
+		        changeYear: true,
+		        yearRange: 'c-99:c+99',
+		    };
+		    $.datepicker.setDefaults($.datepicker.regional['ko']);
+	
+		    $('#shStartDate').datepicker();
+		    $('#shStartDate').datepicker("option", "maxDate", $("#shEndDate").val());
+		    $('#shStartDate').datepicker("option", "onClose", function ( selectedDate ) {
+		        $("#shEndDate").datepicker( "option", "minDate", selectedDate );
+		    });
+	
+		    $('#shEndDate').datepicker();
+		    $('#shEndDate').datepicker("option", "minDate", $("#shStartDate").val());
+		    $('#shEndDate').datepicker("option", "onClose", function ( selectedDate ) {
+		        $("#shStartDate").datepicker( "option", "maxDate", selectedDate );
+		    });
+		});
+	</script>	
 </body>
 </html>

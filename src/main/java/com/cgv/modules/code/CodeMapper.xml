@@ -11,24 +11,9 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
-			,(SELECT b.CodeGroup FROM CCG b where b.ccgSeq = a.ccgSeq) as codeGroup
-			,(SELECT b.CodeGroupK FROM CCG b where b.ccgSeq = a.ccgSeq) as codeGroupK
 		FROM CC a
 		Where 1=1
 			and a.ccUseNy= 1
-			<!-- and a.codeGroupK LIKE CONCAT('%',#{shValue},'%') -->
-			<if test="shDelNy != null and !shDelNy.equals('')">AND ccDelNy = #{shDelNy}</if>
-			<choose>
-				<when test="shOption == 1">AND a.ccSeq = #{shValue}</when>
-				<when test="shOption == 2">AND a.codeGroupK LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 3">AND a.codeGroup LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 4">AND a.ccCodeName LIKE CONCAT('%',#{shValue},'%')</when>
-				<otherwise></otherwise>
-			</choose>
-			<choose>
-				<when test="shOptionDate == 1">AND a.ccDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-				<otherwise></otherwise>
-			</choose>
 			
 		
 	</select>

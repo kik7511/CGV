@@ -130,24 +130,24 @@
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="shDelNy" name="shDelNy">
+							<select class="form-select form-select-sm" id="" name="">
 								<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
 								<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
 								<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-select form-select-sm" id="" name="shOptionDate">
+							<select class="form-select form-select-sm" id="" name="">
 								<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
 								<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
 								<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>삭제일</option>
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="shStartDate" name="shStartDate">
+							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="shStartDate" >
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" name="shEndDate">
+							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" >
 						</div>
 					</div>		
 					<!-- 시작날짜 끝날짜 검색하기 -->
@@ -190,7 +190,7 @@
 					</script>	
 					<div class="row px-2 py-2 row-cols-sm-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="shOption" name="shOption">
+							<select class="form-select form-select-sm" id="" name="">
 								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
 								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
 								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
@@ -199,7 +199,7 @@
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="검색어" class="form-control form-control-sm" id="shValue" name="shValue" value="">
+							<input type="text" autocomplete="off" placeholder="검색어" class="form-control form-control-sm" id="" name="" value="">
 						</div>
 						<div class="col">
 							<div class="btn-group me-2 btn-group-sm" role="group" aria-label="First-gropu">
@@ -237,8 +237,8 @@
 									<input type="checkbox" class="form-check-input" name=check>
 								</td>
 								<th scope="col">${list.ccSeq}</th>
-								<td>${list.codeGroup}</td>
-								<td>${list.codeGroupK}</td>
+								<td></td>
+								<td></td>
 								<td>${list.ccCodeName}</td>
 								<td>
 									<c:choose>
