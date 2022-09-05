@@ -1,14 +1,17 @@
 package com.cgv.modules.code;
 
+import com.cgv.modules.codegroup.CodeGroup;
 
-public class Code {
+public class Code extends CodeGroup {
 	private String ccSeq;
 	private String ccCodeName;
 	private Integer ccUseNy;
 	private Integer ORDER;
 	private String ccDate;
 	private Integer ccDelNy;
-	
+	private String ccgSeq;
+	private String codeGroup;
+	private String codeGroupK;
 	public String getCcSeq() {
 		return ccSeq;
 	}
@@ -45,5 +48,27 @@ public class Code {
 	public void setCcDelNy(Integer ccDelNy) {
 		this.ccDelNy = ccDelNy;
 	}
+	public String getCcgSeq() {
+		return ccgSeq;
+	}
+	public void setCcgSeq(String ccgSeq) {
+		this.ccgSeq = ccgSeq;
+	}
+	public String getCodeGroup() {
+		return codeGroup;
+	}
+	public void setCodeGroup(String codeGroup) {
+		this.codeGroup = codeGroup;
+	}
+	public String getCodeGroupK() {
+		return codeGroupK;
+	}
+	public void setCodeGroupK(String codeGroupK) {
+		this.codeGroupK = codeGroupK;
+	}
+	
+
+	
+	
 	
 }

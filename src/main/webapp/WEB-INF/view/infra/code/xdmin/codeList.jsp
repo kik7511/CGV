@@ -130,24 +130,25 @@
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="" name="">
+							<select class="form-select form-select-sm" id="shDelNy" name="shDelNy">
 								<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
 								<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
 								<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-select form-select-sm" id="" name="">
+							<select class="form-select form-select-sm" id="shOption" name="shOption">
+								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>날짜여부</option>
 								<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
 								<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
 								<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>삭제일</option>
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="shStartDate" >
+							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="shStartDate" name="shStartDate">
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" >
+							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" name="shEndDate">
 						</div>
 					</div>		
 					<!-- 시작날짜 끝날짜 검색하기 -->
