@@ -39,7 +39,7 @@
 	<div>
 		<nav class="navbar bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="memberList.html">
+				<a class="navbar-brand" href="/code/codeList">
 					<img src="/resources/images/logoRed.png" alt="CGV" style="width: 120px; height: 50px; margin-left: 40px;">
 				</a>
 			</div>
@@ -238,8 +238,8 @@
 									<input type="checkbox" class="form-check-input" name=check>
 								</td>
 								<th scope="col">${list.ccSeq}</th>
-								<td></td>
-								<td></td>
+								<td>${list.code}</td> 
+								<td>${list.codeK}</td>
 								<td>${list.ccCodeName}</td>
 								<td>
 									<c:choose>
@@ -281,7 +281,7 @@
 			</div>
 			<div class="container">
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float:  right;">
-					<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='memberRegForm.html'">
+					<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='/code/codeForm'">
 						<i class="fa-solid fa-plus"></i>
 					</button>
 					<button type="button" class="btn btn-outline-danger" id="deleteInput" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="getCheckboxValue()">

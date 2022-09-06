@@ -182,7 +182,7 @@
 								</tr>					
 							</c:when>
 							<c:otherwise>
-								<c:forEach items="${list}" var="list" varStatus="status" end = "4">
+								<c:forEach items="${list}" var="list" varStatus="status">
 								<tr onclick="location.href=''">
 									<td onclick="event.cancelBubble=true">
 										<input type="checkbox" class="form-check-input" name=check>
@@ -234,7 +234,7 @@
 			</div>
 			<div class="container">
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float:  right;">
-					<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='memberRegForm.html'">
+					<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='/codeGroup/codeGroupForm'">
 						<i class="fa-solid fa-plus"></i>
 					</button>
 					<button type="button" class="btn btn-outline-danger" id="deleteInput" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="getCheckboxValue()">

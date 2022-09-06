@@ -12,6 +12,21 @@ public class Code extends CodeGroup {
 	private String ccgSeq;
 	private String codeGroup;
 	private String codeGroupK;
+	private String code;
+	private String codeK;
+
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getCodeK() {
+		return codeK;
+	}
+	public void setCodeK(String codeK) {
+		this.codeK = codeK;
+	}
 	public String getCcSeq() {
 		return ccSeq;
 	}

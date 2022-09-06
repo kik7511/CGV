@@ -29,5 +29,20 @@
 				<otherwise></otherwise>
 			</choose>
 	</select>
+	
+	<insert id="insert">
+		INSERT INTO CC (
+			ccgSeq
+			,ccCodeName
+			,ccUseNy
+		)VALUES(
+			#{ccgSeq}
+			,#{ccCodeName}
+			,1
+		)
+			<selectKey resultType="String" keyProperty="ccSeq" order="AFTER">
+				SELECT last_insert_id()
+			</selectKey>
+	</insert>
 
 </mapper>	
