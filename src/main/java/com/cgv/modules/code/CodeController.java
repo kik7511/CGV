@@ -31,9 +31,9 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeForm")
-	public String codeForm(Model model, CodeGroupVo vo) throws Exception{
+	public String codeForm(Model model) throws Exception{
 		
-		List<CodeGroup> list = codeGroupServiceImpl.selectList(vo);
+		List<CodeGroup> list = codeGroupServiceImpl.selectList();
 		model.addAttribute("list", list);
 		return "infra/code/xdmin/codeForm";
 	}
