@@ -64,7 +64,7 @@
 										</div>
 										<div class="modal-body">
 											<form>
-												<img class="mb-2" src="../../user/img/logoRed.png" alt="" width="120" height="50">
+												<img class="mb-2" src="/resources/images/logoRed.png" alt="" width="120" height="50">
 												<h1 class="h3 mb-3 fw-normal">관리자 로그인</h1>
 												<div class="form-floating">
 													<input type="email" class="form-control" id="dminId" placeholder="id@example.com">
@@ -86,10 +86,6 @@
 													</button> -->
 												<p class="mt-5 mb-3 text-muted">© 2022 CGV.All Rights Reserved</p>
 											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
 										</div>
 									</div>
 								</div>
@@ -123,7 +119,7 @@
 			</ul>
 		</nav>			
 		<div class="container py-2">			
-			<img alt="" src="/resources/images/mainpage.jpg" style="width: 1300px;">						
+			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
 		</div>		
 		<form method="post" action="/code/codeList" id="">
 			<div class="container py-1">				
@@ -232,7 +228,7 @@
 						<th scope="col">등록일</th>
 					</tr>
 					<tbody id="cursor">
-						<c:forEach items="${list}" var="list" varStatus="status" end="4">
+						<c:forEach items="${list}" var="list" varStatus="status">
 							<tr onclick="location.href='memberModForm.html'">
 								<td onclick="event.cancelBubble=true">
 									<input type="checkbox" class="form-check-input" name=check>

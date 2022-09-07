@@ -63,11 +63,29 @@
 											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<span>아라비아</span>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
+											<form>
+												<img class="mb-2" src="/resources/images/logoRed.png" alt="" width="120" height="50">
+												<h1 class="h3 mb-3 fw-normal">관리자 로그인</h1>
+												<div class="form-floating">
+													<input type="email" class="form-control" id="dminId" placeholder="id@example.com">
+													<label for="floatingInput">아이디</label>
+												</div>
+												<div class="form-floating">
+													<input type="password" class="form-control" id="dminPassword" placeholder="Password">
+													<label for="floatingPassword">비밀번호</label>
+												</div>
+												<div class="checkbox mb-3">
+													<label>
+														<input type="checkbox" value="remember-me"> 아이디 저장
+													</label>
+												</div>
+													<button class="w-100 btn btn-lg btn-danger" type="submit" onclick="location.href='./firstpage.html'">로그인</button>
+													<!-- <button class="w-100 btn btn-lg" type="button" style="margin-top: 2px; background-color: rgb(254, 229, 0);">
+														<img alt="카카오톡 로고" src="../img/kakao.png" class="img-fluid">
+														<span>카카오 계정으로 로그인</span>
+													</button> -->
+												<p class="mt-5 mb-3 text-muted">© 2022 CGV.All Rights Reserved</p>
+											</form>
 										</div>
 									</div>
 								</div>
@@ -101,7 +119,7 @@
 			</ul>
 		</nav>			
 		<div class="container py-2">			
-			<img alt="" src="/resources/images/mainpage.jpg" style="width: 1300px;">						
+			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
 		</div>		
 		<form method="post" action="/codeGroup/codeGroupInst" id="">
 			<div class="container">
@@ -128,14 +146,14 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="영문(대소문자), 숫자" id="">
+											<input type="text" class="form-control" placeholder="자동생성" id="" disabled="disabled">
 										</div>
 									</div>	
 								</td>
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="영문(대소문자), 숫자">
+											<input type="text" class="form-control" placeholder="영문(대소문자), 숫자" name="">
 										</div>
 									</div>	
 								</td>
@@ -193,7 +211,6 @@
 									<div class="row">
 										<div class="col">
 											<select class="form-select" id="ccgUseNy" name="ccgUseNy">
-												<option value="">사용여부</option>
 												<option value="1">Y</option>
 												<option value="0">N</option>
 											</select>
@@ -203,7 +220,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="숫자">
+											<input type="text" class="form-control" placeholder="숫자" name="ccgOrder">
 										</div>
 									</div>
 								</td>
@@ -228,17 +245,16 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<textarea style="width: 100%"></textarea>
+											<textarea style="width: 100%" name="reference"></textarea>
 										</div>									
 									</div>
 								</td>
 								<td>
 									<div class="row">
 										<div class="col">
-											<select class="form-select" name="ccgDelNy" id="ccgDelNy">
-												<option value="" <c:if test="${empty dto.ccgDelNy}">selected</c:if>>삭제여부</option>
-												<option value="1" <c:if test="${dto.ccgDelNy eq 1}">selected</c:if>>Y</option>
-												<option value="0" <c:if test="${dto.ccgDelNy eq 0}">selected</c:if>>N</option>
+											<select class="form-select" disabled="disabled">
+												<option value="0">N</option>
+												<option value="1">Y</option>
 											</select>
 										</div>
 									</div>
@@ -376,33 +392,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/188ea9a4c6.js" crossorigin="anonymous"></script>	
 	<script type="text/javascript">
-		/* 체크박스 전체 선택 */
-		function selectAll(selectAll){
-			const checkboxes 
-				= document.getElementsByName("check");
-			
-		checkboxes.forEach((checkbox) => {
-			checkbox.checked = selectAll.checked;
-		})
-	}
 		/* 모달 나타나기 */
 		const myModal = document.getElementById('deleteModal')
 		const myInput = document.getElementById('deleteInput')
 
 		myModal.addEventListener('shown.bs.modal', () => {
 		  deleteInput.focus()
-		});
-		/* 체크된 줄만 지우기(현재 실패) */
-		$('#delRow').click(function(){
-			if($("input:checkbox[name='check']:checked").length === 0) {
-				alert("삭제할 항목을 선택해 주세요.");
-				return;
-			}
-			$("input:checkbox[name='check']:checked").each(function(k,kVal){
-				console.log("kVal ::", kVal.parentElement.parentElement);
-				let a = kVal.parentElemnet.parentElement.parentElement;
-				$(a).remove();
-			});
 		});
 	</script>
 </body>

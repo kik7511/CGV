@@ -63,11 +63,29 @@
 											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<span>아라비아</span>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-											<button type="button" class="btn btn-primary">로그인</button>
+											<form>
+												<img class="mb-2" src="/resources/images/logoRed.png" alt="" width="120" height="50">
+												<h1 class="h3 mb-3 fw-normal">관리자 로그인</h1>
+												<div class="form-floating">
+													<input type="email" class="form-control" id="dminId" placeholder="id@example.com">
+													<label for="floatingInput">아이디</label>
+												</div>
+												<div class="form-floating">
+													<input type="password" class="form-control" id="dminPassword" placeholder="Password">
+													<label for="floatingPassword">비밀번호</label>
+												</div>
+												<div class="checkbox mb-3">
+													<label>
+														<input type="checkbox" value="remember-me"> 아이디 저장
+													</label>
+												</div>
+													<button class="w-100 btn btn-lg btn-danger" type="submit" onclick="location.href='./firstpage.html'">로그인</button>
+													<!-- <button class="w-100 btn btn-lg" type="button" style="margin-top: 2px; background-color: rgb(254, 229, 0);">
+														<img alt="카카오톡 로고" src="../img/kakao.png" class="img-fluid">
+														<span>카카오 계정으로 로그인</span>
+													</button> -->
+												<p class="mt-5 mb-3 text-muted">© 2022 CGV.All Rights Reserved</p>
+											</form>
 										</div>
 									</div>
 								</div>
@@ -101,7 +119,7 @@
 			</ul>
 		</nav>			
 		<div class="container py-2">			
-			<img alt="" src="/resources/images/mainpage.jpg" style="width: 1300px;">						
+			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
 		</div>		
 		<form method="post" action="/codeGroup/codeGroupList" id="">
 			<div class="container py-1">				

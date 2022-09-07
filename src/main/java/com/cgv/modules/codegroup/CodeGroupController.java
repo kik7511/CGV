@@ -27,7 +27,7 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "codeGroupForm")
-	public String codeGroupForm(Model model, CodeGroupVo vo) throws Exception{
+	public String codeGroupForm() throws Exception{
 		
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
@@ -36,7 +36,7 @@ public class CodeGroupController {
 	public String codeGroupInst(CodeGroup dto) throws Exception{
 		
 		int result = service.insert(dto);
-		System.out.println("controller result" + result);
+		System.out.println("controller result: " + result);
 		
 		
 		return "redirect:/codeGroup/codeGroupList";

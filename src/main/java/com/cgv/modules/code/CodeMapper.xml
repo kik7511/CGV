@@ -35,10 +35,14 @@
 			ccgSeq
 			,ccCodeName
 			,ccUseNy
+			,ccDelNy
+			,ORDER
 		)VALUES(
 			#{ccgSeq}
 			,#{ccCodeName}
-			,1
+			,#{ccUseNy}
+			,0
+			,#{ORDER}
 		)
 			<selectKey resultType="String" keyProperty="ccSeq" order="AFTER">
 				SELECT last_insert_id()

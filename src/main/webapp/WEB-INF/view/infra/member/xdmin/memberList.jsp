@@ -12,6 +12,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>memberList</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<style type="text/css">
 		div {display: block;}
 		#cursor {cursor: pointer;}
@@ -61,11 +65,29 @@
 											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<span>아라비아</span>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
+											<form>
+												<img class="mb-2" src="/resources/images/logoRed.png" alt="" width="120" height="50">
+												<h1 class="h3 mb-3 fw-normal">관리자 로그인</h1>
+												<div class="form-floating">
+													<input type="email" class="form-control" id="dminId" placeholder="id@example.com">
+													<label for="floatingInput">아이디</label>
+												</div>
+												<div class="form-floating">
+													<input type="password" class="form-control" id="dminPassword" placeholder="Password">
+													<label for="floatingPassword">비밀번호</label>
+												</div>
+												<div class="checkbox mb-3">
+													<label>
+														<input type="checkbox" value="remember-me"> 아이디 저장
+													</label>
+												</div>
+													<button class="w-100 btn btn-lg btn-danger" type="submit">로그인</button>
+													<!-- <button class="w-100 btn btn-lg" type="button" style="margin-top: 2px; background-color: rgb(254, 229, 0);">
+														<img alt="카카오톡 로고" src="../img/kakao.png" class="img-fluid">
+														<span>카카오 계정으로 로그인</span>
+													</button> -->
+												<p class="mt-5 mb-3 text-muted">© 2022 CGV.All Rights Reserved</p>
+											</form>
 										</div>
 									</div>
 								</div>
@@ -101,22 +123,24 @@
 		<div class="container py-2">			
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 1300px;">						
 		</div>		
-		<form method="post" action="./member/memberList.html" id="">
+		<form method="post" action="/member/memberList">
 			<div class="container py-1">				
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="">
-								<option value="">::삭제여부::</option>
-								<option value="1">삭제</option>
-								<option value="2">미삭제</option>
+							<select class="form-select form-select-sm" name="shDelNy">
+								<option value="">삭제여부</option>
+								<option value="0">N</option>
+								<option value="1">Y</option>
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-select form-select-sm" id="">
-								<option value="">::날짜::</option>
-								<option value="1">가입일</option>
-								<option value="2">생일</option>
+							<select class="form-select form-select-sm" name="shOptionDate">
+								<option value="">날짜구분</option>
+								<option value="1">등록일</option>
+								<option value="2">수정일</option>
+								<option value="3">삭제일</option>
+								<option value="4">생일</option>
 							</select>
 						</div>
 						<div class="col">

@@ -33,10 +33,16 @@
 			codeGroup
 			,codeGroupK
 			,ccgDelNy
+			,ccgUseNy
+			,ccgOrder
+			,reference
 		)Values (
 			#{codeGroup}
 			,#{codeGroupK}
-			,#{ccgDelNy}			
+			,0		
+			,#{ccgUseNy}
+			,#{ccgOrder}
+			,#{reference}	
 		)
 		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
 			SELECT last_insert_id()
