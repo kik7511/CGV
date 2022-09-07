@@ -63,7 +63,7 @@
 											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form>
+											<form >
 												<img class="mb-2" src="/resources/images/logoRed.png" alt="" width="120" height="50">
 												<h1 class="h3 mb-3 fw-normal">관리자 로그인</h1>
 												<div class="form-floating">
@@ -121,7 +121,7 @@
 		<div class="container py-2">			
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
 		</div>		
-		<form method="post" action="/codeGroup/codeGroupInst" id="">
+		<form method="post" action="/codeGroup/codeGroupInst" id="myForm">
 			<div class="container">
 				<div class="table border" style="border-radius: 1em;">
 					<table class="table align-middle">
@@ -220,7 +220,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="숫자" name="ccgOrder">
+											<input type="text" class="form-control" placeholder="숫자" name="ccgOrder" id="ccgOrder">
 										</div>
 									</div>
 								</td>
@@ -245,7 +245,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<textarea style="width: 100%" name="reference"></textarea>
+											<textarea style="width: 100%" name="reference" id="reference"></textarea>
 										</div>									
 									</div>
 								</td>
@@ -363,9 +363,11 @@
 						</tbody>
 					</table>
 				</div>
+				<input type="checkbox" name="ch" id="ch1" value="dog">개
+			<input type="checkbox" name="ch" id="ch2" value="cat">고양이
 				<br>
 				<div style="text-align: center;">
-					<button type="submit" class="btn btn-dark"> 등록하기</button>
+					<button type="button" class="btn btn-dark" name="" id="btnSave" onclick="test();"> 등록하기</button>
 				</div>
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">
 					<button type="button" class="btn btn-success" id="" onclick="location.href='/codeGroup/codeGroupList'">
@@ -399,6 +401,52 @@
 		myModal.addEventListener('shown.bs.modal', () => {
 		  deleteInput.focus()
 		});
+		
+		function test(){
+			//alert("test");
+			
+			//alert(document.getElementById('codeGroupK').value);
+			//alert(document.getElementById('codeGroup').value);
+			//alert(document.getElementById('ccgUseNy').option[document.getElementById('ccgUseNy').selectedIndex].value); //셀렉트 값 구하기 but 위에껄로 구해도 됨
+			//alert(document.querySelector("input[name='ch']:checked").value);  //라디오 박스
+			//alert(document.getElementById('ccgOrder').value);
+			//alert(document.getElementById('reference').value);
+			
+			//return false;
+			
+				//안 적었을 때 경고창 + 안 적은 곳 포커스-하나는 되는데 이걸 전체 중에서 빈칸 있으면 기능 작동하게 만들어야 함 - while 문 사용해야 하나??
+				
+			 /* if(document.getElementById('codeGroupK').value == null || document.getElementById('codeGroupK').value == ''){
+				alert("입력해주세요");
+				document.getElementById('codeGroupK').value='';
+				document.getElementById('codeGroupK').focus();
+				return false;
+			}
+				document.getElementById('myForm').submit(); */
+				
+				/*		        
+		        //하늘이꺼
+		        
+		        // radio 
+	        	if($('input:radio[name=codeGroup_Gender]').is(':checked') == false) {
+					alert("성별을 선택하세요");
+				}else {
+					alert(document.querySelector('input[name=ch]').value);					
+				}
+				
+	        	
+		        // checkbox
+	        	if (document.querySelector('input[name=ch]:checked') == null) {
+	 				alert("성별을 선택하세요");
+	 			} else {
+	 				 for (var i=0; i<document.getElementsByName("ch").length; i++) {
+	 		            if (document.getElementsByName("ch")[i].checked == true) {
+	 		                alert(document.getElementsByName("ch")[i].value);
+	 			}
+	        	*/
+		} 
+	    
+	</script>
 	</script>
 </body>
 </html>

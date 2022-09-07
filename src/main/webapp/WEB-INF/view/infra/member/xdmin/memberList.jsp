@@ -334,7 +334,7 @@
 		});
 		/* 체크된 줄만 지우기(현재 실패) */
 		$('#delRow').click(function(){
-			if($("input:checkbox[name='check']:checked").length === 0) {
+			if($("input:checkbox[name='check']:checked").length == 0) {
 				alert("삭제할 항목을 선택해 주세요.");
 				return;
 			}
