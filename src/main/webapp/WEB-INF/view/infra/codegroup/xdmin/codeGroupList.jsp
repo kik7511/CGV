@@ -39,7 +39,7 @@
 	<div>
 		<nav class="navbar bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="memberList.html">
+				<a class="navbar-brand" href="/codeGroup/codeGroupList">
 					<img src="/resources/images/logoRed.png" alt="CGV" style="width: 120px; height: 50px; margin-left: 40px;">
 				</a>
 			</div>
@@ -101,13 +101,13 @@
 		<nav class="container py-2" id="menu">
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="#" style="color: black;">코드그룹관리</a>					
+					<a class="nav-link active" aria-current="page" href="/codeGroup/codeGroupList" style="color: black;">코드그룹관리</a>					
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" href="#" style="color: black;">코드관리</a>
+					<a class="nav-link" href="/code/codeList" style="color: black;">코드관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#" style="color: black;">회원관리</a>
+					<a class="nav-link" href="/member/memberList" style="color: black;">회원관리</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#" style="color: black;">현황관리</a>
@@ -201,7 +201,7 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${list}" var="list" varStatus="status">
-								<tr onclick="location.href=''">
+								<tr onclick="location.href='/codeGroup/codeGroupView?ccgSeq=<c:out value = "${list.ccgSeq}"/>'">
 									<td onclick="event.cancelBubble=true">
 										<input type="checkbox" class="form-check-input" name=check>
 									</td>
@@ -255,10 +255,10 @@
 					<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='/codeGroup/codeGroupForm'">
 						<i class="fa-solid fa-plus"></i>
 					</button>
-					<button type="button" class="btn btn-outline-danger" id="deleteInput" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="getCheckboxValue()">
+					<button type="button" class="btn btn-outline-danger" id="deleteInput" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="return submit2(this.form)">
 						<i class="fa-solid fa-trash-can"></i>
 					</button>
-					<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+					<!-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 						<div class="modal-dialog" id="result">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -274,7 +274,7 @@
       							</div>
     						</div>
   						</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float: left;">
 					<button type="button" class="btn btn-success" id="" onclick="location.href='memberList.html'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" title="엑셀파일로 출력하기" >
@@ -318,7 +318,7 @@
 		  deleteInput.focus()
 		});
 		/* 체크된 줄만 지우기(현재 실패) */
-		$('#delRow').click(function(){
+		/* $('#delRow').click(function(){
 			if($("input:checkbox[name='check']:checked").length === 0) {
 				alert("삭제할 항목을 선택해 주세요.");
 				return;
@@ -328,7 +328,7 @@
 				let a = kVal.parentElemnet.parentElement.parentElement;
 				$(a).remove();
 			});
-		});
+		}); */
 	<!-- DatePicker -->
 		$(document).ready(function () {
 		    $.datepicker.regional['ko'] = {
@@ -365,6 +365,7 @@
 		        $("#shStartDate").datepicker( "option", "maxDate", selectedDate );
 		    });
 		});
+		
 	</script>	
 </body>
 </html>

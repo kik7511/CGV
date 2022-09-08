@@ -38,6 +38,30 @@ public class CodeGroupController {
 		int result = service.insert(dto);
 		System.out.println("controller result: " + result);
 		
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "codeGroupView")
+	public String codeGroupView(CodeGroupVo vo, Model model) throws Exception{
+		
+		CodeGroup item = service.selectOne(vo);
+		model.addAttribute("item", item);
+		
+		return "infra/codegroup/xdmin/codeGroupView";
+	}
+	
+	@RequestMapping(value = "codeGroupMod")
+	public String codeGroupMod(CodeGroup dto) throws Exception{
+		int result = service.update(dto);
+		System.out.println("controller result: " + result);
+		
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "codeGroupDelete")
+	public String codeGroupDelete(CodeGroup dto) throws Exception{
+		int result = service.delete(dto);
+		System.out.println("controller result: " + result);
 		
 		return "redirect:/codeGroup/codeGroupList";
 	}

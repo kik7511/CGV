@@ -39,7 +39,7 @@
 	<div>
 		<nav class="navbar bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="/code/codeList">
+				<a class="navbar-brand" href="/codeGroup/codeGroupList">
 					<img src="/resources/images/logoRed.png" alt="CGV" style="width: 120px; height: 50px; margin-left: 40px;">
 				</a>
 			</div>
@@ -101,13 +101,13 @@
 		<nav class="container py-2" id="menu">
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="#" style="color: black;">코드그룹관리</a>					
+					<a class="nav-link" aria-current="page" href="/codeGroup/codeGroupList" style="color: black;">코드그룹관리</a>					
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" href="#" style="color: black;">코드관리</a>
+					<a class="nav-link active" href="/code/codeList" style="color: black;">코드관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#" style="color: black;">회원관리</a>
+					<a class="nav-link" href="/member/memberList" style="color: black;">회원관리</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#" style="color: black;">현황관리</a>

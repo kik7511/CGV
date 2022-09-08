@@ -48,5 +48,33 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM CCG a
+		WHERE 1=1
+			AND a.ccgSeq = #{ccgSeq}		
+	</select>
+	
+	<update id="update">
+		UPDATE CCG  
+		SET 
+		codeGroup = #{codeGroup}
+		,codeGroupK = #{codeGroupK}
+		,ccgDelNy = #{ccgDelNy}
+		,ccgUseNy = #{ccgUseNy}
+		,ccgOrder = #{ccgOrder}
+		,reference = #{reference}
+		WHERE 1=1
+			AND ccgSeq = #{ccgSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE 
+		FROM CCG a
+		WHERE 1=1
+			AND ccgSeq = #{ccgSeq}
+	</delete>
 
 </mapper>	

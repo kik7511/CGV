@@ -39,7 +39,7 @@
 	<div>
 		<nav class="navbar bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="memberList.html">
+				<a class="navbar-brand" href="/codeGroup/codeGroupList">
 					<img src="/resources/images/logoRed.png" alt="CGV" style="width: 120px; height: 50px; margin-left: 40px;">
 				</a>
 			</div>
@@ -101,13 +101,13 @@
 		<nav class="container py-2" id="menu">
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="#" style="color: black;">코드그룹관리</a>					
+					<a class="nav-link active" aria-current="page" href="/codeGroup/codeGroupList" style="color: black;">코드그룹관리</a>					
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" href="#" style="color: black;">코드관리</a>
+					<a class="nav-link" href="/code/codeList" style="color: black;">코드관리</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#" style="color: black;">회원관리</a>
+					<a class="nav-link" href="/member/memberList" style="color: black;">회원관리</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#" style="color: black;">현황관리</a>
@@ -363,13 +363,12 @@
 						</tbody>
 					</table>
 				</div>
-				<input type="checkbox" name="ch" id="ch1" value="dog">개
-			<input type="checkbox" name="ch" id="ch2" value="cat">고양이
 				<br>
 				<div style="text-align: center;">
-					<button type="button" class="btn btn-dark" name="" id="btnSave" onclick="test();"> 등록하기</button>
+					<!-- <input type="submit" value="Send" onClick={ validateForm }/> -->
+					<button type="submit" class="btn btn-dark" name="" id="btnSave"> 등록하기</button>
 				</div>
-				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">
+				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
 					<button type="button" class="btn btn-success" id="" onclick="location.href='/codeGroup/codeGroupList'">
 						<i class="fa-solid fa-list"></i>
 					</button>
@@ -403,8 +402,8 @@
 		});
 		
 		function test(){
-			//alert("test");
-			
+			alert("test");
+		}
 			//alert(document.getElementById('codeGroupK').value);
 			//alert(document.getElementById('codeGroup').value);
 			//alert(document.getElementById('ccgUseNy').option[document.getElementById('ccgUseNy').selectedIndex].value); //셀렉트 값 구하기 but 위에껄로 구해도 됨
@@ -444,9 +443,19 @@
 	 		                alert(document.getElementsByName("ch")[i].value);
 	 			}
 	        	*/
-		} 
-	    
-	</script>
+		
+	 	/* const validateForm = () => {
+	 		const $form = document.querySelector('form');
+	 		const $input = $form.querySelectorAll('input');
+	 		
+	 		if($form){
+	 			$input.forEach(input => {
+	 				input.addEventListener('invalid', () => {
+	 					$form.classList.add('invalid-form');
+	 				});
+	 			});
+	 		}
+ 		} */
 	</script>
 </body>
 </html>

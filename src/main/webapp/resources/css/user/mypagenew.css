@@ -1,0 +1,476 @@
+@charset "UTF-8";
+
+/* 마이페이지 메인 */
+.cols-mycgv-booking .box-info .box-contents{
+    margin-right: 0;
+    padding-right: 15px;
+    border-right: 1px solid #d6d4ca;
+}
+
+.cols-mycgv-booking .box-info .box-contents.artHouse{    
+    float:left; 
+    width:100%; 
+    margin-right:0;
+}
+
+.cols-mycgv-booking .box-info .box-contents.artHouse .screentype{padding-left:5px}
+
+.cols-mycgv-booking .box-info .box-contents.artHouse + .reservation-mv-info{
+    float:left
+}
+    
+
+
+[class|="sect-base"][class$="booking"] .box-contents.has_not_storeitem {
+    border-right: none;
+    width: auto;
+}
+[class|="sect-base"][class$="booking"] .box-detail  {
+    margin-left: -1px;
+}
+[class|="sect-base"][class$="booking"] .box-detail .account-info {
+    width: auto;
+}
+
+[class|="sect-base"][class$="booking"] .price-n-btns {
+    clear: both;
+    padding-top: 24px;  
+    padding-left: 109px;
+}
+
+[class|="sect-base"][class$="booking"] .price-n-btns .bd-wrap {
+    position: relative;
+    border-top: 1px solid #d6d4ca;
+    min-height: 48px;
+}
+
+.cols-content [class|="sect-base"][class$="booking"] .price-n-btns .bd-wrap .set-btn {
+    position: relative;
+    text-align: right;
+}
+
+[class|="sect-base"][class$="booking"] .price-n-btns .bd-wrap > dl {
+    position: absolute;
+    left: 0;
+    top : 27px;
+}
+
+[class|="sect-base"][class$="booking"] .lst-item {
+    position: relative;
+}
+
+[class|="sect-base"][class$="booking"] .lst-item .price-n-btns .bd-wrap dt {
+    float: left;
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+
+[class|="sect-base"][class$="booking"] .lst-item .price-n-btns .bd-wrap dd {
+    float: left;
+    margin-top: 0;
+    margin-bottom: 0px;
+    margin-left: 6px;
+    font-size: 14px;
+}
+
+[class|="sect-base"][class$="booking"] .layer-wrap {
+    display: none;
+    top: auto;
+    top: -70px;
+    left: -20px;
+    width: 608px;
+}
+
+[class|="sect-base"][class$="booking"] .layer-wrap.__on {
+    display: block;
+}
+
+.layer-wrap .sect-reserve-cancel {
+    text-align: center;
+}
+
+.layer-wrap .sect-reserve-cancel h2 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 14px;
+}
+
+.layer-wrap .sect-reserve-cancel p {
+    line-height: 1.6;
+    font-size: 13px;
+    color: #666;
+}
+.layer-wrap .sect-reserve-cancel .br {
+    display: block;
+}
+
+.layer-wrap .sect-reserve-cancel .btn-wrap {
+    padding-top: 30px;
+}
+
+.layer-wrap .sect-reserve-cancel button {
+    position: relative;
+    width: 180px;
+    height: 54px;
+}
+
+.layer-wrap .sect-reserve-cancel .round > * {
+    position: static;
+}
+
+.layer-wrap .sect-reserve-cancel .round.inred > *:before {
+    right: -2px;
+    top: -2px;
+}
+
+.layer-wrap .sect-reserve-cancel .round.inred > *:after {
+    right: -2px;
+    bottom: -2px;
+}
+
+.layer-wrap .sect-reserve-cancel button i {
+    display: block;
+    line-height: 1;
+}
+
+.layer-wrap .sect-reserve-cancel .round.gray1 > span {
+    display: inline;
+    font-size: 13px;
+}
+
+.layer-wrap .sect-reserve-cancel .round.inred > span {
+    padding-top: 6px;
+    font-size: 13px;
+}
+
+
+/* 나의 예매 내역 */
+
+.cols-mycgv-booking .box-info:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.cols-mycgv-booking .box-info .detail-area {
+    float: left;
+    width: calc(100% - 119px);
+}
+
+.reservation-info-wrap{overflow:hidden}
+
+.reservation-info-wrap + .reservation-info-wrap  {
+    margin-top: 32px;
+}
+
+.reservation-info-wrap h2 {
+    color: #222;
+    font-size: 14px;
+    overflow: hidden;
+    line-height: 1.6;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #bbb9b1;
+    margin-bottom: 8px;
+}
+
+.reservation-info-wrap h2:after {
+    clear: both;
+    display: table;
+    content: '';
+}
+
+.reservation-info-wrap h2 .res-title {
+    float: left;
+    max-width: calc(100% - 120px);
+}
+
+.box-set-info {
+    position: relative;
+}
+
+.box-set-info .res-price {
+    float: right;
+    font-size: 13px;
+    color: #0077a8;
+    font-weight: bold;
+    padding-right: 30px;
+}
+
+.box-set-info .layer-wrap {
+    display: none;
+    transform: translate(-50%, -50%);
+    width: 608px;
+    
+}
+
+.box-set-info .layer-wrap.__on {
+    display: block;
+}
+
+.reservation-info-wrap .reservation-mv-info {
+    overflow: hidden;
+}
+
+.reservation-info-wrap .reservation-mv-info:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+.reservation-info-wrap .reservation-mv-info > li {
+    box-sizing: border-box;
+    float: left;
+    width: 50%;
+    padding-right: 10px;
+    margin-top: 8px;
+}
+
+.reservation-info-wrap .reservation-mv-info > li > dl {
+    overflow: hidden;
+}
+
+.reservation-info-wrap .reservation-mv-info > li > dl:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.reservation-info-wrap .reservation-mv-info > li dt {
+    float: left;
+    width: 60px;
+    color: #222;
+}
+
+.reservation-info-wrap .reservation-mv-info > li dd {
+    float: left;
+    width: calc(100% - 60px);
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.reservation-info-wrap.store-history h2 {
+    margin-bottom: 0;
+}
+
+.reservation-info-wrap.store-history .store-goods-list {
+    display: none;
+}
+
+.reservation-info-wrap.store-history .store-goods-list > li {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0efe4;
+}
+
+.reservation-info-wrap.store-history .store-goods-list > li > * {
+    box-sizing: border-box;
+}
+
+.reservation-info-wrap.store-history .all-goods-btn {
+    position: relative;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    border: 1px solid #aeaeac;
+    vertical-align: top;
+    margin-top: 3px;
+    margin-left: 6px;
+}
+.reservation-info-wrap.store-history .all-goods-btn > span {
+    font-size: 0;
+}
+
+.reservation-info-wrap.store-history .all-goods-btn:before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 1px;
+    left: 1px;
+    top: 7px;
+    background-color: #9fa0a0;
+    transform: rotate(50deg);
+}
+.reservation-info-wrap.store-history .all-goods-btn:after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 1px;
+    right: 1px;
+    top: 7px;
+    background-color: #9fa0a0;
+    transform: rotate(-50deg);
+}
+
+.reservation-info-wrap.store-history.__showall .all-goods-btn:before {
+    top: 6px;
+    transform: rotate(-50deg);
+}
+.reservation-info-wrap.store-history.__showall .all-goods-btn:after {
+    top: 6px;
+    transform: rotate(50deg);
+}
+
+.reservation-info-wrap.store-history {
+    
+}
+
+.store-goods-list .goods-img  {
+    display: table-cell;
+    vertical-align: top;
+    width: 56px;
+}
+.store-goods-list .goods-img .img-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 1px solid #f1f0e7;
+    padding: 6px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.store-goods-list .goods-img .img-wrap > img{
+    width: 100%;
+}
+
+.store-goods-list .goods-info {
+    display: table-cell;
+    vertical-align: middle;
+    padding : 10px 16px;
+}
+
+.store-goods-list .goods-info dt {
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+}
+.store-goods-list .goods-info dd {
+    font-size: 13px;
+    color: #666;
+}
+.store-goods-list .goods-info .info-lists {
+    margin-top: 5px;
+}
+.store-goods-list .goods-info .info-lists > li {
+    padding-left: 38px;
+    position: relative;
+}
+.store-goods-list .goods-info .info-lists .inner-title {
+    position: absolute;
+    left: 0;
+}
+
+.store-goods-list .goods-info .info-lists > li + li {
+    margin-top: 2px;
+}
+
+.store-goods-list .goods-stack {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+    width: 120px;
+    text-align: center;
+}
+.store-goods-list .goods-price {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    width: 120px;
+    padding-right: 30px;
+    font-size: 13px;
+    color: #666;
+    font-weight: bold;
+}
+
+.store-goods-list .goods-price .orig-price {
+    font-weight: normal;
+    display: block;
+    color: #aaa;
+    font-size: 11px;
+    text-decoration: line-through;
+}
+
+.resevation-payment-info {
+    margin-top: 32px;
+    padding-left: 119px;
+}
+.resevation-payment-info > h2 {
+    font-size: 14px;
+    color: #222;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.resevation-payment-info  .resevation-payment {
+    background-color: rgba(255,255,255,0.75);
+    padding: 26px 30px;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.1);
+    
+}
+
+.resevation-payment-info .resevation-payment-total {
+    overflow: hidden;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px dotted #f0efe4;
+}
+.resevation-payment-info .resevation-payment-total:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.resevation-payment-info .resevation-payment-total .totel-title {
+    font-size: 14px;
+    color: #222;
+    font-weight: 500;
+}
+.resevation-payment-info .resevation-payment .res-price {
+    padding-right: 0;
+}
+.resevation-payment-info .resevation-payment-part {
+    padding-left: 12px;
+    position: relative;
+    font-size: 12px;
+    color: #666;
+    overflow: hidden;
+}
+
+.resevation-payment-info .resevation-payment-part:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-left: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
+    position: absolute;
+    top: 2px;
+    left: 0px;
+}
+
+.resevation-payment-info .resevation-payment-part:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.resevation-payment-info .resevation-payment-part > span {
+    float: left;
+}
+
+.resevation-payment-info .resevation-payment-part .part-price {
+    float: right;
+    font-weight: bold;
+}
+
+.resevation-payment-info .resevation-payment-part + .resevation-payment-part {
+    margin-top: 12px;
+}
