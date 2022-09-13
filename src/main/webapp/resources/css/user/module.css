@@ -91,7 +91,7 @@ div[class^="sect-"] .btn-itemmore{ margin-top:30px;}
 /* 라운드박스 */
 .round , .round > *{ display:inline-block; position:relative;  }
 .round {line-height:23px; font-weight:500; font-size:12px; text-align:center; vertical-align:middle;}
-.round > *{ box-sizing:border-box; -moz-box-sizing:border-box; width:100%; height:100%; padding:0 5px 0;} /* 20140620 Del padding-top:2px !important; */
+.round > *{ box-sizing:border-box; -moz-box-sizing:border-box; width:100%; padding:0 5px 0;} /* 20140620 Del padding-top:2px !important; */
 *+html .round{ white-space:nowrap; }
 *+html .round > *{  border:none !important; padding:0; cursor:pointer; }
 /* .round:before, .round:after , .round > *:before, .round > *:after{ content:''; display:block; position:absolute; width:5px; height:5px; background:#fdfcf0 url('/resources/images/user/sprite_corner01.png') no-repeat;} */
@@ -2788,7 +2788,7 @@ div[class^="sect-"] .btn-itemmore{ margin-top:30px;}
 */
 /* E [U20201223] 네이버 로그인 버튼추가 */
 
-.box-login .login input[type="text"], .box-login .login input[type="password"]{ display:block; width:135px; height:35px; padding:0 5px 0 40px; border:2px solid #b5b5b5; line-height:33px;}
+.box-login .login input[type="text"], .box-login .login input[type="password"]{ display:block; width:135px; height:39px; padding:0 5px 0 40px; border:2px solid #b5b5b5; line-height:33px;}
 .box-login .login input[type="text"]{ margin-bottom:5px; background:url('/resources/images/user/sprite_icon.png') 12px -230px no-repeat;}
 .box-login .login input[type="password"]{ background:url('/resources/images/user/sprite_icon.png') 12px -261px no-repeat;}
 
@@ -2799,7 +2799,7 @@ div[class^="sect-"] .btn-itemmore{ margin-top:30px;}
 
 
 /*140804 로그인 UI 수정 및 캡챠 시작 */
-.box-login .login input[type="text"], .box-login .login input[type="password"] {width:215px}
+.box-login .login input[type="text"], .box-login .login input[type="password"] {width:264px}
 .box-login button[type="submit"] {width:264px;height:42px;line-height:37px;left:0;position: static;margin-top: 5px;padding:2px;background:#fb4357;text-align:center;}
 
 /* S [U20201223] 네이버 로그인 버튼추가

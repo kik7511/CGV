@@ -48,8 +48,13 @@ public class CodeGroupDao {
 				
 	}
 	
-	public int delete(CodeGroup dto) {
-		int result = sqlSession.delete(namespace + ".delete", dto);
+	public int uelete(CodeGroup dto) {
+		int result = sqlSession.update(namespace +".uelete", dto);
+		return result;
+	}
+	
+	public int delete(CodeGroup vo) {
+		int result = sqlSession.delete(namespace + ".delete", vo);
 		System.out.println("dao result: " +  result);
 		return result;
 	}

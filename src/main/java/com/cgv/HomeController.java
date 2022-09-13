@@ -37,32 +37,4 @@ public class HomeController {
 		return "main";
 	}
 	
-	@RequestMapping(value = "/codegroupList", method = RequestMethod.GET)
-	public String a(Locale locale, Model model) {
-		
-		return "codegroupList";
-	}
-	
-	@RequestMapping(value = "/b", method = RequestMethod.GET)
-	public String b(Locale locale, Model model) {
-		
-		return "b";
-	}
-	@RequestMapping(value = "/c", method = RequestMethod.GET)
-	public String c(Locale locale, Model model) {
-		
-		return "c";
-	}
-	
-	@RequestMapping(value = "/d", method = RequestMethod.GET)
-	public String d(Locale locale, Model model) {
-		
-		return "d";
-	}
-	
-	@RequestMapping(value = "/e", method = RequestMethod.GET)
-	public String e(Locale locale, Model model) {
-		
-		return "e";
-	}
 }

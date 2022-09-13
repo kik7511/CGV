@@ -70,6 +70,14 @@
 			AND ccgSeq = #{ccgSeq}
 	</update>
 	
+	<update id="uelete">
+		UPDATE CCG
+		SET
+			ccgDelNy = 1
+		WHERE 1=1
+			AND ccgSeq = #{ccgSeq}
+	</update>
+	
 	<delete id="delete">
 		DELETE 
 		FROM CCG a

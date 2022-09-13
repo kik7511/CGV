@@ -1146,7 +1146,7 @@ button.btn_more {width:310px; height:50px; border:1px solid #ddd; background-col
 .email_write .select,
 .email_write input,
 .email_write .symbol {vertical-align:top;}
-.email_write .input_txt.w110 input {width:88px;}
+.email_write .input_txt.w110 input {width:120px;}
 .email_write .symbol {display:inline-block; padding:0 4px; line-height:34px;}
 
 /* 주소찾기 */

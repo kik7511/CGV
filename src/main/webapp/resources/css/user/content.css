@@ -2169,7 +2169,7 @@ div.scrollbox {overflow-y:auto;}
 .movieSelection_wrap .contents .movieSelection_video_controller_wrap .btn_movieSelection_soundOnOff.active{background:transparent url('/resources/images/user/soundOn.png') center/18px scroll no-repeat;}
 
 /* S > 무비차트 | 상영예정작 */
-.movieChartBeScreen_wrap{clear:none; float:none; background-image:linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(232, 232, 232, 0.37))}
+.movieChartBeScreen_wrap{clear:none; height: 461.97px; float:none; background-image:linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(232, 232, 232, 0.37))}
 .movieChartBeScreen_wrap .contents{overflow:hidden; margin-left:-30px; padding:50px 30px 60px}
 .movieChartBeScreen_wrap .contents .movieChart_list:before,
 .movieChartBeScreen_wrap .contents .movieChart_list:after{content:none}
@@ -2183,7 +2183,7 @@ div.scrollbox {overflow-y:auto;}
 	.movieChartBeScreen_btn_wrap .btn_allView{padding:4px 32px 4px 15px; font-size:14px; color:#222; line-height:1.429em; background:transparent url('/resources/images/user/arrowR_8x13.png') calc(100% - 7px) center/8px 13px scroll no-repeat; border:1px solid #e2e2e2; border-radius:15px; box-shadow:1px 1px 1px 0 rgba(0, 0, 0, 0.05)}
 
 /* S > EVENT */
-.event_wrap{padding:60px 0 6px}
+.event_wrap{padding:60px 0 6px; height: 394.97px;}
 	.event_title_wrap{position:relative; align-items:center; justify-content:space-between}
 	.event_title_wrap:after{content:''; clear:both; display:block; font-size:0; line-height:0}
 	.event_title_wrap h3{float:left; height:auto; margin:0; font-weight:700; font-size:26px; color:#222; line-height:1.423em; background-image:none}
@@ -2244,7 +2244,7 @@ div.scrollbox {overflow-y:auto;}
 		.giftcon_list dd a .giftcon_info_wrap strong{font-weight:700; font-size:16px; color:#222; letter-spacing:-0.020em; line-height:1.444em}
 		
 /* S > 공지사항 & 고객센터 */
-.noticeClient_wrap{padding:30px 0 120px}
+.noticeClient_wrap{padding:30px 0 120px; height: 250px;}
 .noticeClient_wrap .contents:after{content:''; clear:both; display:block; font-size:0; line-height:0}
 .noticeClient_wrap .contents .noticeClient_container{display:flex; float:left; width:736px; height:236px; border:1px solid #e4e4e4; border-radius:10px}
 .noticeClient_wrap .contents .noticeClient_container .noticeClient_content{width:460px; padding:24px 26px 20px 30px}

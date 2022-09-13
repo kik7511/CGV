@@ -48,8 +48,14 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	}
 	
 	@Override
-	public int delete(CodeGroup dto) throws Exception{
-		int result = dao.delete(dto);
+	public int uelete(CodeGroup dto) throws Exception{
+		int result = dao.uelete(dto);
+		return result;
+	}
+	
+	@Override
+	public int delete(CodeGroup vo) throws Exception{
+		int result = dao.delete(vo);
 		System.out.println("service result" + result);
 		return result;
 	}

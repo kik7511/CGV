@@ -62,9 +62,9 @@
 				<!-- /Advertisement -->
 				
 					<ul class="memberInfo_wrap">
-						<li><a href="../member/loginForm.html"><img src="/resources/images/user/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
-						<li><a href=""><img src="/resources/images/user/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
-						<li><a href="../member/mypageForm.html"><img src="/resources/images/user/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
+						<li><a href="/member/loginForm"><img src="/resources/images/user/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
+						<li><a href="/member/signupForm"><img src="/resources/images/user/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
+						<li><a href="/member/mypageForm"><img src="/resources/images/user/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -76,7 +76,7 @@
 					<ul class="nav_menu">
 						<li>
 							<h2>
-								<a href="../main/mainView.html">홈</a>
+								<a href="/">홈</a>
 							</h2>
 						</li>
 						<li>

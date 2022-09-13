@@ -372,6 +372,9 @@
 					<button type="button" class="btn btn-success" id="" onclick="location.href='/codeGroup/codeGroupList'">
 						<i class="fa-solid fa-list"></i>
 					</button>
+					<button type="button" class="btn btn-success" id="" onclick="location.href='/codeGroup/codeGroupList'">
+						<i class="fa-solid fa-trash-can"></i>
+					</button>
 				</div>
 			</div>
 			<div style="margin-top: 8em;"></div>
