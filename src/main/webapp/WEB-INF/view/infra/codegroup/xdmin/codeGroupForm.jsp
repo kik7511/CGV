@@ -121,7 +121,7 @@
 		<div class="container py-2">			
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
 		</div>		
-		<form method="post" action="/codeGroup/codeGroupInst" id="myForm">
+		<form method="post" id="myForm" name="myForm">
 			<div class="container">
 				<div class="table border" style="border-radius: 1em;">
 					<table class="table align-middle">
@@ -146,7 +146,8 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="자동생성" id="" disabled="disabled">
+											<input type="text" class="form-control" placeholder="자동생성" id="" disabled="disabled" value='<c:out value="${item.ccgSeq}"></c:out>'>
+											<input type="hidden" name="ccgSeq" value='<c:out value="${vo.ccgSeq}"></c:out>'>
 										</div>
 									</div>	
 								</td>
@@ -178,14 +179,14 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="한글, 숫자" id="codeGroupK" name="codeGroupK">
+											<input type="text" class="form-control" placeholder="한글, 숫자" id="codeGroupK" name="codeGroupK" value='<c:out value="${item.codeGroupK}"></c:out>'>
 										</div>
 									</div>
 								</td>
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="한글, 숫자" id="codeGroup" name="codeGroup">
+											<input type="text" class="form-control" placeholder="한글, 숫자" id="codeGroup" name="codeGroup" value='<c:out value="${item.codeGroup}"></c:out>'>
 										</div>
 									</div>
 								</td>
@@ -210,7 +211,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<select class="form-select" id="ccgUseNy" name="ccgUseNy">
+											<select class="form-select" id="ccgUseNy" name="ccgUseNy" value='<c:out value="${item.ccgUseNy}"></c:out>'>
 												<option value="1">Y</option>
 												<option value="0">N</option>
 											</select>
@@ -220,7 +221,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="숫자" name="ccgOrder" id="ccgOrder">
+											<input type="text" class="form-control" placeholder="숫자" name="ccgOrder" id="ccgOrder" value='<c:out value="${item.ccgOrder}"></c:out>'>
 										</div>
 									</div>
 								</td>
@@ -245,14 +246,14 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<textarea style="width: 100%" name="reference" id="reference"></textarea>
+											<textarea style="width: 100%" name="reference" id="reference" value='<c:out value="${item.reference}"></c:out>'></textarea>
 										</div>									
 									</div>
 								</td>
 								<td>
 									<div class="row">
 										<div class="col">
-											<select class="form-select" disabled="disabled">
+											<select class="form-select" disabled="disabled" value='<c:out value="${item.ccgDelNy}"></c:out>'>
 												<option value="0">N</option>
 												<option value="1">Y</option>
 											</select>
@@ -363,15 +364,42 @@
 						</tbody>
 					</table>
 				</div>
-				<br>
 				<div style="text-align: center;">
 					<!-- <input type="submit" value="Send" onClick={ validateForm }/> -->
-					<button type="submit" class="btn btn-dark" name="" id="btnSave"> 등록하기</button>
+					<button type="button" class="btn btn-dark" name="" id="btnSave" onclick= "">저장하기</button>
+				</div>
+				<br>
+				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
+					<button type="button" class="btn btn-danger" id="btnDelete">
+						<i class="fa-solid fa-file-circle-xmark"></i>
+					</button>
+				</div>
+				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
+					<button type="button" class="btn btn-danger" id="btnUelete">
+						<i class="fa-solid fa-trash-can"></i>
+					</button>
 				</div>
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
 					<button type="button" class="btn btn-success" id="" onclick="location.href='/codeGroup/codeGroupList'">
 						<i class="fa-solid fa-list"></i>
 					</button>
+				</div>
+				<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel2">주의!</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								삭제하시겠습니까?
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+								<button type="button" class="btn btn-danger" id="DeleteYn">삭제</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div style="margin-top: 8em;"></div>
@@ -393,6 +421,51 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/188ea9a4c6.js" crossorigin="anonymous"></script>	
 	<script type="text/javascript">
+	var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
+	var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
+	var goUrlUpdt = "/codeGroup/codeGroupMod";				/* #-> */
+	var goUrlUele = "/codeGroup/codeGroupUelete";				/* #-> */
+	var goUrlDele = "/codeGroup/codeGroupDelete";				/* #-> */
+	
+	var modal = $("#exampleModal2");
+	
+	var seq = $("input:hidden[name=ccgSeq]");				/* #-> */
+	
+	var form = $("form[name=myForm]");
+	
+	$("#btnSave").on("click", function(){
+		if (seq.val() == "0" || seq.val() == ""){
+	   		// insert
+	   		form.attr("action", goUrlInst).submit();
+	   	} else {
+	   		// update
+	   		/* keyName.val(atob(keyName.val())); */
+	   		form.attr("actiosn", goUrlUpdt).submit();
+	   	}
+	})
+	
+	$("#btnDelete").on("click", function(){
+		action = "Delete"
+		modal.modal('show');	
+	});
+	
+	$("#btnUelete").on("click", function(){
+		action = "Uelete"
+			modal.modal('show'); 
+	});
+	
+	$("#DeleteYn").on("click", function(){
+		if(action == "Uelete"){
+			form.attr("action", goUrlUele).submit();
+		}else if(action == "Delete"){
+			form.attr("action", goUrlDele).submit();
+		}else{
+			
+		}
+	});
+	
+	</script>
+	<script type="text/javascript">
 		/* 모달 나타나기 */
 		const myModal = document.getElementById('deleteModal')
 		const myInput = document.getElementById('deleteInput')
@@ -400,62 +473,6 @@
 		myModal.addEventListener('shown.bs.modal', () => {
 		  deleteInput.focus()
 		});
-		
-		function test(){
-			alert("test");
-		}
-			//alert(document.getElementById('codeGroupK').value);
-			//alert(document.getElementById('codeGroup').value);
-			//alert(document.getElementById('ccgUseNy').option[document.getElementById('ccgUseNy').selectedIndex].value); //셀렉트 값 구하기 but 위에껄로 구해도 됨
-			//alert(document.querySelector("input[name='ch']:checked").value);  //라디오 박스
-			//alert(document.getElementById('ccgOrder').value);
-			//alert(document.getElementById('reference').value);
-			
-			//return false;
-			
-				//안 적었을 때 경고창 + 안 적은 곳 포커스-하나는 되는데 이걸 전체 중에서 빈칸 있으면 기능 작동하게 만들어야 함 - while 문 사용해야 하나??
-				
-			 /* if(document.getElementById('codeGroupK').value == null || document.getElementById('codeGroupK').value == ''){
-				alert("입력해주세요");
-				document.getElementById('codeGroupK').value='';
-				document.getElementById('codeGroupK').focus();
-				return false;
-			}
-				document.getElementById('myForm').submit(); */
-				
-				/*		        
-		        //하늘이꺼
-		        
-		        // radio 
-	        	if($('input:radio[name=codeGroup_Gender]').is(':checked') == false) {
-					alert("성별을 선택하세요");
-				}else {
-					alert(document.querySelector('input[name=ch]').value);					
-				}
-				
-	        	
-		        // checkbox
-	        	if (document.querySelector('input[name=ch]:checked') == null) {
-	 				alert("성별을 선택하세요");
-	 			} else {
-	 				 for (var i=0; i<document.getElementsByName("ch").length; i++) {
-	 		            if (document.getElementsByName("ch")[i].checked == true) {
-	 		                alert(document.getElementsByName("ch")[i].value);
-	 			}
-	        	*/
-		
-	 	/* const validateForm = () => {
-	 		const $form = document.querySelector('form');
-	 		const $input = $form.querySelectorAll('input');
-	 		
-	 		if($form){
-	 			$input.forEach(input => {
-	 				input.addEventListener('invalid', () => {
-	 					$form.classList.add('invalid-form');
-	 				});
-	 			});
-	 		}
- 		} */
 	</script>
 </body>
 </html>

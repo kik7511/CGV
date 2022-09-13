@@ -121,7 +121,7 @@
 		<div class="container py-2">			
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
 		</div>		
-		<form method="post" action="/codeGroup/codeGroupMod" id="myForm">
+		<form method="post" id="myForm" name="myForm">
 			<div class="container">
 				<div class="table border" style="border-radius: 1em;">
 					<table class="table align-middle">
@@ -252,7 +252,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<select class="form-select" value='<c:out value="${item.ccgDelNy}"></c:out>'>
+											<select class="form-select"  name = "ccgDelNy" value='<c:out value="${item.ccgDelNy}"></c:out>'>
 												<option value="0">N</option>
 												<option value="1">Y</option>
 											</select>
@@ -366,14 +366,21 @@
 				<br>
 				<div style="text-align: center;">
 					<!-- <input type="submit" value="Send" onClick={ validateForm }/> -->
-					<button type="submit" class="btn btn-dark" name="" id="btnSave" onclick= "">수정하기</button>
+					<button type="button" class="btn btn-dark" name="" id="btnSave" onclick= "">수정하기</button>
+				</div>
+				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
+					<button type="button" class="btn btn-danger" id="btnDelete">
+						<i class="fa-solid fa-file-circle-xmark"></i>
+					</button>
+				</div>
+				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
+					<button type="button" class="btn btn-danger" id="btnUelete" onclick="">
+						<i class="fa-solid fa-trash-can"></i>
+					</button>
 				</div>
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
 					<button type="button" class="btn btn-success" id="" onclick="location.href='/codeGroup/codeGroupList'">
 						<i class="fa-solid fa-list"></i>
-					</button>
-					<button type="button" class="btn btn-success" id="" onclick="location.href='/codeGroup/codeGroupList'">
-						<i class="fa-solid fa-trash-can"></i>
 					</button>
 				</div>
 			</div>
@@ -391,6 +398,25 @@
 			</div>
 		</form>
 	</div>
+	
+	<script type="text/javascript">
+		var goUrlUele = "/codeGroup/codeGroupUelete";	
+		var goUrlDele = "/codeGroup/codeGroupDelete";
+		var goUrlUdtd = "/codeGroup/codeGroupMod";
+		var form = $("#myForm");				
+		
+		$("#btnUelete").on("click", function(){
+			form.attr("action", goUrlUele).submit();
+		})
+		
+		$("#btnDelete").on("click", function(){
+			form.attr("action", goUrlDele).submit();
+		}) 
+		
+		$("#btnSave").on("click", function(){
+			form.attr("action", goUrlUdtd).submit();
+		})
+	</script>
 <!-- end -->
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
@@ -407,58 +433,58 @@
 		function test(){
 			alert("test");
 		}
-			//alert(document.getElementById('codeGroupK').value);
-			//alert(document.getElementById('codeGroup').value);
-			//alert(document.getElementById('ccgUseNy').option[document.getElementById('ccgUseNy').selectedIndex].value); //셀렉트 값 구하기 but 위에껄로 구해도 됨
-			//alert(document.querySelector("input[name='ch']:checked").value);  //라디오 박스
-			//alert(document.getElementById('ccgOrder').value);
-			//alert(document.getElementById('reference').value);
-			
-			//return false;
-			
-				//안 적었을 때 경고창 + 안 적은 곳 포커스-하나는 되는데 이걸 전체 중에서 빈칸 있으면 기능 작동하게 만들어야 함 - while 문 사용해야 하나??
-				
-			 /* if(document.getElementById('codeGroupK').value == null || document.getElementById('codeGroupK').value == ''){
-				alert("입력해주세요");
-				document.getElementById('codeGroupK').value='';
-				document.getElementById('codeGroupK').focus();
-				return false;
-			}
-				document.getElementById('myForm').submit(); */
-				
-				/*		        
-		        //하늘이꺼
-		        
-		        // radio 
-	        	if($('input:radio[name=codeGroup_Gender]').is(':checked') == false) {
-					alert("성별을 선택하세요");
-				}else {
-					alert(document.querySelector('input[name=ch]').value);					
-				}
-				
-	        	
-		        // checkbox
-	        	if (document.querySelector('input[name=ch]:checked') == null) {
-	 				alert("성별을 선택하세요");
-	 			} else {
-	 				 for (var i=0; i<document.getElementsByName("ch").length; i++) {
-	 		            if (document.getElementsByName("ch")[i].checked == true) {
-	 		                alert(document.getElementsByName("ch")[i].value);
-	 			}
-	        	*/
+		//alert(document.getElementById('codeGroupK').value);
+		//alert(document.getElementById('codeGroup').value);
+		//alert(document.getElementById('ccgUseNy').option[document.getElementById('ccgUseNy').selectedIndex].value); //셀렉트 값 구하기 but 위에껄로 구해도 됨
+		//alert(document.querySelector("input[name='ch']:checked").value);  //라디오 박스
+		//alert(document.getElementById('ccgOrder').value);
+		//alert(document.getElementById('reference').value);
 		
-	 	/* const validateForm = () => {
-	 		const $form = document.querySelector('form');
-	 		const $input = $form.querySelectorAll('input');
-	 		
-	 		if($form){
-	 			$input.forEach(input => {
-	 				input.addEventListener('invalid', () => {
-	 					$form.classList.add('invalid-form');
-	 				});
-	 			});
-	 		}
- 		} */
+		//return false;
+		
+			//안 적었을 때 경고창 + 안 적은 곳 포커스-하나는 되는데 이걸 전체 중에서 빈칸 있으면 기능 작동하게 만들어야 함 - while 문 사용해야 하나??
+			
+		 /* if(document.getElementById('codeGroupK').value == null || document.getElementById('codeGroupK').value == ''){
+			alert("입력해주세요");
+			document.getElementById('codeGroupK').value='';
+			document.getElementById('codeGroupK').focus();
+			return false;
+		}
+			document.getElementById('myForm').submit(); */
+			
+			/*		        
+	        //하늘이꺼
+	        
+	        // radio 
+        	if($('input:radio[name=codeGroup_Gender]').is(':checked') == false) {
+				alert("성별을 선택하세요");
+			}else {
+				alert(document.querySelector('input[name=ch]').value);					
+			}
+			
+        	
+	        // checkbox
+        	if (document.querySelector('input[name=ch]:checked') == null) {
+ 				alert("성별을 선택하세요");
+ 			} else {
+ 				 for (var i=0; i<document.getElementsByName("ch").length; i++) {
+ 		            if (document.getElementsByName("ch")[i].checked == true) {
+ 		                alert(document.getElementsByName("ch")[i].value);
+ 			}
+        	*/
+	
+ 	/* const validateForm = () => {
+ 		const $form = document.querySelector('form');
+ 		const $input = $form.querySelectorAll('input');
+ 		
+ 		if($form){
+ 			$input.forEach(input => {
+ 				input.addEventListener('invalid', () => {
+ 					$form.classList.add('invalid-form');
+ 				});
+ 			});
+ 		}
+		} */
 	</script>
 </body>
 </html>
