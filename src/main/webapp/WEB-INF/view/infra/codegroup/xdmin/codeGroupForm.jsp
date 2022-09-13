@@ -440,7 +440,7 @@
 	   	} else {
 	   		// update
 	   		/* keyName.val(atob(keyName.val())); */
-	   		form.attr("actiosn", goUrlUpdt).submit();
+	   		form.attr("action", goUrlUpdt).submit();
 	   	}
 	})
 	
