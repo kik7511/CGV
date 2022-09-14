@@ -7,7 +7,14 @@ public class CodeVo {
 	private Integer shOptionDate;
 	private String shStartDate;
 	private String shEndDate;
+	private String ccSeq;
 	
+	public String getCcSeq() {
+		return ccSeq;
+	}
+	public void setCcSeq(String ccSeq) {
+		this.ccSeq = ccSeq;
+	}
 	public String getShStartDate() {
 		return shStartDate;
 	}

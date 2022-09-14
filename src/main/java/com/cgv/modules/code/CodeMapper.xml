@@ -10,17 +10,25 @@
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
-			a.*
-			,(SELECT codeGroup FROM CCG b where a.ccgSeq = b.ccgSeq) as code
-            ,(SELECT codeGroupK FROM CCG b where a.ccgSeq = b.ccgSeq) as codeK
+			a.ccSeq
+			,a.ccgSeq
+			,a.ccCodeName
+			,a.ccUseNy
+			,a.ORDER
+			,a.ccDate
+			,a.ccDelNy
+			,b.codeGroup as code
+            ,b.codeGroupK as codeK
 		FROM CC a
-		Where 1=1
+		INNER JOIN CCG b
+		ON 	a.ccgSeq = b.ccgSeq
+		HAVING 1=1
 			<if test = "shDelNy != null and !shDelNy.equals('')">AND ccDelNy = #{shDelNy}</if>
 			<choose>
-				<when test = "shOption eq 1">AND ccSeq = #{shValue}</when>
-				<when test = "shOption eq 2">AND codeGroupK LIKE CONCAT('%', #{shValue}, '%')</when>
-				<when test = "shOption eq 3">AND codeGroup LIKE CONCAT('%', #{shValue}, '%')</when>
-				<when test = "shOption eq 4">AND ccCodeName LIKE CONCAT('%', #{shValue}, '%')</when>
+				<when test = "shOption eq 1">AND a.ccSeq = #{shValue}</when>
+				<when test = "shOption eq 2">AND codeK LIKE CONCAT('%', #{shValue}, '%')</when>
+				<when test = "shOption eq 3">AND code LIKE CONCAT('%', #{shValue}, '%')</when>
+				<when test = "shOption eq 4">AND a.ccCodeName LIKE CONCAT('%', #{shValue}, '%')</when>
 				<otherwise></otherwise>
 			</choose>
 			<choose>
@@ -47,6 +55,24 @@
 				SELECT last_insert_id()
 			</selectKey>
 	</insert>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.ccSeq
+			,a.ccgSeq
+			,a.ccCodeName
+			,a.ccUseNy
+			,a.ORDER
+			,a.ccDate
+			,a.ccDelNy
+			,b.codeGroup as code
+            ,b.codeGroupK as codeK
+		FROM CC a
+		INNER JOIN CCG b
+		ON 	a.ccgSeq = b.ccgSeq
+		HAVING 1=1
+			AND ccSeq = #{ccSeq}
+	</select>
 	
 	
 

@@ -121,7 +121,7 @@
 		<div class="container py-2">			
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
 		</div>		
-		<form method="post" action="/code/codeInst" id="">
+		<form method="post" id="myForm" name="myForm">
 			<div class="container">
 				<div class="table border" style="border-radius: 1em;">
 					<table class="table align-middle">
@@ -139,7 +139,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<select class="form-select" name="ccgSeq" id="ccgSeq">
+											<select class="form-select" name="ccgSeq" id="ccgSeq" value='<c:out value="${item.ccgSeq}"></c:out>'>
 												<c:forEach items="${list}" var="list" varStatus="status">
 													<option value="${list.ccgSeq}">${list.codeGroupK}</option>
 												</c:forEach>
@@ -168,7 +168,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="자동생성" disabled="disabled">
+											<input type="text" class="form-control" placeholder="자동생성" disabled="disabled" value='<c:out value="${item.ccSeq}"></c:out>'>
 										</div>
 									</div>	
 								</td>
@@ -200,7 +200,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="한글, 숫자" id="ccCodeName" name="ccCodeName">
+											<input type="text" class="form-control" placeholder="한글, 숫자" id="ccCodeName" name="ccCodeName" value='<c:out value="${item.ccCodeName}"></c:out>'>
 										</div>
 									</div>
 								</td>
@@ -232,7 +232,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<select class="form-select" name="ccUseNy">
+											<select class="form-select" name="ccUseNy" value='<c:out value="${item.ccUseNy}"></c:out>'>
 												<option value="1">Y</option>
 												<option value="2">N</option>
 											</select>
@@ -242,7 +242,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="숫자" name="ORDER">
+											<input type="text" class="form-control" placeholder="숫자" name="ORDER" value='<c:out value="${item.ORDER}"></c:out>'>
 										</div>
 									</div>
 								</td>
@@ -421,6 +421,51 @@
 		myModal.addEventListener('shown.bs.modal', () => {
 		  deleteInput.focus()
 		});
+	</script>
+	
+	<script type="text/javascript">
+	var goUrlList = "/code/codeList"; 			/* #-> */
+	var goUrlInst = "/code/codeInst"; 			/* #-> */
+	var goUrlUpdt = "/code/codeMod";				/* #-> */
+	var goUrlUele = "/code/codeUelete";				/* #-> */
+	var goUrlDele = "/code/codeDelete";				/* #-> */
+	
+	var modal = $("#exampleModal2");
+	
+	var seq = $("input:hidden[name=ccSeq]");				/* #-> */
+	
+	var form = $("form[name=myForm]");
+	
+	$("#btnSave").on("click", function(){
+		if (seq.val() == "0" || seq.val() == ""){
+	   		// insert
+	   		form.attr("action", goUrlInst).submit();
+	   	} else {
+	   		// update
+	   		/* keyName.val(atob(keyName.val())); */
+	   		form.attr("action", goUrlUpdt).submit();
+	   	}
+	})
+	
+	$("#btnDelete").on("click", function(){
+		action = "Delete"
+		modal.modal('show');	
+	});
+	
+	$("#btnUelete").on("click", function(){
+		action = "Uelete"
+			modal.modal('show'); 
+	});
+	
+	$("#DeleteYn").on("click", function(){
+		if(action == "Uelete"){
+			form.attr("action", goUrlUele).submit();
+		}else if(action == "Delete"){
+			form.attr("action", goUrlDele).submit();
+		}else{
+			
+		}
+	});
 	</script>
 </body>
 </html>

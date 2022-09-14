@@ -37,10 +37,14 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeForm")
-	public String codeForm(Model model) throws Exception{
+	public String codeForm(Model model, @ModelAttribute("vo") CodeVo vo) throws Exception{
 		
 		List<CodeGroup> list = codeGroupServiceImpl.selectList();
 		model.addAttribute("list", list);
+		
+		Code item = service.selectOne(vo);
+		model.addAttribute("item", item);
+		
 		return "infra/code/xdmin/codeForm";
 	}
 	

@@ -27,4 +27,9 @@ public class CodeDao {
 		return result;
 	}
 	
+	public Code selectOne(CodeVo vo) {
+		Code item = sqlSession.selectOne(namespace + ".selectOne", vo);
+		return item;
+	}
+	
 }

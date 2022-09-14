@@ -192,7 +192,7 @@
 								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
 								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
 								<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영어)</option>
-								<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드 이름</option>
+								<option value="4" <c:if test="${vo.shOption eq 4}">selected</c:if>>코드 이름</option>
 							</select>
 						</div>
 						<div class="col">
@@ -238,7 +238,7 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${list}" var="list" varStatus="status">
-									<tr onclick="location.href='code/codeForm?ccSeq=<c:out value = "${list.ccSeq}"/>'">
+									<tr onclick="location.href='/code/codeForm?ccSeq=<c:out value = "${list.ccSeq}"/>'">
 										<td onclick="event.cancelBubble=true">
 											<input type="checkbox" class="form-check-input" name=check>
 										</td>
