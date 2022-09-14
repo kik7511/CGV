@@ -126,14 +126,14 @@
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="shDelNy" name="shDelNy">
+							<select class="form-select form-select-sm" id="shDelNy" name="shDelNy" value='<c:out value="${vo.shDelNy}"></c:out>'>
 								<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
 								<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
 								<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-select form-select-sm" id="shOption" name="shOption">
+							<select class="form-select form-select-sm" id="shOptionDate" name="shOptionDate" value='<c:out value="${vo.shOptionDate}"></c:out>'>
 								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>날짜여부</option>
 								<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
 								<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
@@ -141,10 +141,10 @@
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="shStartDate" name="shStartDate">
+							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="shStartDate" name="shStartDate" value='<c:out value="${vo.shStartDate}"></c:out>'>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" name="shEndDate">
+							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" name="shEndDate" value='<c:out value="${vo.shEndDate}"></c:out>'>
 						</div>
 					</div>		
 					<!-- 시작날짜 끝날짜 검색하기 -->
@@ -187,7 +187,7 @@
 					</script>	
 					<div class="row px-2 py-2 row-cols-sm-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="" name="">
+							<select class="form-select form-select-sm" id="shOption" name="shOption" value='<c:out value="${vo.shOption}"></c:out>'>
 								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
 								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
 								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
@@ -196,14 +196,14 @@
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="검색어" class="form-control form-control-sm" id="" name="" value="">
+							<input type="text" autocomplete="off" placeholder="검색어" class="form-control form-control-sm" id="shValue" name="shValue"  value='<c:out value="${vo.shValue}"></c:out>'>
 						</div>
 						<div class="col">
 							<div class="btn-group me-2 btn-group-sm" role="group" aria-label="First-gropu">
 								<button type="submit" class="btn btn-outline-secondary" id="">
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button>
-								<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='./codeList.html'">
+								<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='/code/codeList'">
 									<i class="fa-solid fa-rotate-right"></i>
 								</button>
 							</div>
@@ -228,25 +228,36 @@
 						<th scope="col">등록일</th>
 					</tr>
 					<tbody id="cursor">
-						<c:forEach items="${list}" var="list" varStatus="status">
-							<tr onclick="location.href='memberModForm.html'">
-								<td onclick="event.cancelBubble=true">
-									<input type="checkbox" class="form-check-input" name=check>
-								</td>
-								<th scope="col">${list.ccSeq}</th>
-								<td>${list.code}</td> 
-								<td>${list.codeK}</td>
-								<td>${list.ccCodeName}</td>
-								<td>
-									<c:choose>
-                						<c:when test="${list.ccUseNy == 0 }">N</c:when>
-                						<c:otherwise>Y</c:otherwise>
-                					</c:choose>
-                				</td>
-								<td>${list.ORDER}</td>
-								<td>${list.ccDate}</td>
-							</tr>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${fn:length(list) eq 0}">
+								<tr>
+									<td colspan="8">
+										there is no data.
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${list}" var="list" varStatus="status">
+									<tr onclick="location.href='code/codeForm?ccSeq=<c:out value = "${list.ccSeq}"/>'">
+										<td onclick="event.cancelBubble=true">
+											<input type="checkbox" class="form-check-input" name=check>
+										</td>
+										<th scope="col">${list.ccSeq}</th>
+										<td>${list.code}</td> 
+										<td>${list.codeK}</td>
+										<td>${list.ccCodeName}</td>
+										<td>
+											<c:choose>
+		                						<c:when test="${list.ccUseNy == 0 }">N</c:when>
+		                						<c:otherwise>Y</c:otherwise>
+		                					</c:choose>
+		                				</td>
+										<td>${list.ORDER}</td>
+										<td><fmt:formatDate value="${list.ccDate}" pattern="yyyy.MM.dd" /></td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
 				<div class="container">

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cgv.modules.movie.MovieMapper">
+
+    <resultMap id="resultMapObj" type="com.cgv.modules.movie.Movie"></resultMap>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM Movie a
+		Where 1=1
+	</select>
+	
+	<select id = "selectOne" resultMap="resultMapObj">
+			
+	</select>
+</mapper>	

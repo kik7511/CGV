@@ -17,7 +17,9 @@ public class CodeDao {
 	
 	private static String namespace = "com.cgv.modules.code.CodeMapper";
 	
-	public List<Code> selectList(CodeVo vo){ return sqlSession.selectList(namespace + ".selectList", "");}
+	public List<Code> selectList(CodeVo vo){ 
+		return sqlSession.selectList(namespace + ".selectList", vo);
+	}
 	
 	public int insert(Code dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);

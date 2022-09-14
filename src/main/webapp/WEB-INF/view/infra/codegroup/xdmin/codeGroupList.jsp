@@ -141,10 +141,10 @@
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="shStartDate" name="shStartDate">
+							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="shStartDate" name="shStartDate" value='<c:out value="${vo.shStartDate}"></c:out>'>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" name="shEndDate">
+							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" name="shEndDate" value='<c:out value="${vo.shEndDate}"></c:out>'>
 						</div>
 					</div>		
 					
@@ -158,14 +158,14 @@
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="검색어" class="form-control form-control-sm" id="shValue" name="shValue" value="">
+							<input type="text" autocomplete="off" placeholder="검색어" class="form-control form-control-sm" id="shValue" name="shValue" value='<c:out value="${vo.shValue}"></c:out>'>
 						</div>
 						<div class="col">
 							<div class="btn-group me-2 btn-group-sm" role="group" aria-label="First-gropu">
 								<button type="submit" class="btn btn-outline-secondary" id="">
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button>
-								<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='./codeList.html'">
+								<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='/codeGroup/codeGroupList'">
 									<i class="fa-solid fa-rotate-right"></i>
 								</button>
 							</div>
@@ -317,18 +317,9 @@
 		myModal.addEventListener('shown.bs.modal', () => {
 		  deleteInput.focus()
 		});
-		/* 체크된 줄만 지우기(현재 실패) */
-		/* $('#delRow').click(function(){
-			if($("input:checkbox[name='check']:checked").length === 0) {
-				alert("삭제할 항목을 선택해 주세요.");
-				return;
-			}
-			$("input:checkbox[name='check']:checked").each(function(k,kVal){
-				console.log("kVal ::", kVal.parentElement.parentElement);
-				let a = kVal.parentElemnet.parentElement.parentElement;
-				$(a).remove();
-			});
-		}); */
+	</script>	
+	
+	<script type="text/javascript">		
 	<!-- DatePicker -->
 		$(document).ready(function () {
 		    $.datepicker.regional['ko'] = {
@@ -365,7 +356,6 @@
 		        $("#shStartDate").datepicker( "option", "maxDate", selectedDate );
 		    });
 		});
-		
 	</script>	
 </body>
 </html>
