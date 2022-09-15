@@ -127,17 +127,17 @@
 					<div class="row px-2 row-cols-6">
 						<div class="col">
 							<select class="form-select form-select-sm" id="shDelNy" name="shDelNy">
-								<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
-								<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
-								<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
+								<option value="" <c:if test="${empty shDelNy}">selected</c:if>>삭제여부</option>
+								<option value="0" <c:if test="${shDelNy == 0}">selected</c:if>>N</option>
+								<option value="1" <c:if test="${shDelNy == 1}">selected</c:if>>Y</option>
 							</select>
 						</div>
 						<div class="col">
 							<select class="form-select form-select-sm" id="" name="shOptionDate">
 								<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜구분</option>
-								<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
-								<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
-								<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>삭제일</option>
+								<option value="1" <c:if test="${shOptionDate == 1}">selected</c:if>>등록일</option>
+								<option value="2" <c:if test="${shOptionDate == 2}">selected</c:if>>수정일</option>
+								<option value="3" <c:if test="${shOptionDate == 3}">selected</c:if>>삭제일</option>
 							</select>
 						</div>
 						<div class="col">
