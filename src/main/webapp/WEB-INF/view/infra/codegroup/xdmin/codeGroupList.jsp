@@ -120,8 +120,11 @@
 		</nav>			
 		<div class="container py-2">			
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
-		</div>		
-		<form method="post" action="/codeGroup/codeGroupList" id="">
+		</div>	
+			
+		<form method="post" action="/codeGroup/codeGroupList" id="" name="myForm">
+			<input type="hidden" name = "thisPage" value='<c:out value="${vo.thisPage}" default="1" />'>
+			<input type="hidden" name = "rowNumToShow" value='<c:out value="${vo.rowNumToShow}" />'>
 			<div class="container py-1">				
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
@@ -334,6 +337,21 @@
 		        $("#shStartDate").datepicker( "option", "maxDate", selectedDate );
 		    });
 		});
+		
+		var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
+		var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
+		var goUrlUpdt = "/codeGroup/codeGroupMod";				/* #-> */
+		var goUrlUele = "/codeGroup/codeGroupUelete";				/* #-> */
+		var goUrlDele = "/codeGroup/codeGroupDelete";				/* #-> */
+		
+		var seq = $("input:hidden[name=ccgSeq]");				/* #-> */
+		
+		var form = $("form[name=myForm]");
+		
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
 	</script>	
 </body>
 </html>
