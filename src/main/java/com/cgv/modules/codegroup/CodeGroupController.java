@@ -24,6 +24,8 @@ public class CodeGroupController {
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
 		return "infra/codegroup/xdmin/codeGroupList";
 	}
 	

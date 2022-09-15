@@ -224,31 +224,9 @@
 						</c:choose>
 					</tbody>
 				</table>
-				<div class="container">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">1</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">2</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">3</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
+				<!-- pagination s -->
+				<%@include file="../../../infra/common/xdmin/pagination.jsp"%>
+				<!-- pagination e -->
 			</div>
 			<div class="container">
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float:  right;">

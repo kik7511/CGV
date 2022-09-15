@@ -6,15 +6,11 @@
 
 <mapper namespace="com.cgv.modules.codegroup.CodeGroupMapper">
 
-    <resultMap id="resultMapObj" type="com.cgv.modules.codegroup.CodeGroup"></resultMap>
-	
-	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			a.*
-			,(SELECT COUNT(*) FROM CC b where b.ccgSeq = a.ccgSeq) as cnt
+<resultMap id="resultMapObj" type="com.cgv.modules.codegroup.CodeGroup"></resultMap>
+
+	<sql id = "selectCommon">
 		FROM CCG a
-		Where 1=1
-			<!-- and a.codeGroupK LIKE CONCAT('%',#{shValue},'%') -->
+		WHERE 1=1
 			<if test="shDelNy != null and !shDelNy.equals('')">AND ccgDelNy = #{shDelNy}</if>
 			<choose>																					
 				<when test="shOption == 1">AND a.ccgSeq = #{shValue}</when>
@@ -26,6 +22,27 @@
 				<when test="shOptionDate == 1">AND a.ccgDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
 				<otherwise></otherwise>
 			</choose>
+	</sql>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+		SELECT
+			a.ccgSeq
+			,a.codeGroup
+			,a.codeGroupK
+			,a.reference
+			,(SELECT COUNT(b.ccgSeq) FROM CC b where 1=1 AND b.ccgSeq = a.ccgSeq) as cnt
+			,a.ccgUseNy
+			,a.ccgDate
+		<include refid="selectCommon" />
+		ORDER BY a.ccgSeq ASC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
 	</select>
 	
 	<insert id="insert">

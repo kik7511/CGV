@@ -28,6 +28,12 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		}
 	
 	@Override
+	public int selectOneCount(CodeGroupVo vo) throws Exception{
+		int result = dao.selectOneCount(vo);
+		return result;
+	}
+	
+	@Override
 	public int insert(CodeGroup dto) throws Exception {
 		int result = dao.insert(dto);
 		System.out.println("service result" + result);
