@@ -21,6 +21,11 @@ public class CodeDao {
 		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
 	
+	public int selectOneCount(CodeVo vo) {
+		int result = sqlSession.selectOne(namespace + ".selectOneCount", vo);
+		return result;
+	}
+	
 	public int insert(Code dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);
 		System.out.println("dao result: " + result);

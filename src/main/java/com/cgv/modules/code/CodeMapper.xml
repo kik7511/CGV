@@ -7,22 +7,12 @@
 <mapper namespace="com.cgv.modules.code.CodeMapper">
 
     <resultMap id="resultMapObj" type="com.cgv.modules.code.Code"></resultMap>
-	
-	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			a.ccSeq
-			,a.ccgSeq
-			,a.ccCodeName
-			,a.ccUseNy
-			,a.ORDER
-			,a.ccDate
-			,a.ccDelNy
-			,b.codeGroup as code
-            ,b.codeGroupK as codeK
-		FROM CC a
-		INNER JOIN CCG b
-		ON 	a.ccgSeq = b.ccgSeq
-		HAVING 1=1
+    
+    <sql id= "selectCommon">
+    	FROM CC a
+    	INNER JOIN CCG b
+    	ON a.ccgSeq = b.ccgSeq
+    	HAVING 1=1
 			<if test = "shDelNy != null and !shDelNy.equals('')">AND ccDelNy = #{shDelNy}</if>
 			<choose>
 				<when test = "shOption eq 1">AND a.ccSeq = #{shValue}</when>
@@ -35,6 +25,28 @@
 				<when test="shOptionDate == 1">AND a.ccDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
 				<otherwise></otherwise>
 			</choose>
+    </sql>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+		SELECT
+			a.ccSeq
+			,a.ccgSeq
+			,a.ccCodeName
+			,a.ccUseNy
+			,a.ORDER
+			,a.ccDate
+			,a.ccDelNy
+			,b.codeGroup as code
+            ,b.codeGroupK as codeK
+		<include refid="selectCommon" />
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />	
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon"></include>
 	</select>
 	
 	<insert id="insert">

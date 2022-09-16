@@ -30,6 +30,7 @@ public class CodeController {
 		System.out.println("vo.getShOption(): " + vo.getShOption());
 		System.out.println("vo.getShOptionDate(): " + vo.getShOptionDate());
 		
+		vo.setParampaging(service.selectOneCount(vo));
 		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
@@ -37,10 +38,10 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeForm")
-	public String codeForm(Model model, @ModelAttribute("vo") CodeVo vo) throws Exception{
+	public String codeForm(Model model, @ModelAttribute("vo") CodeVo vo, CodeGroupVo vo1) throws Exception{
 		
-		List<CodeGroup> list = codeGroupServiceImpl.selectList();
-		model.addAttribute("list", list);
+		List<CodeGroup> list = codeGroupServiceImpl.select(vo1);
+		model.addAttribute("list", list);	
 		
 		Code item = service.selectOne(vo);
 		model.addAttribute("item", item);

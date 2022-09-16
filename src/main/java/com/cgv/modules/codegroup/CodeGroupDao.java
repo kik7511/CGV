@@ -29,7 +29,12 @@ public class CodeGroupDao {
 		List<CodeGroup> list = sqlSession.selectList("com.cgv.modules.codegroup.CodeGroupMapper.selectList", "");
 		return list;
 	}
-
+	
+	public List<CodeGroup> select(CodeGroupVo vo){
+		List<CodeGroup> list = sqlSession.selectList("com.cgv.modules.codegroup.CodeGroupMapper.select", "");
+		return list;
+	}
+	
 	public int selectOneCount(CodeGroupVo vo){
 		int result = sqlSession.selectOne(namespace + ".selectOneCount", vo);
 		return result;

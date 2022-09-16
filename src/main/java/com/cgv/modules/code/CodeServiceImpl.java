@@ -17,6 +17,11 @@ public class CodeServiceImpl implements CodeService {
 	}
 	
 	@Override
+	public int selectOneCount(CodeVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
+	
+	@Override
 	public int insert(Code dto) throws Exception{
 		return dao.insert(dto);
 	}

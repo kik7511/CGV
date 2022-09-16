@@ -3,6 +3,9 @@ package com.cgv.modules.codegroup;
 import com.cgv.common.constants.Constants;
 
 public class CodeGroupVo {
+	
+// 	searching
+	
 	private Integer shOption;
 	private String shValue;
 	private Integer shDelNy;

@@ -24,6 +24,12 @@
 			</choose>
 	</sql>
 	
+	<select id="select" resultMap="resultMapObj">
+		SELECT
+			a.*
+		<include refid="selectCommon" />	
+	</select>
+	
 	<select id="selectList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql" />
 		SELECT

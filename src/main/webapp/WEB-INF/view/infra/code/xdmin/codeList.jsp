@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script type="text/javascript" src="resources/js/jquery-2.1.4.min.js"></script>
 	<style type="text/css">
 		div {display: block;}
 		#cursor {cursor: pointer;}
@@ -120,8 +121,11 @@
 		</nav>			
 		<div class="container py-2">			
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
-		</div>		
-		<form method="post" action="/code/codeList" id="">
+		</div>	
+			
+		<form method="post" id="form" name="form">
+			<input type="hidden" name="thisPage" value='<c:out value="${vo.thisPage}" default="1" />'>
+			<input type="hidden" name="rowNumToShow" value='<c:out value="${vo.rowNumToShow}" />'>
 			<div class="container py-1">				
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
@@ -260,31 +264,9 @@
 						</c:choose>
 					</tbody>
 				</table>
-				<div class="container">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">1</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">2</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">3</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
+				<!-- pagination s -->
+				<%@include file="../../../infra/common/xdmin/pagination.jsp" %>
+				<!-- pagination e -->
 			</div>
 			<div class="container">
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float:  right;">
@@ -365,6 +347,21 @@
 				$(a).remove();
 			});
 		});
+		
+		var goUrlList = "/code/codeList";						/* #-> */
+		var form = $("form[name=form]");
+		
+		 /* goList = function(thisPage){
+			alert("test");
+			console.log("test");
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}; */
+		
+		function goList(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
 	</script>
 </body>
 </html>
