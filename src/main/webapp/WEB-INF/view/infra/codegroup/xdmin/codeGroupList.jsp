@@ -125,22 +125,23 @@
 		<form method="post" action="/codeGroup/codeGroupList" id="" name="myForm">
 			<input type="hidden" name = "thisPage" value='<c:out value="${vo.thisPage}" default="1" />'>
 			<input type="hidden" name = "rowNumToShow" value='<c:out value="${vo.rowNumToShow}" />'>
+			<input type="hidden" name = "ccgSeq" value="<c:out value="${vo.ccgSeq}"/>"/>
 			<div class="container py-1">				
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
 						<div class="col">
 							<select class="form-select form-select-sm" id="shDelNy" name="shDelNy">
-								<option value="" <c:if test="${empty shDelNy}">selected</c:if>>삭제여부</option>
-								<option value="0" <c:if test="${shDelNy == 0}">selected</c:if>>N</option>
-								<option value="1" <c:if test="${shDelNy == 1}">selected</c:if>>Y</option>
+								<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
+								<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+								<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-select form-select-sm" id="" name="shOptionDate">
+							<select class="form-select form-select-sm" id="" name="shOptionDate" >
 								<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜구분</option>
-								<option value="1" <c:if test="${shOptionDate == 1}">selected</c:if>>등록일</option>
-								<option value="2" <c:if test="${shOptionDate == 2}">selected</c:if>>수정일</option>
-								<option value="3" <c:if test="${shOptionDate == 3}">selected</c:if>>삭제일</option>
+								<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+								<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+								<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>삭제일</option>
 							</select>
 						</div>
 						<div class="col">
@@ -179,6 +180,9 @@
 			<br>
 			
 			<div class="container" style="margin: auto;">	
+				<div style="margin-bottom: 10px;">
+					<c:out value="total: ${vo.totalRows}"></c:out>
+				</div>
 				<table class="table table-responsive table-hover table-sm" style="text-align: center;" id="maintable">
 					<tr class="table-dark">
 						<th scope="col">
@@ -204,11 +208,12 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${list}" var="list" varStatus="status">
-								<tr onclick="location.href='/codeGroup/codeGroupForm?ccgSeq=<c:out value = "${list.ccgSeq}"/>'">
+								<%-- <tr onclick="location.href='/codeGroup/codeGroupForm?ccgSeq=<c:out value = "${list.ccgSeq}"/>'"> --%>
+								<tr><a href="javascript:goForm(<c:out value="${list.ccgSeq }"/>)"></a>
 									<td onclick="event.cancelBubble=true">
 										<input type="checkbox" class="form-check-input" name=check>
 									</td>
-									<th scope="col">${list.ccgSeq}</th>
+									<th scope="col"><c:out value="${((vo.thisPage - 1) * vo.rowNumToShow + status.index)+1}"/></th>
 									<td>${list.codeGroup}</td>
 									<td>${list.codeGroupK}</td>
 									<td>${list.reference}</td>
@@ -233,7 +238,7 @@
 			</div>
 			<div class="container">
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float:  right;">
-					<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='/codeGroup/codeGroupForm'">
+					<button type="button" class="btn btn-outline-secondary" id="btnForm">
 						<i class="fa-solid fa-plus"></i>
 					</button>
 					<button type="button" class="btn btn-outline-danger" id="deleteInput" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="return submit2(this.form)">
@@ -343,10 +348,20 @@
 		var goUrlUpdt = "/codeGroup/codeGroupMod";				/* #-> */
 		var goUrlUele = "/codeGroup/codeGroupUelete";				/* #-> */
 		var goUrlDele = "/codeGroup/codeGroupDelete";				/* #-> */
-		
+		var goUrlForm = "/codeGroup/codeGroupForm";				/* #-> */
 		var seq = $("input:hidden[name=ccgSeq]");				/* #-> */
 		
 		var form = $("form[name=myForm]");
+		
+		$('#btnForm').on("click", function() {
+			goForm(0);                
+		});
+
+		goForm = function(keyValue) {
+	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	    	seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
 		
 		goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);

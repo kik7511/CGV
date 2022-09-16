@@ -122,6 +122,7 @@
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
 		</div>		
 		<form method="post" id="myForm" name="myForm">
+		<%@include file = "codeGroupVo.jsp"%>
 			<div class="container">
 				<div class="table border" style="border-radius: 1em;">
 					<table class="table align-middle">
@@ -147,7 +148,6 @@
 									<div class="row">
 										<div class="col">
 											<input type="text" class="form-control" placeholder="자동생성" id="" disabled="disabled" value='<c:out value="${item.ccgSeq}"></c:out>'>
-											<input type="hidden" name="ccgSeq" value='<c:out value="${vo.ccgSeq}"></c:out>'>
 										</div>
 									</div>	
 								</td>
@@ -253,9 +253,9 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<select class="form-select" disabled="disabled" value='<c:out value="${item.ccgDelNy}"></c:out>'>
-												<option value="0">N</option>
-												<option value="1">Y</option>
+											<select class="form-select" name="ccgDelNy">
+												<option value="0" <c:if test="${item.ccgDelNy eq 0}">selected</c:if>>N</option>
+												<option value="1" <c:if test="${item.ccgDelNy eq 1}">selected</c:if>>Y</option>
 											</select>
 										</div>
 									</div>
@@ -380,7 +380,7 @@
 					</button>
 				</div>
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
-					<button type="button" class="btn btn-success" id="" onclick="location.href='/codeGroup/codeGroupList'">
+					<button type="button" class="btn btn-success" id="btnList">
 						<i class="fa-solid fa-list"></i>
 					</button>
 				</div>
@@ -415,23 +415,32 @@
 				</footer>
 			</div>
 		</form>
+			<form method="post" id="myForm2" name="myForm2">
+		<%@include file = "codeGroupVo.jsp"%>
+		</form>
 	</div>
 <!-- end -->
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/188ea9a4c6.js" crossorigin="anonymous"></script>	
 	<script type="text/javascript">
+	var seq = $("input:hidden[name=ccgSeq]");				/* #-> */
 	var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
 	var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
+	var goUrlForm = "/codeGroup/codeGroupForm"; 			/* #-> */
 	var goUrlUpdt = "/codeGroup/codeGroupMod";				/* #-> */
 	var goUrlUele = "/codeGroup/codeGroupUelete";				/* #-> */
 	var goUrlDele = "/codeGroup/codeGroupDelete";				/* #-> */
 	
 	var modal = $("#exampleModal2");
 	
-	var seq = $("input:hidden[name=ccgSeq]");				/* #-> */
 	
 	var form = $("form[name=myForm]");
+	var formVo = $("form[name=myForm2]");
+	
+	$("#btnList").on("click", function(){
+		formVo.attr("action", goUrlList).submit();
+	});
 	
 	$("#btnSave").on("click", function(){
 		if (seq.val() == "0" || seq.val() == ""){
@@ -442,7 +451,7 @@
 	   		/* keyName.val(atob(keyName.val())); */
 	   		form.attr("action", goUrlUpdt).submit();
 	   	}
-	})
+	});
 	
 	$("#btnDelete").on("click", function(){
 		action = "Delete"
@@ -463,16 +472,6 @@
 			
 		}
 	});
-	
-	</script>
-	<script type="text/javascript">
-		/* 모달 나타나기 */
-		const myModal = document.getElementById('deleteModal')
-		const myInput = document.getElementById('deleteInput')
-
-		myModal.addEventListener('shown.bs.modal', () => {
-		  deleteInput.focus()
-		});
 	</script>
 </body>
 </html>
