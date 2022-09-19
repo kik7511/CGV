@@ -126,6 +126,7 @@
 		<form method="post" id="form" name="form">
 			<input type="hidden" name="thisPage" value='<c:out value="${vo.thisPage}" default="1" />'>
 			<input type="hidden" name="rowNumToShow" value='<c:out value="${vo.rowNumToShow}" />'>
+			<input type="hidden" name="ccSeq" value='<c:out value="${vo.ccSeq}" />'>
 			<div class="container py-1">				
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
@@ -218,6 +219,9 @@
 			<br>
 			
 			<div class="container" style="margin: auto;">	
+				<div style="margin-bottom: 10px;">
+					<c:out value="total: ${vo.totalRows}"></c:out>
+				</div>
 				<table class="table table-responsive table-hover table-sm" style="text-align: center;" id="maintable">
 					<tr class="table-dark">
 						<th scope="col">
@@ -242,11 +246,12 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${list}" var="list" varStatus="status">
-									<tr onclick="location.href='/code/codeForm?ccSeq=<c:out value = "${list.ccSeq}"/>'">
+									<%-- <tr onclick="location.href='/code/codeForm?ccSeq=<c:out value = "${list.ccSeq}"/>'"> --%>
+									<tr onclick="javascript:goForm(<c:out value="${list.ccSeq}" />)">
 										<td onclick="event.cancelBubble=true">
 											<input type="checkbox" class="form-check-input" name=check>
 										</td>
-										<th scope="col">${list.ccSeq}</th>
+										<th scope="col"><c:out value="${((vo.thisPage - 1) * vo.rowNumToShow + status.index)+1}"/></th>
 										<td>${list.code}</td> 
 										<td>${list.codeK}</td>
 										<td>${list.ccCodeName}</td>
@@ -270,7 +275,7 @@
 			</div>
 			<div class="container">
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float:  right;">
-					<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='/code/codeForm'">
+					<button type="button" class="btn btn-outline-secondary" id="btnForm">
 						<i class="fa-solid fa-plus"></i>
 					</button>
 					<button type="button" class="btn btn-outline-danger" id="deleteInput" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="getCheckboxValue()">
@@ -335,33 +340,28 @@
 		myModal.addEventListener('shown.bs.modal', () => {
 		  deleteInput.focus()
 		});
-		/* 체크된 줄만 지우기(현재 실패) */
-		$('#delRow').click(function(){
-			if($("input:checkbox[name='check']:checked").length === 0) {
-				alert("삭제할 항목을 선택해 주세요.");
-				return;
-			}
-			$("input:checkbox[name='check']:checked").each(function(k,kVal){
-				console.log("kVal ::", kVal.parentElement.parentElement);
-				let a = kVal.parentElemnet.parentElement.parentElement;
-				$(a).remove();
-			});
+	</script>
+	<script>	
+		var goUrlList = "/code/codeList";						/* #-> */
+		var goUrlForm = "/code/codeForm";						/* #-> */
+		var form = $("form[name=form]");						/* #-> */
+		var seq = $("input:hidden[name=ccSeq]");				/* #-> */
+		
+		goForm = function(keyValue) {
+	    	seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
+		
+		$('#btnForm').on("click", function(){
+			goForm(0);
 		});
 		
-		var goUrlList = "/code/codeList";						/* #-> */
-		var form = $("form[name=form]");
-		
-		 /* goList = function(thisPage){
-			alert("test");
-			console.log("test");
-			$("input:hidden[name=thisPage]").val(thisPage);
-			form.attr("action", goUrlList).submit();
-		}; */
-		
-		function goList(thisPage) {
+		goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
 			form.attr("action", goUrlList).submit();
 		}
+		
+		
 	</script>
 </body>
 </html>

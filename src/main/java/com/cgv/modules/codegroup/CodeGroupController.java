@@ -68,7 +68,7 @@ public void setSearchAndPaging(CodeGroupVo vo) throws Exception{
 	}
 	
 	@RequestMapping(value = "codeGroupMod")
-	public String codeGroupMod(CodeGroup dto, CodeGroupVo vo, RedirectAttributes redirectAttributes) throws Exception{
+	public String codeGroupMod(CodeGroup dto, @ModelAttribute("vo") CodeGroupVo vo, RedirectAttributes redirectAttributes) throws Exception{
 		int result = service.update(dto);
 		System.out.println("controller result: " + result);
 		

@@ -37,4 +37,9 @@ public class CodeDao {
 		return item;
 	}
 	
+	public int update(Code dto) {
+		int result = sqlSession.update(namespace + ".update", dto);
+		return result;
+	}
+	
 }

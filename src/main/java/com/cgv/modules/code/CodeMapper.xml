@@ -46,7 +46,10 @@
 	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
-		<include refid="selectCommon"></include>
+		FROM CC a
+    	INNER JOIN CCG b
+    	ON a.ccgSeq = b.ccgSeq
+    	HAVING 1=1
 	</select>
 	
 	<insert id="insert">
@@ -55,13 +58,11 @@
 			,ccCodeName
 			,ccUseNy
 			,ccDelNy
-			,ORDER
 		)VALUES(
 			#{ccgSeq}
 			,#{ccCodeName}
 			,#{ccUseNy}
 			,0
-			,#{ORDER}
 		)
 			<selectKey resultType="String" keyProperty="ccSeq" order="AFTER">
 				SELECT last_insert_id()
@@ -86,6 +87,14 @@
 			AND ccSeq = #{ccSeq}
 	</select>
 	
+	<update id="update">
+		UPDATE CC
+		SET 
+		ccCodeName = #{ccCodeName}
+		,ccUseNy = #{ccUseNy}
+		,ccDelNy = #{ccDelNy}
+		WHERE 1=1
+			AND ccSeq = #{ccSeq}
+	</update>
 	
-
 </mapper>	

@@ -209,7 +209,7 @@
 							<c:otherwise>
 								<c:forEach items="${list}" var="list" varStatus="status">
 								<%-- <tr onclick="location.href='/codeGroup/codeGroupForm?ccgSeq=<c:out value = "${list.ccgSeq}"/>'"> --%>
-								<tr><a href="javascript:goForm(<c:out value="${list.ccgSeq }"/>)"></a>
+								<tr onclick="javascript:goForm(<c:out value="${list.ccgSeq}" />)"> 
 									<td onclick="event.cancelBubble=true">
 										<input type="checkbox" class="form-check-input" name=check>
 									</td>

@@ -128,7 +128,7 @@ public class CodeVo {
 	
 //	생성자
 	
-	public void setParampaging(int totalRows) {
+	public void setParamPaging(int totalRows) {
 		setTotalRows(totalRows);
 
 		if (getTotalRows() == 0) {

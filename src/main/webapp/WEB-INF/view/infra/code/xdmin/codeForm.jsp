@@ -1,5 +1,5 @@
 
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -122,6 +122,7 @@
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 100%;">						
 		</div>		
 		<form method="post" id="myForm" name="myForm">
+			<%@include file = "codeVo.jsp" %>
 			<div class="container">
 				<div class="table border" style="border-radius: 1em;">
 					<table class="table align-middle">
@@ -139,9 +140,9 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<select class="form-select" name="ccgSeq" id="ccgSeq" value='<c:out value="${item.ccgSeq}"></c:out>'>
+											<select class="form-select" name="ccgSeq" id="ccgSeq">
 												<c:forEach items="${list}" var="list" varStatus="status">
-													<option value="${list.ccgSeq}">${list.codeGroupK}</option>
+													<option value="${list.ccgSeq}" <c:if test="${item.ccgSeq eq list.ccgSeq}">selected</c:if>>${list.codeGroupK}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -274,9 +275,9 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<select class="form-select" disabled="disabled">
-												<option value="0">N</option>
-												<option value="1">Y</option>
+											<select class="form-select" name = "ccDelNy">
+												<option value="0" <c:if test="${item.ccDelNy eq 0}">selected</c:if>>N</option>
+												<option value="1" <c:if test="${item.ccDelNy eq 1}">selected</c:if>>Y</option>
 											</select>
 										</div>
 									</div>
@@ -387,10 +388,10 @@
 				</div>
 				<br>
 				<div style="text-align: center;">
-					<button type="submit" class="btn btn-dark">등록하기</button>
+					<button type="button" id="btnSave" class="btn btn-dark">등록하기</button>
 				</div>
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">
-					<button type="button" class="btn btn-success" id="" onclick="location.href='/code/codeList'">
+					<button type="button" class="btn btn-success" id="btnList" >
 						<i class="fa-solid fa-list"></i>
 					</button>
 				</div>
@@ -407,6 +408,9 @@
 					<p class="text-center text-muted">© 2022 GGV. All Rights Reserved</p>
 				</footer>
 			</div>
+		</form>
+		<form method="post" id="formVo" name="formVo">
+			<%@include file = "codeVo.jsp" %>
 		</form>
 	</div>
 <!-- end -->
@@ -426,7 +430,7 @@
 	<script type="text/javascript">
 	var goUrlList = "/code/codeList"; 			/* #-> */
 	var goUrlInst = "/code/codeInst"; 			/* #-> */
-	var goUrlUpdt = "/code/codeMod";				/* #-> */
+	var goUrlUpdt = "/code/codeUpdt";				/* #-> */
 	var goUrlUele = "/code/codeUelete";				/* #-> */
 	var goUrlDele = "/code/codeDelete";				/* #-> */
 	
@@ -435,6 +439,8 @@
 	var seq = $("input:hidden[name=ccSeq]");				/* #-> */
 	
 	var form = $("form[name=myForm]");
+	
+	var formVo = $("form[name=formVo]");
 	
 	$("#btnSave").on("click", function(){
 		if (seq.val() == "0" || seq.val() == ""){
@@ -445,6 +451,10 @@
 	   		/* keyName.val(atob(keyName.val())); */
 	   		form.attr("action", goUrlUpdt).submit();
 	   	}
+	})
+	
+	$("#btnList").on("click", function(){
+		formVo.attr("action", goUrlList).submit();
 	})
 	
 	$("#btnDelete").on("click", function(){
