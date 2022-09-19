@@ -60,7 +60,7 @@
 			<div class="header_content">
 				<div class="contents">
 					 <h1 onclick="">
-					 	<a href="../main/mainView.html"><img src="/resources/images/user/logoRed.png" alt="CGV"></a>
+					 	<a href=""><img src="/resources/images/user/logoRed.png" alt="CGV"></a>
 					 </h1>
 					 
 				<!-- /Advertisement -->
