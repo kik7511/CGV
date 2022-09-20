@@ -19,8 +19,9 @@ public class Crawling {
             Elements imageUrlElements = document.getElementsByClass("swiper-lazy");
 
             for (Element element : imageUrlElements) {
-                System.out.println(element);
+                System.out.println(element.attr("abs:src"));
             }
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
