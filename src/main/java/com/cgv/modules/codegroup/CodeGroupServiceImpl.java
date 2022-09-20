@@ -66,7 +66,7 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	}
 	
 	@Override
-	public int delete(CodeGroup vo) throws Exception{
+	public int delete(CodeGroupVo vo) throws Exception{
 		int result = dao.delete(vo);
 		System.out.println("service result" + result);
 		return result;

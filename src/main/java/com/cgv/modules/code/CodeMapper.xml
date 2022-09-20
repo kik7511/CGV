@@ -34,7 +34,7 @@
 			,a.ccgSeq
 			,a.ccCodeName
 			,a.ccUseNy
-			,a.ORDER
+			,a.ccOrder
 			,a.ccDate
 			,a.ccDelNy
 			,b.codeGroup as code
@@ -58,11 +58,13 @@
 			,ccCodeName
 			,ccUseNy
 			,ccDelNy
+			,ccOrder
 		)VALUES(
 			#{ccgSeq}
 			,#{ccCodeName}
 			,#{ccUseNy}
 			,0
+			,#{ccOrder}
 		)
 			<selectKey resultType="String" keyProperty="ccSeq" order="AFTER">
 				SELECT last_insert_id()
@@ -75,7 +77,7 @@
 			,a.ccgSeq
 			,a.ccCodeName
 			,a.ccUseNy
-			,a.ORDER
+			,a.ccOrder
 			,a.ccDate
 			,a.ccDelNy
 			,b.codeGroup as code
@@ -93,8 +95,36 @@
 		ccCodeName = #{ccCodeName}
 		,ccUseNy = #{ccUseNy}
 		,ccDelNy = #{ccDelNy}
+		,ccOrder = #{ccOrder}
 		WHERE 1=1
 			AND ccSeq = #{ccSeq}
 	</update>
+	
+	<update id="uelete">
+		UPDATE CC
+		SET
+			CCDelNy = 1
+		WHERE 1=1
+			AND ccSeq = #{ccSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE
+		FROM CC a
+		WHERE 1=1
+			AND ccSeq = #{ccSeq} 
+	</delete>
+	
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			ccSeq
+			, ccCodeName
+			, ccgSeq
+		FROM
+			CC
+		WHERE 1=1
+			AND ccDelNy = 0
+		    AND ccUseNy = 1
+    </select>
 	
 </mapper>	

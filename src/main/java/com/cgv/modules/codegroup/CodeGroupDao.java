@@ -63,7 +63,7 @@ public class CodeGroupDao {
 		return result;
 	}
 	
-	public int delete(CodeGroup vo) {
+	public int delete(CodeGroupVo vo) {
 		int result = sqlSession.delete(namespace + ".delete", vo);
 		System.out.println("dao result: " +  result);
 		return result;

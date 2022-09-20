@@ -243,7 +243,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<input type="text" class="form-control" placeholder="숫자" name="ORDER" value='<c:out value="${item.ORDER}"></c:out>'>
+											<input type="text" class="form-control" placeholder="숫자" name="ccOrder" value='<c:out value="${item.ccOrder}"></c:out>'>
 										</div>
 									</div>
 								</td>
@@ -386,14 +386,42 @@
 						</tbody>
 					</table>
 				</div>
-				<br>
 				<div style="text-align: center;">
-					<button type="button" id="btnSave" class="btn btn-dark">등록하기</button>
+					<!-- <input type="submit" value="Send" onClick={ validateForm }/> -->
+					<button type="button" class="btn btn-dark" name="" id="btnSave" onclick= "">저장하기</button>
 				</div>
-				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">
-					<button type="button" class="btn btn-success" id="btnList" >
+				<br>
+				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
+					<button type="button" class="btn btn-danger" id="btnDelete">
+						<i class="fa-solid fa-file-circle-xmark"></i>
+					</button>
+				</div>
+				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
+					<button type="button" class="btn btn-danger" id="btnUelete">
+						<i class="fa-solid fa-trash-can"></i>
+					</button>
+				</div>
+				<div class="btn-group me-2 btn-group-sm" role="group" style="float: right;">	
+					<button type="button" class="btn btn-success" id="btnList">
 						<i class="fa-solid fa-list"></i>
 					</button>
+				</div>
+				<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel2">주의!</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								삭제하시겠습니까?
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+								<button type="button" class="btn btn-danger" id="DeleteYn">삭제</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div style="margin-top: 8em;"></div>

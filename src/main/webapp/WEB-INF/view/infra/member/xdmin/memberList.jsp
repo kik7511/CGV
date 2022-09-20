@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page session="false" %>
-<%@ page import = "com.cgv.modules.code.*" %>
+<%-- <%@ page import = "com.cgv.modules.code.*" %> --%>
+<jsp:useBean id="CodeServiceImpl" class="com.cgv.modules.code.CodeServiceImpl"/>
 
 <html lang="ko">
 <head>
@@ -123,47 +124,54 @@
 		<div class="container py-2">			
 			<img alt="" src="/resources/images/mainpage.jpg" style="width: 1300px;">						
 		</div>		
-		<form method="post" action="/member/memberList">
+		<form method="post" name = myForm>
+			<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
+			<c:set var="listCodeTel" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
+			<c:set var="listCodeEmail" value="${CodeServiceImpl.selectListCachedCode('12')}"/>
+			<c:set var="listCodeMarketing" value="${CodeServiceImpl.selectListCachedCode('3')}"/>
+			<input type="hidden" name = "thisPage" value='<c:out value="${vo.thisPage}" default="1" />'>
+			<input type="hidden" name = "rowNumToShow" value='<c:out value="${vo.rowNumToShow}" />'>
+			<input type="hidden" name = "ifMmSeq" value="<c:out value="${vo.ifMmSeq}"/>"/>
 			<div class="container py-1">				
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
 						<div class="col">
 							<select class="form-select form-select-sm" name="shDelNy">
-								<option value="">삭제여부</option>
-								<option value="0">N</option>
-								<option value="1">Y</option>
+								<option value=""  <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
+								<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+								<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 							</select>
 						</div>
 						<div class="col">
 							<select class="form-select form-select-sm" name="shOptionDate">
-								<option value="">날짜구분</option>
-								<option value="1">등록일</option>
-								<option value="2">수정일</option>
-								<option value="3">삭제일</option>
-								<option value="4">생일</option>
+								<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜구분</option>
+								<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+								<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+								<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>삭제일</option>
+								<option value="4" <c:if test="${vo.shOptionDate eq 4}">selected</c:if>>생일</option>
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="">
+							<input type="text" autocomplete="off" placeholder="시작일" class="form-control form-control-sm" id="shStartDate" name="shStartDate" value='<c:out value="${vo.shStartDate}"></c:out>'>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="">
+							<input type="text" autocomplete="off" placeholder="종료일" class="form-control form-control-sm" id="shEndDate" name="shEndDate" value='<c:out value="${vo.shEndDate}"></c:out>'>
 						</div>
 					</div>			
 					<div class="row px-2 py-2 row-cols-sm-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="">
-								<option value="">::검색구분::</option>
-								<option value="1">이름</option>
-								<option value="2">아이디</option>
+							<select class="form-select form-select-sm" id="shOption" name="shOption">
+								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>이름</option>
+								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>아이디</option>
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" autocomplete="off" placeholder="검색어" class="form-control form-control-sm" id="">
+							<input type="text" autocomplete="off" placeholder="검색어" class="form-control form-control-sm" id="shValue" name="shValue" value='<c:out value="${vo.shValue}"></c:out>'>
 						</div>
 						<div class="col">
 							<div class="btn-group me-2 btn-group-sm" role="group" aria-label="First-gropu">
-								<button type="submit" class="btn btn-outline-secondary" id="">
+								<button type="button" class="btn btn-outline-secondary" id="btnList">
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button>
 								<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='memberList.html'">
@@ -201,18 +209,17 @@
 								</tr>					
 							</c:when>
 							<c:otherwise>	
-								<c:forEach items="${list}" var="list" varStatus="status" end="5">
-									<tr onclick="location.href='memberModForm.html'">
+								<c:forEach items="${list}" var="list" varStatus="status">
+									<tr onclick="javascript:goList(<c:out value="${list.ifMmSeq}" />)">
 										<td onclick="event.cancelBubble=true">
 											<input type="checkbox" class="form-check-input" name=check>
 										</td>
 										<th scope="col">${list.ifMmSeq}</th>
 										<td>${list.ifMmName}</td>
 										<td>
-											<c:choose>
-												<c:when test="${list.ifMmGender == 1}">남</c:when>
-												<c:otherwise>여</c:otherwise>
-											</c:choose>
+											<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+												<c:if test="${list.ifMmGender eq listGender.ccSeq}"><c:out value="${listGender.ccCodeName}"/></c:if>
+											</c:forEach>
 										</td>
 										<td>
 											<fmt:formatDate value="${list.ifMmDob}" pattern="yyyy.MM.dd" />
@@ -220,18 +227,14 @@
 										<td>${list.ifMmId}</td>
 										<td>${list.ifMmPhone}</td>
 										<td>${list.ifMmEmail}@
-											<c:choose>
-												<c:when test="${list.ifMmEmailAddress == 44}">naver.com</c:when>
-												<c:when test="${list.ifMmEmailAddress == 45}">daum.net</c:when>
-												<c:when test="${list.ifMmEmailAddress == 46}">gogle.com</c:when>
-												<c:otherwise>직접입력하시오</c:otherwise>
-											</c:choose>
+											<c:forEach items="${listCodeEmail}" var="listEmail" varStatus="statusEmail">
+												<c:if test="${list.ifMmEmailAddress eq listEmail.ccSeq}"><c:out value="${listEmail.ccCodeName}"/></c:if>
+											</c:forEach>
 										</td>
 										<td>
-											<c:choose>
-												<c:when test="${list.ifMmMarketing == 6} }">Y</c:when>
-												<c:otherwise>N</c:otherwise>
-											</c:choose>
+											<c:forEach items="${listCodeMarketing}" var="listMarketing" varStatus="statusMarketing">
+												<c:if test="${list.ifMmMarketing eq listMarketing.ccSeq}"><c:out value="${listMarketing.ccCodeName}"/></c:if>
+											</c:forEach>
 										</td>
 									</tr>
 								</c:forEach>
@@ -239,41 +242,19 @@
 						</c:choose>
 					</tbody>
 				</table>
-				<div class="container">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">1</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">2</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">3</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
+				<!-- pagination s -->
+				<%@include file="../../../infra/common/xdmin/pagination.jsp"%>
+				<!-- pagination e -->
 			</div>
 			<div class="container">
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float:  right;">
-					<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='memberRegForm.html'">
+					<button type="button" class="btn btn-outline-secondary" id="btnForm">
 						<i class="fa-solid fa-plus"></i>
 					</button>
-					<button type="button" class="btn btn-outline-danger" id="deleteInput" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="getCheckboxValue()">
+					<button type="button" class="btn btn-outline-danger" id="deleteInput" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="return submit2(this.form)">
 						<i class="fa-solid fa-trash-can"></i>
 					</button>
-					<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+					<!-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 						<div class="modal-dialog" id="result">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -289,7 +270,7 @@
       							</div>
     						</div>
   						</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float: left;">
 					<button type="button" class="btn btn-success" id="" onclick="location.href='memberList.html'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" title="엑셀파일로 출력하기" >
@@ -325,25 +306,76 @@
 			checkbox.checked = selectAll.checked;
 		})
 	}
-		/* 모달 나타나기 */
-		const myModal = document.getElementById('deleteModal')
-		const myInput = document.getElementById('deleteInput')
+	</script>
+	<script type="text/javascript">		
+	<!-- DatePicker -->
+		$(document).ready(function () {
+		    $.datepicker.regional['ko'] = {
+		        closeText: '닫기',
+		        prevText: '이전달',
+		        nextText: '다음달',
+		        currentText: '오늘',
+		        monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+		        '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+		        monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+		        '7월','8월','9월','10월','11월','12월'],
+		        dayNames: ['일','월','화','수','목','금','토'],
+		        dayNamesShort: ['일','월','화','수','목','금','토'],
+		        dayNamesMin: ['일','월','화','수','목','금','토'],
+		        weekHeader: 'Wk',
+		        dateFormat: 'yy-mm-dd',
+		        firstDay: 0,
+		        showMonthAfterYear: true,
+		        changeMonth: true,
+		        changeYear: true,
+		        yearRange: 'c-99:c+99',
+		    };
+		    $.datepicker.setDefaults($.datepicker.regional['ko']);
+	
+		    $('#shStartDate').datepicker();
+		    $('#shStartDate').datepicker("option", "maxDate", $("#shEndDate").val());
+		    $('#shStartDate').datepicker("option", "onClose", function ( selectedDate ) {
+		        $("#shEndDate").datepicker( "option", "minDate", selectedDate );
+		    });
+	
+		    $('#shEndDate').datepicker();
+		    $('#shEndDate').datepicker("option", "minDate", $("#shStartDate").val());
+		    $('#shEndDate').datepicker("option", "onClose", function ( selectedDate ) {
+		        $("#shStartDate").datepicker( "option", "maxDate", selectedDate );
+		    });
+		});
+		</script>
+		
+		
+		<script>
+		var goUrlList = "/member/memberList"; 			/* #-> */
+		var goUrlInst = "/member/memberInst"; 			/* #-> */
+		var goUrlUpdt = "/member/memberUpdt";				/* #-> */
+		var goUrlUele = "/member/memberUelete";				/* #-> */
+		var goUrlDele = "/member/memberDelete";				/* #-> */
+		var goUrlForm = "/member/memberForm";				/* #-> */
+		var seq = $("input:hidden[name=ifMmSeq]");				/* #-> */
+		
+		var form = $("form[name=myForm]");
+		
+		$('#btnList').on("click", function(){
+			form.attr("action", goUrlList).submit();
+		});
+		
+		$('#btnForm').on("click", function() {
+			goForm(0);                
+		});
 
-		myModal.addEventListener('shown.bs.modal', () => {
-		  deleteInput.focus()
-		});
-		/* 체크된 줄만 지우기(현재 실패) */
-		$('#delRow').click(function(){
-			if($("input:checkbox[name='check']:checked").length == 0) {
-				alert("삭제할 항목을 선택해 주세요.");
-				return;
-			}
-			$("input:checkbox[name='check']:checked").each(function(k,kVal){
-				console.log("kVal ::", kVal.parentElement.parentElement);
-				let a = kVal.parentElemnet.parentElement.parentElement;
-				$(a).remove();
-			});
-		});
+		goForm = function(keyValue) {
+	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	    	seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
+		
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
 	</script>
 </body>
 </html>

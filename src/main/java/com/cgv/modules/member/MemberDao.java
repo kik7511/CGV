@@ -24,10 +24,35 @@ public class MemberDao {
 		return list;		
 	}
 	
+	public int selectOneCount(MemberVo vo) {
+		int result = sqlSession.selectOne(namespace + ".selectOneCount", vo);
+		return result;
+	}
+	
 	public int insert(Member dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);
 		System.out.println("dao.result: "+result);
 		return result;
 	} 
+	
+	public Member selectOne(MemberVo vo) {
+		Member item = sqlSession.selectOne(namespace + ".selectOne", vo);
+		return item;
+	}
+	
+	public int update(Member dto) {
+		int result = sqlSession.update(namespace+ ".update", dto);
+		return result;
+	}
+	
+	public int uelete(Member dto) {
+		int result = sqlSession.update(namespace + ".uelete", dto);
+		return result;
+	}
+	
+	public int delete(MemberVo vo) {
+		int result = sqlSession.delete(namespace + ".delete", vo);
+		return result;
+	}
 	
 }

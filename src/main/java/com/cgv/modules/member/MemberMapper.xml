@@ -7,28 +7,41 @@
 <mapper namespace="com.cgv.modules.member.MemberMapper">
 
     <resultMap id="resultMapObj" type="com.cgv.modules.member.Member"></resultMap>
+    
+    <sql id="selectCommon">
+    	FROM infrMember a
+		Where 1=1
+		<if test = "shDelNy != null and !shDelNy.equals('')">AND ifMmDelNy = #{shDelNy}</if>
+			<choose>
+				<when test = "shOption eq 1">AND a.ifMmSeq = #{shValue}</when>
+				<when test = "shOption eq 2">AND a.ifMmName LIKE CONCAT ('%', #{shValue}, '%')</when>
+				<when test = "shOption eq 3">AND a.ifMmId LIKE CONCAT ('%', #{shValue}, '%')</when>
+				<when test = "shOption eq 4">AND a.ifMmGender LIKE CONCAT ('%', #{shValue}, '%')</when>
+				<otherwise></otherwise>
+			</choose>
+			<choose>
+				<when test="shOptionDate == 1">AND a.ifMmDob BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<otherwise></otherwise>
+			</choose>
+    </sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
 		SELECT
 			a.*
 			,(SELECT ccCodeName FROM CC b WHERE a.ifMmGender = b.ccSeq) as gender
 			,(SELECT ccCodeName FROM CC b WHERE a.ifMmTel = b.ccSeq) as tel
 			,(SELECT ccCodeName FROM CC b WHERE a.ifMmEmailAddress = b.ccSeq) as email
 			,(SELECT ccCodeName FROM CC b WHERE a.ifMmMarketing = b.ccSeq) as marketing
+		<include refid="selectCommon" />
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />	
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
 		FROM infrMember a
 		Where 1=1
-		<if test = "shDelNy != null and !shDelNy.equals('')">AND ccDelNy = #{shDelNy}</if>
-			<choose>
-				<when test = "shOption eq 1">AND a.ccSeq = #{shValue}</when>
-				<when test = "shOption eq 2">AND a.ccCodeName = #{shValue}</when>
-				<when test = "shOption eq 3">AND a.codeGroupK = #{shValue}</when>
-				<when test = "shOption eq 4">AND a.codeGroup = #{shValue}</when>
-				<otherwise></otherwise>
-			</choose>
-			<choose>
-				<when test="shOptionDate == 1">AND a.ccDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-				<otherwise></otherwise>
-			</choose>	
 	</select>
 	
 	<insert id="insert">
@@ -58,7 +71,7 @@
 			,#{ifMmPhone}
 			,#{ifMmEmail}
 			,#{ifMmEmailAddress}
-			,#{ifMmMarketin}
+			,#{ifMmMarketing}
 			,#{ifMmSingupDate}
 			,#{ifMmAddress}
 			,#{ifMmAddress_homenumber}
@@ -69,5 +82,55 @@
 			SELECT last_id_insert_id()
 		</selectKey>
 	</insert>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM infrMember a
+		WHERE 1=1
+			AND ifMmSeq = #{ifMmSeq}
+	</select>
+	
+	<select id="selectOneConunt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM infrMember a
+		WHERE 1=1
+	</select>
+	
+	
+	<update id="update">
+	UPDATE infrMember
+	SET
+		ifMmName = #{ifMmName}
+		,ifMmGender = #{ifMmGender}
+		,ifMmDob = #{ifMmDob}
+		,ifMmId = #{ifMmId}
+		,ifMmPassWord = #{ifMmPassWord}
+		,ifMmTel = #{ifMmTel}
+		,ifMmPhone = #{ifMmPhone}
+		,ifMmEmail = #{ifMmEmail}
+		,ifMmEmailAddress = #{ifMmEmailAddress}
+		,ifMmMarketing = #{ifMmMarketing}
+		,ifMmSingupDate = #{ifMmSingupDate}
+		,ifMmAddress = #{ifMmAddress}
+		,ifMmAddress_homenumber = #{ifMmAddress_homenumber}
+		,ifMmAddress_detail = #{ifMmAddress_detail}
+		,ifMmNickname = #{ifMmNickname}
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrMember
+		SET
+			ifMmDelNy = 1
+		WHERE 1=1
+			AND ifMmSeq = #{ifMmSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE
+		FROM infrMember a
+		WHERE 1=1
+			AND ifMmSeq = #{ifMmSeq} 
+	</delete>
 	
 </mapper>	

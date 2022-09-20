@@ -79,4 +79,18 @@ public class CodeController {
 		
 		return "redirect:/code/codeList";
 	}
+	
+	@RequestMapping(value = "codeUelete")
+	public String codeUelete(Code dto) throws Exception{
+		service.uelete(dto);
+		
+		return "redirect:/code/codeList";
+	}
+	
+	@RequestMapping(value = "codeDelete")
+	public String codeDelete(CodeVo vo) throws Exception{
+		service.delete(vo);
+		
+		return "redirect:/code/codeList";
+	}
 }

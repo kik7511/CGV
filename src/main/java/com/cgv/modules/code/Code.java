@@ -1,6 +1,8 @@
 package com.cgv.modules.code;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.cgv.modules.codegroup.CodeGroup;
 
@@ -16,7 +18,17 @@ public class Code extends CodeGroup {
 	private String codeGroupK;
 	private String code;
 	private String codeK;
+	private Integer ccOrder;
+	
+//	for cache
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 
+	public Integer getCcOrder() {
+		return ccOrder;
+	}
+	public void setCcOrder(Integer ccOrder) {
+		this.ccOrder = ccOrder;
+	}
 	public String getCode() {
 		return code;
 	}

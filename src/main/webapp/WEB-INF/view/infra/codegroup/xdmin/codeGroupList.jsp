@@ -166,7 +166,7 @@
 						</div>
 						<div class="col">
 							<div class="btn-group me-2 btn-group-sm" role="group" aria-label="First-gropu">
-								<button type="submit" class="btn btn-outline-secondary" id="">
+								<button type="button" class="btn btn-outline-secondary" id="btnList">
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button>
 								<button type="button" class="btn btn-outline-secondary" id="" onclick="location.href='/codeGroup/codeGroupList'">
@@ -352,6 +352,10 @@
 		var seq = $("input:hidden[name=ccgSeq]");				/* #-> */
 		
 		var form = $("form[name=myForm]");
+		
+		$('#btnList').on("click", function(){
+			form.attr("action", foUrlList).submit();
+		});
 		
 		$('#btnForm').on("click", function() {
 			goForm(0);                

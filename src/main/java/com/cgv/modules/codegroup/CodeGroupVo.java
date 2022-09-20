@@ -74,6 +74,8 @@ public class CodeGroupVo {
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
 	
+	//생성자
+	
 public void setParamsPaging(int totalRows) {
 		
 //		setThisPage(3);

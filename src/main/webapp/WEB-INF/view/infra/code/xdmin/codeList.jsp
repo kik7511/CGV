@@ -131,14 +131,14 @@
 				<div class="container-fluid border px-0 mt-2 py-2" id="">
 					<div class="row px-2 row-cols-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="shDelNy" name="shDelNy" value='<c:out value="${vo.shDelNy}"></c:out>'>
+							<select class="form-select form-select-sm" id="shDelNy" name="shDelNy">
 								<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
 								<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
 								<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-select form-select-sm" id="shOptionDate" name="shOptionDate" value='<c:out value="${vo.shOptionDate}"></c:out>'>
+							<select class="form-select form-select-sm" id="shOptionDate" name="shOptionDate">
 								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>날짜여부</option>
 								<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
 								<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
@@ -192,7 +192,7 @@
 					</script>	
 					<div class="row px-2 py-2 row-cols-sm-6">
 						<div class="col">
-							<select class="form-select form-select-sm" id="shOption" name="shOption" value='<c:out value="${vo.shOption}"></c:out>'>
+							<select class="form-select form-select-sm" id="shOption" name="shOption">
 								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
 								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
 								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
@@ -246,7 +246,6 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${list}" var="list" varStatus="status">
-									<%-- <tr onclick="location.href='/code/codeForm?ccSeq=<c:out value = "${list.ccSeq}"/>'"> --%>
 									<tr onclick="javascript:goForm(<c:out value="${list.ccSeq}" />)">
 										<td onclick="event.cancelBubble=true">
 											<input type="checkbox" class="form-check-input" name=check>
@@ -261,7 +260,7 @@
 		                						<c:otherwise>Y</c:otherwise>
 		                					</c:choose>
 		                				</td>
-										<td>${list.ORDER}</td>
+										<td>${list.ccOrder}</td>
 										<td><fmt:formatDate value="${list.ccDate}" pattern="yyyy.MM.dd" /></td>
 									</tr>
 								</c:forEach>

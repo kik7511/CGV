@@ -86,8 +86,8 @@ public void setSearchAndPaging(CodeGroupVo vo) throws Exception{
 	}
 	
 	@RequestMapping(value = "codeGroupDelete")
-	public String codeGroupDelete(CodeGroup dto) throws Exception{
-		int result = service.delete(dto);
+	public String codeGroupDelete(CodeGroupVo vo) throws Exception{
+		int result = service.delete(vo);
 		System.out.println("controller result: " + result);
 		
 		return "redirect:/codeGroup/codeGroupList";
