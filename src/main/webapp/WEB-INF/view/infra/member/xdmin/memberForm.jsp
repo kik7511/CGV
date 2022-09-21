@@ -232,9 +232,10 @@
 													<div class="row">
 														<div class="col">
 															<select class="form-select">
-																<option value="1">::선택::</option>
-																<option value="2">남자</option>
-																<option value="3">여자</option>
+																<option value="1">선택</option>
+																<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+																		<option value="${listGender.ccSeq}" <c:if test="${item.ifMmGender eq listGender.ccSeq}">selected</c:if>>${listGender.ccCodeName}</option>
+																</c:forEach>
 															</select>
 														</div>
 													</div>	
@@ -243,7 +244,7 @@
 													<div class="row">
 														<div class="col">
 															<select class="form-select">
-																<option value="1">::선택::</option>
+																<option value="1">선택</option>
 																<option value="2">학생</option>
 																<option value="3">공무원</option>
 																<option value="4">자영업자</option>
@@ -283,10 +284,10 @@
 													<div class="row">
 														<div class="col-5">
 															<select class="form-select">
-																<option value="1">::선택::</option>
-																<option value="2">SKT</option>
-																<option value="3">KT</option>
-																<option value="4">LGT</option>
+																<option value="1">선택</option>
+																<c:forEach items="${listCodeTel}" var="listTel" varStatus="statusTel">
+																	<option value="${listTel.ccSeq}" <c:if test="${item.ifMmTel eq listTel.ccSeq}">selected</c:if>>${listTel.ccCodeName}</option>
+																</c:forEach>
 															</select>
 														</div>
 														<div class="col">
@@ -494,6 +495,8 @@
 			
 		}
 	})
+	</script>
+	<script type="text/javascript">
 	    // 우편번호 찾기 화면을 넣을 element
 	    var element_layer = document.getElementById('layer');
 	
