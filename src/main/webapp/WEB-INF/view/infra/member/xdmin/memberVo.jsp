@@ -12,4 +12,4 @@
 <input type="hidden" name="shOption" value="<c:out value="${vo.shOption}"/>"/>
 <input type="hidden" name="shValue" value="<c:out value="${vo.shValue}"/>"/>
 
-<input type="hidden" name="ccgSeq" value="<c:out value="${vo.ifMmSeq}"/>"/>
+<input type="hidden" name="ifMmSeq" value="<c:out value="${vo.ifMmSeq}"/>"/>

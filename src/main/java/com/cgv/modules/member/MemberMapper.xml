@@ -29,10 +29,6 @@
 		<include refid="Base.selectListUpperForMysql" />
 		SELECT
 			a.*
-			,(SELECT ccCodeName FROM CC b WHERE a.ifMmGender = b.ccSeq) as gender
-			,(SELECT ccCodeName FROM CC b WHERE a.ifMmTel = b.ccSeq) as tel
-			,(SELECT ccCodeName FROM CC b WHERE a.ifMmEmailAddress = b.ccSeq) as email
-			,(SELECT ccCodeName FROM CC b WHERE a.ifMmMarketing = b.ccSeq) as marketing
 		<include refid="selectCommon" />
 		<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" />	
@@ -40,8 +36,7 @@
 	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
-		FROM infrMember a
-		Where 1=1
+		<include refid="selectCommon" />
 	</select>
 	
 	<insert id="insert">
@@ -55,12 +50,13 @@
 			,ifMmPhone
 			,ifMmEmail
 			,ifMmEmailAddress
-			,ifMmMarketin
+			,ifMmMarketing
 			,ifMmSingupDate
 			,ifMmAddress
 			,ifMmAddress_homenumber
 			,ifMmAddress_detail
 			,ifMmNickname
+			,ifMmDelNy
 		)VALUES(
 			#{ifMmName}
 			,#{ifMmGender}
@@ -77,9 +73,10 @@
 			,#{ifMmAddress_homenumber}
 			,#{ifMmAddress_detail}
 			,#{ifMmNickname}
+			,0
 		)
 		<selectKey resultType="String" keyProperty="ifMmSeq" order="AFTER">
-			SELECT last_id_insert_id()
+			SELECT last_insert_id()
 		</selectKey>
 	</insert>
 	
@@ -90,13 +87,6 @@
 		WHERE 1=1
 			AND ifMmSeq = #{ifMmSeq}
 	</select>
-	
-	<select id="selectOneConunt" resultType="Integer">
-		SELECT COUNT(*)
-		FROM infrMember a
-		WHERE 1=1
-	</select>
-	
 	
 	<update id="update">
 	UPDATE infrMember
@@ -116,6 +106,9 @@
 		,ifMmAddress_homenumber = #{ifMmAddress_homenumber}
 		,ifMmAddress_detail = #{ifMmAddress_detail}
 		,ifMmNickname = #{ifMmNickname}
+		,ifMmDelNy = 0
+		WHERE 1=1
+			AND ifMmSeq = #{ifMmSeq}
 	</update>
 	
 	<update id="uelete">

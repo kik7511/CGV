@@ -68,6 +68,22 @@ public class MemberVo {
 	private int startPage;										//시작 페이지 번호
 	private int endPage;										//마지막 페이지 번호
 	
+	private int startRnumForOracle = 1;							// 쿼리 시작 row
+	private int endRnumForOracle;								// 쿼리 끝 row
+	
+	public int getStartRnumForOracle() {
+		return startRnumForOracle;
+	}
+	public void setStartRnumForOracle(int startRnumForOracle) {
+		this.startRnumForOracle = startRnumForOracle;
+	}
+	public int getEndRnumForOracle() {
+		return endRnumForOracle;
+	}
+	public void setEndRnumForOracle(int endRnumForOracle) {
+		this.endRnumForOracle = endRnumForOracle;
+	}
+
 	private int startRnumForMysql = 0;							//쿼리 시작 row
 	private Integer RNUM;
 
@@ -129,7 +145,7 @@ public class MemberVo {
 	//생성자
 	
 	public void setParamsPaging(int totalRows) {
-		setTotalPages(totalRows);
+		setTotalRows(totalRows);
 		
 		if(getTotalRows() == 0) {
 			setTotalPages(1);

@@ -26,10 +26,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "memberList")
-	public String memberList(Model model, MemberVo vo) throws Exception{
-		
+	public String memberList(Model model, @ModelAttribute("vo") MemberVo vo) throws Exception{
+	
 		setSearchAndPaging(vo);
 		
+		System.out.println("답: " + vo.getTotalRows());
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		System.out.println("vo.getShOption(): " + vo.getShOption());
 		
@@ -82,7 +83,7 @@ public class MemberController {
 		int result = service.delete(vo);
 		System.out.println("controller result: " + result);
 		
-		return "redirect:/codeGroup/codeGroupList";
+		return "redirect:/member/memberList";
 	}
 	
 	@RequestMapping(value = "loginForm")

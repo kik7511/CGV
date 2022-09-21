@@ -162,8 +162,10 @@
 						<div class="col">
 							<select class="form-select form-select-sm" id="shOption" name="shOption">
 								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>이름</option>
-								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>아이디</option>
+								<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>번호</option>
+								<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>이름</option>
+								<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>아이디</option>
+								<option value="4" <c:if test="${vo.shOption eq 4}">selected</c:if>>성별</option>
 							</select>
 						</div>
 						<div class="col">
@@ -185,6 +187,9 @@
 			<br>
 			
 			<div class="container" style="margin: auto;">	
+				<div style="margin-bottom: 10px;">
+					<c:out value="total: ${vo.totalRows}"></c:out>
+				</div>
 				<table class="table table-responsive table-hover table-sm" style="text-align: center;" id="maintable">
 					<tr class="table-dark">
 						<th scope="col">
@@ -210,7 +215,7 @@
 							</c:when>
 							<c:otherwise>	
 								<c:forEach items="${list}" var="list" varStatus="status">
-									<tr onclick="javascript:goList(<c:out value="${list.ifMmSeq}" />)">
+									<tr onclick="javascript:goForm(<c:out value="${list.ifMmSeq}" />)">
 										<td onclick="event.cancelBubble=true">
 											<input type="checkbox" class="form-check-input" name=check>
 										</td>
@@ -374,7 +379,7 @@
 		
 		goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
-			form.attr("action", goUrlList).submit();
+			form.attr("action", goUrlList).submit(); 
 		}
 	</script>
 </body>

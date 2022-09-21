@@ -211,9 +211,9 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<select class="form-select" id="ccgUseNy" name="ccgUseNy" value='<c:out value="${item.ccgUseNy}"></c:out>'>
-												<option value="1">Y</option>
-												<option value="0">N</option>
+											<select class="form-select" id="ccgUseNy" name="ccgUseNy">
+												<option value="1" <c:if test="${item.ccgUseNy eq 1}">selected</c:if>>Y</option>
+												<option value="0" <c:if test="${item.ccgUseNy eq 0}">selected</c:if>>N</option>
 											</select>
 										</div>
 									</div>
