@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page session="false" %>
+<jsp:useBean id="CodeServiceImpl" class="com.cgv.modules.code.CodeServiceImpl"/>
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
@@ -47,6 +48,7 @@
 		<div id="bodyWrap">
 			<div class="contnetsWrap">
 				<form name="form" method="post">
+					<c:set var="listCodeEmail" value="${CodeServiceImpl.selectListCachedCode('12')}"/>
 					<div id="contents">
 						<div class="cont_header">
 							<h1 class="h1_tit">회원 가입</h1>
@@ -96,10 +98,9 @@
                                                             <span class="select w100 hide" data-skin="form">
 	                                                            <select title="이메일 도메인 선택" data-control="emailSelector" name="email_addr_opt" id="email_addr_opt">
 		                                                            <option value="0">직접입력</option>
-		                                                            <option value="naver.com" selected="selected">네이버</option>
-		                                                            <option value="hanmail.net">한메일</option>
-		                                                            <option value="nate.com">네이트</option>
-		                                                            <option value="gmail.com">지메일</option>
+		                                                            <c:forEach items="${listCodeEmail}" var="listEmail" varStatus="statusEmail">
+																	<option value="${listEmail.ccSeq}" <c:if test="${item.ifMmTel eq listTel.ccSeq}">selected</c:if>>${listTel.ccCodeName}</option>
+																</c:forEach>
 	                                                            </select>
                                                             </span>
                                                             <div class="select_wrap w100" style="background-color:rgb(235,235,228)">
