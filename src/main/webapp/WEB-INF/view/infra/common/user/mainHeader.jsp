@@ -53,7 +53,7 @@
 						</li>
 						<li>
 							<h2>
-								<a href="../purchase/ticketingForm.html"><strong>예매</strong></a>
+								<a href="/purchase/ticketingForm"><strong>예매</strong></a>
 							</h2>
 						</li>
 						<li></li>
