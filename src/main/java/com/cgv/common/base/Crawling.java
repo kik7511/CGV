@@ -11,16 +11,20 @@ import java.io.IOException;
 public class Crawling {
 
     public static void main(String[] args) {
-        final String inflearnUrl = "https://www.inflearn.com/courses/it-programming";
-        Connection conn = Jsoup.connect(inflearnUrl);
+        final String naverMovieUrl = "https://movie.naver.com/movie/sdb/browsing/bmovie.naver?open=2022";
+        Connection movie = Jsoup.connect(naverMovieUrl);
 
         try {
-            Document document = conn.get();
-            Elements imageUrlElements = document.getElementsByClass("swiper-lazy");
-
-            for (Element element : imageUrlElements) {
-                System.out.println(element.attr("abs:src"));
+            Document document = movie.get();
+            
+            Elements titleElements = document.select("ul.directory_list > li");
+            
+            for (int j = 0; j < titleElements.size(); j++) {
+                final String title = titleElements.get(j).text();
+                System.out.println("영화 제목: " + title);
             }
+            
+            
             
         } catch (IOException e) {
             e.printStackTrace();
