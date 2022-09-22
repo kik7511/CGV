@@ -62,7 +62,7 @@
                 <li>
                     <div class="box-image">
                         <strong class="rank">No.1위</strong>	
-                        <a href="../movie/movieInfoView.html" style="margin-top: 5px;">
+                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
                         	<span class="thumb-image">
                             	<img src="/resources/images/user/85997_320.jpg" alt="외계인 포스터" onerror="errorImage(this)">
 									<span class="ico-grade grade-12"></span>
@@ -74,7 +74,7 @@
                         </span>
                     </div>
                     <div class="box-contents">
-                        <a href="../movie/movieInfoView.html">
+                        <a href="/movie/movieInfoView">
                             <strong class="title">외계+인 1부</strong>
                         </a>
                         <div class="score">
@@ -87,7 +87,7 @@
                             </strong>
                         </span>
                         <span class="like"> 
-                            <a class="link-reservation" href="../purchase/ticketingForm.html">예매</a>
+                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
                         </span>
                     </div>    
                 </li>
@@ -95,7 +95,7 @@
                 <li>
                     <div class="box-image">
                         <strong class="rank">No.2위</strong>	
-                        <a href="../movie/movieInfoView.html" style="margin-top: 5px;">
+                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
                         	<span class="thumb-image">
                             	<img src="/resources/images/user/83127_320.jpg" alt="미니언즈2 포스터" onerror="errorImage(this)">
 									<span class="ico-grade grade-all"></span>
@@ -105,7 +105,7 @@
                         </span>
                     </div>
                     <div class="box-contents">
-                        <a href="../movie/movieInfoView.html">
+                        <a href="/movie/movieInfoView">
                             <strong class="title">미니언즈2</strong>
                         </a>
                         <div class="score">
@@ -118,7 +118,7 @@
                             </strong>
                         </span>
                         <span class="like"> 
-                            <a class="link-reservation" href="../purchase/ticketingForm.html">예매</a>
+                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
                         </span>
                     </div>    
                 </li>
@@ -126,7 +126,7 @@
                 <li>
                     <div class="box-image">
                         <strong class="rank">No.3위</strong>	
-                        <a href="../movie/movieInfoView.html" style="margin-top: 5px;">
+                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
                         	<span class="thumb-image">
                             	<img src="/resources/images/user/83280_320.jpg" alt="한산 포스터" onerror="errorImage(this)">
 									<span class="ico-grade grade-12"></span>
@@ -139,7 +139,7 @@
                         </span>
                     </div>
                     <div class="box-contents">
-                        <a href="../movie/movieInfoView.html">
+                        <a href="/movie/movieInfoView">
                             <strong class="title">한산-용의 출현</strong>
                         </a>
                         <div class="score">
@@ -152,7 +152,7 @@
                             </strong>
                         </span>
                         <span class="like"> 
-                            <a class="link-reservation" href="../purchase/ticketingForm.html">예매</a>
+                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
                         </span>
                     </div>    
             	</li>
@@ -161,7 +161,7 @@
                 <li>
                     <div class="box-image">
                         <strong class="rank">No.4위</strong>	
-                        <a href="../movie/movieInfoView.html" style="margin-top: 5px;">
+                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
                         	<span class="thumb-image">
                             	<img src="/resources/images/user/82120_320.jpg" alt="탑건 포스터" onerror="errorImage(this)">
 									<span class="ico-grade grade-12"></span>
@@ -172,7 +172,7 @@
                         </span>
                     </div>
                     <div class="box-contents">
-                        <a href="../movie/movieInfoView.html">
+                        <a href="/movie/movieInfoView">
                             <strong class="title">탑건-매버릭</strong>
                         </a>
                         <div class="score">
@@ -185,7 +185,7 @@
                             </strong>
                         </span>
                         <span class="like"> 
-                            <a class="link-reservation" href="../purchase/ticketingForm.html">예매</a>
+                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
                         </span>
                     </div>    
                 </li>
@@ -193,7 +193,7 @@
                 <li>
                     <div class="box-image">
                         <strong class="rank">No.5위</strong>	
-                        <a href="../movie/movieInfoView.html" style="margin-top: 5px;">
+                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
                         	<span class="thumb-image">
                             	<img src="/resources/images/user/85852_320.jpg" alt="헤어질결심 포스터" onerror="errorImage(this)">
 									<span class="ico-grade grade-15"></span>
@@ -202,7 +202,7 @@
                         <span class="screentype"></span>
                     </div>
                     <div class="box-contents">
-                        <a href="../movie/movieInfoView.html">
+                        <a href="/movie/movieInfoView">
                             <strong class="title">헤어질 결심</strong>
                         </a>
                         <div class="score">
@@ -215,7 +215,7 @@
                             </strong>
                         </span>
                         <span class="like"> 
-                            <a class="link-reservation" href="../purchase/ticketingForm.html">예매</a>
+                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
                         </span>
                     </div>    
                 </li>
@@ -223,7 +223,7 @@
                 <li>
                     <div class="box-image">
                         <strong class="rank">No.6위</strong>	
-                        <a href="../movie/movieInfoView.html" style="margin-top: 5px;">
+                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
                         	<span class="thumb-image">
                             	<img src="/resources/images/user/85465_320.jpg" alt="비상선언 포스터" onerror="errorImage(this)">
 									<span class="ico-grade grade-12"></span>
@@ -236,7 +236,7 @@
                         </span>
                     </div>
                     <div class="box-contents">
-                        <a href="../movie/movieInfoView.html">
+                        <a href="/movie/movieInfoView">
                             <strong class="title">비상선언</strong>
                         </a>
                         <div class="score">
@@ -249,7 +249,7 @@
                             </strong>
                         </span>
                         <span class="like"> 
-                            <a class="link-reservation" href="../purchase/ticketingForm.html">예매</a>
+                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
                         </span>
                     </div>    
                 </li>
@@ -257,7 +257,7 @@
                 <li>
                     <div class="box-image">
                         <strong class="rank">No.7위</strong>	
-                        <a href="../movie/movieInfoView.html" style="margin-top: 5px;">
+                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
                         	<span class="thumb-image">
                             	<img src="/resources/images/user/86008_320.jpg" alt="명탐정코난 포스터" onerror="errorImage(this)">
 									<span class="ico-grade grade-12"></span>
@@ -266,7 +266,7 @@
                         <span class="screentype"></span>
                     </div>
                     <div class="box-contents">
-                        <a href="../movie/movieInfoView.html">
+                        <a href="/movie/movieInfoView">
                             <strong class="title">명탐정 코난-할로윈의 신부</strong>
                         </a>
                         <div class="score">
@@ -279,7 +279,7 @@
                             </strong>
                         </span>
                         <span class="like"> 
-                            <a class="link-reservation" href="../purchase/ticketingForm.html">예매</a>
+                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
                         </span>
                     </div>    
                 </li>

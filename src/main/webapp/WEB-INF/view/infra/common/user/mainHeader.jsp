@@ -23,7 +23,7 @@
 			<div class="header_content">
 				<div class="contents">
 					 <h1 onclick="">
-					 	<a href="/"><img src="/resources/images/user/logoRed.png" alt="CGV"></a>
+					 	<a href="/main"><img src="/resources/images/user/logoRed.png" alt="CGV"></a>
 					 </h1>
 					 
 				<!-- /Advertisement -->
@@ -38,12 +38,12 @@
 			<div class="nav" style="left: 0px;">
 				<div class="contents">
 					<h1>
-						<a href="/" tabindex="-1"><img src="/resources/images/user/logoWhite.png" alt="CGV"></a>
+						<a href="/main" tabindex="-1"><img src="/resources/images/user/logoWhite.png" alt="CGV"></a>
 					</h1>
 					<ul class="nav_menu">
 						<li>
 							<h2>
-								<a href="/">홈</a>
+								<a href="/main">홈</a>
 							</h2>
 						</li>
 						<li>

@@ -95,7 +95,7 @@
         					<span class="screentype"></span>
         					<span class="like">
             				<!-- 2020.05.07 영화찜하기 -> 프리에그 선택 변경(조회하여 노출) -->
-					            <a class="link-reservation" href="../purchase/ticketingForm.html">예매</a> 
+					            <a class="link-reservation" href="/purchase/ticketingForm">예매</a> 
 					        </span>
 					    </div>
 					</div>
