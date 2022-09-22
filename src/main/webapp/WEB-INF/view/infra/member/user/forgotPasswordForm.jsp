@@ -32,6 +32,10 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/reservation_step3_step1.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/reservation_step3_step2.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/reservation_popup.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
 

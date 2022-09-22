@@ -34,6 +34,10 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/reservation_popup.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/base.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/participate.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
 
@@ -42,7 +46,7 @@
 		<!-- container -->
 		<div id="bodyWrap">
 			<div class="contnetsWrap">
-				<form action="" method="post">
+				<form name="form" method="post">
 					<div id="contents">
 						<div class="cont_header">
 							<h1 class="h1_tit">회원 가입</h1>
@@ -63,16 +67,16 @@
 												<tr class="input">
 													<th scope="row">이름</th>
 													<td>
-														<input type="text" placeholder="이름을 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;">
+														<input type="text" placeholder="이름을 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmName">
 													</td>													
 												</tr>
 												<tr>
 													<th scope="row">아이디</th>
-													<td><input type="text" placeholder="아이디를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;"></td>													
+													<td><input type="text" placeholder="아이디를 입력하시오" autocomplete="off" style="margin-left: -485px; width: 180px;" name="ifMmId"><input type="button" value="중복확인" style=" margin-left: 15px;"></td>													
 												</tr>
 												<tr>
 													<th scope="row">비밀번호</th>
-													<td><input type="text" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;"></td>													
+													<td><input type="text" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmPassword"></td>													
 												</tr>
 												<tr>
 													<th scope="row">비밀번호 확인</th>
@@ -83,7 +87,7 @@
 													<td>
 														<div class="email_write" style="margin-left: -343px;">
 															<span class="input_txt w110" data-skin="form">
-																<input type="text" class="text small" placeholder="이메일 아이디를 입력하시오" data-format="email" autocomplete="off">
+																<input type="text" class="text small" placeholder="이메일 아이디를 입력하시오" data-format="email" autocomplete="off" name="ifMmEmail">
 															</span>
 															<span class="symbol">@</span>
 															<span class="input_txt w110">

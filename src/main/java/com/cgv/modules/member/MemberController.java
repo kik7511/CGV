@@ -98,6 +98,14 @@ public class MemberController {
 		return "infra/member/user/signupForm";
 	}
 	
+	@RequestMapping(value = "signupInst")
+	public String signupInst(Member dto) throws Exception{
+		int result = service.insert(dto);
+		System.out.println("controller result: " + result);
+		
+		return "redirect:/member/loginForm";
+	}
+	
 	@RequestMapping(value = "forgotIdForm")
 	public String forgotIdForm() throws Exception{
 		
