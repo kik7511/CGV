@@ -14,7 +14,7 @@ public class Crawling {
         final String naverMovieUrl = "https://movie.naver.com/movie/sdb/browsing/bmovie.naver?open=2022";
         Connection movie = Jsoup.connect(naverMovieUrl);
 
-        try {
+        try {	
             Document document = movie.get();
             
             Elements titleElements = document.select("ul.directory_list > li");

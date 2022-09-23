@@ -33,7 +33,7 @@
 <body>
 
 <!-- start -->
-	<%@include file = "../../../infra/common/user/mainHeader.jsp" %>
+	<jsp:include page = "../../../infra/common/user/mainHeader.jsp" />
 		<!-- E Header -->
 		<!-- S Contaniner -->
 		<div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
@@ -45,13 +45,13 @@
     				<div class="sect-login">
         				<div class="box-login">
             				<h3 class="hidden">회원 로그인</h3>
-				            <form id="form1" method="post" action="#" novalidate="novalidate">
+				            <form id="form1" method="post" action="/member/login">
 					            <fieldset style="text-align: center;">
 					                <legend>회원 로그인</legend>
 					                <p style="font-size: 120%; margin-left: -130px;">아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</p>
 					                <div class="login" align="center" style="margin-left: -120px;">
-					                    <input type="text" title="아이디" id="txtUserId" name="txtUserId" data-title="아이디를 " data-message="입력하세요." required="required">
-					                    <input type="password" title="패스워드" id="txtPassword" name="txtPassword" data-title="패스워드를 " data-message="입력하세요." required="required">
+					                    <input type="text" title="아이디" id="ifMmId" name="ifMmId" data-title="아이디를 " data-message="입력하세요." required="required">
+					                    <input type="password" title="패스워드" id="ifMmPassWord" name="ifMmPassWord" data-title="패스워드를 " data-message="입력하세요." required="required">
 					                </div>
 					                <div class="save-id" style="margin-left: 202px; padding-top: 5px;"> 
 					                	<input type="checkbox" id="loginSet"><label for="save_id">아이디 저장</label>

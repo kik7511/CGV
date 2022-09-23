@@ -74,7 +74,7 @@
 												</tr>
 												<tr>
 													<th scope="row">아이디</th>
-													<td><input type="text" placeholder="아이디를 입력하시오" autocomplete="off" style="margin-left: -485px; width: 180px;" name="ifMmId"><input type="button" value="중복확인" style=" margin-left: 15px;"></td>													
+													<td><input type="text" placeholder="아이디를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmId" id="ifMmId"></td>													
 												</tr>
 												<tr>
 													<th scope="row">비밀번호</th>
@@ -196,7 +196,29 @@
 		<!-- footer_area (s) -->
 		<%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 		<!-- footer_area (s) -->
-	</div>
+	<script>
+	$("#ifMmId").on("focusout", function(){
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					,dataType:"json" 
+					,url: "/member/checkId"
+					,data : { "ifMmId" : $("#ifMmId").val() }
+					,success: function(response) {
+						if(response.rt == "success") {
+							document.getElementById("ifmmIdFeedback").innerText = "사용 가능 합니다.";
+							
+						} else {
+							document.getElementById("ifmmIdFeedback").innerText = "사용 불가능 합니다";
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+		});
+	</script>
 <!-- end -->
 </body>
 </html>

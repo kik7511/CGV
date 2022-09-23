@@ -55,4 +55,13 @@ public class MemberDao {
 		return result;
 	}
 	
+	public int checkId(Member dto) {
+		int result = sqlSession.selectOne(namespace + ".checkId", dto);
+		return result;
+	}
+	
+	public Member login(Member dto) {
+		return sqlSession.selectOne(namespace + ".login", dto);
+	}
+	
 }

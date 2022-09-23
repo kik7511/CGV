@@ -126,4 +126,24 @@
 			AND ifMmSeq = #{ifMmSeq} 
 	</delete>
 	
+	<select id= "checkId" resultType="int">
+		SELECT COUNT(*)
+		FROM infrMember a
+		WHERE 1=1
+			AND ifMmId = #{ifMmId}
+	</select>
+	
+	<select id="login" resultMap="resultMapObj">
+		SELECT
+			a.ifMmSeq
+			,a.ifMmId
+			,a.ifMmPassWord
+			,a.ifMmNickName
+			,a.ifMmName
+		FROM infrMember a
+		WHERE 1=1
+			AND ifMmId = #{ifMmId}
+			AND ifMmpassWord = #{ifMmPassWord}
+	</select>
+	
 </mapper>	

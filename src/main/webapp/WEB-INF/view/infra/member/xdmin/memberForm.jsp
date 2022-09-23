@@ -149,19 +149,22 @@
 													<div class="col">
 														<div class="input-group">
 															<span class="input-group-text">이름</span>
-															<input type="text" class="form-control" id="mrgname" name = "ifMmName" value='<c:out value="${item.ifMmName}"></c:out>'>
+															<input type="text" class="form-control" id="ifMmName" name = "ifMmName" value='<c:out value="${item.ifMmName}"></c:out>'>
 														</div>	
 													</div>
 												</div>
 											</th>
 											<th>
-												<div class="row row">
+												<div class="row">
 													<div class="col">
 														<div class="input-group">
 															<span class="input-group-text">아이디</span>
-															<input type="text" class="form-control" id="mrgid" name = "ifMmId" value='<c:out value="${item.ifMmId}"></c:out>'>
-														</div>	
+															<input type="text" class="form-control" id="ifMmId" name = "ifMmId" value='<c:out value="${item.ifMmId}"></c:out>'>
+														</div>
 													</div>
+												</div>
+												<div class="row">
+													<div class="col" id= "ifmmIdFeedback"></div>
 												</div>
 											</th>
 										</tr>
@@ -231,7 +234,7 @@
 												<td>
 													<div class="row">
 														<div class="col">
-															<select class="form-select">
+															<select class="form-select" name = "ifMmGender">
 																<option value="1">선택</option>
 																<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
 																		<option value="${listGender.ccSeq}" <c:if test="${item.ifMmGender eq listGender.ccSeq}">selected</c:if>>${listGender.ccCodeName}</option>
@@ -276,7 +279,7 @@
 												<td>
 													<div class="row">
 														<div class="col">
-															<input type="text" class="form-control" name="ifMmDob">
+															<input type="date" class="form-control" name=""id="dob" value='<c:out value="${item.ifMmDob}"></c:out>'>
 														</div>
 													</div>
 												</td>
@@ -367,7 +370,7 @@
 					<ul>
 						<li>
 							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" role="switch" id="" name="ifMmMarketing">
+								<input class="form-check-input" type="checkbox" role="switch" id="" name="">
 								<label class="form-check-label" for="flexSwitchCheckDefault">개인정보 수집 활용 동의(필수)</label>
 							</div>
 						</li>
@@ -582,6 +585,57 @@
     	$("#sample2_address").val('');
     	$("#sample2_detailAddress").val('');
 	})
+	</script>
+	
+	<script type="text/javascript">		
+	<!-- DatePicker -->
+		$(document).ready(function () {
+		    $.datepicker.regional['ko'] = {
+		        closeText: '닫기',
+		        prevText: '이전달',
+		        nextText: '다음달',
+		        currentText: '오늘',
+		        monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+		        '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+		        monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+		        '7월','8월','9월','10월','11월','12월'],
+		        dayNames: ['일','월','화','수','목','금','토'],
+		        dayNamesShort: ['일','월','화','수','목','금','토'],
+		        dayNamesMin: ['일','월','화','수','목','금','토'],
+		        weekHeader: 'Wk',
+		        dateFormat: 'yy-mm-dd',
+		        firstDay: 0,
+		        showMonthAfterYear: true,
+		        changeMonth: true,
+		        changeYear: true,
+		        yearRange: 'c-99:c+99',
+		    };	
+		    $.datepicker.setDefaults($.datepicker.regional['ko']);
+	
+		    $('#dob').datepicker();
+		    });
+		
+		$("#ifMmId").on("focusout", function(){
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					,dataType:"json" 
+					,url: "/member/checkId"
+					,data : { "ifMmId" : $("#ifMmId").val() }
+					,success: function(response) {
+						if(response.rt == "success") {
+							document.getElementById("ifmmIdFeedback").innerText = "사용 가능 합니다.";
+							
+						} else {
+							document.getElementById("ifmmIdFeedback").innerText = "사용 불가능 합니다";
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+		});
 	</script>
 </body>
 </html>

@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page session="false" %>
 
 <div class="skipnaiv">
 		<a href="#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
@@ -29,9 +33,17 @@
 				<!-- /Advertisement -->
 				 
 					<ul class="memberInfo_wrap">
-						<li><a href="/member/loginForm"><img src="/resources/images/user/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
-						<li><a href="/member/signupForm"><img src="/resources/images/user/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
-						<li><a href="/member/mypageForm"><img src="/resources/images/user/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
+						<c:choose>
+							<c:when test="${not empty loginId}" >
+								<a href="#" class="mr-3 userName">${ifMmNickName} 님</a>
+								<a href="member/logout" class="logout">로그아웃</a>
+							</c:when>
+							<c:otherwise>
+								<li><a href="/member/loginForm"><img src="/resources/images/user/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
+								<li><a href="/member/signupForm"><img src="/resources/images/user/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
+								<li><a href="/member/mypageForm"><img src="/resources/images/user/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>
 			</div>
