@@ -47,7 +47,7 @@
 		<!-- container -->
 		<div id="bodyWrap">
 			<div class="contnetsWrap">
-				<form name="form" method="post">
+				<form name="form" method="post" action="/member/signupInst">
 					<c:set var="listCodeEmail" value="${CodeServiceImpl.selectListCachedCode('12')}"/>
 					<div id="contents">
 						<div class="cont_header">
@@ -78,63 +78,26 @@
 												</tr>
 												<tr>
 													<th scope="row">비밀번호</th>
-													<td><input type="text" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmPassword"></td>													
+													<td><input type="password" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmPassword" id="ifMmPassWordk"></td>													
 												</tr>
 												<tr>
 													<th scope="row">비밀번호 확인</th>
-													<td><input type="text" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;"></td>													
+													<td><input type="password" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmPasswordRe" id="ifMmPassWordkRe"></td>													
 												</tr>
 												<tr>
 													<th scope="row">이메일</th>
 													<td>
-														<div class="email_write" style="margin-left: -343px;">
+														<div class="email_write" style="margin-left: -480px;">
 															<span class="input_txt w110" data-skin="form">
 																<input type="text" class="text small" placeholder="이메일 아이디를 입력하시오" data-format="email" autocomplete="off" name="ifMmEmail">
 															</span>
 															<span class="symbol">@</span>
-															<span class="input_txt w110">
-                                                                <input type="text" class="text small" title="이메일 도메인 입력" placeholder="이메일 도메인" data-format="email" name="email_addr2" id="email_addr2" value="naver.com" autocomplete="off">
-                                                            </span>
-                                                            <span class="select w100 hide" data-skin="form">
-	                                                            <select title="이메일 도메인 선택" data-control="emailSelector" name="email_addr_opt" id="email_addr_opt">
-		                                                            <option value="0">직접입력</option>
-		                                                            <c:forEach items="${listCodeEmail}" var="listEmail" varStatus="statusEmail">
-																	<option value="${listEmail.ccSeq}" <c:if test="${item.ifMmTel eq listTel.ccSeq}">selected</c:if>>${listTel.ccCodeName}</option>
+                                                            <select title="이메일 도메인 선택" data-control="emailSelector" name="ifMmEmailAddress" id="ifMmEmailAddress">
+	                                                            <c:forEach items="${listCodeEmail}" var="listEmail" varStatus="statusEmail">
+																	<option value="${listEmail.ccSeq}" <c:if test="${item.ifMmEmailAddress eq listEmail.ccSeq}">selected</c:if>>${listEmail.ccCodeName}</option>
 																</c:forEach>
-	                                                            </select>
-                                                            </span>
-                                                            <div class="select_wrap w100" style="background-color:rgb(235,235,228)">
-                                                            	<div class="item_seleced"> 
-                                                            		<a href="#naver.com" title="이메일 도메인 선택 목록 열기" data-title="이메일 도메인 선택" class="">네이버<span class="haze">선택됨</span></a>
-                                                           		</div>	
-                                                           		<div class="item_list_wrap ">
-	                                                          		<div class="item_list ui_scrollarea">
-	                                                          			<ul class="ui_content">
-	                                                          				<li>
-	                                                          					<a href="#0"><span>직접입력</span></a>
-	                                                         				</li>
-	                                                         				<li>
-	                                                         					<a href="#naver.com"><span>네이버</span></a>
-	                                                        				</li>
-	                                                        				<li>
-	                                                        					<a href="#hanmail.net"><span>한메일</span></a>
-	                                                        				</li>
-	                                                        				<li>
-	                                                        					<a href="#nate.com"><span>네이트</span></a>
-	                                                        				</li>
-	                                                        				<li>
-	                                                        					<a href="#gmail.com"><span>지메일</span></a>
-		                                                       				</li>
-		                                                       			</ul>
-		                                                       		</div>
-		                                                       		<div class="scroll ui_scrollbar">
-		                                                       			<span class="bg_top"></span>
-		                                                       			<span class="bg bg_mid" style="display: none;"></span>
-		                                                       			<span class="bg_btm"></span>
-		                                                       		</div>
-	                                                    	   	</div>
-                                                        	</div>
-														</div>
+                                                            </select>
+                                                   	   	</div>
 													</td>		
 												</tr>
 												<tr>
@@ -182,7 +145,7 @@
 										</table>
 									</div>									
 									<div class="btn_sec btn_center">
-										<button type="button" class="btn" id="btn_cancel">취소</button>
+										<button type="button" class="btn" id="btn_cancel" onclick="location.href='/member/loginForm'">취소</button>
 										<button type="submit" class="btn btn_em" id="btn_submit">가입</button>
 									</div>
 								</div>

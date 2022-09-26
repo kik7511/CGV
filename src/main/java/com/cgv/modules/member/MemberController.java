@@ -162,12 +162,16 @@ public class MemberController {
 		if(login != null) {
 			System.out.println("로그인 성공");
 			HttpSession session = request.getSession();
-			session.setAttribute("loginId", login.getIfMmId() );
-			session.setAttribute("ifMmNickName", login.getIfMmNickname());
+			String id = login.getIfMmId();
+			String nickName = login.getIfMmNickname();
+			session.setAttribute("loginId", id);
+			session.setAttribute("ifMmNickName", nickName);
+			System.out.println(id);
+			System.out.println(nickName);
 		}else {
 			System.out.println("로그인 실패");
 		}
-		return "redirect:/main";
+		return "redirect:/home";
 	}
 	
 }

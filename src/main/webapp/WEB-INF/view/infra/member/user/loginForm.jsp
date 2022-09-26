@@ -58,8 +58,8 @@
 					                </div>
 					                <button type="submit" id="submit" title="로그인" style="margin-left: -120px;"><span>로그인</span></button>
 					                <div class="login-option" style="margin-left: 215px;">
-					                    <a href="/user/login/find-account.aspx">아이디 찾기</a>
-					                    <a href="/user/login/find-pw.aspx?act=pw">비밀번호 찾기</a>
+					                    <a href="/member/forgotidForm">아이디 찾기</a>
+					                    <a href="/member/forgotPasswordForm">비밀번호 찾기</a>
 					                </div>
 					            </fieldset>
 				            </form>  
@@ -73,123 +73,16 @@
 				            <strong>CJ ONE 회원이 아니신가요?</strong>
 				            <span>회원가입하시고 다양한 혜택을 누리세요!</span>
 				            <strong>
-				                <a title="새창" target="_blank" href="https://www.cjone.com/cjmweb/join.do?coopco_cd=7010&amp;brnd_cd=1000" class="round red"><span>CJ ONE 회원가입하기</span></a>
+				                <a title="새창" target="_blank" href="/member/singupForm" class="round red"><span>CJ ONE 회원가입하기</span></a>
 				            </strong>
 				            <em>
 				                
-				            </em>
-				            <em>
-				                <a href="http://www.cjone.com/cjmweb/about-cjone.do" class="round black" target="_blank"><span>CJ ONE 멤버십이란?</span></a>
 				            </em>
 				        </div>
 				    </div>
 				</div>
 <!-- 실컨텐츠 끝 --> 
 
-<!-- LogIn -->
-<form name="loginform" id="loginform" method="post" action="https://www.cgv.co.kr/user/login/login.aspx" novalidate="novalidate">
-	<input type="hidden" name="id" id="id">
-	<input type="hidden" name="password" id="password">
-    <input type="hidden" name="id_save" id="id_save">
-	<input type="hidden" name="returnURL" value="https://www.cgv.co.kr/default.aspx">
-</form>
-<!-- //LogIn -->
-
-<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/crypto.js"></script>
-<script type="text/javascript">
-//<![CDATA[
-    (function ($) {
-        $(function () {
-
-
-            var $frm = $('#form1');
-            $frm.validate({
-                submitHandler: function (form) {
-                    var $loginFrm = $('#loginform');
-
-
-                    $loginFrm.find('#id').val(app.crypto.AESEncryptToBase64($frm.find('#txtUserId').val()));
-                    $loginFrm.find('#password').val(app.crypto.AESEncryptToBase64($frm.find('#txtPassword').val()));
-
-                    $loginFrm.submit();
-                    return false;
-                }
-            });
-
-
-
-            // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
-            var userInputId = getCookie("cgv.cookie.UserID_RE=UserID_RE");
-            $("input[name='txtUserId']").val(userInputId);
-
-            if (userInputId != '') {
-                $("#loginSet").prop('checked', true);
-                $("#loginSet").attr('checked', true);
-            }
-
-            $("#loginSet").change(function () {
-                if ($("#loginSet").is(":checked")) {
-                    if ($("input[name='txtUserId']").val() == '') {
-                        alert("아이디를 입력하세요.");
-                        $("#loginSet").prop('checked', false);
-                        $("#loginSet").attr('checked', false);                   
-                        return false;
-                    }
-
-                    setCookie("cgv.cookie.UserID_RE=UserID_RE", $("#txtUserId").val(), 7);
-                }
-                else {
-                    setCookie("cgv.cookie.UserID_RE=UserID_RE", "", -1);
-                    $("input[name='txtUserId']").val('');
-                }
-            });
-
-            function setCookie(cookieName, value, exdays) {
-
-                var exdate = new Date();
-                exdate.setDate(exdate.getDate() + exdays);
-                var cookieValue = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
-                document.cookie = cookieName + "=" + cookieValue;
-            }
-
-            function deleteCookie(cookieName) {
-                var expireDate = new Date();
-
-                expireDate.setDate(expireDate.getDate() - expireDate.getDate());
-                document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
-            }
-
-            function getCookie(cookieName) {
-                cookieName = cookieName + '=';
-                var cookieData = document.cookie;
-                var start = cookieData.indexOf(cookieName);
-                var cookieValue = '';
-                if (start != -1) {
-                    start += cookieName.length;
-                    var end = cookieData.indexOf(';', start);
-                    if (end == -1) end = cookieData.length;
-                    cookieValue = cookieData.substring(start, end);
-                }
-                return unescape(cookieValue);
-            }
-        });
-	})(jQuery);
-
-	//네이버 로그인 연동 설정
-	function getNaverLoginURL() {
-		var menutype = "login";
-		var currentURL = "https://www.cgv.co.kr/default.aspx";
-		var auth = "naver";
-
-		var apiURL = "http://www.cgv.co.kr/user/login/authorize.aspx?authtype="
-			+ auth + "&redirect_uri=" + currentURL + "&menutype=" + menutype;
-	
-		location.href = apiURL;
-	}
-//]]>
-</script>
-
-            
             <!--/ Contents End -->
 		 </div>
 		<!-- /Contents Area -->

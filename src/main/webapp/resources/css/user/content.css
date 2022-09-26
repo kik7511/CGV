@@ -2132,7 +2132,7 @@ div.scrollbox {overflow-y:auto;}
 	.movieChart_list .swiper-wrapper .swiper-slide .movie_info_wrap > span ~ span:before{content:''; display:block; position:absolute; left:6px; top:50%; width:1px; height:10px; margin-top:-5px; background-color:#ededed}
 	.movieChart_list .swiper-wrapper .swiper-slide .movie_info_wrap > span img{width:16px; height:16px; vertical-align:top}
 
-	.movieChart_list .swiper-button-prev{overflow:hidden; left:-20px; top:calc(50% - 26px); width:40px; height:40px; margin-top:-20px; font-size:0; border-radius:50%; box-shadow:2px 2px 8px 0 rgba(0, 0, 0, 0.2)}
+	.movieChart_list .swiper-button-prev{overflow:hidden; left:-20px; top:calc(30% - 26px); width:40px; height:40px; margin-top:-20px; font-size:0; border-radius:50%; box-shadow:2px 2px 8px 0 rgba(0, 0, 0, 0.2)}
 	.movieChart_list .swiper-button-prev:after{content:''; width:40px; height:40px; background:rgba(255, 255, 255, 0.8) url('/resources/images/user/arrowL.png') center/9px 13px scroll no-repeat}
 	.movieChart_list .swiper-button-next{overflow:hidden; right:-20px; top:calc(50% - 26px); width:40px; height:40px; margin-top:-20px; font-size:0; border-radius:50%; box-shadow:2px 2px 8px 0 rgba(0, 0, 0, 0.2)}
 	.movieChart_list .swiper-button-next:after{content:''; width:40px; height:40px; background:rgba(255, 255, 255, 0.8) url('/resources/images/user/arrowL.png') center/9px 13px scroll no-repeat; transform:rotate(-180deg)}

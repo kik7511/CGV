@@ -1,9 +1,19 @@
+<%@page import="com.cgv.modules.member.MemberController"%>
+<%@page import="com.mysql.cj.Session"%>
+<%@page import="org.springframework.context.annotation.Import"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page session="false" %>
 
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	
 <div class="skipnaiv">
 		<a href="#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
 	</div>
@@ -27,16 +37,14 @@
 			<div class="header_content">
 				<div class="contents">
 					 <h1 onclick="">
-					 	<a href="/main"><img src="/resources/images/user/logoRed.png" alt="CGV"></a>
+					 	<a href="/home"><img src="/resources/images/user/logoRed.png" alt="CGV"></a>
 					 </h1>
-					 
 				<!-- /Advertisement -->
-				 
 					<ul class="memberInfo_wrap">
 						<c:choose>
 							<c:when test="${not empty loginId}" >
-								<a href="#" class="mr-3 userName">${ifMmNickName} 님</a>
-								<a href="member/logout" class="logout">로그아웃</a>
+								<a href="/member/mypageForm" class="mr-3 userName">${ifMmNickName} 님</a>
+								<a href="/member/logout" class="logout">로그아웃</a>
 							</c:when>
 							<c:otherwise>
 								<li><a href="/member/loginForm"><img src="/resources/images/user/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
@@ -50,12 +58,12 @@
 			<div class="nav" style="left: 0px;">
 				<div class="contents">
 					<h1>
-						<a href="/main" tabindex="-1"><img src="/resources/images/user/logoWhite.png" alt="CGV"></a>
+						<a href="/home" tabindex="-1"><img src="/resources/images/user/logoWhite.png" alt="CGV"></a>
 					</h1>
 					<ul class="nav_menu">
 						<li>
 							<h2>
-								<a href="/main">홈</a>
+								<a href="/home">홈</a>
 							</h2>
 						</li>
 						<li>

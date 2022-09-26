@@ -15,7 +15,4 @@
 		Where 1=1
 	</select>
 	
-	<select id = "selectOne" resultMap="resultMapObj">
-			
-	</select>
 </mapper>	

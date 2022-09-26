@@ -27,11 +27,12 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/sebfont.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
-
 <!-- start -->
 	<%@include file = "../../../infra/common/user/mainHeader.jsp" %>
 		<!-- container -->
@@ -40,7 +41,7 @@
 			<div id="ctl00_PlaceHolderContent_divMovieSelection_wrap" class="movieSelection_wrap">
                 <div class="contents">
                     <div class="video_wrap">
-                    <video autoplay="" muted="">
+                    <video autoplay="autoplay" muted="" id = "video">
                         <source src="/resources/images/user/hansan_1080x608.mp4" type="video/mp4">
                         이 브라우저는 Video 태그를 지원하지 않습니다. (Your browser does not support the video tag.)
                     </video>
@@ -48,10 +49,10 @@
                         <span id="ctl00_PlaceHolderContent_AD_DESCRIPTION_NM" class="movieSelection_txt">나라의 운명을 바꾼 압도적 승리!<br>7월 27일 대개봉!</span>
                         <div class="movieSelection_video_controller_wrap">
                         	<!-- 한산 상세보기로 이동 -->
-                            <a href="" id="ctl00_PlaceHolderContent_AD_CLIP_DETAIL_URL" class="btn_movieSelection_detailView">상세보기</a>
+                            <a href="/movie/movieInfoView" id="ctl00_PlaceHolderContent_AD_CLIP_DETAIL_URL" class="btn_movieSelection_detailView">상세보기</a>
                             <!-- 시작/소리 버튼 -->
-                            <a href="#none" id="ctl00_PlaceHolderContent_playStop" class="btn_movieSelection_playStop">Stop</a>
-                            <a href="#none" id="ctl00_PlaceHolderContent_soundOnOff" class="btn_movieSelection_soundOnOff">Sound On</a>
+                            <a href="#none" id="ctl00_PlaceHolderContent_playStop" class="btn_movieSelection_playStop active"></a>
+                            <a href="#none" id="ctl00_PlaceHolderContent_soundOnOff" class="btn_movieSelection_soundOnOff"></a>
                             <input name="ctl00$PlaceHolderContent$AD_CNT_URL" type="hidden" id="ctl00_PlaceHolderContent_AD_CNT_URL" value="">
                         </div>
                     </div>
@@ -70,7 +71,7 @@
                                 <!-- 외계인1부 -->
                                 <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
                                     <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/85997_320.jpg" alt="외계+인 1부" onerror="errorImage(this)">
+                                        <img src="/resources/images/user/85997_320.jpg" alt="외계+인 1부" >
                                         <div class="movieAgeLimit_wrap">
                                             <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
                                         </div>
@@ -79,8 +80,8 @@
                                             <i class="screenType"><img src="/resources/images/user/forDX_white.png" alt="forDX"></i>
                                         </div>
                                         <div class="movieChart_btn_wrap">
-                                            <a href="../movie/movieInfoView.html" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '외계+인 1부');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="../purchase/ticketingForm.html" onclick="gaEventLog('PC_메인', '무비차트_예매하기','외계+인 1부')" class="btn_movieChart_ticketing">예매하기</a>
+                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '외계+인 1부');" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','외계+인 1부')" class="btn_movieChart_ticketing">예매하기</a>
                                         </div>
                                     </div>
                                     <div class="movie_info_wrap">
@@ -92,15 +93,15 @@
                                 <!-- 미니언즈2 -->
                                 <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
                                     <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/83127_320.jpg" alt="미니언즈2" onerror="errorImage(this)">
+                                        <img src="/resources/images/user/83127_320.jpg" alt="미니언즈2" >
                                         <div class="movieAgeLimit_wrap">
                                             <img src="/resources/images/user/grade-all.png" alt="전체세">
                                         </div>
                                         <div class="screenType_wrap">
                                         </div>
                                         <div class="movieChart_btn_wrap">
-                                            <a href="../movie/movieInfoView.html" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '미니언즈2');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="../purchase/ticketingForm.html" onclick="gaEventLog('PC_메인', '무비차트_예매하기','미니언즈2')" class="btn_movieChart_ticketing">예매하기</a>
+                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '미니언즈2');" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','미니언즈2')" class="btn_movieChart_ticketing">예매하기</a>
                                         </div>
                                     </div>
                                     <div class="movie_info_wrap">
@@ -112,7 +113,7 @@
                                 <!-- 한산 -->
                                 <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
                                     <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/83280_320.jpg" alt="한산-용의 출현" onerror="errorImage(this)">
+                                        <img src="/resources/images/user/83280_320.jpg" alt="한산-용의 출현" >
                                         <div class="movieAgeLimit_wrap">
                                             <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
                                         </div>
@@ -122,8 +123,8 @@
                                             <i class="screenType"><img src="/resources/images/user/screenx_white.png" alt="screenx"></i>
                                         </div>
                                         <div class="movieChart_btn_wrap">
-                                            <a href="../movie/movieInfoView.html" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '한산-용의 출현');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="../purchase/ticketingForm.html" onclick="gaEventLog('PC_메인', '무비차트_예매하기','한산-용의 출현')" class="btn_movieChart_ticketing">예매하기</a>
+                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '한산-용의 출현');" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','한산-용의 출현')" class="btn_movieChart_ticketing">예매하기</a>
                                         </div>
                                     </div>
                                     <div class="movie_info_wrap">
@@ -135,7 +136,7 @@
                                 <!-- 탑건 -->
                                 <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
                                     <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/82120_320.jpg" alt="탑건-매버릭" onerror="errorImage(this)">
+                                        <img src="/resources/images/user/82120_320.jpg" alt="탑건-매버릭" >
                                         <div class="movieAgeLimit_wrap">
                                             <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
                                         </div>
@@ -143,8 +144,8 @@
                                             <i class="screenType"><img src="/resources/images/user/screenx_white.png" alt="screenx"></i>
                                         </div>
                                         <div class="movieChart_btn_wrap">
-                                            <a href="../movie/movieInfoView.html" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '탑건-매버릭');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="../purchase/ticketingForm.html" onclick="gaEventLog('PC_메인', '무비차트_예매하기','탑건-매버릭')" class="btn_movieChart_ticketing">예매하기</a>
+                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '탑건-매버릭');" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','탑건-매버릭')" class="btn_movieChart_ticketing">예매하기</a>
                                         </div>
                                     </div>
                                     <div class="movie_info_wrap">
@@ -156,15 +157,15 @@
  		                        <!-- 헤어질결심 -->      
                                 <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
                                     <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/85852_320.jpg" alt="헤어질 결심" onerror="errorImage(this)">
+                                        <img src="/resources/images/user/85852_320.jpg" alt="헤어질 결심" >
                                         <div class="movieAgeLimit_wrap">
                                             <img src="/resources/images/user/grade-15.png" alt="15세 이상세">
                                         </div>
                                         <div class="screenType_wrap">
                                         </div>
                                         <div class="movieChart_btn_wrap">
-                                            <a href="../movie/movieInfoView.html" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '헤어질 결심');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="../purchase/ticketingForm.html" onclick="gaEventLog('PC_메인', '무비차트_예매하기','헤어질 결심')" class="btn_movieChart_ticketing">예매하기</a>
+                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '헤어질 결심');" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','헤어질 결심')" class="btn_movieChart_ticketing">예매하기</a>
                                         </div>
                                     </div>
                                     <div class="movie_info_wrap">
@@ -176,10 +177,9 @@
                                 <!-- 비상선언 -->
                                 <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
                                     <div class="img_wrap" data-scale="false">
-                                        <img src=/resources/images/user/85465_320.jpg" alt="비상선언" onerror="errorImage(this)">
+                                        <img src="/resources/images/user/85465_320.jpg" alt="헤어질 결심" >
                                         <div class="movieAgeLimit_wrap">
                                             <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
-                                            <div class="dDay_wrap"><span>13</span></div>
                                         </div>
                                         <div class="screenType_wrap">
                                             <i class="screenType"><img src="/resources/images/user/imax_white.png" alt="imax"></i>
@@ -187,8 +187,8 @@
                                             <i class="screenType"><img src="/resources/images/user/screenx_white.png" alt="screenx"></i>
                                         </div>
                                         <div class="movieChart_btn_wrap">
-                                            <a href="../movie/movieInfoView.html" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '비상선언');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="../purchase/ticketingForm.html" onclick="gaEventLog('PC_메인', '무비차트_예매하기','비상선언')" class="btn_movieChart_ticketing">예매하기</a>
+                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '비상선언');" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','비상선언')" class="btn_movieChart_ticketing">예매하기</a>
                                         </div>
                                     </div>
                                     <div class="movie_info_wrap">
@@ -200,15 +200,72 @@
                                 <!-- 명탐정 코난 -->
                                 <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
                                     <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/86008_320.jpg" alt="명탐정 코난-할로윈의 신부" onerror="errorImage(this)">
+                                        <img src="/resources/images/user/86008_320.jpg" alt="명탐정 코난-할로윈의 신부" >
                                         <div class="movieAgeLimit_wrap">
                                             <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
                                         </div>
                                         <div class="screenType_wrap">
                                         </div>
                                         <div class="movieChart_btn_wrap">
-                                            <a href="../movie/movieInfoView.html" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '명탐정 코난-할로윈의 신부');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="../purchase/ticketingForm.html" onclick="gaEventLog('PC_메인', '무비차트_예매하기','명탐정 코난-할로윈의 신부')" class="btn_movieChart_ticketing">예매하기</a>
+                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '명탐정 코난-할로윈의 신부');" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','명탐정 코난-할로윈의 신부')" class="btn_movieChart_ticketing">예매하기</a>
+                                        </div>
+                                    </div>
+                                    <div class="movie_info_wrap">
+                                        <strong class="movieName">명탐정 코난-할로윈의 신부</strong>
+                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 97%</span>
+                                        <span>예매율 2.9%</span>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
+                                    <div class="img_wrap" data-scale="false">
+                                        <img src="/resources/images/user/86008_320.jpg" alt="명탐정 코난-할로윈의 신부" >
+                                        <div class="movieAgeLimit_wrap">
+                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
+                                        </div>
+                                        <div class="screenType_wrap">
+                                        </div>
+                                        <div class="movieChart_btn_wrap">
+                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '명탐정 코난-할로윈의 신부');" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','명탐정 코난-할로윈의 신부')" class="btn_movieChart_ticketing">예매하기</a>
+                                        </div>
+                                    </div>
+                                    <div class="movie_info_wrap">
+                                        <strong class="movieName">명탐정 코난-할로윈의 신부</strong>
+                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 97%</span>
+                                        <span>예매율 2.9%</span>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
+                                    <div class="img_wrap" data-scale="false">
+                                        <img src="/resources/images/user/86008_320.jpg" alt="명탐정 코난-할로윈의 신부" >
+                                        <div class="movieAgeLimit_wrap">
+                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
+                                        </div>
+                                        <div class="screenType_wrap">
+                                        </div>
+                                        <div class="movieChart_btn_wrap">
+                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '명탐정 코난-할로윈의 신부');" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','명탐정 코난-할로윈의 신부')" class="btn_movieChart_ticketing">예매하기</a>
+                                        </div>
+                                    </div>
+                                    <div class="movie_info_wrap">
+                                        <strong class="movieName">명탐정 코난-할로윈의 신부</strong>
+                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 97%</span>
+                                        <span>예매율 2.9%</span>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
+                                    <div class="img_wrap" data-scale="false">
+                                        <img src="/resources/images/user/86008_320.jpg" alt="명탐정 코난-할로윈의 신부" >
+                                        <div class="movieAgeLimit_wrap">
+                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
+                                        </div>
+                                        <div class="screenType_wrap">
+                                        </div>
+                                        <div class="movieChart_btn_wrap">
+                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '명탐정 코난-할로윈의 신부');" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','명탐정 코난-할로윈의 신부')" class="btn_movieChart_ticketing">예매하기</a>
                                         </div>
                                     </div>
                                     <div class="movie_info_wrap">
@@ -218,8 +275,8 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="swiper-button-next" tabindex="0" role="button" aria-label="다음 슬라이드" aria-disabled="true"></div>
-                        <div class="swiper-button-prev swiper-button-disabled" tabindex="0" role="button" aria-label="이전 슬라이드" aria-disabled="false"></div>
+                        <div class="swiper-button-next" tabindex="0" role="button" aria-label="다음 슬라이드" aria-disabled="true" id="right-btn"></div>
+                        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="이전 슬라이드" aria-disabled="false" id="left-btn"></div>
                     	<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                    </div>
                 </div>
@@ -238,35 +295,35 @@
 							<div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
 								<div class="swiper-slide swiper-slide-active" style="width: 310.667px; margin-right: 24px;">
 									<a onclick="gaEventLog('PC_메인', '이벤트', '씨지밤  VIP 인센티브');" href="#none">
-										<div class="img_wrap"><img src="/resources/images/user/16576736191670.jpg" alt="씨지밤  VIP 인센티브" onerror="errorImage(this)"></div>
+										<div class="img_wrap"><img src="/resources/images/user/16576736191670.jpg" alt="씨지밤  VIP 인센티브" ></div>
 										<strong>씨지밤  VIP 인센티브</strong>
 										<span>2022.07.13~2022.08.31</span>
 									</a>
 								</div>
 								<div class="swiper-slide swiper-slide-next" style="width: 310.667px; margin-right: 24px;">
 									<a onclick="gaEventLog('PC_메인', '이벤트', '[비상선언] 사전예매하고 스페셜 필름마크 받자!');" href="#none">
-										<div class="img_wrap"><img src="/resources/images/user/16577003018730.jpg" alt="[비상선언] 사전예매하고 스페셜 필름마크 받자!" onerror="errorImage(this)"></div>
+										<div class="img_wrap"><img src="/resources/images/user/16577003018730.jpg" alt="[비상선언] 사전예매하고 스페셜 필름마크 받자!" ></div>
 										<strong>[비상선언] 사전예매하고 스페셜 필름마크 받자!</strong>
 										<span>2022.07.14~2022.07.24</span>
 									</a>
 								</div>
 								<div class="swiper-slide" style="width: 310.667px; margin-right: 24px;">
 									<a onclick="gaEventLog('PC_메인', '이벤트', '[엘비스]CGV 필름마크');" href="#none">
-										<div class="img_wrap"><img src="/resources/images/user/16570831118770.jpg" alt="[엘비스]CGV 필름마크" onerror="errorImage(this)"></div>
+										<div class="img_wrap"><img src="/resources/images/user/16570831118770.jpg" alt="[엘비스]CGV 필름마크" ></div>
 										<strong>[엘비스]CGV 필름마크</strong>
 										<span>2022.07.06~2022.07.31</span>
 									</a>
 								</div>
 								<div class="swiper-slide" style="width: 310.667px; margin-right: 24px;">
 									<a onclick="gaEventLog('PC_메인', '이벤트', '[토르: 러브 앤 썬더]PET 북마크');" href="#none">
-										<div class="img_wrap"><img src="/resources/images/user/16581234608560.jpg" alt="[토르: 러브 앤 썬더]PET 북마크" onerror="errorImage(this)"></div>
+										<div class="img_wrap"><img src="/resources/images/user/16581234608560.jpg" alt="[토르: 러브 앤 썬더]PET 북마크" ></div>
 										<strong>[토르: 러브 앤 썬더]PET 북마크</strong>
 										<span>2022.07.18~2022.08.14</span>
 									</a>
 								</div>
 								<div class="swiper-slide" style="width: 310.667px; margin-right: 24px;">
 									<a onclick="gaEventLog('PC_메인', '이벤트', '[토르: 러브 앤 썬더]필름마크');" href="#none">
-										<div class="img_wrap"><img src="/resources/images/user/16572570587010.jpg" alt="[토르: 러브 앤 썬더]필름마크" onerror="errorImage(this)"></div>
+										<div class="img_wrap"><img src="/resources/images/user/16572570587010.jpg" alt="[토르: 러브 앤 썬더]필름마크" ></div>
 										<strong>[토르: 러브 앤 썬더]필름마크</strong>
 										<span>2022.07.08~2022.07.31</span>
 									</a>		
@@ -329,5 +386,43 @@
 		<%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 		<!-- footer_area (s) -->
 <!-- end -->
+	<script>
+	<!-- 영화 슬라이드 -->
+      var swiper = new Swiper(".movieChart_list", {
+        spaceBetween: 30,
+        slidesPerView: 5,
+        slidesPerGroup : 5,
+        loopFillGroupWithBlank : true,
+        direction: 'horizontal',
+        autoplay:  false,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+      <!-- 동영상 조작버튼 -->
+      var sample = $("#video").get(0);
+      
+      $(".btn_movieSelection_playStop").on("click", function(){
+	      if($("#ctl00_PlaceHolderContent_playStop").hasClass("active") === true) {
+	    	  	sample.pause();
+	    	  	$("#ctl00_PlaceHolderContent_playStop").removeClass("active");
+	    	} else {
+	   			sample.play();
+	      	  	$("#ctl00_PlaceHolderContent_playStop").addClass("active");
+	    	}
+      })
+      
+      $(".btn_movieSelection_soundOnOff").on("click", function(){
+	      if($("#ctl00_PlaceHolderContent_soundOnOff").hasClass("active") === true) {
+	    	  $("#video").prop("muted", false);
+	    	  	$("#ctl00_PlaceHolderContent_soundOnOff").removeClass("active");
+	    	} else {
+	    		$("#video").prop("muted", true);
+	      	  	$("#ctl00_PlaceHolderContent_soundOnOff").addClass("active");
+	    	}
+      })
+      
+     </script>
 </body>
 </html>
