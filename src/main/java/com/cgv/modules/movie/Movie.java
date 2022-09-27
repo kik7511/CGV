@@ -13,8 +13,14 @@ public class Movie {
 	private String mExplantion;
 	private double mRate;
 	private Integer src;
+	private Integer mGoldEgg;
 	
-	
+	public Integer getmGoldEgg() {
+		return mGoldEgg;
+	}
+	public void setmGoldEgg(Integer mGoldEgg) {
+		this.mGoldEgg = mGoldEgg;
+	}
 	public Integer getSrc() {
 		return src;
 	}

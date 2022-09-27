@@ -63,216 +63,29 @@
                         <div class="tabBtn_wrap">
                             <h3><a href="#none" class="active" id="btnMovie">무비차트</a></h3>
                         </div>
-                        <a href="/movie/movieChartView" id="btn_allView_Movie" class="btn_allView">전체보기</a>
+                        <a href="/movie/movieList" id="btn_allView_Movie" class="btn_allView">전체보기</a>
                     </div>
                     <div class="swiper movieChart_list swiper-container-initialized swiper-container-horizontal" id="movieChart_list" style="display: block;">
                         <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                <!-- 외계인1부 -->
+                       		<c:forEach items="${list}" var="list" varStatus="status">
                                 <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
                                     <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/85997_320.jpg" alt="외계+인 1부" >
+                                        <img src="/resources/images/user/${list.src}_320.jpg" alt="영화포스터" >
                                         <div class="movieAgeLimit_wrap">
-                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
-                                        </div>
-                                        <div class="screenType_wrap">
-                                            <i class="screenType"><img src="/resources/images/user/imax_white.png" alt="imax"></i>
-                                            <i class="screenType"><img src="/resources/images/user/forDX_white.png" alt="forDX"></i>
+                                            <img src="/resources/images/user/grade-${list.mAgeLimit}.png" alt="연령제한">
                                         </div>
                                         <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '외계+인 1부');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','외계+인 1부')" class="btn_movieChart_ticketing">예매하기</a>
+                                            <a href="/movie/movieInfoView" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/purchase/ticketingForm" class="btn_movieChart_ticketing">예매하기</a>
                                         </div>
                                     </div>
                                     <div class="movie_info_wrap">
-                                        <strong class="movieName">외계+인 1부</strong>
-                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 86%</span>
-                                        <span>예매율 32.5%</span>
+                                        <strong class="movieName">${list.mNameKor}</strong>
+                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> ${list.mGoldEgg}%</span>
+                                        <span>예매율 ${list.mRate}%</span>
                                     </div>
                                 </div>
-                                <!-- 미니언즈2 -->
-                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
-                                    <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/83127_320.jpg" alt="미니언즈2" >
-                                        <div class="movieAgeLimit_wrap">
-                                            <img src="/resources/images/user/grade-all.png" alt="전체세">
-                                        </div>
-                                        <div class="screenType_wrap">
-                                        </div>
-                                        <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '미니언즈2');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','미니언즈2')" class="btn_movieChart_ticketing">예매하기</a>
-                                        </div>
-                                    </div>
-                                    <div class="movie_info_wrap">
-                                        <strong class="movieName">미니언즈2</strong>
-                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 92%</span>
-                                        <span>예매율 23.8%</span>
-                                    </div>
-                                </div>
-                                <!-- 한산 -->
-                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
-                                    <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/83280_320.jpg" alt="한산-용의 출현" >
-                                        <div class="movieAgeLimit_wrap">
-                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
-                                        </div>
-                                        <div class="screenType_wrap">
-                                            <i class="screenType"><img src="/resources/images/user/imax_white.png" alt="imax"></i>
-                                            <i class="screenType"><img src="/resources/images/user/forDX_white.png" alt="forDX"></i>
-                                            <i class="screenType"><img src="/resources/images/user/screenx_white.png" alt="screenx"></i>
-                                        </div>
-                                        <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '한산-용의 출현');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','한산-용의 출현')" class="btn_movieChart_ticketing">예매하기</a>
-                                        </div>
-                                    </div>
-                                    <div class="movie_info_wrap">
-                                        <strong class="movieName">한산-용의 출현</strong>
-                                        <span> <img src="/resources/images/user/eggGoldeneggPreegg.png" alt="Golden Egg Preegg"> 99%</span>
-                                        <span>예매율 15.5%</span>
-                                    </div>
-                                </div>
-                                <!-- 탑건 -->
-                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
-                                    <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/82120_320.jpg" alt="탑건-매버릭" >
-                                        <div class="movieAgeLimit_wrap">
-                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
-                                        </div>
-                                        <div class="screenType_wrap">
-                                            <i class="screenType"><img src="/resources/images/user/screenx_white.png" alt="screenx"></i>
-                                        </div>
-                                        <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '탑건-매버릭');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','탑건-매버릭')" class="btn_movieChart_ticketing">예매하기</a>
-                                        </div>
-                                    </div>
-                                    <div class="movie_info_wrap">
-                                        <strong class="movieName">탑건-매버릭</strong>
-                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 99%</span>
-                                        <span>예매율 8.1%</span>
-                                    </div>
-                                </div>
- 		                        <!-- 헤어질결심 -->      
-                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
-                                    <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/85852_320.jpg" alt="헤어질 결심" >
-                                        <div class="movieAgeLimit_wrap">
-                                            <img src="/resources/images/user/grade-15.png" alt="15세 이상세">
-                                        </div>
-                                        <div class="screenType_wrap">
-                                        </div>
-                                        <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '헤어질 결심');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','헤어질 결심')" class="btn_movieChart_ticketing">예매하기</a>
-                                        </div>
-                                    </div>
-                                    <div class="movie_info_wrap">
-                                        <strong class="movieName">헤어질 결심</strong>
-                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 93%</span>
-                                        <span>예매율 3.6%</span>
-                                    </div>
-                                </div>
-                                <!-- 비상선언 -->
-                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
-                                    <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/85465_320.jpg" alt="헤어질 결심" >
-                                        <div class="movieAgeLimit_wrap">
-                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
-                                        </div>
-                                        <div class="screenType_wrap">
-                                            <i class="screenType"><img src="/resources/images/user/imax_white.png" alt="imax"></i>
-                                            <i class="screenType"><img src="/resources/images/user/forDX_white.png" alt="forDX"></i>
-                                            <i class="screenType"><img src="/resources/images/user/screenx_white.png" alt="screenx"></i>
-                                        </div>
-                                        <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '비상선언');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','비상선언')" class="btn_movieChart_ticketing">예매하기</a>
-                                        </div>
-                                    </div>
-                                    <div class="movie_info_wrap">
-                                        <strong class="movieName">비상선언</strong>
-                                        <span> <img src="/resources/images/user/eggGoldeneggPreegg.png" alt="Golden Egg Preegg"> 99%</span>
-                                        <span>예매율 3.2%</span>
-                                    </div>
-                                </div>
-                                <!-- 명탐정 코난 -->
-                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
-                                    <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/86008_320.jpg" alt="명탐정 코난-할로윈의 신부" >
-                                        <div class="movieAgeLimit_wrap">
-                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
-                                        </div>
-                                        <div class="screenType_wrap">
-                                        </div>
-                                        <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '명탐정 코난-할로윈의 신부');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','명탐정 코난-할로윈의 신부')" class="btn_movieChart_ticketing">예매하기</a>
-                                        </div>
-                                    </div>
-                                    <div class="movie_info_wrap">
-                                        <strong class="movieName">명탐정 코난-할로윈의 신부</strong>
-                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 97%</span>
-                                        <span>예매율 2.9%</span>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
-                                    <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/86008_320.jpg" alt="명탐정 코난-할로윈의 신부" >
-                                        <div class="movieAgeLimit_wrap">
-                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
-                                        </div>
-                                        <div class="screenType_wrap">
-                                        </div>
-                                        <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '명탐정 코난-할로윈의 신부');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','명탐정 코난-할로윈의 신부')" class="btn_movieChart_ticketing">예매하기</a>
-                                        </div>
-                                    </div>
-                                    <div class="movie_info_wrap">
-                                        <strong class="movieName">명탐정 코난-할로윈의 신부</strong>
-                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 97%</span>
-                                        <span>예매율 2.9%</span>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
-                                    <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/86008_320.jpg" alt="명탐정 코난-할로윈의 신부" >
-                                        <div class="movieAgeLimit_wrap">
-                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
-                                        </div>
-                                        <div class="screenType_wrap">
-                                        </div>
-                                        <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '명탐정 코난-할로윈의 신부');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','명탐정 코난-할로윈의 신부')" class="btn_movieChart_ticketing">예매하기</a>
-                                        </div>
-                                    </div>
-                                    <div class="movie_info_wrap">
-                                        <strong class="movieName">명탐정 코난-할로윈의 신부</strong>
-                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 97%</span>
-                                        <span>예매율 2.9%</span>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-movie" style="width: 170.4px; margin-right: 32px;">
-                                    <div class="img_wrap" data-scale="false">
-                                        <img src="/resources/images/user/86008_320.jpg" alt="명탐정 코난-할로윈의 신부" >
-                                        <div class="movieAgeLimit_wrap">
-                                            <img src="/resources/images/user/grade-12.png" alt="12세 이상세">
-                                        </div>
-                                        <div class="screenType_wrap">
-                                        </div>
-                                        <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '명탐정 코난-할로윈의 신부');" class="btn_movieChart_detail">상세보기</a>
-                                            <a href="/purchase/ticketingForm" onclick="gaEventLog('PC_메인', '무비차트_예매하기','명탐정 코난-할로윈의 신부')" class="btn_movieChart_ticketing">예매하기</a>
-                                        </div>
-                                    </div>
-                                    <div class="movie_info_wrap">
-                                        <strong class="movieName">명탐정 코난-할로윈의 신부</strong>
-                                        <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 97%</span>
-                                        <span>예매율 2.9%</span>
-                                    </div>
-                                </div>
+                             </c:forEach>
                         </div>
                         <div class="swiper-button-next" tabindex="0" role="button" aria-label="다음 슬라이드" aria-disabled="true" id="right-btn"></div>
                         <div class="swiper-button-prev" tabindex="0" role="button" aria-label="이전 슬라이드" aria-disabled="false" id="left-btn"></div>
@@ -389,7 +202,7 @@
 	<script>
 	<!-- 영화 슬라이드 -->
       var swiper = new Swiper(".movieChart_list", {
-        spaceBetween: 30,
+        spaceBetween: 35,
         slidesPerView: 5,
         slidesPerGroup : 5,
         loopFillGroupWithBlank : true,
@@ -400,6 +213,18 @@
           prevEl: ".swiper-button-prev",
         },
       });
+      
+      var swiper2 = new Swiper(".event_list", {
+          spaceBetween: 35,
+          slidesPerView: 3,
+          loopFillGroupWithBlank : true,
+          direction: 'horizontal',
+          autoplay:  true,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
       <!-- 동영상 조작버튼 -->
       var sample = $("#video").get(0);
       

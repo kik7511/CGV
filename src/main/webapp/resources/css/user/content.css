@@ -2199,7 +2199,7 @@ div.scrollbox {overflow-y:auto;}
 	.event_list_wrap .event_list .swiper-wrapper .swiper-slide a .img_wrap{overflow:hidden; width:310px; height:207px; border-radius:10px}
 	.event_list_wrap .event_list .swiper-wrapper .swiper-slide a strong{display:block; overflow:hidden; margin-top:16px; font-weight:500; font-size:18px; color:#222; line-height:1.444em; text-overflow:ellipsis; white-space:nowrap}
 	.event_list_wrap .event_list .swiper-wrapper .swiper-slide a span{display:block; margin-top:4px; font-size:14px; color:#666; line-height:1.429em}
-	.event_list_wrap .swiper-button-prev{overflow:hidden; left:-20px; top:calc(50% - 26px); width:40px; height:40px; margin-top:-20px; font-size:0; border-radius:50%; box-shadow:2px 2px 8px 0 rgba(0, 0, 0, 0.2)}
+	.event_list_wrap .swiper-button-prev{overflow:hidden; left:-20px; top:calc(30% - 26px); width:40px; height:40px; margin-top:-20px; font-size:0; border-radius:50%; box-shadow:2px 2px 8px 0 rgba(0, 0, 0, 0.2)}
 	.event_list_wrap .swiper-button-prev:after{content:''; width:40px; height:40px; background:rgba(255, 255, 255, 0.8) url('/resources/images/user/arrowL.png') center/9px 13px scroll no-repeat}
 	.event_list_wrap .swiper-button-next{overflow:hidden; right:-20px; top:calc(30% - 26px); width:40px; height:40px; margin-top:-20px; font-size:0; border-radius:50%; box-shadow:2px 2px 8px 0 rgba(0, 0, 0, 0.2)}
 	.event_list_wrap .swiper-button-next:after{content:''; width:40px; height:40px; background:rgba(255, 255, 255, 0.8) url('/resources/images/user/arrowL.png') center/9px 13px scroll no-repeat; transform:rotate(-180deg)}

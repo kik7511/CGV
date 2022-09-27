@@ -58,7 +58,7 @@
                 무비차트 - 예매율순
             </h4>
             <ol>
-            	<c:forEach items="${list}" var="list" varStatus="status">
+            	<c:forEach items="${list}" var="list" varStatus="status" end="2">
 	                <li>
 	                    <div class="box-image">
 	                        <strong class="rank">No.${list.mSeq}위</strong>	
@@ -88,200 +88,41 @@
 	                    </div>    
 	                </li>
                 </c:forEach>
-                <!-- <li>
-                    <div class="box-image">
-                        <strong class="rank">No.2위</strong>	
-                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
-                        	<span class="thumb-image">
-                            	<img src="/resources/images/user/83127_320.jpg" alt="미니언즈2 포스터" onerror="errorImage(this)">
-									<span class="ico-grade grade-all"></span>
-                       		</span>
-                   		</a>
-                        <span class="screentype">
-                        </span>
-                    </div>
-                    <div class="box-contents">
-                        <a href="/movie/movieInfoView">
-                            <strong class="title">미니언즈2</strong>
-                        </a>
-                        <div class="score">
-                            <strong class="percent">예매율<span>23.8 %</span></strong>
-                        </div>
-                        <span class="txt-info">
-                            <strong>
-                               2022-07-20
-                               <span>개봉</span>
-                            </strong>
-                        </span>
-                        <span class="like"> 
-                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
-                        </span>
-                    </div>    
-                </li>
-                
-                <li>
-                    <div class="box-image">
-                        <strong class="rank">No.3위</strong>	
-                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
-                        	<span class="thumb-image">
-                            	<img src="/resources/images/user/83280_320.jpg" alt="한산 포스터" onerror="errorImage(this)">
-									<span class="ico-grade grade-12"></span>
-                       		</span>
-                   		</a>
-                        <span class="screentype">
-                        	<a class="imax" href="#" title="IMAX 상세정보 바로가기" data-regioncode="07">IMAX</a>
-                            <a class="forDX" href="#" title="4DX 상세정보 바로가기" data-regioncode="4D14">4DX</a>
-                   	        <a class="screenx" href="#" title="SCREENX 상세정보 바로가기" data-regioncode="SCX">SCREENX</a>
-                        </span>
-                    </div>
-                    <div class="box-contents">
-                        <a href="/movie/movieInfoView">
-                            <strong class="title">한산-용의 출현</strong>
-                        </a>
-                        <div class="score">
-                            <strong class="percent">예매율<span>15.5%</span></strong>
-                        </div>
-                        <span class="txt-info">
-                            <strong>
-                               2022-07-27
-                               <span>개봉</span>
-                            </strong>
-                        </span>
-                        <span class="like"> 
-                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
-                        </span>
-                    </div>    
-            	</li>
-			</ol>
-			<ol>               
-                <li>
-                    <div class="box-image">
-                        <strong class="rank">No.4위</strong>	
-                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
-                        	<span class="thumb-image">
-                            	<img src="/resources/images/user/82120_320.jpg" alt="탑건 포스터" onerror="errorImage(this)">
-									<span class="ico-grade grade-12"></span>
-                       		</span>
-                   		</a>
-                        <span class="screentype">
-                   	        <a class="screenx" href="#" title="SCREENX 상세정보 바로가기" data-regioncode="SCX">SCREENX</a>
-                        </span>
-                    </div>
-                    <div class="box-contents">
-                        <a href="/movie/movieInfoView">
-                            <strong class="title">탑건-매버릭</strong>
-                        </a>
-                        <div class="score">
-                            <strong class="percent">예매율<span>8.1%</span></strong>
-                        </div>
-                        <span class="txt-info">
-                            <strong>
-                               2022-06-22
-                               <span>개봉</span>
-                            </strong>
-                        </span>
-                        <span class="like"> 
-                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
-                        </span>
-                    </div>    
-                </li>
-                
-                <li>
-                    <div class="box-image">
-                        <strong class="rank">No.5위</strong>	
-                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
-                        	<span class="thumb-image">
-                            	<img src="/resources/images/user/85852_320.jpg" alt="헤어질결심 포스터" onerror="errorImage(this)">
-									<span class="ico-grade grade-15"></span>
-                       		</span>
-                   		</a>
-                        <span class="screentype"></span>
-                    </div>
-                    <div class="box-contents">
-                        <a href="/movie/movieInfoView">
-                            <strong class="title">헤어질 결심</strong>
-                        </a>
-                        <div class="score">
-                            <strong class="percent">예매율<span>3.6%</span></strong>
-                        </div>
-                        <span class="txt-info">
-                            <strong>
-                               2022-06-29
-                               <span>개봉</span>
-                            </strong>
-                        </span>
-                        <span class="like"> 
-                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
-                        </span>
-                    </div>    
-                </li>
-                
-                <li>
-                    <div class="box-image">
-                        <strong class="rank">No.6위</strong>	
-                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
-                        	<span class="thumb-image">
-                            	<img src="/resources/images/user/85465_320.jpg" alt="비상선언 포스터" onerror="errorImage(this)">
-									<span class="ico-grade grade-12"></span>
-                       		</span>
-                   		</a>
-                        <span class="screentype">
-                        	<a class="imax" href="#" title="IMAX 상세정보 바로가기" data-regioncode="07">IMAX</a>
-                            <a class="forDX" href="#" title="4DX 상세정보 바로가기" data-regioncode="4D14">4DX</a>
-                   	        <a class="screenx" href="#" title="SCREENX 상세정보 바로가기" data-regioncode="SCX">SCREENX</a>
-                        </span>
-                    </div>
-                    <div class="box-contents">
-                        <a href="/movie/movieInfoView">
-                            <strong class="title">비상선언</strong>
-                        </a>
-                        <div class="score">
-                            <strong class="percent">예매율<span>3.2%</span></strong>
-                        </div>
-                        <span class="txt-info">
-                            <strong>
-                               2022-08-03
-                               <span>개봉</span>
-                            </strong>
-                        </span>
-                        <span class="like"> 
-                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
-                        </span>
-                    </div>    
-                </li>
-                
-                <li>
-                    <div class="box-image">
-                        <strong class="rank">No.7위</strong>	
-                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
-                        	<span class="thumb-image">
-                            	<img src="/resources/images/user/86008_320.jpg" alt="명탐정코난 포스터" onerror="errorImage(this)">
-									<span class="ico-grade grade-12"></span>
-                       		</span>
-                   		</a>
-                        <span class="screentype"></span>
-                    </div>
-                    <div class="box-contents">
-                        <a href="/movie/movieInfoView">
-                            <strong class="title">명탐정 코난-할로윈의 신부</strong>
-                        </a>
-                        <div class="score">
-                            <strong class="percent">예매율<span>2.9%</span></strong>
-                        </div>
-                        <span class="txt-info">	
-                            <strong>
-                               2022-07-13
-                               <span>개봉</span>
-                            </strong>
-                        </span>
-                        <span class="like"> 
-                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
-                        </span>
-                    </div>    
-                </li> -->
-            </ol>
+              </ol>
+              <ol>
+				<c:forEach items="${list}" var="list" varStatus="status" begin="3">
+	                <li>
+	                    <div class="box-image">
+	                        <strong class="rank">No.${list.mSeq}위</strong>	
+	                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
+	                        	<span class="thumb-image">
+	                            	<img src="/resources/images/user/${list.src}_320.jpg" alt="포스터" onerror="errorImage(this)">
+										<span class="ico-grade grade-${list.mAgeLimit}"></span>
+	                       		</span>
+	                   		</a>
+	                    </div>
+	                    <div class="box-contents">
+	                        <a href="/movie/movieInfoView">
+	                            <strong class="title">${list.mNameKor}</strong>
+	                        </a>
+	                        <div class="score">
+	                            <strong class="percent">예매율<span>${list.mRate}%</span></strong>
+	                        </div>
+	                        <span class="txt-info">
+	                            <strong>
+	                               <fmt:formatDate value="${list.mOpenDate}" pattern="yyyy.MM.dd" />
+	                               <span>개봉</span>
+	                            </strong>
+	                        </span>
+	                        <span class="like"> 
+	                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
+	                        </span>
+	                    </div>    
+	                </li>
+                </c:forEach>
+              </ol>
 			<!-- 무비차트 E -->            
-            <!-- <div class="chart-ad">
+            <div class="chart-ad">
                 <div class="box-com">
                 	<img src="/resources/images/user/160x300.jpg" width="160" height="300" id="Movie_Chart" name="Movie_Chart" title="기업광고 - abc">                   
                 </div>                
@@ -296,8 +137,7 @@
                         </dd>
                     </dl>
                 </div>
-            </div> -->
-            
+            </div>
         </div>
     </div>
     <!-- .sect-moviechart -->
