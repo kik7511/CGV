@@ -30,4 +30,26 @@
    		</section>
 	</article>
 </footer>
+<script>
+$("#btnLogout").on("click", function(){
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		/* ,dataType:"json" */
+		,url: "/member/logoutProc"
+		/* ,data : $("#formLogin").serialize() */
+		/* ,data : { "ifMmId" : $("#ifMmId").val(), "ifMmPassWord" : $("#ifMmPassWord").val()} */
+		,success: function(response) {
+			if(response.rt == "success") {
+					location.href = "/home";
+			} else {
+			}
+		}
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		}
+	});
+});
+</script>
 <!-- footer_area (e) -->

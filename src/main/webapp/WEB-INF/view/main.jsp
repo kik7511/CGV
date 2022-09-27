@@ -87,6 +87,7 @@
                                         <strong class="movieName">외계+인 1부</strong>
                                         <span> <img src="/resources/images/user/eggGoldenegggreat.png" alt="Golden Egg great"> 86%</span>
                                         <span>예매율 32.5%</span>
+                                        
                                     </div>
                                 </div>
                                 <!-- 미니언즈2 -->

@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page session="false" %>
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
@@ -59,40 +58,37 @@
                 무비차트 - 예매율순
             </h4>
             <ol>
-                <li>
-                    <div class="box-image">
-                        <strong class="rank">No.1위</strong>	
-                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
-                        	<span class="thumb-image">
-                            	<img src="/resources/images/user/85997_320.jpg" alt="외계인 포스터" onerror="errorImage(this)">
-									<span class="ico-grade grade-12"></span>
-                       		</span>
-                   		</a>
-                        <span class="screentype">
-                        	<a class="imax" href="#" title="IMAX 상세정보 바로가기" data-regioncode="07">IMAX</a>
-                            <a class="forDX" href="#" title="4DX 상세정보 바로가기" data-regioncode="4D14">4DX</a>
-                        </span>
-                    </div>
-                    <div class="box-contents">
-                        <a href="/movie/movieInfoView">
-                            <strong class="title">외계+인 1부</strong>
-                        </a>
-                        <div class="score">
-                            <strong class="percent">예매율<span>32.5%</span></strong>
-                        </div>
-                        <span class="txt-info">
-                            <strong>
-                               2022-07-20
-                               <span>개봉</span>
-                            </strong>
-                        </span>
-                        <span class="like"> 
-                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
-                        </span>
-                    </div>    
-                </li>
-                
-                <li>
+            	<c:forEach items="${list}" var="list" varStatus="status">
+	                <li>
+	                    <div class="box-image">
+	                        <strong class="rank">No.${list.mSeq}위</strong>	
+	                        <a href="/movie/movieInfoView" style="margin-top: 5px;">
+	                        	<span class="thumb-image">
+	                            	<img src="/resources/images/user/${list.src}_320.jpg" alt="포스터" onerror="errorImage(this)">
+										<span class="ico-grade grade-${list.mAgeLimit}"></span>
+	                       		</span>
+	                   		</a>
+	                    </div>
+	                    <div class="box-contents">
+	                        <a href="/movie/movieInfoView">
+	                            <strong class="title">${list.mNameKor}</strong>
+	                        </a>
+	                        <div class="score">
+	                            <strong class="percent">예매율<span>${list.mRate}%</span></strong>
+	                        </div>
+	                        <span class="txt-info">
+	                            <strong>
+	                               <fmt:formatDate value="${list.mOpenDate}" pattern="yyyy.MM.dd" />
+	                               <span>개봉</span>
+	                            </strong>
+	                        </span>
+	                        <span class="like"> 
+	                            <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
+	                        </span>
+	                    </div>    
+	                </li>
+                </c:forEach>
+                <!-- <li>
                     <div class="box-image">
                         <strong class="rank">No.2위</strong>	
                         <a href="/movie/movieInfoView" style="margin-top: 5px;">
@@ -282,10 +278,10 @@
                             <a class="link-reservation" href="/purchase/ticketingForm">예매</a>
                         </span>
                     </div>    
-                </li>
+                </li> -->
             </ol>
 			<!-- 무비차트 E -->            
-            <div class="chart-ad">
+            <!-- <div class="chart-ad">
                 <div class="box-com">
                 	<img src="/resources/images/user/160x300.jpg" width="160" height="300" id="Movie_Chart" name="Movie_Chart" title="기업광고 - abc">                   
                 </div>                
@@ -300,7 +296,7 @@
                         </dd>
                     </dl>
                 </div>
-            </div>
+            </div> -->
             
         </div>
     </div>

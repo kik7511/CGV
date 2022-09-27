@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page session="false" %>
 <jsp:useBean id="CodeServiceImpl" class="com.cgv.modules.code.CodeServiceImpl"/>
 <html lang="ko">
 <head>
@@ -77,8 +76,12 @@
 													<td><input type="text" placeholder="아이디를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmId" id="ifMmId"></td>													
 												</tr>
 												<tr>
+													<th scope="row">닉네임</th>
+													<td><input type="text" placeholder="닉네임을 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmNickname" id="ifMmNickname"></td>													
+												</tr>
+												<tr>
 													<th scope="row">비밀번호</th>
-													<td><input type="password" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmPassword" id="ifMmPassWordk"></td>													
+													<td><input type="password" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmPassWord" id="ifMmPassWord"></td>													
 												</tr>
 												<tr>
 													<th scope="row">비밀번호 확인</th>

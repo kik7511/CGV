@@ -12,8 +12,15 @@ public class Movie {
 	private Date mOpenDate;
 	private String mExplantion;
 	private double mRate;
+	private Integer src;
 	
 	
+	public Integer getSrc() {
+		return src;
+	}
+	public void setSrc(Integer src) {
+		this.src = src;
+	}
 	public double getmRate() {
 		return mRate;
 	}

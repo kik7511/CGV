@@ -1,5 +1,7 @@
 package com.cgv;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,6 @@ public class HomeController {
 		 * model.addAttribute("serverTime", formattedDate );
 		 */
 		
-		
 		return "infra/main/admin/login";
 	}
 	
@@ -39,7 +40,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "home")
-	public String home() {
+	public String home(HttpSession httpSession) {
+		
+		System.out.println(httpSession.getAttribute("sessId"));
+		System.out.println(httpSession.getAttribute("sessName"));
+		System.out.println(httpSession.getAttribute("sessSeq"));
+		
 		return "infra/main/user/main";
 	}
 	

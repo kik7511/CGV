@@ -108,9 +108,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "signupInst")
 	public String signupInst(Member dto) throws Exception{
-		int result = service.insert(dto);
-		System.out.println("controller result: " + result);
-		
+		service.insert(dto);
 		return "redirect:/member/loginForm";
 	}
 	
@@ -155,23 +153,56 @@ public class MemberController {
 		return returnMap;
 	}
 	
-	@RequestMapping(value = "login")
-		public String login(Member dto, HttpServletRequest request) throws Exception {
-		Member login = service.login(dto);
+	/*
+	 * @RequestMapping(value = "login") public String login(Member dto,
+	 * HttpServletRequest request) throws Exception { Member login =
+	 * service.login(dto);
+	 * 
+	 * if(login != null) { System.out.println("로그인 성공"); HttpSession session =
+	 * request.getSession(); String id = login.getIfMmId(); String nickName =
+	 * login.getIfMmNickname(); session.setAttribute("loginId", id);
+	 * session.setAttribute("ifMmNickName", nickName); System.out.println(id);
+	 * System.out.println(nickName); }else { System.out.println("로그인 실패"); } return
+	 * "redirect:/home"; }
+	 */
+	@ResponseBody
+	@RequestMapping(value = "loginProc")
+	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
-		if(login != null) {
-			System.out.println("로그인 성공");
-			HttpSession session = request.getSession();
-			String id = login.getIfMmId();
-			String nickName = login.getIfMmNickname();
-			session.setAttribute("loginId", id);
-			session.setAttribute("ifMmNickName", nickName);
-			System.out.println(id);
-			System.out.println(nickName);
-		}else {
-			System.out.println("로그인 실패");
-		}
-		return "redirect:/home";
+		Member rtMember = service.login(dto);
+
+			if (rtMember != null) {
+				httpSession.setMaxInactiveInterval(60 * 30); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeq", rtMember.getIfMmSeq());
+				httpSession.setAttribute("sessId", rtMember.getIfMmId());
+				httpSession.setAttribute("sessName", rtMember.getIfMmName());
+				httpSession.setAttribute("sessNickname", rtMember.getIfMmNickname());
+				/*
+				 * System.out.println(httpSession.getAttribute("sessId"));
+				 * System.out.println(httpSession.getAttribute("sessName"));
+				 * System.out.println(httpSession.getAttribute("sessSeq"));
+				 * System.out.println(httpSession.getAttribute("sessNickName"));
+				 */
+				returnMap.put("rt", "success");
+			} else {
+				returnMap.put("rt", "fail");
+			}
+		return returnMap;
 	}
 	
+	public static String getSessionSeqCore(HttpServletRequest httpServletRequest) {
+		HttpSession httpSession =  httpServletRequest.getSession();
+		String rtSeq = (String) httpSession.getAttribute("sessSeq");
+		return rtSeq;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "logoutProc")
+	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
 }

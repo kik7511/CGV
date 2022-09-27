@@ -138,7 +138,7 @@
 			a.ifMmSeq
 			,a.ifMmId
 			,a.ifMmPassWord
-			,a.ifMmNickName
+			,a.ifMmNickname
 			,a.ifMmName
 		FROM infrMember a
 		WHERE 1=1

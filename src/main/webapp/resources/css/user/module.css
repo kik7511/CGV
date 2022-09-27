@@ -274,10 +274,10 @@ div[class^="sect-"] .btn-itemmore{ margin-top:30px;}
 
 /* ico 영화등급 */
 .ico-grade{ display:block; position:absolute; left:5px; top:5px; width:21px; height:21px; background:url('/resources/images/user/sprite_icon.png') no-repeat;font:0/0 a;zoom:1;}
-.ico-grade.grade-all{ background-position:-30px 0;}/* 전체 */
-.ico-grade.grade-12{ background-position:-51px 0;}/* 12세 */
-.ico-grade.grade-15{ background-position:-72px 0;}/* 15세 */
-.ico-grade.grade-19{ background-position:-93px 0;}/* 청불 */
+.ico-grade.grade-26{ background-position:-30px 0;}/* 전체 */
+.ico-grade.grade-27{ background-position:-51px 0;}/* 12세 */	
+.ico-grade.grade-28{ background-position:-72px 0;}/* 15세 */
+.ico-grade.grade-29{ background-position:-93px 0;}/* 청불 */
 .ico-grade.grade-none{ background-position:-114px 0;}/* 미정 */
 .eng .ico-grade.grade-all{ background-position:-135px 0;}/* 영어전체 */
 .eng .ico-grade.grade-19{ background-position:-156px 0;}/* 영어 청불 */
@@ -2793,14 +2793,14 @@ div[class^="sect-"] .btn-itemmore{ margin-top:30px;}
 .box-login .login input[type="password"]{ background:url('/resources/images/user/sprite_icon.png') 12px -261px no-repeat;}
 
 /* 로그인 최종버전 */
-.box-login button[type="submit"] > span {display:block;width:258px;height:36px; border:1px solid #ffff; color:#f8f8f8; font-size:15px; font-weight:500;}
-.box-login .login > button[type="submit"] {position:absolute; top:0; left:198px; display:block; width:100px; height:86px; padding:2px; background:#fb4357; line-height:78px; text-align:center;}
+.box-login button[type="button"] > span {display:block;width:258px;height:36px; border:1px solid #ffff; color:#f8f8f8; font-size:15px; font-weight:500;}
+.box-login .login > button[type="button"] {position:absolute; top:0; left:198px; display:block; width:100px; height:86px; padding:2px; background:#fb4357; line-height:78px; text-align:center;}
 .sect-login > .box-login fieldset {position:relative;}
 
 
 /*140804 로그인 UI 수정 및 캡챠 시작 */
 .box-login .login input[type="text"], .box-login .login input[type="password"] {width:264px}
-.box-login button[type="submit"] {width:264px;height:42px;line-height:37px;left:0;position: static;margin-top: 5px;padding:2px;background:#fb4357;text-align:center;}
+.box-login button[type="button"] {width:264px;height:42px;line-height:37px;left:0;position: static;margin-top: 5px;padding:2px;background:#fb4357;text-align:center;}
 
 /* S [U20201223] 네이버 로그인 버튼추가
 	Description:

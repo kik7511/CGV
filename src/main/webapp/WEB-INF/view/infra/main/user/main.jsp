@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page session="false" %>
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
@@ -64,7 +63,7 @@
                         <div class="tabBtn_wrap">
                             <h3><a href="#none" class="active" id="btnMovie">무비차트</a></h3>
                         </div>
-                        <a href="" id="btn_allView_Movie" class="btn_allView">전체보기</a>
+                        <a href="/movie/movieChartView" id="btn_allView_Movie" class="btn_allView">전체보기</a>
                     </div>
                     <div class="swiper movieChart_list swiper-container-initialized swiper-container-horizontal" id="movieChart_list" style="display: block;">
                         <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
@@ -343,7 +342,8 @@
                         <div class="noticeClient_content">
                             
                             <div id="ctl00_PlaceHolderContent_notice_wrap" class="notice_wrap">
-                                <strong>공지사항</strong>
+                                <strong>공지사항
+                                </strong>
                                     <a href="#" class="btn_link">[기타]22년 VIP 선정 기준 변경 및 추가 기준 관련 안내</a>
                             </div>
 

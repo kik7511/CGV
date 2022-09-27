@@ -1,19 +1,4 @@
-<%@page import="com.cgv.modules.member.MemberController"%>
-<%@page import="com.mysql.cj.Session"%>
-<%@page import="org.springframework.context.annotation.Import"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page session="false" %>
-
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
-	<link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-	
 <div class="skipnaiv">
 		<a href="#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
 	</div>
@@ -42,14 +27,14 @@
 				<!-- /Advertisement -->
 					<ul class="memberInfo_wrap">
 						<c:choose>
-							<c:when test="${not empty loginId}" >
-								<a href="/member/mypageForm" class="mr-3 userName">${ifMmNickName} 님</a>
-								<a href="/member/logout" class="logout">로그아웃</a>
+							<c:when test="${not empty sessId}">
+								<li><span style="font-size: 18px;"><c:out value="${sessName}"/></span> 님</li>
+								<li><a style="cursor: pointer;" id="btnLogout"><img src="/resources/images/user/loginPassword.png" alt="로그아웃"><span>로그아웃</span></a></li>
+								<li><a href="/member/mypageForm"><img src="/resources/images/user/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
 							</c:when>
 							<c:otherwise>
 								<li><a href="/member/loginForm"><img src="/resources/images/user/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
 								<li><a href="/member/signupForm"><img src="/resources/images/user/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
-								<li><a href="/member/mypageForm"><img src="/resources/images/user/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
 							</c:otherwise>
 						</c:choose>
 					</ul>

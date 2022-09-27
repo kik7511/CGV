@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page session="false" %>
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
@@ -33,7 +32,65 @@
 <body>
 
 <!-- start -->
-	<jsp:include page = "../../../infra/common/user/mainHeader.jsp" />
+<div class="skipnaiv">
+		<a href="#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
+	</div>
+	<div class="cgvwrap">
+		<!-- 최상단 광고 -->
+		<div class="cgv-ad-wrap" id="cgv_main_ad">
+	        <div id="TopBarWrapper" class="sect-head-ad">
+	            <div class="top_extend_ad_wrap">
+	                <div class="adreduce" id="adReduce" style="background-color:#0C0F14; text-align:center;border:0">                    
+				   		 <div class="cgv_ad_top" style="position:relative;width:980px;height:80px;margin:0 auto">
+				                 <!--배너이미지-->
+				            <img src="/resources/images/user/980x801.jpg" alt="한산광고" border="0"/>
+				   		 </div>                
+	                </div> 
+	                <div class="adextend" id="adExtend"></div>
+	            </div>
+	        </div>    
+ 		 </div> 
+		<!-- header -->
+		<div class="header">
+			<div class="header_content">
+				<div class="contents">
+					 <h1 onclick="">
+					 	<a href="/home"><img src="/resources/images/user/logoRed.png" alt="CGV"></a>
+					 </h1>
+				<!-- /Advertisement -->
+					<ul class="memberInfo_wrap">
+						<li><a href="/member/loginForm"><img src="/resources/images/user/loginPassword.png" alt="로그인"><span>로그인</span></a></li>
+						<li><a href="/member/signupForm"><img src="/resources/images/user/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="nav" style="left: 0px;">
+				<div class="contents">
+					<h1>
+						<a href="/home" tabindex="-1"><img src="/resources/images/user/logoWhite.png" alt="CGV"></a>
+					</h1>
+					<ul class="nav_menu">
+						<li>
+							<h2>
+								<a href="/home">홈</a>
+							</h2>
+						</li>
+						<li>
+							<h2>
+								<a href="/movie/movieList">영화</a>
+							</h2>
+						</li>
+						<li>
+							<h2>
+								<a href="/purchase/ticketingForm"><strong>예매</strong></a>
+							</h2>
+						</li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 		<!-- E Header -->
 		<!-- S Contaniner -->
 		<div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
@@ -45,7 +102,7 @@
     				<div class="sect-login">
         				<div class="box-login">
             				<h3 class="hidden">회원 로그인</h3>
-				            <form id="form1" method="post" action="/member/login">
+				            <form id="form1" method="post">
 					            <fieldset style="text-align: center;">
 					                <legend>회원 로그인</legend>
 					                <p style="font-size: 120%; margin-left: -130px;">아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</p>
@@ -56,7 +113,7 @@
 					                <div class="save-id" style="margin-left: 202px; padding-top: 5px;"> 
 					                	<input type="checkbox" id="loginSet"><label for="save_id">아이디 저장</label>
 					                </div>
-					                <button type="submit" id="submit" title="로그인" style="margin-left: -120px;"><span>로그인</span></button>
+					                <button type="button" id="btnLogin" title="로그인" style="margin-left: -120px;"><span>로그인</span></button>
 					                <div class="login-option" style="margin-left: 215px;">
 					                    <a href="/member/forgotidForm">아이디 찾기</a>
 					                    <a href="/member/forgotPasswordForm">비밀번호 찾기</a>
@@ -96,5 +153,28 @@
 		<%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 		<!-- footer_area (s) -->
 <!-- end -->
+	<script>
+	$("#btnLogin").on("click", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/loginProc"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "ifMmId" : $("#ifMmId").val(), "ifMmPassWord" : $("#ifMmPassWord").val()}
+			,success: function(response) {
+				if(response.rt == "success") {
+						location.href = "/home";
+				} else {
+					alert("회원없음");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	</script>
 </body>
 </html>
