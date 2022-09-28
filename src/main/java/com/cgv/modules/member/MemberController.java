@@ -34,13 +34,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "memberList")
-	public String memberList(Model model, @ModelAttribute("vo") MemberVo vo) throws Exception{
+	public String memberList(Model model, @ModelAttribute("vo") MemberVo vo, HttpSession httpSession) throws Exception{
 	
 		setSearchAndPaging(vo);
 		
 		System.out.println("답: " + vo.getTotalRows());
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		System.out.println("vo.getShOption(): " + vo.getShOption());
+		
+		System.out.println(httpSession.getAttribute("sessMId"));
+		System.out.println(httpSession.getAttribute("sessMName"));
+		System.out.println(httpSession.getAttribute("sessMSeq"));
 		
 		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);
@@ -178,12 +182,28 @@ public class MemberController {
 				httpSession.setAttribute("sessId", rtMember.getIfMmId());
 				httpSession.setAttribute("sessName", rtMember.getIfMmName());
 				httpSession.setAttribute("sessNickname", rtMember.getIfMmNickname());
-				/*
-				 * System.out.println(httpSession.getAttribute("sessId"));
-				 * System.out.println(httpSession.getAttribute("sessName"));
-				 * System.out.println(httpSession.getAttribute("sessSeq"));
-				 * System.out.println(httpSession.getAttribute("sessNickName"));
-				 */
+				
+				returnMap.put("rt", "success");
+			} else {
+				returnMap.put("rt", "fail");
+			}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "loginMProc")
+	public Map<String, Object> loginMProc(Member dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		Member rtMember = service.loginM(dto);
+
+			if (rtMember != null) {
+				httpSession.setMaxInactiveInterval(60 * 30); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessMSeq", rtMember.getIfMmSeq());
+				httpSession.setAttribute("sessMId", rtMember.getIfMmId());
+				httpSession.setAttribute("sessMName", rtMember.getIfMmName());
+				httpSession.setAttribute("sessMNickname", rtMember.getIfMmNickname());
+				
 				returnMap.put("rt", "success");
 			} else {
 				returnMap.put("rt", "fail");
@@ -205,4 +225,14 @@ public class MemberController {
 		returnMap.put("rt", "success");
 		return returnMap;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "logoutMProc")
+	public Map<String, Object> logoutMProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
 }

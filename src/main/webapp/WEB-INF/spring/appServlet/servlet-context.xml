@@ -23,4 +23,26 @@
 	
 	<context:component-scan base-package="com.cgv" />
 	
+	<!-- session interceptor s 2022.03.13 for logincheck -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/member/loginForm" />
+			<exclude-mapping path="/member/signupForm" />
+			<exclude-mapping path="/member/signupInst" />
+			<exclude-mapping path="/member/forgotIdForm" />
+			<exclude-mapping path="/member/forgotPasswordForm" />
+			<exclude-mapping path="/member/loginProc" />
+			<exclude-mapping path="/member/loginMProc" />
+			<exclude-mapping path="/home" />
+			<exclude-mapping path="/first" />
+			<exclude-mapping path="/main" />
+			<exclude-mapping path="/movie/movieList" />
+			<exclude-mapping path="/movie/movieChartView" />
+			<exclude-mapping path="/resources/**" />
+			<beans:bean id="checkLoginSessionInterception" class="com.cgv.common.interceptor.CheckLoginSessionInterception"/>
+		</interceptor>
+	</interceptors>	
+	<!-- session interceptor e 2022.03.13 for logincheck -->
+	
 </beans:beans>

@@ -66,6 +66,11 @@ public class MemberServiceImpl implements MemberService {
 		return dao.login(dto);
 	}
 	
+	@Override
+	public Member loginM(Member dto) throws Exception{
+		dto.setIfMmPassWord(UtilSecurity.encryptSha256(dto.getIfMmPassWord()));
+		return dao.loginM(dto);
+	}
 	
 	
 }

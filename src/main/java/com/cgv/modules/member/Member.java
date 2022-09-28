@@ -19,8 +19,15 @@ public class Member {
 	private Integer ifMmAddress_homenumber;
 	private String ifMmAddress_detail;
 	private String ifMmNickname;
+	private Integer ifMmMangerNy;
 	
 	
+	public Integer getIfMmMangerNy() {
+		return ifMmMangerNy;
+	}
+	public void setIfMmMangerNy(Integer ifMmMangerNy) {
+		this.ifMmMangerNy = ifMmMangerNy;
+	}
 	public String getIfMmSeq() {
 		return ifMmSeq;
 	}

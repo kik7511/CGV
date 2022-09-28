@@ -2,6 +2,8 @@ package com.cgv.modules.code;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,7 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeList")
-	public String codeList(Model model, @ModelAttribute("vo") CodeVo vo) throws Exception{
+	public String codeList(Model model, @ModelAttribute("vo") CodeVo vo, HttpSession httpSession) throws Exception{
 		
 		setSearchAndPaging(vo);
 		
@@ -38,6 +40,10 @@ public class CodeController {
 		System.out.println("vo.getShDelNy(): " + vo.getShDelNy());
 		System.out.println("vo.getShOption(): " + vo.getShOption());
 		System.out.println("vo.getShOptionDate(): " + vo.getShOptionDate());
+		
+		System.out.println(httpSession.getAttribute("sessMId"));
+		System.out.println(httpSession.getAttribute("sessMName"));
+		System.out.println(httpSession.getAttribute("sessMSeq"));
 		
 		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);

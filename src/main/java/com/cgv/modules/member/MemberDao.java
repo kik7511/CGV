@@ -64,4 +64,8 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".login", dto);
 	} 
 	
+	public Member loginM(Member dto) {
+		return sqlSession.selectOne(namespace + ".loginM", dto);
+	} 
+	
 }

@@ -75,7 +75,7 @@
                                             <img src="/resources/images/user/grade-${list.mAgeLimit}.png" alt="연령제한">
                                         </div>
                                         <div class="movieChart_btn_wrap">
-                                            <a href="/movie/movieInfoView" class="btn_movieChart_detail">상세보기</a>
+                                            <a href="/movie/movieInfoView?mSeq=${list.mSeq}" class="btn_movieChart_detail">상세보기</a>
                                             <a href="/purchase/ticketingForm" class="btn_movieChart_ticketing">예매하기</a>
                                         </div>
                                     </div>

@@ -144,6 +144,22 @@
 		WHERE 1=1
 			AND ifMmId = #{ifMmId}
 			AND ifMmpassWord = #{ifMmPassWord}
+			AND a.ifMmMangerNy = 0
+				
+	</select>
+	
+	<select id="loginM" resultMap="resultMapObj">
+	SELECT
+		a.ifMmSeq
+		,a.ifMmId
+		,a.ifMmPassWord
+		,a.ifMmNickname
+		,a.ifMmName
+	FROM infrMember a
+	WHERE 1=1
+		AND ifMmId = #{ifMmId}
+		AND ifMmpassWord = #{ifMmPassWord}
+		AND ifMmMangerNy = 1
 	</select>
 	
 </mapper>	

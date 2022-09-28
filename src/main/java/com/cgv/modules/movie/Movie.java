@@ -3,6 +3,7 @@ package com.cgv.modules.movie;
 import java.util.Date;
 
 public class Movie {
+	
 	private String mSeq;
 	private String mNameKor;
 	private String mNameEn;
@@ -14,7 +15,35 @@ public class Movie {
 	private double mRate;
 	private Integer src;
 	private Integer mGoldEgg;
+	private String ssSeq;
+	private String sfSeq;
+	private Integer sfDiv;
+	private String sfName;
 	
+	public String getSsSeq() {
+		return ssSeq;
+	}
+	public void setSsSeq(String ssSeq) {
+		this.ssSeq = ssSeq;
+	}
+	public String getSfSeq() {
+		return sfSeq;
+	}
+	public void setSfSeq(String sfSeq) {
+		this.sfSeq = sfSeq;
+	}
+	public Integer getSfDiv() {
+		return sfDiv;
+	}
+	public void setSfDiv(Integer sfDiv) {
+		this.sfDiv = sfDiv;
+	}
+	public String getSfName() {
+		return sfName;
+	}
+	public void setSfName(String sfName) {
+		this.sfName = sfName;
+	}
 	public Integer getmGoldEgg() {
 		return mGoldEgg;
 	}

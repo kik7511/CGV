@@ -22,4 +22,8 @@ public class MovieDao {
 		return list;
 	}
 	
+	public Movie selectOne(MovieVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOne", vo);
+	}
+	
 }

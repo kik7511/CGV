@@ -2,6 +2,8 @@ package com.cgv.modules.codegroup;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,14 +27,19 @@ public void setSearchAndPaging(CodeGroupVo vo) throws Exception{
 }
 	
 	@RequestMapping(value = "codeGroupList")
-	public String codeGroupList(Model model, @ModelAttribute("vo") CodeGroupVo vo) throws Exception{
+	public String codeGroupList(Model model, @ModelAttribute("vo") CodeGroupVo vo, HttpSession httpSession) throws Exception{
 		
 		setSearchAndPaging(vo);
+		
 		
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		System.out.println("vo.getShOption(): " + vo.getShOption());
 		System.out.println("vo.getShOptionDate(): " + vo.getShOptionDate());
 		System.out.println("vo.getShDelNy(): " + vo.getShDelNy());
+		
+		System.out.println(httpSession.getAttribute("sessMId"));
+		System.out.println(httpSession.getAttribute("sessMName"));
+		System.out.println(httpSession.getAttribute("sessMSeq"));
 		
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
