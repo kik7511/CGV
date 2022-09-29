@@ -157,18 +157,6 @@ public class MemberController {
 		return returnMap;
 	}
 	
-	/*
-	 * @RequestMapping(value = "login") public String login(Member dto,
-	 * HttpServletRequest request) throws Exception { Member login =
-	 * service.login(dto);
-	 * 
-	 * if(login != null) { System.out.println("로그인 성공"); HttpSession session =
-	 * request.getSession(); String id = login.getIfMmId(); String nickName =
-	 * login.getIfMmNickname(); session.setAttribute("loginId", id);
-	 * session.setAttribute("ifMmNickName", nickName); System.out.println(id);
-	 * System.out.println(nickName); }else { System.out.println("로그인 실패"); } return
-	 * "redirect:/home"; }
-	 */
 	@ResponseBody
 	@RequestMapping(value = "loginProc")
 	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
@@ -182,6 +170,7 @@ public class MemberController {
 				httpSession.setAttribute("sessId", rtMember.getIfMmId());
 				httpSession.setAttribute("sessName", rtMember.getIfMmName());
 				httpSession.setAttribute("sessNickname", rtMember.getIfMmNickname());
+				httpSession.setAttribute("sessRank", rtMember.getIfMmRank());
 				
 				returnMap.put("rt", "success");
 			} else {

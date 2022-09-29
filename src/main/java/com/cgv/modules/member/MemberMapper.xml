@@ -140,6 +140,7 @@
 			,a.ifMmPassWord
 			,a.ifMmNickname
 			,a.ifMmName
+			,a.ifMmRank
 		FROM infrMember a
 		WHERE 1=1
 			AND ifMmId = #{ifMmId}

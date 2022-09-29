@@ -42,7 +42,7 @@ public class HomeController {
 		System.out.println(httpSession.getAttribute("sessId"));
 		System.out.println(httpSession.getAttribute("sessName"));
 		System.out.println(httpSession.getAttribute("sessSeq"));
-		
+		System.out.println(httpSession.getAttribute("sessRank"));
 		return "infra/main/user/main";
 	}
 	

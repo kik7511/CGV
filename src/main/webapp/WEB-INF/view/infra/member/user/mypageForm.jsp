@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="CodeServiceImpl" class="com.cgv.modules.code.CodeServiceImpl"/>
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
@@ -50,7 +51,9 @@
 							<a href="#menu" id="skipPersoninfo">개인화영역 건너띄기</a>
 						</div>
 						<div class="sect-person-info">
-							<h2 class="hidden">개인화 영역</h2> 
+							<h2 class="hidden">개인화 영역</h2>
+							<input type="hidden" name = "sessSeq" value="<c:out value="${sessSeq}"/>"/>
+							<c:set var="listCodeRank" value="${CodeServiceImpl.selectListCachedCode('14')}"/>
 							<div class="box-image">
 								<span class="thumb-image">
 									<img src="/resources/images/user/default_profile.gif" alt="김대겸님 프로필 사진" onerror="errorImage(this, {'type':'profile'})">
@@ -59,15 +62,26 @@
 							</div>
 							<div class="box-contents newtype">
 								<div class="person-info">
-									<strong>김대겸님</strong>
-									<em>kr00456</em>
-									<span>닉네임 : 탱탕구 </span>
+									<strong>${sessName}님</strong>
+									<em>${sessId}</em>
+									<span>닉네임 : ${sessNickname}</span>
 									<button id="go_edit_page" type="button" title="새창열림">나의 정보 변경</button>
 								</div>
 								<div class="grade-info">
-									<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
-											현재 고객등급 조정 기간입니다.
-									</p>
+									<c:choose>
+										<c:when test="${empty sessRank || sessRank eq 0}">
+											<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
+													현재 고객등급 조정 기간입니다.
+											</p>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${listCodeRank}" var="listRank" varStatus="statusRank">
+												<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
+													<c:if test="${listRank.ccSeq eq sessRank}">${listRank.ccCodeName} 회원이십니다. 환영합니다</c:if>	
+												</p>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 									<button type="button" id="view_usergrade" class="round black"><span>MY 지난등급이력 보기</span></button> 
 									<div class="mycgv_btn_special2">
 									<!-- 대구 아이피접속자 중 : 동성로 미가입 고객시 a.special_pop_text 노출/ 가입 고객은 a.special0_pop 노출 부탁드립니다.

@@ -20,8 +20,15 @@ public class Member {
 	private String ifMmAddress_detail;
 	private String ifMmNickname;
 	private Integer ifMmMangerNy;
+	private Integer ifMmRank;
 	
 	
+	public Integer getIfMmRank() {
+		return ifMmRank;
+	}
+	public void setIfMmRank(Integer ifMmRank) {
+		this.ifMmRank = ifMmRank;
+	}
 	public Integer getIfMmMangerNy() {
 		return ifMmMangerNy;
 	}

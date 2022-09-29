@@ -85,7 +85,11 @@
 												</tr>
 												<tr>
 													<th scope="row">비밀번호 확인</th>
-													<td><input type="password" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmPasswordRe" id="ifMmPassWordkRe"></td>													
+													<td>
+														<input type="password" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px; position: relative;" name="ifMmPasswordRe" id="ifMmPassWordkRe">
+														<div id="alert-success" style="display: none; margin-left: -5px; position: relative; text-align: left;">비밀번호가 일치합니다.</div>
+    													<div id="alert-danger" style="display: none; color: #d92742; margin-left: -5px; font-weight: bold; position: relative; text-align: left;">비밀번호가 일치하지 않습니다.</div>
+													</td>
 												</tr>
 												<tr>
 													<th scope="row">이메일</th>
@@ -96,6 +100,7 @@
 															</span>
 															<span class="symbol">@</span>
                                                             <select title="이메일 도메인 선택" data-control="emailSelector" name="ifMmEmailAddress" id="ifMmEmailAddress">
+                                                            	<option value="">선택하세요</option>
 	                                                            <c:forEach items="${listCodeEmail}" var="listEmail" varStatus="statusEmail">
 																	<option value="${listEmail.ccSeq}" <c:if test="${item.ifMmEmailAddress eq listEmail.ccSeq}">selected</c:if>>${listEmail.ccCodeName}</option>
 																</c:forEach>
@@ -184,6 +189,28 @@
 					}
 				});
 		});
+	
+	/* 비밀번호 확인 */
+	
+	
+	
+	$("#ifMmPassWordkRe").on("focusout", function(){
+		var password = $("#ifMmPassWord");
+		var passwordRe = $("#ifMmPassWordkRe");
+		
+		if(password != '' && passwordRe == ''){
+			null;
+		}else if(password != "" || passwordRe != ""){
+			if(password.val() == passwordRe.val()){
+				$("#alert-success").css('display', 'block');
+				$("#alert-danger").css('display', 'none');
+			}else{
+				$("#alert-success").css('display', 'none');
+				$("#alert-danger").css('display', 'block');
+				passwordRe.focus();
+			}
+		}
+	});
 	</script>
 <!-- end -->
 </body>
