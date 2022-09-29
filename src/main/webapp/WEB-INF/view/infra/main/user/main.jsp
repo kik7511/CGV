@@ -48,7 +48,7 @@
                         <span id="ctl00_PlaceHolderContent_AD_DESCRIPTION_NM" class="movieSelection_txt">나라의 운명을 바꾼 압도적 승리!<br>7월 27일 대개봉!</span>
                         <div class="movieSelection_video_controller_wrap">
                         	<!-- 한산 상세보기로 이동 -->
-                            <a href="/movie/movieInfoView" id="ctl00_PlaceHolderContent_AD_CLIP_DETAIL_URL" class="btn_movieSelection_detailView">상세보기</a>
+                            <a href="/movie/movieInfoView?mSeq=3" id="ctl00_PlaceHolderContent_AD_CLIP_DETAIL_URL" class="btn_movieSelection_detailView">상세보기</a>
                             <!-- 시작/소리 버튼 -->
                             <a href="#none" id="ctl00_PlaceHolderContent_playStop" class="btn_movieSelection_playStop active"></a>
                             <a href="#none" id="ctl00_PlaceHolderContent_soundOnOff" class="btn_movieSelection_soundOnOff"></a>
@@ -93,8 +93,8 @@
                    </div>
                 </div>
             </div>
-<!-- E > 무비차트 | 상영예정작 -->
-<!-- S > EVENT -->
+			<!-- E > 무비차트 | 상영예정작 -->
+			<!-- S > EVENT -->
 			<div id="ctl00_PlaceHolderContent_event_wrap" class="event_wrap">
 				<div class="contents">
             		<div class="event_title_wrap">
