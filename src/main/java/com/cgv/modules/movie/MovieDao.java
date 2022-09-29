@@ -26,4 +26,12 @@ public class MovieDao {
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
 	
+	public List<Movie> selectMovie(MovieVo vo){
+		return sqlSession.selectList(namespace + ".selectMovie", vo);
+	}
+	
+	public List<Movie> selectGenre(MovieVo vo){
+		return sqlSession.selectList(namespace + ".selectGenre", vo);
+	}
+	
 }

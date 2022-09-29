@@ -51,6 +51,7 @@
 					<div class="sect-base-movie">
 						<c:set var="listCodeCountry" value="${CodeServiceImpl.selectListCachedCode('6')}"/>
 						<c:set var="listCodeAge" value="${CodeServiceImpl.selectListCachedCode('7')}"/>
+						<c:set var="listCodeGenre" value="${CodeServiceImpl.selectListCachedCode('5')}"/>
 						<h3><strong><c:out value="${item.mNameKor}" /></strong>기본정보</h3>
 						<div class="box-image">
 							<a href="" title="포스터 크게 보기 새창" target="_blank">
@@ -74,22 +75,27 @@
         					<div class="spec">
             					<dl>
                 					<dt>감독 :&nbsp;</dt>
+                					<c:forEach items="${movie}" var="movie" varStatus="status">
                 					<dd>
-				                        <span>카일 발다 </span>                    
+				                        <span><c:if test="${movie.sfDiv eq 8}"><c:out value="${movie.sfName}"/></c:if></span>                    
 					                </dd>
-                
+									</c:forEach>                
 									<dd>
 					                </dd>
 					                <dt>&nbsp;/ 배우 :&nbsp;</dt>
                 					<dd class="on">
-				                        <span>스티브 카렐</span>                   
-				                	        ,&nbsp;
-                				        <span>타라지 P. 헨슨</span>                    
-                        					,&nbsp;
-				                        <span>양자경</span>                    
-                        
+										<c:forEach items="${movie}" var="movie" varStatus="status">
+											<span><c:if test="${movie.sfDiv eq 8}"><c:out value="${movie.sfName}"/></c:if></span>                   
+				                        </c:forEach>                       
                 					</dd>
-					                <dt>장르 :&nbsp;애니메이션,&nbsp;어드벤처,&nbsp;코미디</dt> 
+                					<dt>장르 :
+	                					<c:forEach items="${listCodeGenre}" var="listGenre" varStatus="statusGenre">
+	                						<c:forEach items="${genre}" var="genre" varStatus="status"> 
+			                					<c:if test="${listGenre.ccSeq eq genre.gnDiv}"><c:out value="${listGenre.ccCodeName}"/></c:if>
+		                					</c:forEach>
+	                					</c:forEach>
+                					</dt>
+					                <!-- <dt>장르 :&nbsp;애니메이션,&nbsp;어드벤처,&nbsp;코미디</dt> --> 
                						<dd></dd>
                 					<dt>&nbsp;/ 기본 :&nbsp;</dt>
                 					<dd class="on">
@@ -133,31 +139,33 @@
                     				<h4>감독</h4>
                 				</div>
                 				<div class="character">
-                					<div class="cell">
-                						<img src="/resources/images/user/120x150_minons.jpg" name="Movie_Director" title="감독">
-                						<span class="staff">조셉 코신스키</span>
-                					</div>
+                				<c:forEach items="${movie}" var="movie" varStatus="statusMovie">
+                					<c:if test="${movie.sfDiv eq 8}">
+	                					<div class="cell">
+	                						<img src="/resources/images/user/staff/${movie.sfSrc}.jfif" title="감독">
+	                						<span class="staff">${movie.sfName}</span>
+	                					</div>
+                					</c:if> 
+               					</c:forEach>
                 				</div>
 				            </div>
+				            
 				            <div id="ctl00_PlaceHolderContent_Section_Trailer" class="sect-trailer" style="padding-bottom: 100px;">
 								<div class="heading">
                     				<h4>출연 배우</h4>
                 				</div>
                 				<div class="character">
-                					<div class="cell">
-                						<img src="/resources/images/user/steven.jpg" name="Movie_actor1" title="주연">
-                						<span class="staff">스티븐 카렐</span>
-                					</div>
-                					<div class="cell">
-                						<img src="/resources/images/user/tirage.jpg" name="Movie_actor2" title="주연">
-                						<span class="staff">티라지 P.헨슨</span>
-                					</div>
-                					<div class="cell">
-                						<img src="/resources/images/user/yang.jpg" name="Movie_actor3" title="주연">
-                						<span class="staff">양자경</span>
-                					</div>
+               						<c:forEach items="${movie}" var="movie" varStatus="statusMovie">
+	                					<c:if test="${movie.sfDiv eq 9}">
+		                					<div class="cell">
+		                						<img src="/resources/images/user/staff/${movie.sfSrc}.jfif" title="감독">
+		                						<span class="staff">${movie.sfName}</span>
+		                					</div>
+	                					</c:if> 
+              						</c:forEach>
                 				</div>
-				            </div>	
+				            </div>
+				            	
             			</div>
             			
             			<div class="col-aside">

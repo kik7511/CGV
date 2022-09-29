@@ -29,10 +29,42 @@
 			,a.src
 			,a.mGoldEgg
 		FROM Movie a
-		INNER JOIN searchStaff b ON b.Movie_mSeq = a.mSeq 
-		INNER JOIN staff c ON c.sfSeq = b.staff_sfSeq
-		HAVING 1=1
+		WHERE 1=1
 			AND mSeq = #{mSeq}
+	</select>
+	
+	<select id="selectMovie" resultMap="resultMapObj">
+		SELECT
+			a.mSeq
+			,a.mNameKor
+			,a.mNameEn
+			,a.mAgeLimit
+			,a.mRunningTime
+			,a.mCountry
+			,a.mOpenDate
+			,a.mExplantion
+			,a.mRate
+			,a.src
+			,a.mGoldEgg
+            ,c.sfName
+            ,c.sfDiv
+            ,c.sfSrc
+    		,c.sfSeq
+		FROM Movie a
+		LEFT JOIN searchStaff b ON b.Movie_mSeq = a.mSeq 
+		LEFT JOIN staff c ON c.sfSeq = b.staff_sfSeq
+		HAVING 1=1
+			AND mSeq = ${mSeq}
+	</select>
+	
+	<select id="selectGenre" resultMap="resultMapObj">
+		SELECT
+			a.mSeq
+			,b.gnDiv
+		FROM Movie a
+		INNER JOIN genre b ON b.Movie_mSeq = a.mSeq
+		HAVING 1=1
+			AND mSeq = ${mSeq}
 	</select>
 	
 </mapper>	

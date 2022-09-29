@@ -21,4 +21,14 @@ public class MovieServiceImpl implements MovieService {
 	public Movie selectOne(MovieVo vo) throws Exception{
 		return dao.selectOne(vo);
 	}
+	
+	@Override
+	public List<Movie> selectMovie(MovieVo vo) throws Exception{
+		return dao.selectMovie(vo);
+	}
+	
+	@Override
+	public List<Movie> selectGenre(MovieVo vo) throws Exception{
+		return dao.selectGenre(vo);
+	}
 }

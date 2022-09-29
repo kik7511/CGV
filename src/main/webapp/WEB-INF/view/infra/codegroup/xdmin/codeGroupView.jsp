@@ -36,67 +36,7 @@
 
 <!-- start -->
 	<div>
-		<nav class="navbar bg-light">
-			<div class="container">
-				<a class="navbar-brand" href="/codeGroup/codeGroupList">
-					<img src="/resources/images/logoRed.png" alt="CGV" style="width: 120px; height: 50px; margin-left: 40px;">
-				</a>
-			</div>
-			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style="margin-right: 30px;">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-				<div class="offcanvas-header border-bottom">
-					<h5 class="offcanvas-title" id="offcanvasNavbarLabel">관리자</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-				</div>
-				<div class="offcanvas-body">
-					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">로그인</a>
-							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">로그인</h5>
-											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
-										<div class="modal-body">
-											<form >
-												<img class="mb-2" src="/resources/images/logoRed.png" alt="" width="120" height="50">
-												<h1 class="h3 mb-3 fw-normal">관리자 로그인</h1>
-												<div class="form-floating">
-													<input type="email" class="form-control" id="dminId" placeholder="id@example.com">
-													<label for="floatingInput">아이디</label>
-												</div>
-												<div class="form-floating">
-													<input type="password" class="form-control" id="dminPassword" placeholder="Password">
-													<label for="floatingPassword">비밀번호</label>
-												</div>
-												<div class="checkbox mb-3">
-													<label>
-														<input type="checkbox" value="remember-me"> 아이디 저장
-													</label>
-												</div>
-													<button class="w-100 btn btn-lg btn-danger" type="submit" onclick="location.href='./firstpage.html'">로그인</button>
-													<!-- <button class="w-100 btn btn-lg" type="button" style="margin-top: 2px; background-color: rgb(254, 229, 0);">
-														<img alt="카카오톡 로고" src="../img/kakao.png" class="img-fluid">
-														<span>카카오 계정으로 로그인</span>
-													</button> -->
-												<p class="mt-5 mb-3 text-muted">© 2022 CGV.All Rights Reserved</p>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">회원가입</a>
-						</li>
-					</ul>
-				</div>	
-			</div>
-		</nav>		
+		<%@include file = "../../../infra/common/xdmin/mainHeader.jsp" %>		
 		<nav class="container py-2" id="menu">
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
@@ -384,17 +324,7 @@
 				</div>
 			</div>
 			<div style="margin-top: 8em;"></div>
-			<div class="container">
-				<footer class="py-3 my-4">
-					<ul class="nav justify-content-center border-bottom pb-3 mb-3 text-muted">
-						<li class="nav-item">(주)CGV&nbsp; |</li>
-						<li class="nav-item"> &nbsp;대표 김대겸&nbsp; |</li>
-						<li class="nav-item"> &nbsp;사업자등록번호 123-45-789&nbsp; |</li>
-						<li class="nav-item"> &nbsp;서울시 서초구 서초대로 77번길 55 3층</li>
-					</ul>
-					<p class="text-center text-muted">© 2022 GGV. All Rights Reserved</p>
-				</footer>
-			</div>
+			<%@include file = "../../../infra/common/xdmin/mainFooter.jsp" %>
 		</form>
 	</div>
 	

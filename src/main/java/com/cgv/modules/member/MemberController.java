@@ -145,7 +145,7 @@ public class MemberController {
 		public Map<String, Object> checkId(Member dto) throws Exception {
 	
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		
+
 		int result = service.checkId(dto);
 		System.out.println("값은" + result);
 	

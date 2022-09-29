@@ -34,11 +34,13 @@
 			<exclude-mapping path="/member/forgotPasswordForm" />
 			<exclude-mapping path="/member/loginProc" />
 			<exclude-mapping path="/member/loginMProc" />
+			<exclude-mapping path="/member/checkId" />
 			<exclude-mapping path="/home" />
 			<exclude-mapping path="/first" />
 			<exclude-mapping path="/main" />
 			<exclude-mapping path="/movie/movieList" />
 			<exclude-mapping path="/movie/movieChartView" />
+			<exclude-mapping path="/movie/movieInfoView" />
 			<exclude-mapping path="/resources/**" />
 			<beans:bean id="checkLoginSessionInterception" class="com.cgv.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>

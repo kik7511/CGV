@@ -27,7 +27,11 @@ public class MovieController {
 	@RequestMapping(value = "movieInfoView")
 	public String movieInfoView(@ModelAttribute("vo") MovieVo vo, Model model) throws Exception{
 		Movie item = service.selectOne(vo);
+		List<Movie> movie = service.selectMovie(vo);
+		List<Movie> genre = service.selectGenre(vo);
 		model.addAttribute("item", item);
+		model.addAttribute("movie", movie);
+		model.addAttribute("genre", genre);
 		
 		return "infra/movie/user/movieInfoView";
 	}

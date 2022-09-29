@@ -19,7 +19,21 @@ public class Movie {
 	private String sfSeq;
 	private Integer sfDiv;
 	private String sfName;
+	private Integer gnDiv;
+	private String sfSrc;
 	
+	public String getSfSrc() {
+		return sfSrc;
+	}
+	public void setSfSrc(String sfSrc) {
+		this.sfSrc = sfSrc;
+	}
+	public Integer getGnDiv() {
+		return gnDiv;
+	}
+	public void setGnDiv(Integer gnDiv) {
+		this.gnDiv = gnDiv;
+	}
 	public String getSsSeq() {
 		return ssSeq;
 	}
