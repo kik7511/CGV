@@ -42,30 +42,6 @@
 			<!-- Contents Area -->
 			<div id="contents" class="">
 				<!-- Contents Start -->
-				<script type="text/javascript">
-				//<![CDATA[
-					(function ($) {
-						$(function () {
-				
-							//특별관 >
-				
-				
-							//동성로타운
-							$('.special1_pop').on('click', function () {
-								openDownTown();
-								return false;
-							});
-				
-				
-				
-							function openDownTown() {
-								//var win = window.open('http://section.cgv.co.kr/event/2016/0419_dongsungro_town/pop_service.aspx', 'winDownTown', 'left=0,top=0,width=670,height=800,toolbar=no,scrollbars=yes');
-								//win.focus();
-							}
-						});
-					})(jQuery);
-					//]]>
-				</script>
 				<div class="sect-common">
 					<input type="hidden" id="isTown" name="isTown" value="Y">
 					<input type="hidden" id="userTownMemberInfo" name="userTownMemberInfo" value="">
