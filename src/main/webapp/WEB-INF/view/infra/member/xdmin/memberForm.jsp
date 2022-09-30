@@ -10,7 +10,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>memberForm</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base
+	
+	
+	/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -30,6 +33,60 @@
 		.subtitle{margin-top: 15px;}		
 		.col.img_box{width: 190px; margin-right: 10px; margin-left: 20px; margin-bottom: 20px; margin-top: 20px; position: relative;}
 		.col.img_box img{width: 100%; height: 260px;}
+		/* #name-msg{font-size: 10px;}
+		#id-msg{font-size: 10px;}
+		#ifmmIdFeedback{font-size: 12px;} */
+		.input-control {
+		    display: flex;
+		    flex-direction: column;
+		}
+		
+		.input-control input {
+		    border: 2px solid #f0f0f0;
+		    border-radius: 4px;
+		    display: block;
+		    font-size: 12px;
+		    padding: 10px;
+		    width: 100%;
+		}
+		
+		.input-control select {
+		    border: 2px solid #f0f0f0;
+		    border-radius: 4px;
+		    display: block;
+		    font-size: 12px;
+		    padding: 10px;
+		    width: 100%;
+		    background: white;
+		    height: 42px;
+		}
+		
+		.input-control input:focus {
+		    outline: 0;
+		}
+		
+		.input-control.success input {
+		    border-color: #09c372;
+		}
+		
+		.input-control.error input {
+		    border-color: #ff3860;
+		}
+		
+		.input-control .error {
+		    color: #ff3860;
+		    font-size: 15px;
+		    height: 15px;
+		    margin: 0 5px;
+		}
+		
+		.input-control.success select {
+		    border-color: #09c372;
+		}
+		
+		.input-control.error select {
+		    border-color: #ff3860;
+		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="fontawesome-free-5.15.1-web/css/fontawesome.min.css">
 </head>
@@ -89,6 +146,8 @@
 														<div class="input-group">
 															<span class="input-group-text">이름</span>
 															<input type="text" class="form-control" id="ifMmName" name = "ifMmName" value='<c:out value="${item.ifMmName}"></c:out>'>
+															<!-- <div class="msg" id="name_msg" name="name_msg" style="display: none;"></div> -->
+															<span class="input-group-text" id="name_msg" name="name_msg" style="display: none;"></span>
 														</div>	
 													</div>
 												</div>
@@ -99,12 +158,42 @@
 														<div class="input-group">
 															<span class="input-group-text">아이디</span>
 															<input type="text" class="form-control" id="ifMmId" name = "ifMmId" value='<c:out value="${item.ifMmId}"></c:out>'>
+															<span class="input-group-text" id="id_msg" name="id_msg" style="display: none;"></span>
+															<span class="input-group-text" id="ifmmIdFeedback" style="display: none;"></span>
 														</div>
 													</div>
 												</div>
 												<div class="row">
-													<div class="col" id= "ifmmIdFeedback"></div>
+													<!-- <div class="col" id= "ifmmIdFeedback"></div> -->
+													<!-- <div class="msg" id="id_msg" name="id_msg" style="display: none;"></div> -->
 												</div>
+											</th>
+										</tr>
+										<tr>
+											<th>
+												<div class="row">
+													<div class="col">
+														<div class="input-group">
+															<span class="input-group-text">비밀번호</span>
+															<input type="password" class="form-control" id="ifMmPassWord" name = "ifMmPassWord" value='<c:out value="${item.ifMmPassWord}"></c:out>'>
+														</div>	
+													</div>
+												</div>
+											</th>
+											<th>
+												<div class="row">
+													<div class="col">
+														<div class="input-group">
+															<span class="input-group-text">비밀번호확인</span>
+															<input type="password" class="form-control" id="ifMmPassWordRe">
+															<span class="input-group-text" id="alert-success" style="display: none">일치</span>
+	    													<span class="input-group-text" id="alert-danger" style="display: none; color: #d92742; font-weight: bold;">불일치</span>
+														</div>
+													</div>
+												</div>
+	<!-- 											<div class="row">
+													<div class="col" id= "ifMmPasswordFeedback"></div>
+												</div> -->
 											</th>
 										</tr>
 										<tr>
@@ -133,6 +222,18 @@
 													</div>
 												</div>
 											</td>
+										</tr>
+										<tr>
+											<th>
+												<div class="row">
+													<div class="col">
+														<div class="input-group">
+															<span class="input-group-text">닉네임</span>
+															<input type="text" class="form-control" id="ifMmNickname" name = "ifMmNickname" value='<c:out value="${item.ifMmNickname}"></c:out>'>
+														</div>	
+													</div>
+												</div>
+											</th>
 										</tr>
 									</table>
 								</div>
@@ -164,7 +265,7 @@
 												<td>
 													<div class="row">
 														<div class="col">
-															<span>직업</span>
+															<span>상태</span>
 														</div>
 													</div>
 												</td>
@@ -185,14 +286,9 @@
 												<td>
 													<div class="row">
 														<div class="col">
-															<select class="form-select">
-																<option value="1">선택</option>
-																<option value="2">학생</option>
-																<option value="3">공무원</option>
-																<option value="4">자영업자</option>
-																<option value="5">직장인</option>
-																<option value="6">전문직</option>
-																<option value="7">무직</option>
+															<select class="form-select" name="ifMmMangerNy">
+																<option value="0" <c:if test="${item.ifMmMangerNy eq 0}">selected</c:if>>사용자</option>
+																<option value="1" <c:if test="${item.ifMmMangerNy eq 1}">selected</c:if>>관리자</option>
 															</select>
 														</div>
 													</div>
@@ -218,7 +314,7 @@
 												<td>
 													<div class="row">
 														<div class="col">
-															<input type="date" class="form-control" name=""id="dob" value='<c:out value="${item.ifMmDob}"></c:out>'>
+															<input type="date" class="form-control" name="ifMmDob"id="dob" value='<fmt:formatDate value="${item.ifMmDob}" pattern="yyyy-MM-dd" />'>
 														</div>
 													</div>
 												</td>
@@ -233,7 +329,7 @@
 															</select>
 														</div>
 														<div class="col">
-															<input type="text" class="form-control" placeholder="전화번호( '-'는 생략하십시오)" name="ifMmPhone">
+															<input type="text" class="form-control" placeholder="전화번호( '-'는 생략하십시오)" name="ifMmPhone" value='<c:out value="${item.ifMmPhone}"></c:out>'>
 														</div>
 													</div>
 												</td>
@@ -309,8 +405,9 @@
 					<ul>
 						<li>
 							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" role="switch" id="" name="">
-								<label class="form-check-label" for="flexSwitchCheckDefault">개인정보 수집 활용 동의(필수)</label>
+								<input type="hidden" id="ifMmMarketingCheckNy" name="ifMmMarketingCheckNy" <c:if test="${item.ifMmMarketing eq 1 }">checked</c:if>>
+								<input class="form-check-input" type="checkbox" id="ifMmMarketing" role="switch"  name="ifMmMarketing" value="0" > 
+								<label class="form-check-label" for="ifMmMarketing">개인정보 수집 활용 동의(필수)</label>
 							</div>
 						</li>
 						<li>
@@ -385,11 +482,31 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/188ea9a4c6.js" crossorigin="anonymous"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="/resources/js/validation.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=036d65cb9b7cdfe66aa8d121ce7c81b4&libraries=services"></script>
 	
 		
 	<script type="text/javascript">
 	//하단 버튼
+	
+	setCheckboxValue = function(obj, targetObj) {
+	   if(obj.is(":checked")){
+		   targetObj.val("1");
+	    } else {
+	    	targetObj.val("0");
+	    }
+	}
+		
+	 validationUpdt = function() {
+            if (!id_regex($('input[name=ifMmId]'), $('input[name=ifMmId]').val(), "입력 필요!", $('#id_msg'))) {
+            	return false;
+            } else if(!name_regex($('input[name=ifMmName]'), $('input[name=ifMmName').val(), "입력 필요!", $('#name_msg'))) {
+                return false;
+            }else{
+            	return true;
+            } 
+		}; 
+	
 	var goUrlList = "/member/memberList"; 				/* #-> */
 	var goUrlInst = "/member/memberInst"; 				/* #-> */
 	var goUrlForm = "/member/memberForm"; 				/* #-> */
@@ -403,11 +520,13 @@
 	
 	var form = $("form[name=myForm]");
 	var formVo = $("form[name=formVo]");
+
 	
 	$("#btnForm").on("click", function(){
 		if (seq.val() == "0" || seq.val() == ""){
-	   		// insert
-	   		form.attr("action", goUrlInst).submit();
+	   		 if(validationUpdt() == false) return false;
+	   		 setCheckboxValue($("#ifMmMarketing"), $("#ifMmMarketingNy"));
+	   		 form.attr("action", goUrlInst).submit();
 	   	} else {
 	   		// update
 	   		/* keyName.val(atob(keyName.val())); */
@@ -554,16 +673,35 @@
 					,data : { "ifMmId" : $("#ifMmId").val() }
 					,success: function(response) {
 						if(response.rt == "success") {
-							document.getElementById("ifmmIdFeedback").innerText = "사용 가능 합니다.";
+							$("#ifmmIdFeedback").css('display', 'block');
+							document.getElementById("ifmmIdFeedback").innerText = "적합";
 							
 						} else {
-							document.getElementById("ifmmIdFeedback").innerText = "사용 불가능 합니다";
+							document.getElementById("ifmmIdFeedback").innerText = "부적합";
 						}
 					}
 					,error : function(jqXHR, textStatus, errorThrown){
 						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 					}
 				});
+		});
+		
+		$("#ifMmPassWordRe").on("focusout", function(){
+			var password = $("#ifMmPassWord");
+			var passwordRe = $("#ifMmPassWordRe");
+			
+			if(password != '' && passwordRe == ''){
+				null;
+			}else if(password != "" || passwordRe != ""){
+				if(password.val() == passwordRe.val()){
+					$("#alert-success").css('display', 'block');
+					$("#alert-danger").css('display', 'none');
+				}else{
+					$("#alert-success").css('display', 'none');
+					$("#alert-danger").css('display', 'block');
+					passwordRe.focus();
+				}
+			}
 		});
 	</script>
 </body>

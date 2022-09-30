@@ -55,10 +55,10 @@
 			            <div class="sect-user">
 			                <ul class="tab-menu-round">
 			                    <li>
-			                        <a href="/user/login/find-account.aspx">아이디 찾기</a>
+			                        <a href="/member/forgotIdForm">아이디 찾기</a>
 			                    </li>
 			                    <li class="on">
-			                        <a href="/user/login/find-pw.aspx?act=pw">비밀번호 찾기</a>
+			                        <a href="/member/forgotPasswordForm">비밀번호 찾기</a>
 			                    </li>
 			                </ul>
 			

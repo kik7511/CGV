@@ -64,7 +64,7 @@
 												<col style="width: 25%;">
 												<col>
 											</colgroup>
-											<tbody">
+											<tbody>
 												<tr class="input">
 													<th scope="row">이름</th>
 													<td>
@@ -73,7 +73,7 @@
 												</tr>
 												<tr>
 													<th scope="row">아이디</th>
-													<td><input type="text" placeholder="아이디를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmId" id="ifMmId"></td>													
+													<td><input type="text" placeholder="아이디를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmId" id="ifMmId"><div id="ifmmIdFeedback" style="text-align: left; margin-left: -7px; "></div></td>
 												</tr>
 												<tr>
 													<th scope="row">닉네임</th>
@@ -86,7 +86,7 @@
 												<tr>
 													<th scope="row">비밀번호 확인</th>
 													<td>
-														<input type="password" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px; position: relative;" name="ifMmPasswordRe" id="ifMmPassWordkRe">
+														<input type="password" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px; position: relative;" name="ifMmPasswordRe" id="ifMmPassWordRe">
 														<div id="alert-success" style="display: none; margin-left: -5px; position: relative; text-align: left;">비밀번호가 일치합니다.</div>
     													<div id="alert-danger" style="display: none; color: #d92742; margin-left: -5px; font-weight: bold; position: relative; text-align: left;">비밀번호가 일치하지 않습니다.</div>
 													</td>
@@ -110,7 +110,7 @@
 												</tr>
 												<tr>
 													<th scope="row">생년월일</th>
-													<td><input type="text" placeholder="날짜를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;"></td>													
+													<td><input type="text" placeholder="yyyy-MM-dd" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmDob"></td>													
 												</tr>
 											</tbody>
 										</table>
@@ -194,9 +194,9 @@
 	
 	
 	
-	$("#ifMmPassWordkRe").on("focusout", function(){
+	$("#ifMmPassWordRe").on("focusout", function(){
 		var password = $("#ifMmPassWord");
-		var passwordRe = $("#ifMmPassWordkRe");
+		var passwordRe = $("#ifMmPassWordRe");
 		
 		if(password != '' && passwordRe == ''){
 			null;

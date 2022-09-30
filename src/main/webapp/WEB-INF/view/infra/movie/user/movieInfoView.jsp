@@ -142,7 +142,14 @@
                 				<c:forEach items="${movie}" var="movie" varStatus="statusMovie">
                 					<c:if test="${movie.sfDiv eq 8}">
 	                					<div class="cell">
-	                						<img src="/resources/images/user/staff/${movie.sfSrc}.jfif" title="감독">
+	                						<c:choose>
+	                							<c:when test="${empty movie.sfSrc}">
+	                								<img src="/resources/images/user/staff/noImage.png" title="noImage">
+	                							</c:when>
+	                							<c:otherwise>
+	                								<img src="/resources/images/user/staff/${movie.sfSrc}.jfif" title="감독">
+	                							</c:otherwise>
+	                						</c:choose>
 	                						<span class="staff">${movie.sfName}</span>
 	                					</div>
                 					</c:if> 

@@ -57,6 +57,7 @@
 			,ifMmAddress_detail
 			,ifMmNickname
 			,ifMmDelNy
+			,ifMmMangerNy
 		)VALUES(
 			#{ifMmName}
 			,#{ifMmGender}
@@ -74,6 +75,7 @@
 			,#{ifMmAddress_detail}
 			,#{ifMmNickname}
 			,0
+			,#{ifMmMangerNy}
 		)
 		<selectKey resultType="String" keyProperty="ifMmSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -107,6 +109,7 @@
 		,ifMmAddress_detail = #{ifMmAddress_detail}
 		,ifMmNickname = #{ifMmNickname}
 		,ifMmDelNy = 0
+		,ifMmMangerNy = #{ifMmMangerNy}
 		WHERE 1=1
 			AND ifMmSeq = #{ifMmSeq}
 	</update>

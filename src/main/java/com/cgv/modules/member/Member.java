@@ -2,15 +2,18 @@ package com.cgv.modules.member;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Member {
 	private String ifMmSeq;
 	private String ifMmName;
 	private Integer ifMmGender;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ifMmDob;
 	private String ifMmId;
 	private String ifMmPassWord;
 	private Integer ifMmTel;
-	private Integer ifMmPhone;
+	private String ifMmPhone;
 	private String ifMmEmail;
 	private Integer ifMmEmailAddress;
 	private Integer ifMmMarketing;
@@ -77,10 +80,10 @@ public class Member {
 	public void setIfMmTel(Integer ifMmTel) {
 		this.ifMmTel = ifMmTel;
 	}
-	public Integer getIfMmPhone() {
+	public String getIfMmPhone() {
 		return ifMmPhone;
 	}
-	public void setIfMmPhone(Integer ifMmPhone) {
+	public void setIfMmPhone(String ifMmPhone) {
 		this.ifMmPhone = ifMmPhone;
 	}
 	public String getIfMmEmail() {

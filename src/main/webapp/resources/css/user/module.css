@@ -902,7 +902,8 @@ div[class^="sect-"] .btn-itemmore{ margin-top:30px;}
 [class|="sect"][class*="chart"] > h4{ margin-top:30px; color:#222222; font-size:21px; font-weight:500;}
 [class|="sect"][class*="chart"] > h4 + ol{ padding-top:20px;}
 [class|="sect"][class*="chart"] > h3:first-child + ol, [class|="sect"][class*="chart"] > h4:first-child + ol{ padding-top:0;}
-[class|="sect"][class*="chart"] > h3:first-child + ol .rank, [class|="sect"][class*="chart"] > h4:first-child + ol .rank,  [class|="sect"][class*="chart"] > .spec + ol .rank{ background:#fb4357;} 
+[class|="sect"][class*="chart"] > h3:first-child + ol .rank, [class|="sect"][class*="chart"] > h4:first-child + ol .rank,  [class|="sect"][class*="chart"] > .spec + ol .rank{ background:#fb4357;}
+[class|="sect"][class*="chart"] > ol:first-of-type .box-image .rank{background:#fb4357;}  
 [class|="sect"][class*="chart"] > h3{ margin-top:30px; color:#222222; font-size:21px; font-weight:500;}
 [class|="sect"][class*="chart"] > h3 + ol{ padding-top:20px;}
 [class|="sect"][class*="chart"] > ol > li{ float:left; width:197px; margin-left:64px; padding-bottom:30px;}

@@ -62,7 +62,7 @@
 	            	<c:forEach items="${list}" var="list" varStatus="status" end="2">
 		                <li>
 		                    <div class="box-image">
-		                        <strong class="rank">No.${list.mSeq}위</strong>	
+		                        <strong class="rank" >No.${list.mSeq}위</strong>	
 		                        <a href="/movie/movieInfoView?mSeq=${list.mSeq}" style="margin-top: 5px;">
 		                        	<span class="thumb-image">
 		                            	<img src="/resources/images/user/${list.src}_320.jpg" alt="포스터" onerror="errorImage(this)">

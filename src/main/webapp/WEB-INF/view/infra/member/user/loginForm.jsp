@@ -102,20 +102,20 @@
     				<div class="sect-login">
         				<div class="box-login">
             				<h3 class="hidden">회원 로그인</h3>
-				            <form id="form1" method="post">
+				            <form id="form1" method="post" onsubmit="return frmCheck();">
 					            <fieldset style="text-align: center;">
 					                <legend>회원 로그인</legend>
 					                <p style="font-size: 120%; margin-left: -130px;">아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</p>
 					                <div class="login" align="center" style="margin-left: -120px;">
-					                    <input type="text" title="아이디" id="ifMmId" name="ifMmId" data-title="아이디를 " data-message="입력하세요." required="required">
-					                    <input type="password" title="패스워드" id="ifMmPassWord" name="ifMmPassWord" data-title="패스워드를 " data-message="입력하세요." required="required">
+					                    <input type="text" title="아이디" id="ifMmId" name="ifMmId" data-title="아이디를 " data-message="입력하세요." required="required" value="kdk7511">
+					                    <input type="password" title="패스워드" id="ifMmPassWord" name="ifMmPassWord" data-title="패스워드를 " data-message="입력하세요." required="required" value="1234">
 					                </div>
 					                <div class="save-id" style="margin-left: 202px; padding-top: 5px;"> 
-					                	<input type="checkbox" id="loginSet"><label for="save_id">아이디 저장</label>
+					                	<input type="checkbox" id="loginSet"><label for="save-id">아이디 저장</label>
 					                </div>
 					                <button type="button" id="btnLogin" title="로그인" style="margin-left: -120px;"><span>로그인</span></button>
 					                <div class="login-option" style="margin-left: 215px;">
-					                    <a href="/member/forgotidForm">아이디 찾기</a>
+					                    <a href="/member/forgotIdForm">아이디 찾기</a>
 					                    <a href="/member/forgotPasswordForm">비밀번호 찾기</a>
 					                </div>
 					            </fieldset>
@@ -130,7 +130,7 @@
 				            <strong>CJ ONE 회원이 아니신가요?</strong>
 				            <span>회원가입하시고 다양한 혜택을 누리세요!</span>
 				            <strong>
-				                <a title="새창" target="_blank" href="/member/singupForm" class="round red"><span>CJ ONE 회원가입하기</span></a>
+				                <a href="/member/signupForm" class="round red"><span>CJ ONE 회원가입하기</span></a>
 				            </strong>
 				            <em>
 				                
@@ -167,7 +167,7 @@
 				if(response.rt == "success") {
 						location.href = "/home";
 				} else {
-					alert("회원없음");
+					alert("아이디 또는 비밀번호를 잘못 입력하셨습니다");
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
