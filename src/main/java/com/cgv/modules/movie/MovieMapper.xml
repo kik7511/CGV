@@ -53,7 +53,7 @@
 		FROM Movie a
 		LEFT JOIN searchStaff b ON b.Movie_mSeq = a.mSeq 
 		LEFT JOIN staff c ON c.sfSeq = b.staff_sfSeq
-		HAVING 1=1
+		WHERE 1=1
 			AND mSeq = ${mSeq}
 	</select>
 	
@@ -63,7 +63,7 @@
 			,b.gnDiv
 		FROM Movie a
 		INNER JOIN genre b ON b.Movie_mSeq = a.mSeq
-		HAVING 1=1
+		WHERE 1=1
 			AND mSeq = ${mSeq}
 	</select>
 	

@@ -62,14 +62,17 @@
 										<div class="movie-select">
 											<div class="movie-list nano has-scrollbar has-scrollbar-y" id="movie_list">
 												<ul class="content scroll-y" onscroll="movieSectionScrollEvent();" tabindex="-1" style="right: -17px;">
-													<li class="rating-12" data-index="0" movie_cd_group="" movie_idx="">
-														<a href="#" title="외계+인 1부" alt="외계+인 1부">
-															<span class="icon">&nbsp;</span>
-															<span class="text">외계+인 1부</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
-													<li class="rating-all" data-index="1" movie_cd_group="" movie_idx="">
+													<c:forEach items="${list}" var="list" varStatus="listStatus">
+														<li class="rating-${list.mAgeLimit}">
+															<a href="javascript:selectTheater()">
+																<span class="icon">&nbsp;</span>
+																<span class="text">${list.mNameKor}</span>
+																<span class="sreader"></span>
+																<input type="hidden" value="${list.mSeq}" id="mSeq" name="mSeq">
+															</a>
+														</li>
+													</c:forEach>
+													<!-- <li class="rating-all" data-index="1" movie_cd_group="" movie_idx="">
 														<a href="#" title="미니언즈2" alt="미니언즈2">
 															<span class="icon">&nbsp;</span>
 															<span class="text">미니언즈2</span>
@@ -110,7 +113,7 @@
 															<span class="text">명탕점 코난-할로윈의 신부</span>
 															<span class="sreader"></span>
 														</a>
-													</li>
+													</li> -->
 												</ul>
 											</div>
 										</div>
@@ -126,7 +129,7 @@
 												<div class="theater-area-list" id="theater-area-list">
 													<ul>
 														<li style="visibility: visible;">
-															<a href="#" onclick="theaterAreaClickListener(event);">
+															<a href="">
 																<span class="name">서울</span>
 																<span class="count">(4)</span>
 															</a>
@@ -829,7 +832,7 @@
 					</div>
 				</div>
 				<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
-					<img src="/resources/images/user/0803_996x140.jpg" alt="由щ명" onload="ticketNeedResize();" style="width:996px;height:140px">
+					<img src="/resources/images/user/0803_996x140.jpg" alt="由щ명"  style="width:996px;height:140px">
 				</div>
 				<div id="ticket_banner" class="ticket_banner">
 					<div>
@@ -853,5 +856,28 @@
 	    <%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 	</div>
 <!-- end -->
+	<script>
+		function selectTheater(){
+			alert($("#mSeq").val());
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				,dataType:"json" 
+				,url: "/purchase/selectTheater"
+				,data : { "mSeq" : $("#mSeq").val() }
+				,success: function(response) {
+					if(response.rt == "success") {
+						$( 'rating-${list.mAgeLimit}' ).addClass( 'selected' );
+					} else {
+						//byPass
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+	};
+	</script>
 </body>
 </html>

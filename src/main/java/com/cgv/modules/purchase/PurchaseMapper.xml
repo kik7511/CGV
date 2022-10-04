@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cgv.modules.purchase.PurchaseMapper">
+
+    <resultMap id="resultMapObj" type="com.cgv.modules.purchase.Purchase"></resultMap>
+    
+    <sql id="selectCommon">
+    	FROM coca.date a
+		INNER JOIN Movie b ON b.mSeq = a.Movie_mSeq
+		INNER JOIN screen c ON c.scSeq = a.screen_scSeq
+		INNER JOIN Theater d ON d.thSeq = c.Theater_thSeq
+    </sql>
+	
+	<select id="selectMovie" resultMap="resultMapObj">
+		SELECT
+			b.mNameKor
+			,b.mAgeLimit
+			,b.mSeq
+		<include refid="selectCommon" />
+			group by mSeq
+	</select>
+	
+	<select id="selectTheater" resultMap="resultMapObj">
+		SELECT
+			d.thLocation
+			,d.thName
+		<include refid="selectCommon" />
+		WHERE 1=1
+			AND mSeq = ${mSeq}
+	</select>
+	
+	
+	
+	
+	
+</mapper>	

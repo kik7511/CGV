@@ -147,18 +147,18 @@ a:hover{text-decoration: none;}
 #ticket .section-movie .col-body .movie-select .movie-list > ul > li > a span.icon{display:inline-block;*display:inline;zoom:1;width:32px;height:35px;
 	background-position:0 0;background-repeat:no-repeat;background-image:url(/resources/images/user/icon_ratings2.png);}
 #ticket .section-movie .col-body .movie-select .movie-list > ul > li > a span.text{color:#333; font-weight:bold; padding-right:5px;}
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-all > a span.icon{background-position:5px 6px;}
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-all.selected > a span.icon,
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-all.press > a span.icon{background-position:2px 3px;}
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-12 > a span.icon{background-position:5px -29px;}
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-12.selected > a span.icon,
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-12.press > a span.icon{background-position:2px -32px;}
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-15 > a span.icon{background-position:5px -64px;}
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-15.selected > a span.icon,
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-15.press > a span.icon{background-position:2px -67px;}
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-18 > a span.icon{background-position:5px -99px;}
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-18.selected > a span.icon,
-#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-18.press > a span.icon{background-position:2px -102px;}
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-26 > a span.icon{background-position:5px 6px;}
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-26.selected > a span.icon,
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-26.press > a span.icon{background-position:2px 3px;}
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-27 > a span.icon{background-position:5px -29px;}
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-27.selected > a span.icon,
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-27.press > a span.icon{background-position:2px -32px;}
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-28 > a span.icon{background-position:5px -64px;}
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-28.selected > a span.icon,
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-28.press > a span.icon{background-position:2px -67px;}
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-29 > a span.icon{background-position:5px -99px;}
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-29.selected > a span.icon,
+#ticket .section-movie .col-body .movie-select .movie-list > ul > li.rating-29.press > a span.icon{background-position:2px -102px;}
 #ticket .section-movie .col-body .movie-select .movie-list > ul > li.not-rated > a span.icon{background-position:5px -134px;}
 #ticket .section-movie .col-body .movie-select .movie-list > ul > li.not-rated.selected > a span.icon,
 #ticket .section-movie .col-body .movie-select .movie-list > ul > li.not-rated.press > a span.icon{background-position:2px -137px;}
