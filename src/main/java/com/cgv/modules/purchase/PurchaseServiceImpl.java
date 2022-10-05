@@ -12,8 +12,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 	PurchaseDao dao;
 	
 	@Override
-	public List<Purchase> selectMovie() throws Exception{
-		List<Purchase> list = dao.selectList();
+	public List<Purchase> selectMovie(PurchaseVo vo) throws Exception{
+		List<Purchase> list = dao.selectList(vo);
 		return list;
 	}
 	

@@ -17,8 +17,8 @@ public class PurchaseDao {
 	
 	private static String namespace = "com.cgv.modules.purchase.PurchaseMapper";
 	
-	public List<Purchase> selectList(){
-		List<Purchase> list = sqlSession.selectList(namespace + ".selectMovie");
+	public List<Purchase> selectList(PurchaseVo vo){
+		List<Purchase> list = sqlSession.selectList(namespace + ".selectMovie", vo);
 		return list;
 	}
 	

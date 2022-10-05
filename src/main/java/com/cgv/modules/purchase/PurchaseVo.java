@@ -4,8 +4,7 @@ public class PurchaseVo {
 	private String mSeq;
 	private Integer thLocation;
 	private String thName;
-	
-	
+
 	public String getmSeq() {
 		return mSeq;
 	}

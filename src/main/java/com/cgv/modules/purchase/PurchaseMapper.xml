@@ -30,7 +30,7 @@
 			,d.thName
 		<include refid="selectCommon" />
 		WHERE 1=1
-			AND mSeq = ${mSeq}
+			AND mSeq = #{mSeq}
 	</select>
 	
 	

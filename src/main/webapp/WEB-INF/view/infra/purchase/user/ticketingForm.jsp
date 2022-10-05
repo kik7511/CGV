@@ -68,7 +68,7 @@
 																<span class="icon">&nbsp;</span>
 																<span class="text">${list.mNameKor}</span>
 																<span class="sreader"></span>
-																<input type="hidden" value="${list.mSeq}" id="mSeq" name="mSeq">
+																<input type="hidden" value="${vo.mSeq}" name="mSeq">
 															</a>
 														</li>
 													</c:forEach>
@@ -858,17 +858,17 @@
 <!-- end -->
 	<script>
 		function selectTheater(){
-			alert($("#mSeq").val());
+			alert($("input:hidden[name=mSeq]").val());
 			$.ajax({
 				async: true 
 				,cache: false
 				,type: "post"
 				,dataType:"json" 
 				,url: "/purchase/selectTheater"
-				,data : { "mSeq" : $("#mSeq").val() }
+				,data : { "mSeq" : $("input:hidden[name=mSeq]").val() }
 				,success: function(response) {
 					if(response.rt == "success") {
-						$( 'rating-${list.mAgeLimit}' ).addClass( 'selected' );
+						$( '.rating' ).addClass( 'selected' );
 					} else {
 						//byPass
 					}
