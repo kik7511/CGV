@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/purchase/")
@@ -30,12 +31,12 @@ public class PurchaseController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "selectTheater")
-	public Map<String, Object> selectTheater(Purchase dto,@ModelAttribute("vo") PurchaseVo vo) throws Exception {
+	public Map<String, Object> selectTheater(Purchase dto, @ModelAttribute("vo") PurchaseVo vo, Model model) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 
-		List<Purchase> result = service.selectTheater(vo);
-		vo.setmSeq(dto.getmSeq());
+		List<Purchase> result = service.selectTheater(dto);
+		model.addAttribute("list", result);
 		System.out.println("값은" + result);
 	
 		if (result != null) {

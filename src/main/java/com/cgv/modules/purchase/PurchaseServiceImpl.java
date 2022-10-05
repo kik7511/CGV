@@ -18,8 +18,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 	
 	@Override
-	public List<Purchase> selectTheater(PurchaseVo vo) throws Exception{
-		return dao.selectTheater(vo);
+	public List<Purchase> selectTheater(Purchase dto) throws Exception{
+		return dao.selectTheater(dto);
 	} 
 
 }

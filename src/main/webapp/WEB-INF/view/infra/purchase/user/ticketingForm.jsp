@@ -68,52 +68,10 @@
 																<span class="icon">&nbsp;</span>
 																<span class="text">${list.mNameKor}</span>
 																<span class="sreader"></span>
-																<input type="hidden" value="${vo.mSeq}" name="mSeq">
+																<input type="hidden" name = "mSeq" value='<c:out value="${list.mSeq}"></c:out>'>
 															</a>
 														</li>
 													</c:forEach>
-													<!-- <li class="rating-all" data-index="1" movie_cd_group="" movie_idx="">
-														<a href="#" title="미니언즈2" alt="미니언즈2">
-															<span class="icon">&nbsp;</span>
-															<span class="text">미니언즈2</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
-													<li class="rating-12 selected" data-index="2" movie_cd_group="" movie_idx="">
-														<a href="#" title="한산-용의출현" alt="한산-용의출현">
-															<span class="icon">&nbsp;</span>
-															<span class="text">한산-용의출현</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
-													<li class="rating-15" data-index="3" movie_cd_group="" movie_idx="">
-														<a href="#" title="탑건-매버릭" alt="탑건-매버릭">
-															<span class="icon">&nbsp;</span>
-															<span class="text">탑건-매버릭</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
-													<li class="rating-15" data-index="4" movie_cd_group="" movie_idx="">
-														<a href="#" title="헤어질결심" alt="헤어질결심">
-															<span class="icon">&nbsp;</span>
-															<span class="text">헤어질결심</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
-													<li class="rating-12" data-index="5" movie_cd_group="" movie_idx="">
-														<a href="#" title="비상선언" alt="비상선언">
-															<span class="icon">&nbsp;</span>
-															<span class="text">비상선언</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
-													<li class="rating-12" data-index="6" movie_cd_group="" movie_idx="">
-														<a href="#" title="명탕점 코난-할로윈의 신부" alt="명탕점 코난-할로윈의 신부">
-															<span class="icon">&nbsp;</span>
-															<span class="text">명탕점 코난-할로윈의 신부</span>
-															<span class="sreader"></span>
-														</a>
-													</li> -->
 												</ul>
 											</div>
 										</div>
@@ -858,17 +816,17 @@
 <!-- end -->
 	<script>
 		function selectTheater(){
-			alert($("input:hidden[name=mSeq]").val());
+			var seq = $("input:hidden[name=mSeq]");
 			$.ajax({
 				async: true 
 				,cache: false
 				,type: "post"
 				,dataType:"json" 
 				,url: "/purchase/selectTheater"
-				,data : { "mSeq" : $("input:hidden[name=mSeq]").val() }
+				,data : {"mSeq" : seq.val()}
 				,success: function(response) {
 					if(response.rt == "success") {
-						$( '.rating' ).addClass( 'selected' );
+						$( '.rating' ).classList.add( 'selected' );
 					} else {
 						//byPass
 					}
@@ -878,6 +836,58 @@
 				}
 			});
 	};
+	
+	const date = new Date();
+    // console.log(date.getFullYear());
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    const reserveDate = document.querySelector(".reserve-date");
+
+  
+    const weekOfDay = ["일", "월", "화", "수", "목", "금", "토"]
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    for (i = date.getDate(); i <= lastDay.getDate(); i++) {
+
+        const button = document.createElement("button");
+        const spanWeekOfDay = document.createElement("span");
+        const spanDay = document.createElement("span");
+
+        //class넣기
+        button.classList = "movie-date-wrapper"
+        spanWeekOfDay.classList = "movie-week-of-day";
+        spanDay.classList = "movie-day";
+
+        //weekOfDay[new Date(2020-03-날짜)]
+        const dayOfWeek = weekOfDay[new Date(year + "-" + month + "-" + i).getDay()];
+
+        //요일 넣기
+        if (dayOfWeek === "토") {
+            spanWeekOfDay.classList.add("saturday");
+            spanDay.classList.add("saturday");
+        } else if (dayOfWeek === "일") {
+            spanWeekOfDay.classList.add("sunday");
+            spanDay.classList.add("sunday");
+        }
+        spanWeekOfDay.innerHTML = dayOfWeek;
+        button.append(spanWeekOfDay);
+        //날짜 넣기
+        spanDay.innerHTML = i;
+        button.append(spanDay);
+        //button.append(i);
+        reserveDate.append(button);
+
+        dayClickEvent(button);
+    }
+
+	function dayClickEvent(button) {
+	    button.addEventListener("click", function() {
+	        const movieDateWrapperActive = document.querySelectorAll(".movie-date-wrapper-active");
+	        movieDateWrapperActive.forEach((list) => {
+	            list.classList.remove("movie-date-wrapper-active");
+	        })
+	        button.classList.add("movie-date-wrapper-active");
+	    })
+	}
 	</script>
 </body>
 </html>

@@ -22,8 +22,8 @@ public class PurchaseDao {
 		return list;
 	}
 	
-	public List<Purchase> selectTheater(PurchaseVo vo){
-		List<Purchase> list = sqlSession.selectList(namespace + ".selectTheater", vo);
+	public List<Purchase> selectTheater(Purchase dto){
+		List<Purchase> list = sqlSession.selectOne(namespace + ".selectTheater", dto);
 		return list;
 	}
 }
