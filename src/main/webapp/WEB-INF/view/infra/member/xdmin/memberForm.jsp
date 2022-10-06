@@ -338,6 +338,10 @@
 															<span>주소</span>
 														</div>
 													</div>
+													<div class="input-group mb-3">
+													  <input type="file" class="form-control" id="inputGroupFile02">
+													  <label class="input-group-text" for="inputGroupFile02">Upload</label>
+													</div>
 												</td>
 											</tr>
 											<tr style="border-color: white;">

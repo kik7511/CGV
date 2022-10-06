@@ -34,12 +34,14 @@ public class PurchaseController {
 	public Map<String, Object> selectTheater(Purchase dto, @ModelAttribute("vo") PurchaseVo vo, Model model) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-
-		List<Purchase> result = service.selectTheater(dto);
-		model.addAttribute("list", result);
+		
+		System.out.println("vo.getmSeq(): " + vo.getmSeq());
+		
+		List<Purchase> result = service.selectTheater(vo);
 		System.out.println("값은" + result);
 	
 		if (result != null) {
+			returnMap.put("result", result);
 			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");

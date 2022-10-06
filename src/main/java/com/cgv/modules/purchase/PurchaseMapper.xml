@@ -25,7 +25,8 @@
 		INNER JOIN screen c ON c.scSeq = b.screen_scSeq
 		INNER JOIN Theater d ON d.thSeq = c.Theater_thSeq
 		WHERE 1=1
-			AND mSeq = #{mSeq}
+			AND mSeq= #{mSeq}
+		group by d.thLocation
 	</select>
 	
 	

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="CodeServiceImpl" class="com.cgv.modules.code.CodeServiceImpl"/>
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
@@ -52,6 +53,7 @@
 								<a class="button button-reservation-restart" href="#"></a>
 							</span>
 						</div>
+						<form>
 						<div class="steps">
 							<div class="step step1" style="height: 500px; display: block;">
 								<div class="section section-movie">
@@ -64,11 +66,10 @@
 												<ul class="content scroll-y" onscroll="movieSectionScrollEvent();" tabindex="-1" style="right: -17px;">
 													<c:forEach items="${list}" var="list" varStatus="listStatus">
 														<li class="rating-${list.mAgeLimit}">
-															<a href="javascript:selectTheater()">
+															<a href="javascript:selectTheater(${list.mSeq})">
 																<span class="icon">&nbsp;</span>
 																<span class="text">${list.mNameKor}</span>
 																<span class="sreader"></span>
-																<input type="hidden" name = "mSeq" value='<c:out value="${list.mSeq}"></c:out>'>
 															</a>
 														</li>
 													</c:forEach>
@@ -83,15 +84,12 @@
 									</div>
 									<div class="col-body" style="height: 685px;">
 										<div class="theater-select" style="height: 554px;">
+											
 											<div class="theater-list" style="height: 513px;">
 												<div class="theater-area-list" id="theater-area-list">
 													<ul>
-														<li style="visibility: visible;">
-															<a href="">
-																<span class="name">서울</span>
-																<span class="count">(4)</span>
-															</a>
-															<div class="area_theater_list nano has-scrollbar has-scrollbar-y">
+													</ul>
+															<!-- <div class="area_theater_list nano has-scrollbar has-scrollbar-y">
 																<ul class="content scroll-y" tabindex="-1" style="right: -17px;">
 																	<li class="" data-index="1" areaindex="0" theater_cd="" rating_cd="undifined" style="display: list-item;">
 																		<a href="#" onclick="theaterListClickListener(event);">강남
@@ -114,9 +112,8 @@
 																		</a>
 																	</li>
 																</ul>
-															</div>
-														</li>
-														<li class="selected" style="visibility: visible;">
+															</div> -->
+														<!-- <li class="selected" style="visibility: visible;">
 															<a href="#" onclick="theaterAreaClickListener(event);">
 																<span class="name">경기</span>
 																<span class="count">(4)</span>
@@ -165,7 +162,7 @@
 																	</li>
 																</ul>
 															</div>
-														</li>
+														</li> -->
 													</ul>
 												</div>
 											</div>
@@ -698,6 +695,7 @@
 									</div>
 								</div>
 							</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -815,18 +813,35 @@
 	</div>
 <!-- end -->
 	<script>
-		function selectTheater(){
-			var seq = $("input:hidden[name=mSeq]");
+		function selectTheater(seq){
 			$.ajax({
 				async: true 
 				,cache: false
 				,type: "post"
-				,dataType:"json" 
+				,dataType:"json" 	
 				,url: "/purchase/selectTheater"
-				,data : {"mSeq" : seq.val()}
+				,data : {"mSeq" : seq}
 				,success: function(response) {
 					if(response.rt == "success") {
-						$( '.rating' ).classList.add( 'selected' );
+						<c:set var="listCodeLocation" value="${CodeServiceImpl.selectListCachedCode('8')}"/>
+						var arr = new Array();
+						<c:forEach items="${listCodeLocation}" var="listLocation" varStatus="listLocationStatus">
+							arr.push({
+								num : "${listLocation.ccSeq}"
+								,name : "${listLocation.ccCodeName}"
+							});
+						</c:forEach>
+						var theater = $('div.theater-area-list').children('ul');
+						theater.empty();
+						for(var i=0; i<response.result.length; i++){
+							 var list = response.result[i];
+							 for(var j=0; j<arr.length; j++){
+								 if(list.thLocation == arr[j].num){
+									 		 list.thLocation = arr[j].name;
+								 }
+							 }
+							 theater.append('<li style="visibility: visible;"><a class="nextLevel" style="cursor: pointer;"><span class="name">' + list.thLocation + '</span><span class="count"></span></a></li>');
+						}
 					} else {
 						//byPass
 					}
@@ -836,58 +851,6 @@
 				}
 			});
 	};
-	
-	const date = new Date();
-    // console.log(date.getFullYear());
-    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    const reserveDate = document.querySelector(".reserve-date");
-
-  
-    const weekOfDay = ["일", "월", "화", "수", "목", "금", "토"]
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    for (i = date.getDate(); i <= lastDay.getDate(); i++) {
-
-        const button = document.createElement("button");
-        const spanWeekOfDay = document.createElement("span");
-        const spanDay = document.createElement("span");
-
-        //class넣기
-        button.classList = "movie-date-wrapper"
-        spanWeekOfDay.classList = "movie-week-of-day";
-        spanDay.classList = "movie-day";
-
-        //weekOfDay[new Date(2020-03-날짜)]
-        const dayOfWeek = weekOfDay[new Date(year + "-" + month + "-" + i).getDay()];
-
-        //요일 넣기
-        if (dayOfWeek === "토") {
-            spanWeekOfDay.classList.add("saturday");
-            spanDay.classList.add("saturday");
-        } else if (dayOfWeek === "일") {
-            spanWeekOfDay.classList.add("sunday");
-            spanDay.classList.add("sunday");
-        }
-        spanWeekOfDay.innerHTML = dayOfWeek;
-        button.append(spanWeekOfDay);
-        //날짜 넣기
-        spanDay.innerHTML = i;
-        button.append(spanDay);
-        //button.append(i);
-        reserveDate.append(button);
-
-        dayClickEvent(button);
-    }
-
-	function dayClickEvent(button) {
-	    button.addEventListener("click", function() {
-	        const movieDateWrapperActive = document.querySelectorAll(".movie-date-wrapper-active");
-	        movieDateWrapperActive.forEach((list) => {
-	            list.classList.remove("movie-date-wrapper-active");
-	        })
-	        button.classList.add("movie-date-wrapper-active");
-	    })
-	}
 	</script>
 </body>
 </html>
