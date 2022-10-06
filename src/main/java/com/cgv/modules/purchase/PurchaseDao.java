@@ -26,4 +26,9 @@ public class PurchaseDao {
 		List<Purchase> list = sqlSession.selectList(namespace + ".selectTheater", vo);
 		return list;
 	}
+	
+	public List<Purchase> selectLocation(PurchaseVo vo){
+		List<Purchase> list = sqlSession.selectList(namespace + ".selectTheater", vo);
+		return list;
+	}
 }

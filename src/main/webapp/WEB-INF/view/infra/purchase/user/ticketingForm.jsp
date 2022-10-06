@@ -848,13 +848,48 @@
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-				}
+				}	
 			});
 	};
 	
-	selectLocation = $(document).on("click",".nextLevel",function(seq){
-		
-	});
+	/* selectLocation = $(document).on("click",".nextLevel",function(seq){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,dataType:"json" 	
+			,url: ""
+			,data : {"mSeq" : seq}
+			,success: function(response) {
+				if(response.rt == "success") {
+					<c:set var="listCodeLocation" value="${CodeServiceImpl.selectListCachedCode('8')}"/>
+					var arr = new Array();
+					<c:forEach items="${listCodeLocation}" var="listLocation" varStatus="listLocationStatus">
+						arr.push({
+							num : "${listLocation.ccSeq}"
+							,name : "${listLocation.ccCodeName}"
+						});
+					</c:forEach>
+					var theater = $('div.theater-area-list').children('ul');
+					theater.empty();
+					for(var i=0; i<response.result.length; i++){
+						 var list = response.result[i];
+						 for(var j=0; j<arr.length; j++){
+							 if(list.thLocation == arr[j].num){
+								 		 list.thLocation = arr[j].name;
+							 }
+						 }
+						 theater.append('<li style="visibility: visible;"><a class="nextLevel" style="cursor: pointer;"><span class="name">' + list.thLocation + '</span><span class="count"></span></a><div class="area_theater_list nano has-scrollbar has-scrollbar-y"><ul class="content scroll-y" tabindex="-1" style="right: -17px;"></ul></div></li>');
+					}
+				} else {
+					//byPass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	}); */
 	</script>
 </body>
 </html>
