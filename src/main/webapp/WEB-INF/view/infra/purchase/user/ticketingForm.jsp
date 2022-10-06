@@ -840,7 +840,7 @@
 									 		 list.thLocation = arr[j].name;
 								 }
 							 }
-							 theater.append('<li style="visibility: visible;"><a class="nextLevel" style="cursor: pointer;"><span class="name">' + list.thLocation + '</span><span class="count"></span></a></li>');
+							 theater.append('<li style="visibility: visible;"><a class="nextLevel" style="cursor: pointer;"><span class="name">' + list.thLocation + '</span><span class="count"></span></a><div class="area_theater_list nano has-scrollbar has-scrollbar-y"><ul class="content scroll-y" tabindex="-1" style="right: -17px;"></ul></div></li>');
 						}
 					} else {
 						//byPass
@@ -851,6 +851,10 @@
 				}
 			});
 	};
+	
+	selectLocation = $(document).on("click",".nextLevel",function(seq){
+		
+	});
 	</script>
 </body>
 </html>
