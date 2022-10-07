@@ -36,8 +36,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insert(Member dto) throws Exception{
-		dto.setIfMmPassWord(UtilSecurity.encryptSha256(dto.getIfMmPassWord()));
-		return dao.insert(dto);
+		try {
+			dto.setIfMmPassWord(UtilSecurity.encryptSha256(dto.getIfMmPassWord()));
+			return dao.insert(dto);
+		}catch(Exception e) {
+			throw new Exception();
+		}
+		
 	}
 	
 	@Override
