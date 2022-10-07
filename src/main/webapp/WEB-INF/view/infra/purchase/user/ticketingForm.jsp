@@ -835,15 +835,13 @@
 						theater.empty();
 						for(var i=0; i<response.result.length; i++){
 							 var list = response.result[i];
-							 var seq = response.result[i].mSeq;
-							 var location = response.result[i].thLocation;
-							  for(var j=0; j<arr.length; j++){
-								  if(list.thLocation == arr[j].num){
-									 		 arr[j].name;
-								 }
-							 theater.append('<li style="visibility: visible;"><a href="javascript:selectLocation(' + seq + ', '+ location +')"><span class="name">' + arr[j].name + '</span><span class="count"></span></a><div class="area_theater_list nano has-scrollbar has-scrollbar-y"><ul class="content scroll-y" tabindex="-1" style="right: -17px;"></ul></div></li>');
-						}
-					} 
+							 var seq = list.mSeq;
+							 var location = list.thLocation;
+							 if(arr[i].num == list.thLocation){
+								 var thName = arr[i].name
+						 		}
+							 theater.append('<li style="visibility: visible;"><a href="javascript:selectLocation(' + seq + ', '+ location +')"><span class="name">' + thName + '</span><span class="count"></span></a><div class="area_theater_list nano has-scrollbar has-scrollbar-y"><ul class="content scroll-y" tabindex="-1" style="right: -17px;"></ul></div></li>');
+					}
 				}else{
 					}
 				}

@@ -3,8 +3,10 @@ package com.cgv.modules.member;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Member {
+	//ifMmMember
 	private String ifMmSeq;
 	private String ifMmName;
 	private Integer ifMmGender;
@@ -25,9 +27,27 @@ public class Member {
 	private Integer ifMmMangerNy;
 	private Integer ifMmRank;
 	
+	//upLoad
+	
+	private MultipartFile[] ifMmUploadedImage;
+	private MultipartFile[] ifMmUploadedFile;
+	
+	// ---------------------
 	
 	public Integer getIfMmRank() {
 		return ifMmRank;
+	}
+	public MultipartFile[] getIfMmUploadedImage() {
+		return ifMmUploadedImage;
+	}
+	public void setIfMmUploadedImage(MultipartFile[] ifMmUploadedImage) {
+		this.ifMmUploadedImage = ifMmUploadedImage;
+	}
+	public MultipartFile[] getIfMmUploadedFile() {
+		return ifMmUploadedFile;
+	}
+	public void setIfMmUploadedFile(MultipartFile[] ifMmUploadedFile) {
+		this.ifMmUploadedFile = ifMmUploadedFile;
 	}
 	public void setIfMmRank(Integer ifMmRank) {
 		this.ifMmRank = ifMmRank;

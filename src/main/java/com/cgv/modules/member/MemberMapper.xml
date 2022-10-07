@@ -166,4 +166,6 @@
 		AND ifMmMangerNy = 1
 	</select>
 	
+	
+	
 </mapper>	

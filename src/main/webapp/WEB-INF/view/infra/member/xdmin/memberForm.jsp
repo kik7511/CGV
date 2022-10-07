@@ -356,7 +356,7 @@
 													</div>
 												</td>
 											</tr>
-											<tr style="border-color: white;">
+											<tr>
 												<td>
 													<div class="row">
 														<div class="col">
@@ -398,46 +398,34 @@
 													<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 														<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 													</div>
+												</td>
+											</tr>
+											<tr style="border-color: white;">
+												<td>
 													<div class="row">
 												        <div class="col">
 												            <label for="ifmmUploadedImage" class="form-label input-file-button">이미지첨부</label>
-												 			<input class="form-control form-control-sm" id="ifmmUploadedImage" name="ifmmUploadedImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage', 1, 0, 1, 0, 0, 1);">
+												 			<input class="form-control" id="ifmmUploadedImage" name="ifmmUploadedImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage', 1, 0, 1, 0, 0, 1);">
 															<div class="addScroll">
 																<ul id="ulFile1" class="list-group">
 																</ul>
 															</div>
 												        </div>
+											        </div>
+										        </td>
+										        <td>
+										        	<div class="row">
 												        <div class="col">
 															<label for="ifmmUploadedFile" class="form-label input-file-button">파일첨부</label>
-															<input class="form-control form-control-sm" id="ifmmUploadedFile" name="ifmmUploadedFile" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile', 2, 0, 2, 0, 0, 2);" >
+															<input class="form-control" id="ifmmUploadedFile" name="ifmmUploadedFile" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile', 2, 0, 2, 0, 0, 2);" >
 															<div class="addScroll">
 																<ul id="ulFile2" class="list-group">
 																</ul>
 															</div>
 												        </div>
-												    </div>
-												    <div class="row">
-												        <div class="col">
-												            <label for="ifmmUploadedImage" class="form-label input-file-button">이미지첨부</label>
-												 			<input class="form-control form-control-sm" id="ifmmUploadedImage" name="ifmmUploadedImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage', 1, 0, 1, 0, 0, 1);">
-												 			<div class="addScroll">
-																<div style="display: inline-block; height: 95px;">
-																	<img src="/resources/common/image/default_111.jpg" class="rounded" width= "85px" height="85px">
-																	<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>
-																</div>
-												 			</div>
-												        </div>
-												        <div class="col">
-															<label for="ifmmUploadedFile" class="form-label input-file-button">파일첨부</label>
-															<input class="form-control form-control-sm" id="ifmmUploadedFile" name="ifmmUploadedFile" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile', 2, 0, 2, 0, 0, 2);" >
-															<div class="addScroll">
-																<ul id="ulFile2" class="list-group">
-																</ul>
-															</div>
-												        </div>
-												    </div>
-												</td>																								
-											</tr>
+											        </div>
+										        </td>
+										    </tr>
 										</tbody>
 									</table>
 								</div>
@@ -773,11 +761,57 @@
 			    if(e == "-Infinity") return 0;
 			    else return (bytes/Math.pow(1024, Math.floor(e))).toFixed(2).slice(0, -3);
 			}
+			
+			checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, fileCount) {
+				if(allowedMaxTotalFileNumber < fileCount){
+					alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+//					$("#file"+seq).val("");
+//					obj.val("");
+					return false;
+				}
+			}
+
+
+			checkUploadedExt = function(objName, seq, div) {
+				var ext = objName.split('.').pop().toLowerCase();
+				var extArray = eval("extArray" + div);
+				
+				if(extArray.indexOf(ext) == -1) {
+					alert("허용된 확장자가 아닙니다.");
+//					$("#file"+seq).val("");
+					return false;
+				}
+			}
+
+
+			checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
+
+				if(obj.size > allowedEachFileSize){
+					alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
+					$("#file"+seq).val("");
+					return false;
+				}
+			}
+
+
+			checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
+				if(totalSize > allowedTotalFileSize){
+					alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
+					$("#file"+seq).val("");
+					return false;
+				}
+			}
 
 //			objName 과 seq 는 jsp 내에서 유일 하여야 함.
 //			memberProfileImage: 1
 //			memberImage: 2
 //			memberFile : 3
+			
+			var extArray1 = new Array();
+			extArray1 = ["jpg","gif","png","jpeg","bmp","tif","jfif"];
+			
+			var extArray2 = new Array();
+			extArray2 = ["txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
 			
 			var totalFileSize = 0;
 			var obj = $("#" + objName +"")[0].files;	
@@ -787,16 +821,16 @@
 			allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
 			allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
 			
-			/* if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; } */
+			if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; } 
 			
 			for (var i = 0 ; i < fileCount ; i++) {
-				/* if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; } */
-				/* if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; } */
+				if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
+				if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
 
 				totalFileSize += $("#" + objName +"")[0].files[i].size;
 			}
 
-			/* if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; } */
+			if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
 			
 			if (uiType == 1) {
 				$("#ulFile" + seq).children().remove();
