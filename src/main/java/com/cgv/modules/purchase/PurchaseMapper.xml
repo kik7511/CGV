@@ -32,7 +32,7 @@
 	<select id="selectLocation" resultMap="resultMapObj">
 		SELECT
 			d.thName
-			d.thLocation
+			,d.thLocation
 			,a.mSeq
 		FROM Movie a
 		INNER JOIN date b ON b.Movie_mSeq = a.mSeq 
@@ -40,6 +40,7 @@
 		INNER JOIN Theater d ON d.thSeq = c.Theater_thSeq
 		WHERE 1=1
 			AND mSeq= #{mSeq}
+			AND thLocation = #{thLocation}
 		group by d.thName
 	</select>
 	

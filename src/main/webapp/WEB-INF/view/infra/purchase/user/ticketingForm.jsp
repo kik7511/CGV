@@ -813,14 +813,14 @@
 	</div>
 <!-- end -->
 	<script>
-		function selectTheater(seq){
+		function selectTheater(o){
 			$.ajax({
 				async: true 
 				,cache: false
 				,type: "post"
 				,dataType:"json" 	
 				,url: "/purchase/selectTheater"
-				,data : {"mSeq" : seq}
+				,data : {"mSeq" : o}
 				,success: function(response) {
 					if(response.rt == "success") {
 						<c:set var="listCodeLocation" value="${CodeServiceImpl.selectListCachedCode('8')}"/>
@@ -835,15 +835,16 @@
 						theater.empty();
 						for(var i=0; i<response.result.length; i++){
 							 var list = response.result[i];
-							 for(var j=0; j<arr.length; j++){
-								 if(list.thLocation == arr[j].num){
-									 		 list.thLocation = arr[j].name;
+							 var seq = response.result[i].mSeq;
+							 var location = response.result[i].thLocation;
+							  for(var j=0; j<arr.length; j++){
+								  if(list.thLocation == arr[j].num){
+									 		 arr[j].name;
 								 }
-							 }
-							 theater.append('<li style="visibility: visible;"><a class="nextLevel" style="cursor: pointer;"><span class="name">' + list.thLocation + '</span><span class="count"></span></a><div class="area_theater_list nano has-scrollbar has-scrollbar-y"><ul class="content scroll-y" tabindex="-1" style="right: -17px;"></ul></div></li>');
+							 theater.append('<li style="visibility: visible;"><a href="javascript:selectLocation(' + seq + ', '+ location +')"><span class="name">' + arr[j].name + '</span><span class="count"></span></a><div class="area_theater_list nano has-scrollbar has-scrollbar-y"><ul class="content scroll-y" tabindex="-1" style="right: -17px;"></ul></div></li>');
 						}
-					} else {
-						//byPass
+					} 
+				}else{
 					}
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
@@ -852,34 +853,22 @@
 			});
 	};
 	
-	/* selectLocation = $(document).on("click",".nextLevel",function(seq){
+	
+	function selectLocation(seq, location){
 		$.ajax({
 			async: true 
 			,cache: false
 			,type: "post"
 			,dataType:"json" 	
-			,url: ""
-			,data : {"mSeq" : seq}
+			,url: "/purchase/selectLocation"
+			,data : {"mSeq" : seq, "thLocation" : location}
 			,success: function(response) {
 				if(response.rt == "success") {
-					<c:set var="listCodeLocation" value="${CodeServiceImpl.selectListCachedCode('8')}"/>
-					var arr = new Array();
-					<c:forEach items="${listCodeLocation}" var="listLocation" varStatus="listLocationStatus">
-						arr.push({
-							num : "${listLocation.ccSeq}"
-							,name : "${listLocation.ccCodeName}"
-						});
-					</c:forEach>
-					var theater = $('div.theater-area-list').children('ul');
-					theater.empty();
+					var location = $('div.area_theater_list').children('ul.content');
+					location.empty();
 					for(var i=0; i<response.result.length; i++){
 						 var list = response.result[i];
-						 for(var j=0; j<arr.length; j++){
-							 if(list.thLocation == arr[j].num){
-								 		 list.thLocation = arr[j].name;
-							 }
-						 }
-						 theater.append('<li style="visibility: visible;"><a class="nextLevel" style="cursor: pointer;"><span class="name">' + list.thLocation + '</span><span class="count"></span></a><div class="area_theater_list nano has-scrollbar has-scrollbar-y"><ul class="content scroll-y" tabindex="-1" style="right: -17px;"></ul></div></li>');
+						 location.append('<li class="" data-index="1" areaindex="0" style="display: list-item;"><a href="#"><span>' + list.thName + '</span><span class="sreader"></span></a></li>');
 					}
 				} else {
 					//byPass
@@ -889,7 +878,7 @@
 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 			}
 		});
-	}); */
+	};
 	</script>
 </body>
 </html>

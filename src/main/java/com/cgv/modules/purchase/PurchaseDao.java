@@ -28,7 +28,7 @@ public class PurchaseDao {
 	}
 	
 	public List<Purchase> selectLocation(PurchaseVo vo){
-		List<Purchase> list = sqlSession.selectList(namespace + ".selectTheater", vo);
+		List<Purchase> list = sqlSession.selectList(namespace + ".selectLocation", vo);
 		return list;
 	}
 }

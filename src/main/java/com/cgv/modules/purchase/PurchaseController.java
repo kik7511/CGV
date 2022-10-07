@@ -49,6 +49,25 @@ public class PurchaseController {
 		return returnMap;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "selectLocation")
+	public Map<String, Object> selectLocation(@ModelAttribute("vo") PurchaseVo vo) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println("vo.getmSeq(): " + vo.getmSeq());
+		
+		List<Purchase> result = service.selectLocation(vo);
+		System.out.println("값은" + result);
+	
+		if (result != null) {
+			returnMap.put("result", result);
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
 	
 	@RequestMapping(value = "paymentForm")
 	public String paymentForm() {
@@ -60,26 +79,6 @@ public class PurchaseController {
 		return "infra/purchase/user/afterTicketingView";
 	}
 	
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping("setDirectoryList_ajax.do") public void
-	 * getDirlist_ajax(PurchaseVo vo, HttpServletRequest req, HttpServletResponse
-	 * res, HttpSession session) throws Exception { int level =
-	 * Integer.parseInt(vo.getSelectVal()); JSONObject json = new JSONObject(); int
-	 * resultNum = 0;
-	 * 
-	 * if(level < 5 || (vo.getSelectVal().equals("09") && level < 7)) { //db에서 해당 값을
-	 * 가져와 json형식으로 만들어주는 코드가 필요. List<SelectVo> resultDirList =
-	 * setDirList(resultCnt, resultList); long resultCnt = resultDirList.size();
-	 * 
-	 * resultNum = 1;
-	 * 
-	 * json.put("resultCnt", resultCnt); json.put("resultJList", resultList); }
-	 * json.put("result", resultNum);
-	 * res.setContentType("application/json; charset=utf-8");
-	 * res.getWriter().write(json.toString()); }
-	 */
 	
 
 }

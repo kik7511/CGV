@@ -22,4 +22,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return dao.selectTheater(vo);
 	} 
 
-}
+	@Override
+	public List<Purchase> selectLocation(PurchaseVo vo) throws Exception{
+		return dao.selectLocation(vo);
+	} 
+}	
