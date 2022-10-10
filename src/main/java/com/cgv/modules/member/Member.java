@@ -5,7 +5,9 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-public class Member {
+import com.cgv.common.base.Base;
+
+public class Member extends Base {
 	//ifMmMember
 	private String ifMmSeq;
 	private String ifMmName;

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cgv.common.util.UtilSecurity;
-import com.junefw.infra.common.util.UtilUpload;
+import com.cgv.common.util.UtilUpload;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -55,6 +55,7 @@ public class MemberServiceImpl implements MemberService {
 		    		dto.setPseq(dto.getIfMmSeq());
 	
 					dao.insertUploaded(dto);
+					j++;
 				}
 			}
 			

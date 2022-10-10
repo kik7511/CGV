@@ -134,7 +134,7 @@
 		<div class="container py-3">
 			<h2 style="text-align: center;">회원정보 등록</h2>
 		</div>
-		<form method="post" autocomplete="off" name="myForm">
+		<form method="post" autocomplete="off" name="myForm" enctype="multipart/form-data">
 			<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
 			<c:set var="listCodeTel" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
 			<c:set var="listCodeEmail" value="${CodeServiceImpl.selectListCachedCode('12')}"/>
@@ -404,8 +404,8 @@
 												<td>
 													<div class="row">
 												        <div class="col">
-												            <label for="ifmmUploadedImage" class="form-label input-file-button">이미지첨부</label>
-												 			<input class="form-control" id="ifmmUploadedImage" name="ifmmUploadedImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage', 1, 0, 1, 0, 0, 1);">
+												            <label for="ifMmUploadedImage" class="form-label input-file-button">이미지첨부</label>
+												 			<input class="form-control" id="ifMmUploadedImage" name="ifMmUploadedImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifMmUploadedImage', 1, 0, 1, 0, 0, 1);">
 															<div class="addScroll">
 																<ul id="ulFile1" class="list-group">
 																</ul>
@@ -416,8 +416,8 @@
 										        <td>
 										        	<div class="row">
 												        <div class="col">
-															<label for="ifmmUploadedFile" class="form-label input-file-button">파일첨부</label>
-															<input class="form-control" id="ifmmUploadedFile" name="ifmmUploadedFile" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile', 2, 0, 2, 0, 0, 2);" >
+															<label for="ifMmUploadedFile" class="form-label input-file-button">파일첨부</label>
+															<input class="form-control" id="ifMmUploadedFile" name="ifMmUploadedFile" type="file" multiple="multiple" style="display: none;" onChange="upload('ifMmUploadedFile', 2, 0, 2, 0, 0, 2);" >
 															<div class="addScroll">
 																<ul id="ulFile2" class="list-group">
 																</ul>

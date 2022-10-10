@@ -19,32 +19,6 @@
 		limit 9999999999
 	</sql>
 	
-	<sql id="insertRegModColumn">	
-		,regIp
-		,regSeq
-		,regDeviceCd
-		,regDateTime
-		,regDateTimeSvr
-		,modIp
-		,modSeq
-		,modDeviceCd
-		,modDateTime
-		,modDateTimeSvr
-	</sql>
-	
-	<sql id="insertRegModValue">	
-		,#{regIp}
-		,#{regSeq}
-		,#{regDeviceCd}
-		,#{regDateTime}
-		,#{regDateTimeSvr}
-		,#{modIp}
-		,#{modSeq}
-		,#{modDeviceCd}
-		,#{modDateTime}
-		,#{modDateTimeSvr}
-	</sql>
-	
 	<!-- uploaded s -->
 	<insert id="insertUploaded">
 		INSERT INTO ${tableName} (
@@ -57,7 +31,6 @@
 			,ext
 			,size
 			,delNy
-			<include refid="Base.insertRegColumn" />
 			,pseq
 		) values (
 			#{type}
@@ -69,7 +42,6 @@
 			,#{ext}
 			,#{size}
 			,0
-			<include refid="Base.insertRegValue" />
 			,#{pseq}
 		)
 	</insert>

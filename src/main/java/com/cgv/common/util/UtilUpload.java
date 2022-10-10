@@ -7,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cgv.common.constants.Constants;
 import com.cgv.modules.member.Member;
-import com.junefw.infra.common.util.UtilDateTime;
 
 public class UtilUpload {
 	public static void upload (MultipartFile multipartFile, String className, Member dto) throws Exception {
