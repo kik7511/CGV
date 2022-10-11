@@ -101,51 +101,19 @@
 									<div class="col-body" style="height: 660px;">
 										<div class="date-list nano has-scrollbar has-scrollbar-y" id="date_list">
 											<ul class="content scroll-y" tabindex="-1" style="right: -17px;">
-												<div>
-													<li class="month dimmed">
+												<div id="reserveDate">
+													<!-- <li class="month dimmed">
 														<div>
 															<span class="year">2022</span>
 															<span class="month">8</span>
 															<div></div>
 														</div>
-													</li>
-													<li data-index="0" date="20220803" class="day selected">
-														<a href="#" onclick="">
-															<span class="dayweek">수</span>
-															<span class="day">3</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
-													<li data-index="1" date="20220804" class="day">
-														<a href="#" onclick="">
-															<span class="dayweek">목</span>
-															<span class="day">4</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
-													<li data-index="2" date="20220804" class="day">
-														<a href="#" onclick="">
-															<span class="dayweek">금</span>
-															<span class="day">5</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
-													<li data-index="3" date="20220804" class="day">
-														<a href="#" onclick="">
-															<span class="dayweek">토</span>
-															<span class="day">6</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
-													<li data-index="4" date="20220804" class="day">
-														<a href="#" onclick="">
-															<span class="dayweek">일</span>
-															<span class="day">7</span>
-															<span class="sreader"></span>
-														</a>
-													</li>
+													</li> -->
 												</div>
 											</ul>
+											<!-- <div class="pane pane-y" style="display: block; opacity: 1; visibility: visible;">
+												<div class="slider slider-y" style="height: 50px; top: 0px;"></div>
+											</div>  -->
 										</div>
 									</div>
 								</div>
@@ -158,7 +126,7 @@
 										</div>
 										<div class="time-list nano has-scrollbar">
 											<div class="content scroll-y" tabindex="-1" style="right: -17px;">
-												<div class="theater" screen_cd="014" movie_cd="20030132">
+												<!-- <div class="theater" screen_cd="014" movie_cd="20030132">
 													<span class="title">
 														<span class="name">SCREENX 2D</span>
 														<span class="floor">4관[SCREENX] 8층</span>
@@ -226,76 +194,7 @@
 															</a>
 														</li>
 													</ul>
-												</div>
-												<div class="theater" screen_cd="014" movie_cd="20030132">
-													<span class="title">
-														<span class="name">SCREENX 2D</span>
-														<span class="floor">4관[SCREENX] 8층</span>
-														<span class="seatcount">(총124석)</span>
-													</span>
-													<ul>
-														<li data-index="0" data-remain_seat="124" play_start_tm="0920" screen_cd="014" movie_cd="20030132" play_num="1">
-															<a class="button" href="#" onclick="screenTimeClickListener(event);">
-																<span class="time">
-																	<span>09:20</span>
-																</span>
-																<span class="count">106석</span>
-																<div class="sreader">종료시간 11:51</div>
-																<span class="sreader mod"> 조조</span>
-															</a>
-														</li>
-														<li data-index="1" data-remain_seat="124" play_start_tm="1210" screen_cd="014" movie_cd="20030132" play_num="2">
-															<a class="button" href="#" onclick="screenTimeClickListener(event);">
-																<span class="time">
-																	<span>12:10</span>
-																</span>
-																<span class="count">122석</span>
-																<div class="sreader">종료시간 14:41</div>
-																<span class="sreader mod"></span>
-															</a>
-														</li>
-														<li data-index="2" data-remain_seat="124" play_start_tm="1500" screen_cd="014" movie_cd="20030132" play_num="3">
-															<a class="button" href="#" onclick="screenTimeClickListener(event);">
-																<span class="time">
-																	<span>15:00</span>
-																</span>
-																<span class="count">115석</span>
-																<div class="sreader">종료시간 17:31</div>
-																<span class="sreader mod"></span>
-															</a>
-														</li>
-														<li data-index="0" data-remain_seat="124" play_start_tm="0920" screen_cd="014" movie_cd="20030132" play_num="1">
-															<a class="button" href="#" onclick="screenTimeClickListener(event);">
-																<span class="time">
-																	<span>09:20</span>
-																</span>
-																<span class="count">106석</span>
-																<div class="sreader">종료시간 11:51</div>
-																<span class="sreader mod"> 조조</span>
-															</a>
-														</li>
-														<li data-index="1" data-remain_seat="124" play_start_tm="1210" screen_cd="014" movie_cd="20030132" play_num="2">
-															<a class="button" href="#" onclick="screenTimeClickListener(event);">
-																<span class="time">
-																	<span>12:10</span>
-																</span>
-																<span class="count">122석</span>
-																<div class="sreader">종료시간 14:41</div>
-																<span class="sreader mod"></span>
-															</a>
-														</li>
-														<li data-index="2" data-remain_seat="124" play_start_tm="1500" screen_cd="014" movie_cd="20030132" play_num="3">
-															<a class="button" href="#" onclick="screenTimeClickListener(event);">
-																<span class="time">
-																	<span>15:00</span>
-																</span>
-																<span class="count">115석</span>
-																<div class="sreader">종료시간 17:31</div>
-																<span class="sreader mod"></span>
-															</a>
-														</li>
-													</ul>
-												</div>
+												</div> -->
 											</div>
 										</div>
 									</div>
@@ -738,14 +637,14 @@
 	</div>
 <!-- end -->
 	<script>
-		function selectTheater(o){
+		function selectTheater(seq){
 			$.ajax({
 				async: true 
 				,cache: false
 				,type: "post"
 				,dataType:"json" 	
 				,url: "/purchase/selectTheater"
-				,data : {"mSeq" : o}
+				,data : {"mSeq" : seq}
 				,success: function(response) {
 					if(response.rt == "success") {
 						<c:set var="listCodeLocation" value="${CodeServiceImpl.selectListCachedCode('8')}"/>
@@ -791,7 +690,7 @@
 					location.empty();
 					for(var i=0; i<response.result.length; i++){
 						 var list = response.result[i];
-						 location.append('<li class="" data-index="1" areaindex="0" style="display: list-item;"><a href="#"><span>' + list.thName + '</span><span class="sreader"></span></a></li>');
+						 location.append('<li class="" data-index="1" areaindex="0" style="display: list-item;"><a href="javascript:selectDate(' + seq + ', '+ list.thLocation +')"><span>' + list.thName + '</span><span class="sreader"></span></a></li>');
 					}
 				} else {
 					//byPass
@@ -802,6 +701,164 @@
 			}
 		});
 	};
+	
+	//날짜 넣기
+	const date = new Date();
+	const lastDay = new Date(date.getFullYear(), date.getMonth()+1, 0);
+	const reserveDate = document.querySelector("#reserveDate");
+	
+	const weekOfDay = ["일", "월", "화", "수", "목", "금", "토"]
+	const year = date.getFullYear();
+    const month = date.getMonth();
+    for (i = date.getDate(); i <= lastDay.getDate(); i++) {
+    	const li = document.createElement("li");
+    	const a = document.createElement("a");
+        const spanWeekOfDay = document.createElement("span");
+        const spanDay = document.createElement("span");
+        const spanSreader = document.createElement("span");
+
+        //class넣기
+        li.classList = "day";
+        a.classList = "noImpact";
+        spanWeekOfDay.classList = "dayweek";
+        spanDay.classList = "day";
+        spanSreader.classList = "sreader";
+
+        //weekOfDay[new Date(2020-03-날짜)]
+        const dayOfWeek = weekOfDay[new Date(year + "-" + month + "-" + i).getDay()];
+
+        //요일 넣기
+        if (dayOfWeek === "일") {
+        	li.classList.add("day-sun");
+        } 
+        spanWeekOfDay.innerHTML = dayOfWeek;
+        li.append(a);
+        a.append(spanWeekOfDay);
+        //날짜 넣기
+        spanDay.innerHTML = i;
+        a.append(spanDay);
+        //button.append(i);
+        a .append(spanSreader);
+        reserveDate.append(li);
+    }
+    
+    function selectDate(seq, location){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,dataType:"json" 	
+			,url: "/purchase/selectDate"
+			,data : {"mSeq" : seq, "thLocation" : location}
+			,success: function(response) {
+				if(response.rt == "success") {
+					var location = $('div.date-list').children('ul.content');
+					for(var i=0; i<response.result.length; i++){
+						 var list = response.result[i];
+						 var year =list.dDate.substr(0,4);
+						 var month = list.dDate.substr(5,2);
+						 var day = list.dDate.substr(8,2);
+						 console.log(year);
+						 console.log(month);
+						 console.log(day);
+						 var thisDay = $("span.day");
+						 var arr2 = new Array();
+						 for(j=0; j<thisDay.text().length/2; j++){
+							if(j==0){ 
+								var day2 = thisDay.text().substr(0, 2);
+							}else{
+								var day2 = thisDay.text().substr((2*j), 2);
+							}
+							arr2.push(day2)
+						 } 
+						 console.log(arr2);	
+						 console.log(arr2[0].toString());
+						 var aImpact = $("a.noImpact");
+						 var thisDayWeek = $("span.dayweek");
+						 if(day != arr2[j]){
+							 console.log(arr2[j]);
+							 thisDay.css("color", "#d3d3d3");
+							 thisDayWeek.css("color", "#d3d3d3");
+							 aImpact.css("pointer-events", "none");
+						 }else{
+							 aImpact.attr('href', 'javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')');
+						 }
+						 /* location.append('<li class="day"><a href="javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')"><span class = "dayweek">' + month + '</span><span class = "day">' + day + '</span><span class="sreader"></span></a></li>'); */
+					}
+				} else {
+					//byPass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	};
+	
+	/* function selectTime(seq, location, thName){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,dataType:"json" 	
+			,url: "/purchase/selectLocation"
+			,data : {"mSeq" : seq, "thLocation" : location, "thName" : thName}
+			,success: function(response) {
+				if(response.rt == "success") {
+					var location = $('div.time-list').children('div.content');
+					location.empty();
+					for(var i=0; i<response.result.length; i++){
+						 var list = response.result[i];
+						 var location2 = location.createElement("div");
+					 		location2.classList = "theater";
+					 		location2.append('<span class="title"><span class="name">' + list.scScreenType</span> + '<span class="floor">' + list.scNumber + '관[' + SCREENX + ']</span><span class="seatcount">(총' + list.scTotalSeat + '석)</span></span>');
+					 		for(var j=0; j<response.result.length; j++){
+					 			var item = response.result[j];
+					 			var locationThis = $("span.title");
+					 			var timeThis = item.dTime.substr(0, 4);
+					 			var location3 = locationThis.after('<ul class="screenThis"></ul>');
+					 			location3.append('<li><a class="button" href="#"><span class="time"><span>' + timeThis + '</span></span><span class="count">' + item.scTotalSeat + '석</span><div class="sreader">종료시간' +  + '</div><span class="sreader mod"></span></a></li>');
+					 			}
+						 
+						 switch(list.scNumber){
+						 	case '1' : 
+						 		var location2 = location.createElement("div");
+						 		location2.classList = "theater";
+						 		location2.append('<span class="title"><span class="name">' + list.scScreenType</span> + '<span class="floor">' + list.scNumber + '관[' + SCREENX + ']</span><span class="seatcount">(총' + list.scTotalSeat + '석)</span></span>');
+						 		for(var j=0; j<response.result.length; j++){
+						 			var item = response.result[j];
+						 			var locationThis = $("span.title");
+						 			var timeThis = item.dTime.substr(0, 4);
+						 			var location3 = locationThis.after('<ul class="screenThis"></ul>');
+						 			location3.append('<li><a class="button" href="#"><span class="time"><span>' + timeThis + '</span></span><span class="count">' + item.scTotalSeat + '석</span><div class="sreader">종료시간' +  + '</div><span class="sreader mod"></span></a></li>');
+						 			}
+						 		break;
+						 	case '2' : 
+						 		var location2 = location.createElement("div");
+						 		location2.classList = "theater";
+						 		location2.append('<span class="title"><span class="name">' + list.scScreenType</span> + '<span class="floor">' + list.scNumber + '관[' + SCREENX + ']</span><span class="seatcount">(총' + list.scTotalSeat + '석)</span></span>');
+						 		for(var j=0; j<response.result.length; j++){
+						 			var item = response.result[j];
+						 			var locationThis = $("span.title");
+						 			var timeThis = item.dTime.substr(0, 4);
+						 			var location3 = locationThis.after('<ul class="screenThis"></ul>');
+						 			location3.append('<li><a class="button" href="#"><span class="time"><span>' + timeThis + '</span></span><span class="count">' + item.scTotalSeat + '석</span><div class="sreader">종료시간' +  + '</div><span class="sreader mod"></span></a></li>');
+						 			}
+						 		break;
+						 } 
+					}
+				} else {
+					//byPass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	};  */
+    
+    
+    
 	</script>
 </body>
 </html>

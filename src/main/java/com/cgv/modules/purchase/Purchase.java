@@ -2,6 +2,7 @@ package com.cgv.modules.purchase;
 
 import java.util.Date;
 
+
 public class Purchase {
 	private String dSeq;
 	private String mSeq;
@@ -16,7 +17,22 @@ public class Purchase {
 	private Integer scNumber;
 	private Integer scRow;
 	private Integer scCol;
+	private String dDate;
+	private String dTime;
 	
+	
+	public String getdTime() {
+		return dTime;
+	}
+	public void setdTime(String dTime) {
+		this.dTime = dTime;
+	}
+	public String getdDate() {
+		return dDate;
+	}
+	public void setdDate(String dDate) {
+		this.dDate = dDate;
+	}
 	public String getmSeq() {
 		return mSeq;
 	}
