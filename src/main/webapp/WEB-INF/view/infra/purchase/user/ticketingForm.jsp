@@ -796,7 +796,6 @@
 							 li += '	</a>';
 							 li += '</li>')';
 							asfdas.append(li); */
-							 
 						 /* location.append('<li class="day"><a href="javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')"><span class = "dayweek">' + month + '</span><span class = "day">' + day + '</span><span class="sreader"></span></a></li>'); */
 						}
 					}
