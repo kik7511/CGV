@@ -780,7 +780,7 @@
 							 //return false;
 							 if(day == arr2[a]){
 								 items.parent().attr('href', 'javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')');
-								 items.parent().parent().addClass('selected');
+								 /* items.parent().parent().addClass('selected'); */
 								 
 						 }else{
 							/*  console.log(day);
