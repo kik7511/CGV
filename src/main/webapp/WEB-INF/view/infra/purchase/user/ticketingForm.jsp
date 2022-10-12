@@ -771,19 +771,34 @@
 							}
 							arr2.push(day2)
 						 } 
-						 console.log(arr2);	
-						 console.log(arr2[0].toString());
+						 // console.log(arr2);
+						 // console.log(day);
 						 var aImpact = $("a.noImpact");
 						 var thisDayWeek = $("span.dayweek");
-						 if(day != arr2[j]){
-							 console.log(arr2[j]);
-							 thisDay.css("color", "#d3d3d3");
-							 thisDayWeek.css("color", "#d3d3d3");
-							 aImpact.css("pointer-events", "none");
+						 for(a=0; a<arr2.length; a++){
+							 var items = $( 'span:contains('+arr2[a]+')');
+							 //return false;
+							 if(day == arr2[a]){
+								 items.parent().attr('href', 'javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')');
+								 items.parent().parent().addClass('selected');
+								 
 						 }else{
-							 aImpact.attr('href', 'javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')');
+							/*  console.log(day);
+							 console.log(arr2[a]); */
+							 /* items.css("color", "#d3d3d3");
+							 items.prev().css("color", "#d3d3d3"); 
+							 items.parent().css("pointer-events", "none"); */
 						 }
+							/*  var li ="";
+							 li += '<li class="day">';
+							 li += '	<a href="javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')">';
+							 li += '		<span class = "dayweek">' + month + '</span><span class = "day">' + day + '</span><span class="sreader"></span>';
+							 li += '	</a>';
+							 li += '</li>')';
+							asfdas.append(li); */
+							 
 						 /* location.append('<li class="day"><a href="javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')"><span class = "dayweek">' + month + '</span><span class = "day">' + day + '</span><span class="sreader"></span></a></li>'); */
+						}
 					}
 				} else {
 					//byPass
