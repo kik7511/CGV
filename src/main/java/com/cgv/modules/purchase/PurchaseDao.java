@@ -41,4 +41,9 @@ public class PurchaseDao {
 		List<Purchase> list = sqlSession.selectList(namespace + ".selectTime", vo);
 		return list;
 	}
+	
+	public List<Purchase> selectScreen(PurchaseVo vo){
+		List<Purchase> list = sqlSession.selectList(namespace + ".selectScreen", vo);
+		return list;
+	}
 }

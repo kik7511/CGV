@@ -49,10 +49,10 @@
 			d.thName
 			,d.thLocation	
 			,a.mSeq
-			,DATE_FORMAT(b.dDate, '%Y') as Year
-            ,DATE_FORMAT(b.dDate, '%m') as Month
-            ,DATE_FORMAT(b.dDate, '%d') as Day
             ,b.dDate
+            ,c.scTotalSeat
+            ,c.scScreenType
+            ,c.scNumber
 		FROM Movie a
 		INNER JOIN date b ON b.Movie_mSeq = a.mSeq 
 		INNER JOIN screen c ON c.scSeq = b.screen_scSeq
@@ -81,6 +81,30 @@
 			AND mSeq= #{mSeq}
 			AND thLocation = #{thLocation}
 			AND thName = #{thName}
+			AND DATE_FORMAT(b.dDate, '%Y-%m-%d') = #{dDate}
+	</select>
+	
+	<select id="selectScreen" resultMap="resultMapObj">
+		SELECT
+			d.thName
+			,d.thLocation	
+			,a.mSeq
+            ,b.dDate
+            ,b.dTime
+            ,c.scTotalSeat
+            ,c.scScreenType
+            ,c.scNumber
+		FROM Movie a
+		INNER JOIN date b ON b.Movie_mSeq = a.mSeq 
+		INNER JOIN screen c ON c.scSeq = b.screen_scSeq
+		INNER JOIN Theater d ON d.thSeq = c.Theater_thSeq
+		WHERE 1=1
+			AND mSeq= #{mSeq}
+			AND thLocation = #{thLocation}
+			AND thName = #{thName}
+			AND DATE_FORMAT(b.dDate, '%Y-%m-%d') = #{dDate}
+			AND scNumber = #{scNumber}
+            group by scNumber
 	</select>
 	
 	

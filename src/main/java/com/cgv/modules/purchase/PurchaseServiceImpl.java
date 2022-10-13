@@ -35,5 +35,10 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public List<Purchase> selectTime(PurchaseVo vo) throws Exception{
 		return dao.selectTime(vo);
+	}
+	
+	@Override
+	public List<Purchase> selectScreen(PurchaseVo vo) throws Exception{
+		return dao.selectScreen(vo);
 	} 
 }	

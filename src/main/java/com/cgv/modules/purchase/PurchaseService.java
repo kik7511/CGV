@@ -8,4 +8,5 @@ public interface PurchaseService {
 	public List<Purchase> selectLocation(PurchaseVo vo) throws Exception;
 	public List<Purchase> selectDate(PurchaseVo vo) throws Exception;
 	public List<Purchase> selectTime(PurchaseVo vo) throws Exception;
+	public List<Purchase> selectScreen(PurchaseVo vo) throws Exception;
 }

@@ -779,24 +779,24 @@
 							 var items = $( 'span:contains('+arr2[a]+')');
 							 //return false;
 							 if(day == arr2[a]){
-								 items.parent().attr('href', 'javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')');
-								 /* items.parent().parent().addClass('selected'); */
+								 items.parent().attr('href', 'javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + '"' + list.dDate + '"' + ', ' + '"' + list.thName + '"' + ', ' + list.scNumber + ')');
+								 items.parent().parent().addClass('selected'); 
 								 
-						 }else{
-							/*  console.log(day);
-							 console.log(arr2[a]); */
-							 /* items.css("color", "#d3d3d3");
-							 items.prev().css("color", "#d3d3d3"); 
-							 items.parent().css("pointer-events", "none"); */
-						 }
-							/*  var li ="";
-							 li += '<li class="day">';
-							 li += '	<a href="javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')">';
-							 li += '		<span class = "dayweek">' + month + '</span><span class = "day">' + day + '</span><span class="sreader"></span>';
-							 li += '	</a>';
-							 li += '</li>')';
-							asfdas.append(li); */
-						 /* location.append('<li class="day"><a href="javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')"><span class = "dayweek">' + month + '</span><span class = "day">' + day + '</span><span class="sreader"></span></a></li>'); */
+						 	}else{
+						 		/*  console.log(day);
+								 console.log(arr2[a]);
+								 items.css("color", "#d3d3d3");
+								 items.prev().css("color", "#d3d3d3"); 
+								 items.parent().css("pointer-events", "none");
+								 var li ="";
+								 li += '<li class="day">';
+								 li += '	<a href="javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')">';
+								 li += '		<span class = "dayweek">' + month + '</span><span class = "day">' + day + '</span><span class="sreader"></span>';
+								 li += '	</a>';
+								 li += '</li>')';
+								asfdas.append(li); 
+								location.append('<li class="day"><a href="javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')"><span class = "dayweek">' + month + '</span><span class = "day">' + day + '</span><span class="sreader"></span></a></li>'); */
+						 	}
 						}
 					}
 				} else {
@@ -809,59 +809,51 @@
 		});
 	};
 	
-	/* function selectTime(seq, location, thName){
+	function selectTime(seq, location, date, thName, scNumber){
 		$.ajax({
 			async: true 
 			,cache: false
 			,type: "post"
 			,dataType:"json" 	
-			,url: "/purchase/selectLocation"
-			,data : {"mSeq" : seq, "thLocation" : location, "thName" : thName}
+			,url: "/purchase/selectTime"
+			,data : {"mSeq" : seq, "thLocation" : location, "dDate" : date, "thName" : thName, "scNumber" : scNumber}
 			,success: function(response) {
 				if(response.rt == "success") {
 					var location = $('div.time-list').children('div.content');
 					location.empty();
-					for(var i=0; i<response.result.length; i++){
-						 var list = response.result[i];
-						 var location2 = location.createElement("div");
-					 		location2.classList = "theater";
-					 		location2.append('<span class="title"><span class="name">' + list.scScreenType</span> + '<span class="floor">' + list.scNumber + '관[' + SCREENX + ']</span><span class="seatcount">(총' + list.scTotalSeat + '석)</span></span>');
-					 		for(var j=0; j<response.result.length; j++){
-					 			var item = response.result[j];
-					 			var locationThis = $("span.title");
-					 			var timeThis = item.dTime.substr(0, 4);
-					 			var location3 = locationThis.after('<ul class="screenThis"></ul>');
-					 			location3.append('<li><a class="button" href="#"><span class="time"><span>' + timeThis + '</span></span><span class="count">' + item.scTotalSeat + '석</span><div class="sreader">종료시간' +  + '</div><span class="sreader mod"></span></a></li>');
-					 			}
-						 
-						 switch(list.scNumber){
-						 	case '1' : 
-						 		var location2 = location.createElement("div");
-						 		location2.classList = "theater";
-						 		location2.append('<span class="title"><span class="name">' + list.scScreenType</span> + '<span class="floor">' + list.scNumber + '관[' + SCREENX + ']</span><span class="seatcount">(총' + list.scTotalSeat + '석)</span></span>');
-						 		for(var j=0; j<response.result.length; j++){
-						 			var item = response.result[j];
-						 			var locationThis = $("span.title");
-						 			var timeThis = item.dTime.substr(0, 4);
-						 			var location3 = locationThis.after('<ul class="screenThis"></ul>');
-						 			location3.append('<li><a class="button" href="#"><span class="time"><span>' + timeThis + '</span></span><span class="count">' + item.scTotalSeat + '석</span><div class="sreader">종료시간' +  + '</div><span class="sreader mod"></span></a></li>');
-						 			}
-						 		break;
-						 	case '2' : 
-						 		var location2 = location.createElement("div");
-						 		location2.classList = "theater";
-						 		location2.append('<span class="title"><span class="name">' + list.scScreenType</span> + '<span class="floor">' + list.scNumber + '관[' + SCREENX + ']</span><span class="seatcount">(총' + list.scTotalSeat + '석)</span></span>');
-						 		for(var j=0; j<response.result.length; j++){
-						 			var item = response.result[j];
-						 			var locationThis = $("span.title");
-						 			var timeThis = item.dTime.substr(0, 4);
-						 			var location3 = locationThis.after('<ul class="screenThis"></ul>');
-						 			location3.append('<li><a class="button" href="#"><span class="time"><span>' + timeThis + '</span></span><span class="count">' + item.scTotalSeat + '석</span><div class="sreader">종료시간' +  + '</div><span class="sreader mod"></span></a></li>');
-						 			}
-						 		break;
-						 } 
-					}
-				} else {
+					var div = "";
+		 			div += '<div class="theater"></div>';
+	 				location.append(div);
+	 				for(var j=0; j<response.result2.length; j++){
+		 				var item = response.result2[j];
+		 				var location2 = $('div.time-list').children('div.content').children('div.theater');
+				 		var li ="";
+						 li += '<span class="title">';
+						 li += '	<span class="name">' + item.scScreenType + '</span>';
+						 li += '	<span class="floor">' + item.scNumber + '관[' + item.scScreenType + ']</span>';
+						 li += '	<span class="seatcount">(총' + item.scTotalSeat + '석)</span>';
+						 li += '</span>';
+						 li += '<ul class="screenThis"></ul>';
+				 		location2.append(li);
+						for(var i=0; i<response.result.length; i++){
+						 	var list = response.result[i];
+					 		var location3 = $('ul.screenThis');
+				 			var timeThis = list.dTime.substr(0, 5);
+				 			var li2 = "";
+				 				li2 += '<li>';
+				 				li2 += '	<a class="button" href="#">';
+				 				li2 += '		<span class="time">';
+				 				li2 += '			<span>' + timeThis + '</span>';
+				 				li2 += '		</span>';
+				 				li2 += '		<span class="count">' + list.scTotalSeat + '석</span>';
+				 				li2 += '		<div class="sreader">종료시간</div>';
+				 				li2 += '		<span class="sreader mod"></span>';
+				 				li2 += '	</a>';
+				 				li2 += '</li>';
+				 			location3.append(li2); 
+							}
+		 				}
+					}else {
 					//byPass
 				}
 			}
@@ -869,7 +861,7 @@
 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 			}
 		});
-	};  */
+	};   
     
     
     

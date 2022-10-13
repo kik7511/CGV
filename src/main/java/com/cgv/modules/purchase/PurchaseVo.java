@@ -4,7 +4,28 @@ public class PurchaseVo {
 	private String mSeq;
 	private Integer thLocation;
 	private String thName;
-
+	private String dDate;
+	private String dTime;
+	private Integer scNumber;
+	
+	public Integer getScNumber() {
+		return scNumber;
+	}
+	public void setScNumber(Integer scNumber) {
+		this.scNumber = scNumber;
+	}
+	public String getdDate() {
+		return dDate;
+	}
+	public void setdDate(String dDate) {
+		this.dDate = dDate;
+	}
+	public String getdTime() {
+		return dTime;
+	}
+	public void setdTime(String dTime) {
+		this.dTime = dTime;
+	}
 	public String getmSeq() {
 		return mSeq;
 	}

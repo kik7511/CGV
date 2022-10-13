@@ -98,10 +98,12 @@ public class PurchaseController {
 		System.out.println("vo.getmSeq(): " + vo.getmSeq());
 		
 		List<Purchase> result = service.selectTime(vo);
+		List<Purchase> result2 = service.selectScreen(vo);
 		System.out.println("값은" + result);
 	
 		if (result != null) {
 			returnMap.put("result", result);
+			returnMap.put("result2", result2);
 			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");
