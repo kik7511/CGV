@@ -819,6 +819,14 @@
 			,data : {"mSeq" : seq, "thLocation" : location, "dDate" : date, "thName" : thName, "scNumber" : scNumber}
 			,success: function(response) {
 				if(response.rt == "success") {
+					<c:set var="listCodeScreen" value="${CodeServiceImpl.selectListCachedCode('10')}"/>
+						var arr = new Array();
+					<c:forEach items="${listCodeScreen}" var="listScreen" varStatus="listScreenStatus">
+						arr.push({
+							num : "${listScreen.ccSeq}"
+							,name : "${listScreen.ccCodeName}"
+						});
+					</c:forEach>
 					var location = $('div.time-list').children('div.content');
 					location.empty();
 					var div = "";
@@ -827,10 +835,13 @@
 	 				for(var j=0; j<response.result2.length; j++){
 		 				var item = response.result2[j];
 		 				var location2 = $('div.time-list').children('div.content').children('div.theater');
+						 if(arr[j].num == item.scScreenType){
+							 var scScreenType = arr[j].name
+					 		}
 				 		var li ="";
 						 li += '<span class="title">';
-						 li += '	<span class="name">' + item.scScreenType + '</span>';
-						 li += '	<span class="floor">' + item.scNumber + '관[' + item.scScreenType + ']</span>';
+						 li += '	<span class="name">' + scScreenType + '</span>';
+						 li += '	<span class="floor">' + item.scNumber + '관[' + scScreenType + ']</span>';
 						 li += '	<span class="seatcount">(총' + item.scTotalSeat + '석)</span>';
 						 li += '</span>';
 						 li += '<ul class="screenThis"></ul>';
@@ -841,7 +852,7 @@
 				 			var timeThis = list.dTime.substr(0, 5);
 				 			var li2 = "";
 				 				li2 += '<li>';
-				 				li2 += '	<a class="button" href="#">';
+				 				li2 += '	<a class="button" href="javascript:selectSeat(' + list.mSeq + ', '+ list.thLocation + ', ' + '"' + list.dDate + '"' + ', ' + '"' + list.thName + '"' + ', ' + '"' +  list.dTime + '"' + ',' + list.scNumber + ')">';
 				 				li2 += '		<span class="time">';
 				 				li2 += '			<span>' + timeThis + '</span>';
 				 				li2 += '		</span>';
@@ -862,6 +873,32 @@
 			}
 		});
 	};   
+	
+	function selectSeq(seq, location){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,dataType:"json" 	
+			,url: "/purchase/selectLocation"
+			,data : {"mSeq" : seq, "thLocation" : location}
+			,success: function(response) {
+				if(response.rt == "success") {
+					var location = $('div.area_theater_list').children('ul.content');
+					location.empty();
+					for(var i=0; i<response.result.length; i++){
+						 var list = response.result[i];
+						 location.append('<li class="" data-index="1" areaindex="0" style="display: list-item;"><a href="javascript:selectDate(' + seq + ', '+ list.thLocation +')"><span>' + list.thName + '</span><span class="sreader"></span></a></li>');
+					}
+				} else {
+					//byPass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	};
     
     
     

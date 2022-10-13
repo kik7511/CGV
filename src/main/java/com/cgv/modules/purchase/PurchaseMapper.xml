@@ -107,6 +107,31 @@
             group by scNumber
 	</select>
 	
+	<select id="selectSeat" resultMap="resultMapObj">
+		SELECT
+			d.thName
+			,d.thLocation	
+			,a.mSeq
+            ,b.dDate
+            ,b.dTime
+            ,c.scTotalSeat
+            ,c.scScreenType
+            ,c.scNumber
+            ,c.scRow
+            ,c.scCol
+		FROM Movie a
+		INNER JOIN date b ON b.Movie_mSeq = a.mSeq 
+		INNER JOIN screen c ON c.scSeq = b.screen_scSeq
+		INNER JOIN Theater d ON d.thSeq = c.Theater_thSeq
+		WHERE 1=1
+			AND mSeq= #{mSeq}
+			AND thLocation = #{thLocation}
+			AND thName like #{thName}
+			AND DATE_FORMAT(b.dDate, '%Y-%m-%d') = #{dDate}
+            AND b.dTime = #{dTime}
+            AND c.scNumber = #{scNumber}
+	</select>
+	
 	
 	
 	

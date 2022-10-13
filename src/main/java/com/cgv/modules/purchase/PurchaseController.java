@@ -97,13 +97,33 @@ public class PurchaseController {
 		
 		System.out.println("vo.getmSeq(): " + vo.getmSeq());
 		
-		List<Purchase> result = service.selectTime(vo);
 		List<Purchase> result2 = service.selectScreen(vo);
+		List<Purchase> result = service.selectTime(vo);
 		System.out.println("값은" + result);
 	
 		if (result != null) {
 			returnMap.put("result", result);
 			returnMap.put("result2", result2);
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "selectSeat")
+	public Map<String, Object> selectSeat(@ModelAttribute("vo") PurchaseVo vo) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println("vo.getmSeq(): " + vo.getmSeq());
+		
+		List<Purchase> result = service.selectSeat(vo);
+		System.out.println("값은" + result);
+	
+		if (result != null) {
+			returnMap.put("result", result);
 			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");
