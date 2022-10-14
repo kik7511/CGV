@@ -50,7 +50,7 @@
 					<div id="ticket" class="ticket ko">
 						<div class="navi" style="height: 50px;">
 							<span class="right">
-								<a class="button button-reservation-restart" href="#"></a>
+								<a class="button button-reservation-restart" href="/purchase/ticketingForm"></a>
 							</span>
 						</div>
 						<form>
@@ -285,11 +285,11 @@
 												-->
 												<div id="user-select-info">
 													<p class="theater-info">
-														<span class="site">CGV 강변</span>
-														<span class="screen">씨네앤포레</span>
-														<span class="seatNum">남은좌석  <b class="restNum">38</b>/<b class="totalNum">48</b></span>
+														<span class="site"><!-- CGV 강변 --></span>
+														<span class="screen"><!-- 씨네앤포레 --></span>
+														<span class="seatNum">남은좌석&nbsp;<b class="restNum"><!-- 38 --></b>/<b class="totalNum"><!-- 48 --></b></span>
 													</p>
-													<p class="playYMD-info"><b>2022.08.03</b><b class="exe">(수)</b><b>21:10 ~ 23:41</b></p>
+													<p class="playYMD-info"><b class="b_noImpact"><!-- 2022.08.03 --></b><b class="exe">&nbsp;</b><b><!-- 21:10 ~ 23:41 --></b></p>
 												</div>
 											</div>
 										</div>
@@ -300,8 +300,8 @@
 														<span class="text"></span>
 													</div>
 													<div class="seats" id="seats_list" style="width: 144px; height: 144px;">
-														<div>
-															<div class="row" style="top: 0px;">
+														<div class="seat_noImpact">
+															<!-- <div class="row" style="top: 0px;">
 																<div class="label">A</div>
 																<div class="seat_group">
 																	<div class="group">
@@ -508,7 +508,7 @@
 																				<span class="sreader mod"> 선택불가</span>
 																			</a>
 																		</div>
-																	</div>
+																	</div> -->
 																</div>
 															</div>
 														</div>
@@ -616,10 +616,10 @@
 				</div>
 				<div id="ticket_banner" class="ticket_banner">
 					<div>
-						<div class="AdvertiseCon" id="RIA_Skin_Seat_L" style="width: 160px; height: 300px; background: none; position: absolute; top: 75px; left: -164px; overflow: hidden; display: block;">
+						<div class="AdvertiseCon" id="RIA_Skin_Seat_L" style="width: 160px; height: 300px; background: none; position: absolute; top: 318px; left: -164px; overflow: hidden; display: block;">
 							<img src="/resources/images/user/1221_160x300.jpg" width="160" height="300" border="0" alt="광고-CGV 기프트 카드" style="width: 160px; height: 300px;">
 						</div>
-						<div class="AdvertiseCon" id="RIA_Skin_Seat_R" style="width: 160px; height: 300px; background: none; position: absolute; top: 75px; left: 1000px; overflow: hidden; display: block;">
+						<div class="AdvertiseCon" id="RIA_Skin_Seat_R" style="width: 160px; height: 300px; background: none; position: absolute; top: 318px; left: 1000px; overflow: hidden; display: block;">
 							<img src="/resources/images/user/1221_160x300.jpg" width="160" height="300" border="0" alt="광고-CGV 기프트 카드" style="width: 160px; height: 300px;">
 						</div>
 					</div>
@@ -781,21 +781,7 @@
 							 if(day == arr2[a]){
 								 items.parent().attr('href', 'javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + '"' + list.dDate + '"' + ', ' + '"' + list.thName + '"' + ', ' + list.scNumber + ')');
 								 items.parent().parent().addClass('selected'); 
-								 
 						 	}else{
-						 		/*  console.log(day);
-								 console.log(arr2[a]);
-								 items.css("color", "#d3d3d3");
-								 items.prev().css("color", "#d3d3d3"); 
-								 items.parent().css("pointer-events", "none");
-								 var li ="";
-								 li += '<li class="day">';
-								 li += '	<a href="javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')">';
-								 li += '		<span class = "dayweek">' + month + '</span><span class = "day">' + day + '</span><span class="sreader"></span>';
-								 li += '	</a>';
-								 li += '</li>')';
-								asfdas.append(li); 
-								location.append('<li class="day"><a href="javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + list.thName + ')"><span class = "dayweek">' + month + '</span><span class = "day">' + day + '</span><span class="sreader"></span></a></li>'); */
 						 	}
 						}
 					}
@@ -852,7 +838,7 @@
 				 			var timeThis = list.dTime.substr(0, 5);
 				 			var li2 = "";
 				 				li2 += '<li>';
-				 				li2 += '	<a class="button" href="javascript:selectSeat(' + list.mSeq + ', '+ list.thLocation + ', ' + '"' + list.dDate + '"' + ', ' + '"' + list.thName + '"' + ', ' + '"' +  list.dTime + '"' + ',' + list.scNumber + ')">';
+				 				li2 += '	<a class=\'button\' href=\'javascript:selectSeat(' + list.mSeq + ', ' + list.thLocation + ', \"' + list.dDate + '\", \"' + list.thName + '\", ' + list.scNumber + ',\"' + list.dTime + '\")\'>';
 				 				li2 += '		<span class="time">';
 				 				li2 += '			<span>' + timeThis + '</span>';
 				 				li2 += '		</span>';
@@ -874,21 +860,51 @@
 		});
 	};   
 	
-	function selectSeq(seq, location){
+	function selectSeat(seq, location, date, name, number, time){
 		$.ajax({
 			async: true 
 			,cache: false
 			,type: "post"
 			,dataType:"json" 	
-			,url: "/purchase/selectLocation"
-			,data : {"mSeq" : seq, "thLocation" : location}
+			,url: "/purchase/selectSeat"
+			,data : {"mSeq" : seq, "thLocation" : location, "dDate" : date, "thName" : name, "dTime" : time, "scNumber" : number}
 			,success: function(response) {
 				if(response.rt == "success") {
-					var location = $('div.area_theater_list').children('ul.content');
+					var location = $('div.seats').children('div.seat_noImpact');
 					location.empty();
-					for(var i=0; i<response.result.length; i++){
-						 var list = response.result[i];
-						 location.append('<li class="" data-index="1" areaindex="0" style="display: list-item;"><a href="javascript:selectDate(' + seq + ', '+ list.thLocation +')"><span>' + list.thName + '</span><span class="sreader"></span></a></li>');
+					var list = response.result[0];
+					var time = list.dTime.substr(0, 5);
+					var date = list.dDate.replace(/-/g, ".")
+					$('span.site').text(list.thName);
+					$('span.screen').text(list.scNumber + '관');
+					/* $('span.seatNum').text('남은좌석 '); */
+					$('b.restNum').text(list.scTotalSeat);
+					$('b.totalNum').text(list.scTotalSeat);
+					$('p.playYMD-info').children('b.b_noImpact').text(date);
+					$('b.exe').next('b').text(time + ' ~ ');
+					var arr = ["A", "B", "C", "D", "E", "F", "G", "H"];
+					for(var i=1; i<=list.scRow; i++){
+						var li = "";
+						li += '<div class="row" style="top: ' + (32 + (16*(i-1))) + 'px;">';
+						li += '	<div class="label">' + arr[i-s1] + '</div>';
+						li += '	<div class="seat_group">';
+						li += '		<div class="group">';
+						li += '		</div>';
+						li += '	</div>';
+						li += '</div>';
+						 location.append(li);
+						 for(var j=1; j<=list.scCol; j++){
+							 var location2 = $('div.seat_group').children('div.group');
+							 var li2 = "";
+							 li2 += '<div class="seat" style="left: ' + (32 + (16*(j-1))) + 'px;">';
+							 li2 += '	<a href="#" onclick="">';
+							 li2 += '		<span class="no">' + j + '</span>';
+							 li2 += '		<span class="sreader"></span>';
+							 li2 += '		<span class="sreader mod"></span>';
+							 li2 += '	</a>';
+							 li2 += '</div>';
+							 location2.append(li2);		 
+						 }
 					}
 				} else {
 					//byPass
