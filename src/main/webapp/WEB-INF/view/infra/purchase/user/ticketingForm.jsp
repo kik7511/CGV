@@ -886,7 +886,7 @@
 					for(var i=1; i<=list.scRow; i++){
 						var li = "";
 						li += '<div class="row" style="top: ' + (32 + (16*(i-1))) + 'px;">';
-						li += '	<div class="label">' + arr[i-s1] + '</div>';
+						li += '	<div class="label">' + arr[i-1] + '</div>';
 						li += '	<div class="seat_group">';
 						li += '		<div class="group">';
 						li += '		</div>';
