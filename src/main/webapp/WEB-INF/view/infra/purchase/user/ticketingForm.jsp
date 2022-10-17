@@ -524,19 +524,19 @@
 					</div>
 				</div>
 				<div id="ticket_tnb" class="tnb_container ">
-					<div class="tnb step1">
+					<div class="tnb step1"> 
 						<!-- btn-left -->
-						<a class="btn-left" href="#" onclick="OnTnbLeftClick();" title="영화선택">이전단계로 이동</a>
+						<a class="btn-left" href="#" title="영화선택">이전단계로 이동</a>
 						<div class="info movie">
-							<span class="movie_poster"><img src="" alt="영화 포스터" style="display: none;"></span>
+							<span class="movie_poster"><img src="/resources/images/user/${sessSrc}_320.jpg" alt="영화 포스터" style="display: none;"></span>
 							<div class="row movie_title colspan2" style="display: none;">
-								<span class="data letter-spacing-min ellipsis-line2"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/영화상세보기');">영화정보 상세보기</a></span>
+								<span class="data letter-spacing-min ellipsis-line2"><a href="#" target="_blank" onmousedown="javascript:movieInfo();">${sessmName}</a></span>
 							</div>
 							<div class="row movie_type" style="display: none;">
 								<span class="data ellipsis-line1"></span>
 							</div>
 							<div class="row movie_rating" style="display: none;">
-								<span class="data" title=""></span>
+								<span class="data" title="">${sessmAgeLimit}세 관람가</span>
 							</div>
 							<div class="placeholder" title="영화선택"></div>
 						</div>
@@ -637,6 +637,10 @@
 	</div>
 <!-- end -->
 	<script>
+		function movieInfo(seq){
+			window.open("/movie/movieInfoView?mSeq=" + seq  + '"');
+		}
+	
 		function selectTheater(seq){
 			$.ajax({
 				async: true 
@@ -647,6 +651,11 @@
 				,data : {"mSeq" : seq}
 				,success: function(response) {
 					if(response.rt == "success") {
+						/* $('div.placeholder').css('display', 'none');
+						$('span.movie_title').css('display', 'inline');
+						$('div.movie_title').css('display', 'block');
+						$('div.movie_type').css('display', 'block');
+						$('div.movie_rating').css('display', 'block'); */
 						<c:set var="listCodeLocation" value="${CodeServiceImpl.selectListCachedCode('8')}"/>
 						var arr = new Array();
 						<c:forEach items="${listCodeLocation}" var="listLocation" varStatus="listLocationStatus">
@@ -892,18 +901,20 @@
 						li += '		</div>';
 						li += '	</div>';
 						li += '</div>';
-						 location.append(li);
+				 	   	location.append(li);
 						 for(var j=1; j<=list.scCol; j++){
-							 var location2 = $('div.seat_group').children('div.group');
+							 var location2 = $('div.label:contains(' + arr[i-1] + ')').next('div.seat_group').children('div.group');
+							 console.log(i+ ", " + j);
+							/* alert(i); */
 							 var li2 = "";
 							 li2 += '<div class="seat" style="left: ' + (32 + (16*(j-1))) + 'px;">';
-							 li2 += '	<a href="#" onclick="">';
+							 li2 += '	<a class=\'button\' href=\'javascript:selectPurchase(' + list.mSeq + ', ' + list.thLocation + ', \"' + list.dDate + '\", \"' + list.thName + '\", ' + list.scNumber + ',\"' + list.dTime + '\", ' + i + ', ' + j + ')\'>';
 							 li2 += '		<span class="no">' + j + '</span>';
 							 li2 += '		<span class="sreader"></span>';
 							 li2 += '		<span class="sreader mod"></span>';
 							 li2 += '	</a>';
 							 li2 += '</div>';
-							 location2.append(li2);		 
+							 location2.append(li2);	
 						 }
 					}
 				} else {
@@ -915,8 +926,6 @@
 			}
 		});
 	};
-    
-    
     
 	</script>
 </body>

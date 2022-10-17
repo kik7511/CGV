@@ -4,18 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/purchase/")
@@ -31,7 +27,7 @@ public class PurchaseController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "selectTheater")
-	public Map<String, Object> selectTheater(Purchase dto, @ModelAttribute("vo") PurchaseVo vo, Model model) throws Exception {
+	public Map<String, Object> selectTheater(Purchase dto, @ModelAttribute("vo") PurchaseVo vo, Model model, HttpSession httpSession) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -41,6 +37,12 @@ public class PurchaseController {
 		System.out.println("값은" + result);
 	
 		if (result != null) {
+			/*
+			 * httpSession.setAttribute("sessmName", ((PurchaseVo) result).getmNameKor());
+			 * httpSession.setAttribute("sessSrc", ((Purchase) result).getSrc());
+			 * httpSession.setAttribute("sessmAgeLimit", ((Purchase)
+			 * result).getmAgeLimit());
+			 */
 			returnMap.put("result", result);
 			returnMap.put("rt", "success");
 		} else {
@@ -51,7 +53,7 @@ public class PurchaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "selectLocation")
-	public Map<String, Object> selectLocation(@ModelAttribute("vo") PurchaseVo vo) throws Exception {
+	public Map<String, Object> selectLocation(@ModelAttribute("vo") PurchaseVo vo, HttpSession httpSession) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -61,6 +63,10 @@ public class PurchaseController {
 		System.out.println("값은" + result);
 	
 		if (result != null) {
+			/*
+			 * httpSession.setAttribute("sessThLocation", ((Purchase)
+			 * result).getThLocation());
+			 */
 			returnMap.put("result", result);
 			returnMap.put("rt", "success");
 		} else {
@@ -71,7 +77,7 @@ public class PurchaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "selectDate")
-	public Map<String, Object> selectDate(@ModelAttribute("vo") PurchaseVo vo) throws Exception {
+	public Map<String, Object> selectDate(@ModelAttribute("vo") PurchaseVo vo, HttpSession httpSession) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -81,6 +87,7 @@ public class PurchaseController {
 		System.out.println("값은" + result);
 	
 		if (result != null) {
+			/* httpSession.setAttribute("sessThName", ((Purchase) result).getThName()); */
 			returnMap.put("result", result);
 			returnMap.put("rt", "success");
 		} else {
@@ -91,7 +98,7 @@ public class PurchaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "selectTime")
-	public Map<String, Object> selectTime(@ModelAttribute("vo") PurchaseVo vo) throws Exception {
+	public Map<String, Object> selectTime(@ModelAttribute("vo") PurchaseVo vo, HttpSession httpSession) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -102,6 +109,7 @@ public class PurchaseController {
 		System.out.println("값은" + result);
 	
 		if (result != null) {
+			/* httpSession.setAttribute("sessdDate", ((Purchase) result).getdDate()); */
 			returnMap.put("result", result);
 			returnMap.put("result2", result2);
 			returnMap.put("rt", "success");
@@ -113,7 +121,7 @@ public class PurchaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "selectSeat")
-	public Map<String, Object> selectSeat(@ModelAttribute("vo") PurchaseVo vo) throws Exception {
+	public Map<String, Object> selectSeat(@ModelAttribute("vo") PurchaseVo vo, HttpSession httpSession) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -123,6 +131,12 @@ public class PurchaseController {
 		System.out.println("값은" + result);
 	
 		if (result != null) {
+			/*
+			 * httpSession.setAttribute("sessdTime", ((Purchase) result).getdTime());
+			 * httpSession.setAttribute("sessScScreenType", ((Purchase)
+			 * result).getScScreenType()); httpSession.setAttribute("sessScNumber",
+			 * ((Purchase) result).getScNumber());
+			 */
 			returnMap.put("result", result);
 			returnMap.put("rt", "success");
 		} else {
