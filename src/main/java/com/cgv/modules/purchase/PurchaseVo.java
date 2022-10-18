@@ -7,7 +7,29 @@ public class PurchaseVo {
 	private String dDate;
 	private String dTime;
 	private Integer scNumber;
+	private Integer stRow;
+	private Integer stCol;
+	private Integer stUseNy;
 	
+	
+	public Integer getStRow() {
+		return stRow;
+	}
+	public void setStRow(Integer stRow) {
+		this.stRow = stRow;
+	}
+	public Integer getStCol() {
+		return stCol;
+	}
+	public void setStCol(Integer stCol) {
+		this.stCol = stCol;
+	}
+	public Integer getStUseNy() {
+		return stUseNy;
+	}
+	public void setStUseNy(Integer stUseNy) {
+		this.stUseNy = stUseNy;
+	}
 	public Integer getScNumber() {
 		return scNumber;
 	}

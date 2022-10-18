@@ -560,13 +560,13 @@
 							<div class="placeholder" title="극장선택"></div>
 						</div>
 						<div class="info seat">
-							<div class="row seat_name">
+							<div class="row seat_name" style="height: 0px;">
 								<span class="header">좌석명</span>
-								<span class="data">일반석</span>
+								<span class="data" title=""></span>
 							</div>
 							<div class="row seat_no colspan3">
 								<span class="header">좌석번호</span>
-								<span class="data ellipsis-line3"></span>
+								<span class="data ellipsis-line3" title=""></span>
 							</div>
 							<div class="placeholder" title="좌석선택"></div>
 						</div>
@@ -761,6 +761,7 @@
 			,data : {"mSeq" : seq, "thLocation" : location}
 			,success: function(response) {
 				if(response.rt == "success") {
+					$('#reserveDate').children('li').addClass('dimmed');
 					var location = $('div.date-list').children('ul.content');
 					for(var i=0; i<response.result.length; i++){
 						 var list = response.result[i];
@@ -788,8 +789,8 @@
 							 var items = $( 'span:contains('+arr2[a]+')');
 							 //return false;
 							 if(day == arr2[a]){
+								 items.parent().parent().removeClass('dimmed');
 								 items.parent().attr('href', 'javascript:selectTime(' + list.mSeq + ', ' + list.thLocation + ', ' + '"' + list.dDate + '"' + ', ' + '"' + list.thName + '"' + ', ' + list.scNumber + ')');
-								 items.parent().parent().addClass('selected'); 
 						 	}else{
 						 	}
 						}
@@ -830,9 +831,12 @@
 	 				for(var j=0; j<response.result2.length; j++){
 		 				var item = response.result2[j];
 		 				var location2 = $('div.time-list').children('div.content').children('div.theater');
-						 if(arr[j].num == item.scScreenType){
-							 var scScreenType = arr[j].name
-					 		}
+		 				for(var k=0; k<arr.length; k++){
+		 					if(arr[k].num == item.scScreenType){
+								 var scScreenType = arr[k].name
+								 console.log(scScreenType);
+						 		}		 					
+		 				}
 				 		var li ="";
 						 li += '<span class="title">';
 						 li += '	<span class="name">' + scScreenType + '</span>';
@@ -856,7 +860,7 @@
 				 				li2 += '		<span class="sreader mod"></span>';
 				 				li2 += '	</a>';
 				 				li2 += '</li>';
-				 			location3.append(li2); 
+				 			location3.append(li2);   
 							}
 		 				}
 					}else {
@@ -919,6 +923,25 @@
 					}
 				} else {
 					//byPass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	};
+	
+	function selectPurchase(seq, location, date, name, number, time, row, col){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,dataType:"json" 	
+			,url: "/purchase/selectPurchase"
+			,data : {"mSeq" : seq, "thLocation" : location, "dDate" : date, "thName" : name, "dTime" : time, "scNumber" : number, "stRow" : row, "stCol" : col}
+			,success: function(response) {
+				if(response.rt == "success") {
+					$('div.placeholder').css("display", "none");
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){

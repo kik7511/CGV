@@ -6,6 +6,7 @@ import java.util.Date;
 public class Purchase {
 	private String dSeq;
 	private String mSeq;
+	private String stSeq;
 	private String mNameKor;
 	private Integer mAgeLimit;
 	private Integer src;
@@ -19,8 +20,41 @@ public class Purchase {
 	private Integer scCol;
 	private String dDate;
 	private String dTime;
+	private Integer stRow;
+	private Integer stCol;
+	private Integer stUseNy;
+	private Integer stPrice;
 	
-	
+	public String getStSeq() {
+		return stSeq;
+	}
+	public void setStSeq(String stSeq) {
+		this.stSeq = stSeq;
+	}
+	public Integer getStRow() {
+		return stRow;
+	}
+	public void setStRow(Integer stRow) {
+		this.stRow = stRow;
+	}
+	public Integer getStCol() {
+		return stCol;
+	}
+	public void setStCol(Integer stCol) {
+		this.stCol = stCol;
+	}
+	public Integer getStUseNy() {
+		return stUseNy;
+	}
+	public void setStUseNy(Integer stUseNy) {
+		this.stUseNy = stUseNy;
+	}
+	public Integer getStPrice() {
+		return stPrice;
+	}
+	public void setStPrice(Integer stPrice) {
+		this.stPrice = stPrice;
+	}
 	public String getdTime() {
 		return dTime;
 	}

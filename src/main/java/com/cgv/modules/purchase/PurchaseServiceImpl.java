@@ -46,4 +46,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public List<Purchase> selectSeat(PurchaseVo vo) throws Exception{
 		return dao.selectSeat(vo);
 	}
+	
+	@Override
+	public List<Purchase> selectPurchase(PurchaseVo vo) throws Exception{
+		return dao.selectPurchase(vo);
+	}
+	
+	@Override
+	public int selectpurchaseUp(Purchase dto) throws Exception{
+		return dao.selectpurchaseUp(dto);
+	}
 }	

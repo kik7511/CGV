@@ -42,6 +42,12 @@
 			<exclude-mapping path="/movie/movieChartView" />
 			<exclude-mapping path="/movie/movieInfoView" />
 			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/purchase/ticketingForm" />
+			<exclude-mapping path="/purchase/selectTheater" />
+			<exclude-mapping path="/purchase/selectLocation" />
+			<exclude-mapping path="/purchase/selectDate" />
+			<exclude-mapping path="/purchase/selectTime" />
+			<exclude-mapping path="/purchase/selectSeat" />
 			<beans:bean id="checkLoginSessionInterception" class="com.cgv.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	

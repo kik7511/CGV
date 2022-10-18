@@ -10,4 +10,6 @@ public interface PurchaseService {
 	public List<Purchase> selectTime(PurchaseVo vo) throws Exception;
 	public List<Purchase> selectScreen(PurchaseVo vo) throws Exception;
 	public List<Purchase> selectSeat(PurchaseVo vo) throws Exception;
+	public List<Purchase> selectPurchase(PurchaseVo vo) throws Exception;
+	public int selectpurchaseUp(Purchase dto) throws Exception;
 }

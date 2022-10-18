@@ -145,6 +145,28 @@ public class PurchaseController {
 		return returnMap;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "selectPurchase")
+	public Map<String, Object> selectPurchase(Purchase dto, @ModelAttribute("vo") PurchaseVo vo, HttpSession httpSession) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println("vo.getmSeq(): " + vo.getmSeq());
+		
+		List<Purchase> result = service.selectPurchase(vo);
+		/* int result2 = service.selectpurchaseUp(dto); 
+		System.out.println("controller result2: " + result2);*/
+		System.out.println("값은" + result);
+	
+		if (result != null) {
+			returnMap.put("result", result);
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	
 	@RequestMapping(value = "paymentForm")
 	public String paymentForm() {
 		return "infra/purchase/user/paymentForm";

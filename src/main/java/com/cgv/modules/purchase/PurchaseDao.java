@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.cgv.modules.member.Member;
+
 @Repository
 public class PurchaseDao {
 	
@@ -50,5 +52,15 @@ public class PurchaseDao {
 	public List<Purchase> selectSeat(PurchaseVo vo){
 		List<Purchase> list = sqlSession.selectList(namespace + ".selectSeat", vo);
 		return list;
+	}
+	
+	public List<Purchase> selectPurchase(PurchaseVo vo){
+		List<Purchase> list = sqlSession.selectList(namespace + ".selectPurchase", vo);
+		return list;
+	}
+	
+	public int selectpurchaseUp(Purchase dto) {
+		int result = sqlSession.update(namespace+ ".selecturchaseUp", dto);
+		return result;
 	}
 }
