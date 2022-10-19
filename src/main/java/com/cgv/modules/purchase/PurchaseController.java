@@ -149,8 +149,6 @@ public class PurchaseController {
 		
 		List<Purchase> result = service.selectPurchase(vo);
 		
-		/* int result2 = service.selectpurchaseUp(dto); 
-		System.out.println("controller result2: " + result2);*/
 		System.out.println("값은" + result);
 	
 		if (result != null) {
@@ -164,7 +162,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "selectPayment")
 	public String selectPayment(@ModelAttribute("dto") Purchase dto) {
-		
+		System.out.println(dto.getmNameKor());
 		
 		return "infra/purchase/user/paymentForm";
 	}

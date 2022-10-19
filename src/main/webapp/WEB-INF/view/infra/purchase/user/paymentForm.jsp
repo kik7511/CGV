@@ -52,7 +52,7 @@
 								<a class="button button-reservation-restart" href="../purchase/ticketingForm.html"></a>
 							</span>
 						</div>
-						<div class="steps">
+						<!-- <div class="steps">
 							<div class="step step1" style="height: 500px; display: none;">
 								<div class="section section-movie" >
 									<div class="col-head" id="skip_movie_list"> 
@@ -429,7 +429,7 @@
 									<div class="col-body">
 										<div class="person_screen">
 											<div class="section section-numberofpeople">
-												<div class="col-body">
+												<div class="col-body"> -->
 			
 													<!-- 인접좌석 -->
 													<!-- <div class="adjacent_seat_wrap">
@@ -444,9 +444,9 @@
 														</div>
 													</div> -->
 			
-													<div id="nopContainer" class="numberofpeople-select" style="min-width: 426px;">
-														<!-- 2021.05.25 - 좌석 거리두기 -->
-														<!-- 최대 선택 가능 인원 표기 -->
+													<!-- <div id="nopContainer" class="numberofpeople-select" style="min-width: 426px;">
+														2021.05.25 - 좌석 거리두기
+														최대 선택 가능 인원 표기
 														<div id="maximum_people" style="padding-bottom: 5px; text-align: right; font-size: 11px !important; color: red;">* 최대 8명 선택 가능</div>
 														<div class="group millitary" id="nop_group_millitary" style="display: none;">
 															<span class="title">군인</span>
@@ -489,7 +489,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="section section-screen-select">
+											<div class="section section-screen-select"> -->
 												<!-- UI 변경으로 삭제 
 												<div class="title">선택하신 상영관<span>/</span>시간</div>
 												-->
@@ -501,7 +501,7 @@
 													<span class="seats seat_remain"></span>
 												</div>
 												-->
-												<div id="user-select-info">
+												<!-- <div id="user-select-info">
 													<p class="theater-info">
 														<span class="site">CGV 강변</span>
 														<span class="screen">씨네앤포레</span>
@@ -736,7 +736,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="step step3" style="display: block;">
 
 								<div class="ticket_payment_method" style="min-height: 0px;">

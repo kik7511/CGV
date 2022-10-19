@@ -592,8 +592,6 @@
 							<a class="btn-right" id="tnb_step_btn_right"></a>
 						</div>
 					</div>
-					<span>${sessMName}</span>
-					<input type="hidden" name = "memberSeq" value="${sessMName}">
 				</form>
 				<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
 					<img src="/resources/images/user/0803_996x140.jpg" alt="由щ명"  style="width:996px;height:140px">
@@ -964,7 +962,7 @@
 					input += '<input type = "hidden" name = "stCol" value = "' + col + '" >';
 					input += '<input type = "hidden" name = "stPrice" value = "' + response.result[0].stPrice + '" >'; 
 					$('#form').append(input);
-					$("#tnb_step_btn_right").attr("href", 'javascript:purchase()');
+					$("#tnb_step_btn_right").attr("href", 'javascript:purchase(' + seq + ')');
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
@@ -974,7 +972,8 @@
 	};
 	var goPurchase = "/purchase/selectPayment"
 	var form = $("form[name=form]");
-	purchase = function(){
+	var seq = $("input:hidden[name=mSeq]"); 
+	purchase = function(seq){
 		form.attr("action", goPurchase).submit();
 	}
 	
