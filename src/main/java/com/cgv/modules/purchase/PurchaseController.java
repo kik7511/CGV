@@ -167,10 +167,10 @@ public class PurchaseController {
 		return "infra/purchase/user/paymentForm";
 	}
 	
-	@RequestMapping(value = "paymentForm")
-	public String paymentForm() {
-		return "infra/purchase/user/paymentForm";
-	}
+	/*
+	 * @RequestMapping(value = "paymentForm") public String paymentForm() { return
+	 * "infra/purchase/user/paymentForm"; }
+	 */
 	
 	@RequestMapping(value = "afterTicketingView")
 	public String afterTicketingView() {

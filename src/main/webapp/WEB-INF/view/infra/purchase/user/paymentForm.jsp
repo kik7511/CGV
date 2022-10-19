@@ -1613,7 +1613,7 @@
 						<div class="info movie">
 							<span class="movie_poster"><img src="http://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85465/85465_185.JPG" alt="영화 포스터" style="display: inline;"></span>
 							<div class="row movie_title colspan2" style="display: block;">
-								<span class="data letter-spacing-min ellipsis-line2"><a href="http://www.cgv.co.kr/movies/detail-view/?midx=85465" target="_blank" onmousedown="javascript:logClick('SUMMARY/영화상세보기');" title="비상선언">비상선언</a></span>
+								<span class="data letter-spacing-min ellipsis-line2"><a href="http://www.cgv.co.kr/movies/detail-view/?midx=85465" target="_blank" onmousedown="javascript:logClick('SUMMARY/영화상세보기');" title="비상선언">${dto.mNameKor}</a></span>
 							</div>
 							<div class="row movie_type" style="display: block;">
 								<span class="data ellipsis-line1" title="SCREENX 2D">SCREENX 2D</span>
@@ -1731,7 +1731,7 @@
                     <tbody>
                         <tr class="movie_name">
                             <th scope="row">영화명</th>
-                            <td>한산-용의 출현</td>
+                            <td>${dto.mNameKor}</td>
                         </tr>
                         <tr class="theater">
                             <th scope="row">극장</th>

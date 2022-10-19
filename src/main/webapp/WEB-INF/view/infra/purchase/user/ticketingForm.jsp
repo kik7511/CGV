@@ -53,7 +53,6 @@
 								<a class="button button-reservation-restart" href="/purchase/ticketingForm"></a>
 							</span>
 						</div>
-						<form>
 						<div class="steps">
 							<div class="step step1" style="height: 500px; display: block;">
 								<div class="section section-movie">
@@ -589,7 +588,7 @@
 							</div>
 							<!-- btn-right -->
 							<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
-							<a class="btn-right" id="tnb_step_btn_right"></a>
+							<a type="button" class="btn-right" id="tnb_step_btn_right"></a>
 						</div>
 					</div>
 				</form>
@@ -962,7 +961,7 @@
 					input += '<input type = "hidden" name = "stCol" value = "' + col + '" >';
 					input += '<input type = "hidden" name = "stPrice" value = "' + response.result[0].stPrice + '" >'; 
 					$('#form').append(input);
-					$("#tnb_step_btn_right").attr("href", 'javascript:purchase(' + seq + ')');
+					/* $("#tnb_step_btn_right").attr("href", 'javascript:purchase()'); */
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
@@ -970,13 +969,13 @@
 			}
 		});
 	};
-	var goPurchase = "/purchase/selectPayment"
+	var goPurchase = "/purchase/selectPayment";
 	var form = $("form[name=form]");
 	var seq = $("input:hidden[name=mSeq]"); 
-	purchase = function(seq){
-		form.attr("action", goPurchase).submit();
-	}
 	
+	 $("#tnb_step_btn_right").on("click", function(){
+		 form.attr("action", goPurchase).submit();
+	 });
 	
 	</script>
 </body>
