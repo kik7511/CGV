@@ -140,6 +140,10 @@
 			d.thName
 			,d.thLocation	
 			,a.mSeq
+			,a.src
+			,a.mNameKor
+			,a.mAgeLimit
+			,b.dSeq
             ,b.dDate
             ,b.dTime
             ,c.scTotalSeat

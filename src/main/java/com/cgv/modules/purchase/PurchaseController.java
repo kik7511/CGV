@@ -27,7 +27,7 @@ public class PurchaseController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "selectTheater")
-	public Map<String, Object> selectTheater(Purchase dto, @ModelAttribute("vo") PurchaseVo vo, Model model, HttpSession httpSession) throws Exception {
+	public Map<String, Object> selectTheater(Purchase dto, @ModelAttribute("vo") PurchaseVo vo, Model model) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -37,12 +37,6 @@ public class PurchaseController {
 		System.out.println("값은" + result);
 	
 		if (result != null) {
-			/*
-			 * httpSession.setAttribute("sessmName", ((PurchaseVo) result).getmNameKor());
-			 * httpSession.setAttribute("sessSrc", ((Purchase) result).getSrc());
-			 * httpSession.setAttribute("sessmAgeLimit", ((Purchase)
-			 * result).getmAgeLimit());
-			 */
 			returnMap.put("result", result);
 			returnMap.put("rt", "success");
 		} else {
@@ -154,6 +148,7 @@ public class PurchaseController {
 		System.out.println("vo.getmSeq(): " + vo.getmSeq());
 		
 		List<Purchase> result = service.selectPurchase(vo);
+		
 		/* int result2 = service.selectpurchaseUp(dto); 
 		System.out.println("controller result2: " + result2);*/
 		System.out.println("값은" + result);
@@ -165,6 +160,13 @@ public class PurchaseController {
 			returnMap.put("rt", "fail");
 		}
 		return returnMap;
+	}
+	
+	@RequestMapping(value = "selectPayment")
+	public String selectPayment(@ModelAttribute("dto") Purchase dto) {
+		
+		
+		return "infra/purchase/user/paymentForm";
 	}
 	
 	@RequestMapping(value = "paymentForm")

@@ -519,98 +519,82 @@
 									</div>
 								</div>
 							</div>
-							</form>
 						</div>
 					</div>
 				</div>
-				<div id="ticket_tnb" class="tnb_container ">
-					<div class="tnb step1"> 
-						<!-- btn-left -->
-						<a class="btn-left" href="#" title="영화선택">이전단계로 이동</a>
-						<div class="info movie">
-							<span class="movie_poster"><img src="/resources/images/user/${sessSrc}_320.jpg" alt="영화 포스터" style="display: none;"></span>
-							<div class="row movie_title colspan2" style="display: none;">
-								<span class="data letter-spacing-min ellipsis-line2"><a href="#" target="_blank" onmousedown="javascript:movieInfo();">${sessmName}</a></span>
+				<form id = "form" name="form">
+					<div id="ticket_tnb" class="tnb_container ">
+						<div class="tnb step2"> 
+							<!-- btn-left -->
+							<div class="info movie">
+								<span class="movie_poster">
+									<img src="" alt="영화 포스터" style="display: none;">
+								</span>
+								<div class="row movie_title colspan2" style="display: none;">
+									<span class="data letter-spacing-min ellipsis-line2"></span>
+								</div>
+								<div class="row movie_type" style="display: none;">
+									<span class="data ellipsis-line1"></span>
+								</div>
+								<div class="row movie_rating" style="display: none;">
+									<span class="data" title=""></span>
+								</div>
+								<div class="placeholder" title="영화선택"></div>
 							</div>
-							<div class="row movie_type" style="display: none;">
-								<span class="data ellipsis-line1"></span>
+							<div class="info theater">
+								<div class="row name" style="display: none;">
+									<span class="header">극장</span>
+									<span class="data letter-spacing-min ellipsis-line1"></span>
+								</div>
+								<div class="row date" style="display: none;">
+									<span class="header">일시</span>
+									<span class="data"></span>
+								</div>
+								<div class="row screen" style="display: none;">
+									<span class="header">상영관</span>
+									<span class="data"></span>
+								</div>
+								<div class="row number" style="display: none;">
+									<span class="header">인원</span>
+									<span class="data"></span>
+								</div>
+								<div class="placeholder" title="극장선택"></div>
 							</div>
-							<div class="row movie_rating" style="display: none;">
-								<span class="data" title="">${sessmAgeLimit}세 관람가</span>
+							<div class="info seat">
+								<div class="row seat_name" style="height: 0px;">
+									<span class="header">좌석명</span>
+									<span class="data" title=""></span>
+								</div>
+								<div class="row seat_no colspan3">
+									<span class="header">좌석번호</span>
+									<span class="data ellipsis-line3" title=""></span>
+								</div>
+								<div class="placeholder" title="좌석선택"></div>
 							</div>
-							<div class="placeholder" title="영화선택"></div>
+							<div class="info payment-ticket">
+								<div class="row payment-adult" style="display: none;">
+									<span class="header">일반</span>
+									<span class="data"><span class="price"></span>원 x <span class="quantity">1</span></span>
+								</div>
+								<div class="row payment-final" style="display: none;">
+									<span class="header">총금액</span>
+									<span class="data"><span class="price"></span><span class="won">원</span></span>
+								</div>
+							</div>
+							<div class="info path">
+								<div class="row colspan4">
+									<span class="path-step2" title="좌석선택">&nbsp;</span>
+									<span class="path-step2" title="결제">&nbsp;</span>
+								</div>
+							</div>
+							<!-- btn-right -->
+							<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
+							<a class="btn-right" id="tnb_step_btn_right"></a>
 						</div>
-						<div class="info theater">
-							<div class="row name" style="display: none;">
-								<span class="header">극장</span>
-								<span class="data letter-spacing-min ellipsis-line1"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/극장상세보기');"><span class="sreader">극장정보 상세보기</span></a></span>
-							</div>
-							<div class="row date" style="display: none;">
-								<span class="header">일시</span>
-								<span class="data"></span>
-							</div>
-							<div class="row screen" style="display: none;">
-								<span class="header">상영관</span>
-								<span class="data"></span>
-							</div>
-							<div class="row number" style="display: none;">
-								<span class="header">인원</span>
-								<span class="data"></span>
-							</div>
-							<div class="placeholder" title="극장선택"></div>
-						</div>
-						<div class="info seat">
-							<div class="row seat_name" style="height: 0px;">
-								<span class="header">좌석명</span>
-								<span class="data" title=""></span>
-							</div>
-							<div class="row seat_no colspan3">
-								<span class="header">좌석번호</span>
-								<span class="data ellipsis-line3" title=""></span>
-							</div>
-							<div class="placeholder" title="좌석선택"></div>
-						</div>
-						<div class="info payment-ticket">
-							<div class="row payment-millitary">
-								<span class="header">군인</span>
-								<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
-							</div>
-							<div class="row payment-adult">
-								<span class="header">일반</span>
-								<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
-							</div>
-							<div class="row payment-youth">
-								<span class="header">청소년</span>
-								<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
-							</div>
-							<div class="row payment-child">
-								<span class="header">어린이</span>
-								<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
-							</div>						
-							<div class="row payment-senior">
-								<span class="header">경로</span>
-								<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
-							</div>
-							<div class="row payment-special">
-								<span class="header">우대</span>
-								<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
-							</div>
-							<div class="row payment-final">
-								<span class="header">총금액</span>
-								<span class="data"><span class="price">0</span><span class="won">원</span></span>
-							</div>
-						</div>
-						<div class="info path">
-							<div class="row colspan4">
-								<span class="path-step2" title="좌석선택">&nbsp;</span>
-								<span class="path-step3" title="결제">&nbsp;</span>
-							</div>
-						</div>
-						<!-- btn-right -->
-						<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
-						<a class="btn-right" id="tnb_step_btn_right" href="../purchase/paymentForm.html" onclick="OnTnbRightClick();" title="좌석선택">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a>
 					</div>
-				</div>
+					<span>${sessMName}</span>
+					<input type="hidden" name = "memberSeq" value="${sessMName}">
+				</form>
 				<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
 					<img src="/resources/images/user/0803_996x140.jpg" alt="由щ명"  style="width:996px;height:140px">
 				</div>
@@ -637,10 +621,6 @@
 	</div>
 <!-- end -->
 	<script>
-		function movieInfo(seq){
-			window.open("/movie/movieInfoView?mSeq=" + seq  + '"');
-		}
-	
 		function selectTheater(seq){
 			$.ajax({
 				async: true 
@@ -941,7 +921,50 @@
 			,data : {"mSeq" : seq, "thLocation" : location, "dDate" : date, "thName" : name, "dTime" : time, "scNumber" : number, "stRow" : row, "stCol" : col}
 			,success: function(response) {
 				if(response.rt == "success") {
+					console.log(response.result);
+					/* console.log(this);
+					$(this).parent('div.seat').addClass('selected'); */
 					$('div.placeholder').css("display", "none");
+					$('span.movie_poster').children('img').css('display', 'inline');
+					$('span.movie_poster').children('img').attr('src', '/resources/images/user/' + response.result[0].src + '_320.jpg')
+					$('div.movie_title').css("display", "block");
+					$('div.movie_title').children('span.letter-spacing-min').text(response.result[0].mNameKor);
+					$('div.movie_type').css("display", "block");
+					$('div.movie_type').children('span.data').text(response.result[0].scScreenType);
+					$('div.movie_rating').css("display", "block");
+					$('div.movie_rating').children('span.data').text(response.result[0].mAgeLimit + '세 관람가');
+					$('div.theater').children('div.name').css("display", "block");
+					$('div.theater').children('div.name').children('span.data').text(response.result[0].thName);
+					$('div.theater').children('div.date').css("display", "block");
+					$('div.theater').children('div.date').children('span.data').text(response.result[0].dDate + ' ' + response.result[0].dTime);
+					$('div.theater').children('div.screen').css("display", "block");
+					$('div.theater').children('div.screen').children('span.data').text(response.result[0].scNumber + '관');
+					$('div.theater').children('div.number').css("display", "block");
+					$('div.theater').children('div.number').children('span.data').text('일반 1명');
+					$('div.seat_name').css("display", "block");
+					$('div.theater').children('div.number').children('span.data').text('일반 1명');
+					$('div.payment-ticket').children('div.payment-adult').css("display", "block");
+					$('div.payment-ticket').children('div.payment-adult').children('span.data').children('span.price').text(response.result[0].stPrice);
+					$('div.payment-ticket').children('div.payment-final').css("display", "block");
+					$('div.payment-ticket').children('div.payment-final').children('span.data').children('span.price').text(response.result[0].stPrice * 1);
+					$('div.seat_no').children('span.data').text(response.result[0].stRow + '열 ' + response.result[0].stCol);
+					$('div.seat_name').children('span.data').text('일반석');
+					var input = "";
+					input += '<input type = "hidden"; name = "mSeq" value = "' + seq + '" >';
+					/* input += '<input type = "hidden"; name = "memberSeq"; value = "' + $(sessMSeq) + '" >'; */
+					input += '<input type = "hidden" name = "thLocation" value = "' + location + '" >';
+					input += '<input type = "hidden" name = "mNameKor" value = "' + response.result[0].mNameKor + '" >';
+					input += '<input type = "hidden" name = "src" value = "' + response.result[0].src + '" >';
+					input += '<input type = "hidden" name = "mAgeLimit" value = "' + response.result[0].mAgeLimit + '" >';
+					input += '<input type = "hidden" name = "thName" value = "' + name + '" >';
+					input += '<input type = "hidden" name = "dDate" value = "' + date + '" >';
+					input += '<input type = "hidden" name = "dTime" value = "' + time + '" >';
+					input += '<input type = "hidden" name = "scNumber" value = "' + number + '" >';
+					input += '<input type = "hidden" name = "stRow" value = "' + row + '" >';
+					input += '<input type = "hidden" name = "stCol" value = "' + col + '" >';
+					input += '<input type = "hidden" name = "stPrice" value = "' + response.result[0].stPrice + '" >'; 
+					$('#form').append(input);
+					$("#tnb_step_btn_right").attr("href", 'javascript:purchase()');
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
@@ -949,7 +972,11 @@
 			}
 		});
 	};
-    
+	var goPurchase = "/purchase/selectPayment"
+	var form = $("form[name=form]");
+	purchase = function(){
+		form.attr("action", goPurchase).submit();
+	}
 	
 	
 	</script>

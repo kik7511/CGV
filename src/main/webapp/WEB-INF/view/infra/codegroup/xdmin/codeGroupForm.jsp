@@ -344,8 +344,8 @@
 			<div style="margin-top: 8em;"></div>
 			<%@include file = "../../../infra/common/xdmin/mainFooter.jsp" %>
 		</form>
-			<form method="post" id="myForm2" name="myForm2">
-		<%@include file = "codeGroupVo.jsp"%>
+		<form method="post" id="myForm2" name="myForm2">
+			<%@include file = "codeGroupVo.jsp"%>
 		</form>
 	</div>
 <!-- end -->
