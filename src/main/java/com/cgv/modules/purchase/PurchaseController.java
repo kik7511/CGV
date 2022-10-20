@@ -161,16 +161,11 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping(value = "selectPayment")
-	public String selectPayment(@ModelAttribute("dto") Purchase dto) {
+	public String selectPayment(@ModelAttribute("dto") Purchase dto, HttpSession httpSession) {
 		System.out.println(dto.getmNameKor());
-		
+		System.out.println("아이디값은 " + httpSession.getAttribute("sessMId"));
 		return "infra/purchase/user/paymentForm";
 	}
-	
-	/*
-	 * @RequestMapping(value = "paymentForm") public String paymentForm() { return
-	 * "infra/purchase/user/paymentForm"; }
-	 */
 	
 	@RequestMapping(value = "afterTicketingView")
 	public String afterTicketingView() {

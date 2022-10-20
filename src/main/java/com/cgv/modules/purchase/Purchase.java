@@ -8,33 +8,54 @@ public class Purchase {
 	private String mSeq;
 	private String stSeq;
 	private String mNameKor;
-	private Integer mAgeLimit;
+	private String mAgeLimit;
 	private Integer src;
 	private Date dDateTime;
 	private Integer thLocation;
 	private String thName;
-	private Integer scScreenType;
+	private String scScreenType;
 	private Integer scTotalSeat;
 	private Integer scNumber;
 	private Integer scRow;
 	private Integer scCol;
 	private String dDate;
 	private String dTime;
-	private Integer stRow;
+	private String stRow;
 	private Integer stCol;
 	private Integer stUseNy;
 	private Integer stPrice;
+	private String totalPrice;
+	private String thisTime;
+	private String thisDate;
 	
+	public String getThisTime() {
+		return thisTime;
+	}
+	public void setThisTime(String thisTime) {
+		this.thisTime = thisTime;
+	}
+	public String getThisDate() {
+		return thisDate;
+	}
+	public void setThisDate(String thisDate) {
+		this.thisDate = thisDate;
+	}
+	public String getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(String totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 	public String getStSeq() {
 		return stSeq;
 	}
 	public void setStSeq(String stSeq) {
 		this.stSeq = stSeq;
 	}
-	public Integer getStRow() {
+	public String getStRow() {
 		return stRow;
 	}
-	public void setStRow(Integer stRow) {
+	public void setStRow(String stRow) {
 		this.stRow = stRow;
 	}
 	public Integer getStCol() {
@@ -85,10 +106,10 @@ public class Purchase {
 	public void setmNameKor(String mNameKor) {
 		this.mNameKor = mNameKor;
 	}
-	public Integer getmAgeLimit() {
+	public String getmAgeLimit() {
 		return mAgeLimit;
 	}
-	public void setmAgeLimit(Integer mAgeLimit) {
+	public void setmAgeLimit(String mAgeLimit) {
 		this.mAgeLimit = mAgeLimit;
 	}
 	public Integer getSrc() {
@@ -115,10 +136,10 @@ public class Purchase {
 	public void setThName(String thName) {
 		this.thName = thName;
 	}
-	public Integer getScScreenType() {
+	public String getScScreenType() {
 		return scScreenType;
 	}
-	public void setScScreenType(Integer scScreenType) {
+	public void setScScreenType(String scScreenType) {
 		this.scScreenType = scScreenType;
 	}
 	public Integer getScTotalSeat() {

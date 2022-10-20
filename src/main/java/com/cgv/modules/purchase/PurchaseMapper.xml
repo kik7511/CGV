@@ -193,6 +193,27 @@
             AND e.stUseNy = 0 
 	</update>
 	
+	<!-- <insert id="purchase">
+		INSERT INTO purchase (
+			codeGroup
+			,codeGroupK
+			,ccgDelNy
+			,ccgUseNy
+			,ccgOrder
+			,reference
+		)Values (
+			#{codeGroup}
+			,#{codeGroupK}
+			,0		
+			,#{ccgUseNy}
+			,#{ccgOrder}
+			,#{reference}	
+		)
+		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert> -->
+	
 	
 	
 	

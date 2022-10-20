@@ -588,7 +588,7 @@
 							</div>
 							<!-- btn-right -->
 							<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
-							<a type="button" class="btn-right" id="tnb_step_btn_right"></a>
+							<a type="button" class="btn-right" id="tnb_step_btn_right" style="cursor: pointer;"></a>
 						</div>
 					</div>
 				</form>
@@ -918,22 +918,60 @@
 			,data : {"mSeq" : seq, "thLocation" : location, "dDate" : date, "thName" : name, "dTime" : time, "scNumber" : number, "stRow" : row, "stCol" : col}
 			,success: function(response) {
 				if(response.rt == "success") {
-					console.log(response.result);
-					/* console.log(this);
-					$(this).parent('div.seat').addClass('selected'); */
+					<c:set var="listCodeAge" value="${CodeServiceImpl.selectListCachedCode('7')}"/>
+						var arr = new Array();
+					<c:forEach items="${listCodeAge}" var="listAge" varStatus="listAgeStatus">
+						arr.push({
+							num : "${listAge.ccSeq}"
+							,name : "${listAge.ccCodeName}"
+						});
+					</c:forEach>
+					<c:set var="listCodeScreen" value="${CodeServiceImpl.selectListCachedCode('10')}"/>
+						var arr2 = new Array();
+					<c:forEach items="${listCodeScreen}" var="listScreen" varStatus="listScreenStatus">
+						arr2.push({
+							num : "${listScreen.ccSeq}"
+							,name : "${listScreen.ccCodeName}"
+						});
+					</c:forEach>
+					for(var i=0; i<arr.length; i++){
+						if(arr[i].num == response.result[0].mAgeLimit){
+							var ageLimit = arr[i].name;
+						}
+					};
+					
+					for(var j=0; j<arr2.length; j++){
+						if(arr2[j].num == response.result[0].scScreenType){
+							var screenType = arr2[j].name;
+						}
+					};
+					
+					var arr3 = ["A", "B", "C", "D", "E", "F", "G", "H"];
+					
+					for(var k=0; k<arr3.length; k++){
+						if(k+1 == response.result[0].stRow){
+							var seat = arr3[k];
+						}
+					};
+					var moviePrice = response.result[0].stPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+					console.log(seat);
+					console.log(screenType);
+					$(this).parent('div.seat').addClass('selected');
 					$('div.placeholder').css("display", "none");
 					$('span.movie_poster').children('img').css('display', 'inline');
 					$('span.movie_poster').children('img').attr('src', '/resources/images/user/' + response.result[0].src + '_320.jpg')
 					$('div.movie_title').css("display", "block");
 					$('div.movie_title').children('span.letter-spacing-min').text(response.result[0].mNameKor);
 					$('div.movie_type').css("display", "block");
-					$('div.movie_type').children('span.data').text(response.result[0].scScreenType);
+					$('div.movie_type').children('span.data').text(screenType);
 					$('div.movie_rating').css("display", "block");
-					$('div.movie_rating').children('span.data').text(response.result[0].mAgeLimit + '세 관람가');
+					$('div.movie_rating').children('span.data').text(ageLimit + ' 관람가');
 					$('div.theater').children('div.name').css("display", "block");
 					$('div.theater').children('div.name').children('span.data').text(response.result[0].thName);
 					$('div.theater').children('div.date').css("display", "block");
-					$('div.theater').children('div.date').children('span.data').text(response.result[0].dDate + ' ' + response.result[0].dTime);
+					var thisTime = response.result[0].dTime.substr(0, 5);
+					var thisDate = response.result[0].dDate.replace(/-/g, ".")
+					$('div.theater').children('div.date').children('span.data').text(thisDate + ' ' + thisTime);
 					$('div.theater').children('div.screen').css("display", "block");
 					$('div.theater').children('div.screen').children('span.data').text(response.result[0].scNumber + '관');
 					$('div.theater').children('div.number').css("display", "block");
@@ -941,10 +979,10 @@
 					$('div.seat_name').css("display", "block");
 					$('div.theater').children('div.number').children('span.data').text('일반 1명');
 					$('div.payment-ticket').children('div.payment-adult').css("display", "block");
-					$('div.payment-ticket').children('div.payment-adult').children('span.data').children('span.price').text(response.result[0].stPrice);
+					$('div.payment-ticket').children('div.payment-adult').children('span.data').children('span.price').text(moviePrice);
 					$('div.payment-ticket').children('div.payment-final').css("display", "block");
-					$('div.payment-ticket').children('div.payment-final').children('span.data').children('span.price').text(response.result[0].stPrice * 1);
-					$('div.seat_no').children('span.data').text(response.result[0].stRow + '열 ' + response.result[0].stCol);
+					$('div.payment-ticket').children('div.payment-final').children('span.data').children('span.price').text((response.result[0].stPrice* 1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('div.seat_no').children('span.data').text(seat + response.result[0].stCol);
 					$('div.seat_name').children('span.data').text('일반석');
 					var input = "";
 					input += '<input type = "hidden"; name = "mSeq" value = "' + seq + '" >';
@@ -952,14 +990,18 @@
 					input += '<input type = "hidden" name = "thLocation" value = "' + location + '" >';
 					input += '<input type = "hidden" name = "mNameKor" value = "' + response.result[0].mNameKor + '" >';
 					input += '<input type = "hidden" name = "src" value = "' + response.result[0].src + '" >';
+					input += '<input type = "hidden" name = "scScreenType" value = "' + response.result[0].scScreenType + '" >';
 					input += '<input type = "hidden" name = "mAgeLimit" value = "' + response.result[0].mAgeLimit + '" >';
 					input += '<input type = "hidden" name = "thName" value = "' + name + '" >';
-					input += '<input type = "hidden" name = "dDate" value = "' + date + '" >';
-					input += '<input type = "hidden" name = "dTime" value = "' + time + '" >';
-					input += '<input type = "hidden" name = "scNumber" value = "' + number + '" >';
+					input += '<input type = "hidden" name = "dDate" value = "' + response.result[0].dDate + '" >';
+					input += '<input type = "hidden" name = "dTime" value = "' + response.result[0].dTime + '" >';
+					input += '<input type = "hidden" name = "scNumber" value = "' + response.result[0].scNumber + '" >';
 					input += '<input type = "hidden" name = "stRow" value = "' + row + '" >';
 					input += '<input type = "hidden" name = "stCol" value = "' + col + '" >';
-					input += '<input type = "hidden" name = "stPrice" value = "' + response.result[0].stPrice + '" >'; 
+					input += '<input type = "hidden" name = "stPrice" value = "' + response.result[0].stPrice + '" >';
+					input += '<input type = "hidden" name = "totalPrice" value = "' + (response.result[0].stPrice*1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '" >';
+					input += '<input type = "hidden" name = "thisDate" value = "' + thisDate + '" >';
+					input += '<input type = "hidden" name = "thisTime" value = "' + thisTime + '" >';
 					$('#form').append(input);
 					/* $("#tnb_step_btn_right").attr("href", 'javascript:purchase()'); */
 				}
