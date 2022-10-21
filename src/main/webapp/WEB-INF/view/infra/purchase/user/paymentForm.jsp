@@ -967,10 +967,13 @@
 						</div>
 						<form id="formVo" name="formVo">
 							<%@include file = "Purchase.jsp" %>
+							<input type="hidden" name="ifMmSeq" value="${sessSeq}">
+							<input type="hidden" name="ifMmName" value="${sessName}">
+							<input type="hidden" name="ifMmId" value="${sessId}">
 						</form>
 						<!-- btn-right -->
 						<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
-						<a class="btn-right on" id="tnb_step_btn_right" href="" title="결제하기">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a>
+						<a class="btn-right on" id="tnb_step_btn_right"title="결제하기" style="cursor: pointer;">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a>
 					</div>
 				</div>
 				<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
@@ -1061,9 +1064,10 @@
                 <li style="display: list-item;">인터넷 예매는 온라인상으로 영화상영 시간 20분 전 까지 취소 가능하며 20분 이후에는 현장에서 취소를 하셔야 합니다.</li>
                 <li style="display: list-item;">현장 취소를 하는 경우 상영시간 이전까지만 가능하며 영화 상영 시작 시간 이후 취소나 환불은 되지 않습니다.</li>
                 <li style="display: list-item;">극장 이용 시 마스크 착용은 필수입니다. 
-(미착용 시 입장 제한)
-본 영화는 에티켓 타임 없이 정시에 상영됩니다.
-관람 에티켓을 위한 사전 입장 부탁드립니다.</li>
+					(미착용 시 입장 제한)
+					본 영화는 에티켓 타임 없이 정시에 상영됩니다.
+					관람 에티켓을 위한 사전 입장 부탁드립니다.
+				</li>
             </ul>
 			
             <a class="refundNotice" href="" target="_blank">
@@ -1091,8 +1095,13 @@
 <script>
 	var formVo = $("form[name=formVo]");
 	var goPurchase = "/purchase/ticketingForm";				/* #-> */
+	var goAfter = "/purchase/purchaseInst";
 	$("#backTo").on("click", function(){
 		formVo.attr("action", goPurchase).submit();
+	});
+	
+	$("#tnb_step_btn_right").on("click", function(){
+		formVo.attr("action", goAfter).submit();
 	});
 	
 	$(document).ready(function(){

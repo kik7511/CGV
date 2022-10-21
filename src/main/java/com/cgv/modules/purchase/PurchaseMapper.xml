@@ -193,26 +193,58 @@
             AND e.stUseNy = 0 
 	</update>
 	
-	<!-- <insert id="purchase">
-		INSERT INTO purchase (
-			codeGroup
-			,codeGroupK
-			,ccgDelNy
-			,ccgUseNy
-			,ccgOrder
-			,reference
+	<insert id="purchase">
+		INSERT INTO purchaseTicket (
+			ifMmSeq
+			,ifMmName
+			,ifMmId
+			,mNameKor
+			,mSeq
+			,src
+			,mAgeLimit
+			,dSeq
+			,dDate
+			,dTime
+			,scTotalSeat
+			,scScreenType
+			,scNumber
+			,scRow
+			,scCol
+			,stRow
+			,stCol
+			,stUseNy
+			,stPrice
+			,stSeq
+			,thLocation
+			,thName
 		)Values (
-			#{codeGroup}
-			,#{codeGroupK}
-			,0		
-			,#{ccgUseNy}
-			,#{ccgOrder}
-			,#{reference}	
+			#{ifMmSeq}
+			,#{ifMmName}
+			,#{ifMmId}
+			,#{mNameKor}
+			,#{mSeq}
+			,#{src}
+			,#{mAgeLimit}
+			,#{dSeq}
+			,#{dDate}
+			,#{dTime}
+			,#{scTotalSeat}
+			,#{scScreenType}
+			,#{scNumber}
+			,#{scRow}
+			,#{scCol}
+			,#{stRow}
+			,#{stCol}
+			,1
+			,#{stPrice}
+			,#{stSeq}
+			,#{thLocation}
+			,#{thName}
 		)
-		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
+		<selectKey resultType="String" keyProperty="ptSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
-	</insert> -->
+	</insert>
 	
 	
 	

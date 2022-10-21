@@ -242,29 +242,29 @@
 														<div class="group adult" id="nop_group_adult" style="display: block;">
 															<span class="title">일반</span>
 															<ul>
-																<li data-count="0" class="selected" type="adult"><a href="#" onclick=" "><span class="sreader mod">일반</span>0<span class="sreader">명</span></a></li>
-																<li data-count="1" type="adult"><a href="#" onclick=" "><span class="sreader mod">일반</span>1<span class="sreader">명</span></a></li>
-																<li data-count="2" type="adult"><a href="#" onclick=" "><span class="sreader mod">일반</span>2<span class="sreader">명</span></a></li>
-																<li data-count="3" type="adult"><a href="#" onclick=" "><span class="sreader mod">일반</span>3<span class="sreader">명</span></a></li>
-																<li data-count="4" type="adult"><a href="#" onclick=" "><span class="sreader mod">일반</span>4<span class="sreader">명</span></a></li>
-																<li data-count="5" type="adult"><a href="#" onclick=" "><span class="sreader mod">일반</span>5<span class="sreader">명</span></a></li>
-																<li data-count="6" type="adult"><a href="#" onclick=" "><span class="sreader mod">일반</span>6<span class="sreader">명</span></a></li>
-																<li data-count="7" type="adult"><a href="#" onclick=" "><span class="sreader mod">일반</span>7<span class="sreader">명</span></a></li>
-																<li data-count="8" type="adult"><a href="#" onclick=" "><span class="sreader mod">일반</span>8<span class="sreader">명</span></a></li>
+																<li data-count="0" type="adult"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">일반</span>0<span class="sreader">명</span></a></li>
+																<li data-count="1" type="adult" class="selected"><a href="#" onclick=" "><span class="sreader mod">일반</span>1<span class="sreader">명</span></a></li>
+																<li data-count="2" type="adult"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">일반</span>2<span class="sreader">명</span></a></li>
+																<li data-count="3" type="adult"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">일반</span>3<span class="sreader">명</span></a></li>
+																<li data-count="4" type="adult"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">일반</span>4<span class="sreader">명</span></a></li>
+																<li data-count="5" type="adult"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">일반</span>5<span class="sreader">명</span></a></li>
+																<li data-count="6" type="adult"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">일반</span>6<span class="sreader">명</span></a></li>
+																<li data-count="7" type="adult"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">일반</span>7<span class="sreader">명</span></a></li>
+																<li data-count="8" type="adult"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">일반</span>8<span class="sreader">명</span></a></li>
 															</ul>
 														</div>
 														<div class="group youth" id="nop_group_youth" style="display: block;">
 															<span class="title">청소년</span>
 															<ul>
 																<li data-count="0" class="selected" type="youth"><a href="#" onclick=" "><span class="sreader mod">청소년</span>0<span class="sreader">명</span></a></li>
-																<li data-count="1" type="youth"><a href="#" onclick=" "><span class="sreader mod">청소년</span>1<span class="sreader">명</span></a></li>
-																<li data-count="2" type="youth"><a href="#" onclick=" "><span class="sreader mod">청소년</span>2<span class="sreader">명</span></a></li>
-																<li data-count="3" type="youth"><a href="#" onclick=" "><span class="sreader mod">청소년</span>3<span class="sreader">명</span></a></li>
-																<li data-count="4" type="youth"><a href="#" onclick=" "><span class="sreader mod">청소년</span>4<span class="sreader">명</span></a></li>
-																<li data-count="5" type="youth"><a href="#" onclick=" "><span class="sreader mod">청소년</span>5<span class="sreader">명</span></a></li>
-																<li data-count="6" type="youth"><a href="#" onclick=" "><span class="sreader mod">청소년</span>6<span class="sreader">명</span></a></li>
-																<li data-count="7" type="youth"><a href="#" onclick=" "><span class="sreader mod">청소년</span>7<span class="sreader">명</span></a></li>
-																<li data-count="8" type="youth"><a href="#" onclick=" "><span class="sreader mod">청소년</span>8<span class="sreader">명</span></a></li>
+																<li data-count="1" type="youth"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">청소년</span>1<span class="sreader">명</span></a></li>
+																<li data-count="2" type="youth"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">청소년</span>2<span class="sreader">명</span></a></li>
+																<li data-count="3" type="youth"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">청소년</span>3<span class="sreader">명</span></a></li>
+																<li data-count="4" type="youth"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">청소년</span>4<span class="sreader">명</span></a></li>
+																<li data-count="5" type="youth"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">청소년</span>5<span class="sreader">명</span></a></li>
+																<li data-count="6" type="youth"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">청소년</span>6<span class="sreader">명</span></a></li>
+																<li data-count="7" type="youth"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">청소년</span>7<span class="sreader">명</span></a></li>
+																<li data-count="8" type="youth"><a href="#" onclick="rejectAnswer()"><span class="sreader mod">청소년</span>8<span class="sreader">명</span></a></li>
 															</ul>
 														</div>
 													</div>
@@ -591,6 +591,27 @@
 							<a type="button" class="btn-right" id="tnb_step_btn_right" style="cursor: pointer;"></a>
 						</div>
 					</div>
+					<input type="hidden" name="mSeq" value="">
+					<input type="hidden" name="thLocation" value="">
+					<input type="hidden" name="mNameKor" value="">
+					<input type="hidden" name="mAgeLimit" value="">
+					<input type="hidden" name="src" value="">
+					<input type="hidden" name="scScreenType" value="">
+					<input type="hidden" name="thName" value="">
+					<input type="hidden" name="dDate" value="">
+					<input type="hidden" name="dTime" value="">
+					<input type="hidden" name="scNumber" value="">
+					<input type="hidden" name="stRow" value="">
+					<input type="hidden" name="stCol" value="">
+					<input type="hidden" name="stPrice" value="">
+					<input type="hidden" name="totalPrice" value="">
+					<input type="hidden" name="thisDate" value="">
+					<input type="hidden" name="thisTime" value="">
+					<input type="hidden" name="dSeq" value="">
+					<input type="hidden" name="scTotalSeat" value="">
+					<input type="hidden" name="scRow" value="">
+					<input type="hidden" name="scCol" value="">
+					<input type="hidden" name="stSeq" value="">
 				</form>
 				<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
 					<img src="/resources/images/user/0803_996x140.jpg" alt="由щ명"  style="width:996px;height:140px">
@@ -907,7 +928,7 @@
 			}
 		});
 	};
-	
+	var is_action = false;
 	function selectPurchase(seq, location, date, name, number, time, row, col){
 		$.ajax({
 			async: true 
@@ -954,8 +975,6 @@
 						}
 					};
 					var moviePrice = response.result[0].stPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-					console.log(seat);
-					console.log(screenType);
 					$(this).parent('div.seat').addClass('selected');
 					$('div.placeholder').css("display", "none");
 					$('span.movie_poster').children('img').css('display', 'inline');
@@ -984,26 +1003,27 @@
 					$('div.payment-ticket').children('div.payment-final').children('span.data').children('span.price').text((response.result[0].stPrice* 1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 					$('div.seat_no').children('span.data').text(seat + response.result[0].stCol);
 					$('div.seat_name').children('span.data').text('일반석');
-					var input = "";
-					input += '<input type = "hidden"; name = "mSeq" value = "' + seq + '" >';
-					/* input += '<input type = "hidden"; name = "memberSeq"; value = "' + $(sessMSeq) + '" >'; */
-					input += '<input type = "hidden" name = "thLocation" value = "' + location + '" >';
-					input += '<input type = "hidden" name = "mNameKor" value = "' + response.result[0].mNameKor + '" >';
-					input += '<input type = "hidden" name = "src" value = "' + response.result[0].src + '" >';
-					input += '<input type = "hidden" name = "scScreenType" value = "' + response.result[0].scScreenType + '" >';
-					input += '<input type = "hidden" name = "mAgeLimit" value = "' + response.result[0].mAgeLimit + '" >';
-					input += '<input type = "hidden" name = "thName" value = "' + name + '" >';
-					input += '<input type = "hidden" name = "dDate" value = "' + response.result[0].dDate + '" >';
-					input += '<input type = "hidden" name = "dTime" value = "' + response.result[0].dTime + '" >';
-					input += '<input type = "hidden" name = "scNumber" value = "' + response.result[0].scNumber + '" >';
-					input += '<input type = "hidden" name = "stRow" value = "' + row + '" >';
-					input += '<input type = "hidden" name = "stCol" value = "' + col + '" >';
-					input += '<input type = "hidden" name = "stPrice" value = "' + response.result[0].stPrice + '" >';
-					input += '<input type = "hidden" name = "totalPrice" value = "' + (response.result[0].stPrice*1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '" >';
-					input += '<input type = "hidden" name = "thisDate" value = "' + thisDate + '" >';
-					input += '<input type = "hidden" name = "thisTime" value = "' + thisTime + '" >';
-					$('#form').append(input);
-					/* $("#tnb_step_btn_right").attr("href", 'javascript:purchase()'); */
+					$('input:hidden[name="mSeq"]').attr("value", seq);
+					$('input:hidden[name="thLocation"]').attr("value", location);
+					$('input:hidden[name="mNameKor"]').attr("value", response.result[0].mNameKor);
+					$('input:hidden[name="mAgeLimit"]').attr("value", response.result[0].mAgeLimit);
+					$('input:hidden[name="src"]').attr("value", response.result[0].src);
+					$('input:hidden[name="scScreenType"]').attr("value", response.result[0].scScreenType);
+					$('input:hidden[name="thName"]').attr("value", name);
+					$('input:hidden[name="dDate"]').attr("value", response.result[0].dDate);
+					$('input:hidden[name="dTime"]').attr("value", response.result[0].dTime);
+					$('input:hidden[name="scNumber"]').attr("value", number);
+					$('input:hidden[name="stRow"]').attr("value", row);
+					$('input:hidden[name="stCol"]').attr("value", col);
+					$('input:hidden[name="stPrice"]').attr("value", response.result[0].stPrice);
+					$('input:hidden[name="totalPrice"]').attr("value", (response.result[0].stPrice*1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('input:hidden[name="thisDate"]').attr("value", thisDate);
+					$('input:hidden[name="thisTime"]').attr("value", thisTime);
+					$('input:hidden[name="dSeq"]').attr("value", response.result[0].dSeq);
+					$('input:hidden[name="scTotalSeat"]').attr("value", response.result[0].scTotalSeat);
+					$('input:hidden[name="scRow"]').attr("value", response.result[0].scRow);
+					$('input:hidden[name="scCol"]').attr("value", response.result[0].scCol);
+					$('input:hidden[name="stSeq"]').attr("value", response.result[0].stSeq);
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
@@ -1019,6 +1039,9 @@
 		 form.attr("action", goPurchase).submit();
 	 });
 	
+	 function rejectAnswer(){
+		 alert('현재 선택 불가능합니다');
+	 }
 	</script>
 </body>
 </html>

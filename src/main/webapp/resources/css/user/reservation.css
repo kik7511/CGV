@@ -322,7 +322,7 @@ a:hover{text-decoration: none;}
 #ticket .step1 .section-time .col-body .time-list .theater ul li a span.time{float:left;width:51px;height:25px;line-height:25px;color:#333;font-size:12px;font-weight:bold;font-family:Verdana;background:url(/resources/images/user/timelist_item_none.png) no-repeat;}
 #ticket .step1 .section-time .col-body .time-list .theater ul li a span.time{width:49px;height:23px;line-height:23px;border:1px solid #d6d3ce;background-image:none;background-color:#f2f0e5;}
 #ticket .step1 .section-time .col-body .time-list .theater ul li a span.time span{display:block;}
-#ticket .step1 .section-time .col-body .time-list .theater ul li a span.count{float:left;width:49px;height:20px;line-height:25px;text-align:left;color:#3d7c35;font-size:12px;padding-left:3px;overflow:hidden;}
+#ticket .step1 .section-time .col-body .time-list .theater ul li a span.count{/* float:left; */width:49px;height:20px;line-height:25px;text-align:left;color:#3d7c35;font-size:14px;padding-left:3px;overflow:hidden;}
 
 #ticket .step1 .section-time .col-body .time-list .theater ul li.selected a span.time{color:#fff;background-image:url(/resources/images/user/timelist_item_selected.png);}
 #ticket .step1 .section-time .col-body .time-list .theater ul li.selected a span.time{background-image:none;border-color:#000;background-color:#333;}

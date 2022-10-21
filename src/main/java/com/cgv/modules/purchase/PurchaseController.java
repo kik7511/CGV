@@ -20,7 +20,8 @@ public class PurchaseController {
 	PurchaseServiceImpl service;
 	
 	@RequestMapping(value = "ticketingForm")
-	public String ticketingForm(Model model, @ModelAttribute("vo") PurchaseVo vo) throws Exception {
+	public String ticketingForm(Model model, @ModelAttribute("vo") PurchaseVo vo, HttpSession httpSession) throws Exception {
+		System.out.println("아이디값은 " + httpSession.getAttribute("sessId"));
 		List<Purchase> list = service.selectMovie(vo);
 		model.addAttribute("list", list);
 		return "infra/purchase/user/ticketingForm";
@@ -47,7 +48,7 @@ public class PurchaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "selectLocation")
-	public Map<String, Object> selectLocation(@ModelAttribute("vo") PurchaseVo vo, HttpSession httpSession) throws Exception {
+	public Map<String, Object> selectLocation(@ModelAttribute("vo") PurchaseVo vo) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -57,10 +58,6 @@ public class PurchaseController {
 		System.out.println("값은" + result);
 	
 		if (result != null) {
-			/*
-			 * httpSession.setAttribute("sessThLocation", ((Purchase)
-			 * result).getThLocation());
-			 */
 			returnMap.put("result", result);
 			returnMap.put("rt", "success");
 		} else {
@@ -81,7 +78,6 @@ public class PurchaseController {
 		System.out.println("값은" + result);
 	
 		if (result != null) {
-			/* httpSession.setAttribute("sessThName", ((Purchase) result).getThName()); */
 			returnMap.put("result", result);
 			returnMap.put("rt", "success");
 		} else {
@@ -103,7 +99,6 @@ public class PurchaseController {
 		System.out.println("값은" + result);
 	
 		if (result != null) {
-			/* httpSession.setAttribute("sessdDate", ((Purchase) result).getdDate()); */
 			returnMap.put("result", result);
 			returnMap.put("result2", result2);
 			returnMap.put("rt", "success");
@@ -125,12 +120,6 @@ public class PurchaseController {
 		System.out.println("값은" + result);
 	
 		if (result != null) {
-			/*
-			 * httpSession.setAttribute("sessdTime", ((Purchase) result).getdTime());
-			 * httpSession.setAttribute("sessScScreenType", ((Purchase)
-			 * result).getScScreenType()); httpSession.setAttribute("sessScNumber",
-			 * ((Purchase) result).getScNumber());
-			 */
 			returnMap.put("result", result);
 			returnMap.put("rt", "success");
 		} else {
@@ -161,14 +150,20 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping(value = "selectPayment")
-	public String selectPayment(@ModelAttribute("dto") Purchase dto, HttpSession httpSession) {
+	public String selectPayment(@ModelAttribute("dto") Purchase dto, HttpSession httpSession) throws Exception {
 		System.out.println(dto.getmNameKor());
-		System.out.println("아이디값은 " + httpSession.getAttribute("sessMId"));
+		System.out.println("아이디값은 " + httpSession.getAttribute("sessId"));
 		return "infra/purchase/user/paymentForm";
 	}
 	
+	@RequestMapping(value = "purchaseInst")
+	public String purchaseInst(Purchase dto) throws Exception {
+		service.purchase(dto);
+		return "redirect:/purchase/afterTicketingView";
+	}
 	@RequestMapping(value = "afterTicketingView")
-	public String afterTicketingView() {
+	public String afterTicketingView(Purchase dto) throws Exception {
+		System.out.println(dto.getmNameKor()); 
 		return "infra/purchase/user/afterTicketingView";
 	}
 	

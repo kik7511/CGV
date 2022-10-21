@@ -27,7 +27,35 @@ public class Purchase {
 	private String totalPrice;
 	private String thisTime;
 	private String thisDate;
+	private String ifMmSeq;
+	private String ifMmName;
+	private String ifMmId;
+	private String ptSeq;
 	
+	public String getPtSeq() {
+		return ptSeq;
+	}
+	public void setPtSeq(String ptSeq) {
+		this.ptSeq = ptSeq;
+	}
+	public String getIfMmSeq() {
+		return ifMmSeq;
+	}
+	public void setIfMmSeq(String ifMmSeq) {
+		this.ifMmSeq = ifMmSeq;
+	}
+	public String getIfMmName() {
+		return ifMmName;
+	}
+	public void setIfMmName(String ifMmName) {
+		this.ifMmName = ifMmName;
+	}
+	public String getIfMmId() {
+		return ifMmId;
+	}
+	public void setIfMmId(String ifMmId) {
+		this.ifMmId = ifMmId;
+	}
 	public String getThisTime() {
 		return thisTime;
 	}

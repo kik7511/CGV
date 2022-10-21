@@ -63,4 +63,9 @@ public class PurchaseDao {
 		int result = sqlSession.update(namespace+ ".selecturchaseUp", dto);
 		return result;
 	}
+	
+	public int purchase(Purchase dto) {
+		int result = sqlSession.insert(namespace+ ".purchase", dto);
+		return result;
+	}
 }
