@@ -1,5 +1,9 @@
 package com.cgv.modules.purchase;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,11 +11,19 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
 @RequestMapping(value = "/purchase/")
@@ -156,17 +168,16 @@ public class PurchaseController {
 		return "infra/purchase/user/paymentForm";
 	}
 	
-	@RequestMapping(value = "purchaseInst")
-	public String purchaseInst(Purchase dto) throws Exception {
-		service.purchase(dto);
-		return "redirect:/purchase/afterTicketingView";
-	}
-	@RequestMapping(value = "afterTicketingView")
-	public String afterTicketingView(Purchase dto) throws Exception {
-		System.out.println(dto.getmNameKor()); 
-		return "infra/purchase/user/afterTicketingView";
-	}
+	/*
+	 * @RequestMapping(value = "purchaseInst") public String purchaseInst(Purchase
+	 * dto) throws Exception { service.purchase(dto); return
+	 * "redirect:/purchase/afterTicketingView"; }
+	 */
+	/*
+	 * @RequestMapping(value = "afterTicketingView") public String
+	 * afterTicketingView(Purchase dto) throws Exception {
+	 * System.out.println(dto.getmNameKor()); return
+	 * "infra/purchase/user/afterTicketingView"; }
+	 */
 	
-	
-
 }

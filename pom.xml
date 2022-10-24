@@ -228,7 +228,11 @@
 		</dependency>
 		<!-- fileupload e 2022.03.30 -->
 		
-		
+		<dependency>
+		    <groupId>kr.co.linkhub</groupId>
+		    <artifactId>kakaocert-sdk</artifactId>
+		    <version>2.52.0</version>
+		</dependency>
 	</dependencies>
 	
     <build>

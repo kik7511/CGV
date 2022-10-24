@@ -67,3 +67,5 @@ public class PurchaseVo {
 		this.thName = thName;
 	}
 }
+
+

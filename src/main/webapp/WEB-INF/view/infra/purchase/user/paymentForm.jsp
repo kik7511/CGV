@@ -1092,6 +1092,8 @@
 	    <%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 	</div>
 <!-- end -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <script>
 	var formVo = $("form[name=formVo]");
 	var goPurchase = "/purchase/ticketingForm";				/* #-> */
@@ -1100,10 +1102,10 @@
 		formVo.attr("action", goPurchase).submit();
 	});
 	
-	$("#tnb_step_btn_right").on("click", function(){
+/* 	$("#tnb_step_btn_right").on("click", function(){
 		formVo.attr("action", goAfter).submit();
-	});
-	
+	}); */
+	 
 	$(document).ready(function(){
 	var scScreenType = ${dto.scScreenType};
 	var mAgeLimit = ${dto.mAgeLimit};
@@ -1151,6 +1153,23 @@
 	$('div.screen').children('span.data').text(scNumber + '관');
 	$('div.seat_no').children('span.data').text(seat + stCol);
 	});
+	
+	$("#tnb_step_btn_right").click(function () {
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,dataType:"json" 	
+			,url: ""
+			,data : {"stCol" : col}
+			,success: function(response) {
+				if(response.rt == "success") {
+					}
+				}
+		})
+	});
+	
+	
 </script>
 </body>
 </html>
