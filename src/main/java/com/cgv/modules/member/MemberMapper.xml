@@ -147,9 +147,8 @@
 		FROM infrMember a
 		WHERE 1=1
 			AND ifMmId = #{ifMmId}
-			AND ifMmpassWord = #{ifMmPassWord}
+			<if test = "ifMmPassWord != null">AND ifMmPassWord = #{ifMmPassWord}</if>
 			AND a.ifMmMangerNy = 0
-				
 	</select>
 	
 	<select id="loginM" resultMap="resultMapObj">
@@ -166,6 +165,25 @@
 		AND ifMmMangerNy = 1
 	</select>
 	
-	
+	<insert id="kakaoInst">
+		INSERT INTO infrMember (
+			ifMmName
+			,ifMmId
+			,ifMmPhone
+			,ifMmEmail
+			,ifMmDelNy
+			,ifMmMangerNy
+		)VALUES(
+			#{name}
+			,#{id}
+			,#{phone}
+			,#{email}
+			,0
+			,1
+		)
+		<selectKey resultType="String" keyProperty="ifMmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 	
 </mapper>	

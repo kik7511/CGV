@@ -30,6 +30,8 @@
 			<exclude-mapping path="/member/loginForm" />
 			<exclude-mapping path="/member/signupForm" />
 			<exclude-mapping path="/member/signupInst" />
+			<exclude-mapping path="/member/kakaoLoginProc" />
+			<exclude-mapping path="/member/kakaoCallback" />
 			<exclude-mapping path="/member/forgotIdForm" />
 			<exclude-mapping path="/member/forgotPasswordForm" />
 			<exclude-mapping path="/member/loginProc" />
@@ -48,6 +50,7 @@
 			<exclude-mapping path="/purchase/selectDate" />
 			<exclude-mapping path="/purchase/selectTime" />
 			<exclude-mapping path="/purchase/selectSeat" />
+			<exclude-mapping path="/purchase/afterTicketingView" />
 			<beans:bean id="checkLoginSessionInterception" class="com.cgv.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	

@@ -2,6 +2,8 @@ package com.cgv.modules.member;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -97,6 +99,13 @@ public class MemberServiceImpl implements MemberService {
 		dto.setIfMmPassWord(UtilSecurity.encryptSha256(dto.getIfMmPassWord()));
 		return dao.loginM(dto);
 	}
+	@Override
+	public int kakaoInst(Member dto) throws Exception{
+		return dao.kakaoInst(dto);
+	}
 	
+	public Member kakaoLogin(Member dto) throws Exception{
+		return dao.login(dto);
+	}
 	
 }

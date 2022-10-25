@@ -120,8 +120,16 @@
 					                </div>
 					            </fieldset>
 				            </form>  
+				            <form name="form">
+								<input type="hidden" name="name"/>
+								<input type="hidden" name="id"/>
+								<input type="hidden" name="phone"/>
+								<input type="hidden" name="email"/>
+								<input type="hidden" name="gender"/>
+								<input type="hidden" name="profile_img"/>
+							</form>
 							<div align="center">
-								<a href=";" class="btn_loginNaver" style="margin-left: -120px;"><img src="https://img.cgv.co.kr/image_gt/login/btn_loginNaver.jpg" alt="네이버 로그인"></a>
+								<a class="btn_loginNaver" id="kakaologin" style="margin-left: -120px; cursor: pointer;"><img src="/resources/images/user/kakao_login_medium_narrow.png" alt="네이버 로그인"></a>
 							</div>
 				        </div>
    					 </div>    
@@ -153,6 +161,9 @@
 		<%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 		<!-- footer_area (s) -->
 <!-- end -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js" integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 	<script>
 	$("#btnLogin").on("click", function(){
 		$.ajax({
@@ -174,6 +185,39 @@
 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 			}
 		});
+	});
+	</script>
+	<script>
+	Kakao.init('036d65cb9b7cdfe66aa8d121ce7c81b4');
+	$("#kakaologin").on("click", function(){
+		Kakao.Auth.login({
+	      success: function (response) {
+	        	Kakao.API.request({
+	          url: '/v2/user/me',
+	          success: function (response) {
+	        	  
+	        	  var account = response.kakao_account;
+	        	  
+	        	  console.log(response);
+	        	  
+	        	  $("input[name=id]").val("카카오로그인");
+	        	  $("input[name=name]").val(account.profile.nickname);
+	        	  $("input[name=phone]").val(account.profile.phone_number);
+	        	  $("input[name=email]").val(account.profile.email);
+	        	  $("input[name=dob]").val(account.profile.birthday);
+	        	  
+	        	  
+	        	  $("form[name=form]").attr("action", "/member/kakaoLoginProc").submit();
+	          },
+	          fail: function (error) {
+	            console.log(error)
+	          },
+	        })
+	      },
+	      fail: function (error) {
+	        console.log(error)
+	      },
+	    })
 	});
 	</script>
 </body>

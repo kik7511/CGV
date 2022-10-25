@@ -973,7 +973,7 @@
 						</form>
 						<!-- btn-right -->
 						<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
-						<a class="btn-right on" id="tnb_step_btn_right"title="결제하기" style="cursor: pointer;">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a>
+						<a class="btn-right on" id="tnb_step_btn_right"title="결제하기" href="javascript:kakao('${dto.mNameKor}', '${dto.stPrice}', ${dto.stRow}, ${dto.stCol}, '${dto.thName}', '${dto.dDate}', '${dto.dTime}', '${sessId}')">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a>
 					</div>
 				</div>
 				<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
@@ -1093,7 +1093,6 @@
 	</div>
 <!-- end -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <script>
 	var formVo = $("form[name=formVo]");
 	var goPurchase = "/purchase/ticketingForm";				/* #-> */
@@ -1154,20 +1153,30 @@
 	$('div.seat_no').children('span.data').text(seat + stCol);
 	});
 	
-	$("#tnb_step_btn_right").click(function () {
+	function kakao(name, price, row, col, location, date, time, id) {
 		$.ajax({
 			dataType:"json" 	
 			,url: "/purchase/kakaopay"
-			,success: function(data) {
+			,data:{
+				name : name,
+				price : price,
+				row : row,
+				col : col,
+				location : location,
+				date : date,
+				time : time,
+				id : id}
+				,success: function(data) {
 				console.log(data);
 				var box = data.next_redirect_pc_url;
 				window.open(box);
+				formVo.attr("action", goAfter).submit(); 
 				} ,
 				error:function(error){
 					alert(error);
 				}
 		});
-	});
+	};
 	
 	
 </script>

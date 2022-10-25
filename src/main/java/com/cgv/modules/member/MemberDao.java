@@ -69,6 +69,12 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".loginM", dto);
 	} 
 	
+	public int kakaoInst(Member dto) {
+		int result = sqlSession.insert(namespace + ".kakaoInst", dto);
+		System.out.println("dao.result: "+result);
+		return result;
+	} 
+	
 //	uploaded
 	public int insertUploaded(Member dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
 	

@@ -224,4 +224,34 @@ public class MemberController {
 		return returnMap;
 	}
 	
+	@RequestMapping(value = "kakaoCallback")
+	public String kakaoCallback() throws Exception {
+		return "infra/member/user/kakaoCallback";
+	}
+	
+	@RequestMapping(value = "kakaoLoginProc")
+	public String kakaoLoginProc(Member dto, HttpSession httpSession) throws Exception {
+		Member kakaoLogin = service.kakaoLogin(dto);
+		
+		if(kakaoLogin == null) {
+			service.kakaoInst(dto);
+			
+			Member kakao = service.kakaoLogin(dto);
+			
+			session(kakao.getIfMmSeq(), kakao.getIfMmId(), kakao.getIfMmName(), kakao.getIfMmEmail(), httpSession);
+			
+		}else {
+			session(kakaoLogin.getIfMmSeq(), kakaoLogin.getIfMmId(), kakaoLogin.getIfMmName(), kakaoLogin.getIfMmEmail(), httpSession);
+		}
+		
+		return "redirect:/home";
+	}
+	
+	public void session(String seq, String id, String name, String email, HttpSession httpSession) {
+		httpSession.setAttribute("sessSeq", seq);
+		httpSession.setAttribute("sessId", id);
+		httpSession.setAttribute("sessName", name);
+		httpSession.setAttribute("sessEmail", email);
+	}
+	
 }
