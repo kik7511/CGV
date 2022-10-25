@@ -231,17 +231,29 @@ public class MemberController {
 	
 	@RequestMapping(value = "kakaoLoginProc")
 	public String kakaoLoginProc(Member dto, HttpSession httpSession) throws Exception {
-		Member kakaoLogin = service.kakaoLogin(dto);
+		Member kakaoLogin = service.snsLogin(dto);
 		
 		if(kakaoLogin == null) {
 			service.kakaoInst(dto);
-			
-			Member kakao = service.kakaoLogin(dto);
-			
-			session(kakao.getIfMmSeq(), kakao.getIfMmId(), kakao.getIfMmName(), kakao.getIfMmEmail(), httpSession);
+			Member kakao = service.snsLogin(dto);
+			httpSession.setAttribute("sessSeq", kakao.getIfMmSeq());
+			httpSession.setAttribute("sessId", kakao.getIfMmId());
+			httpSession.setAttribute("sessName", kakao.getIfMmName());
+			httpSession.setAttribute("sessEmail", kakao.getIfMmEmail());
+			/*
+			 * session(kakao.getIfMmSeq(), kakao.getIfMmId(), kakao.getIfMmName(),
+			 * kakao.getIfMmEmail(), httpSession);
+			 */
 			
 		}else {
-			session(kakaoLogin.getIfMmSeq(), kakaoLogin.getIfMmId(), kakaoLogin.getIfMmName(), kakaoLogin.getIfMmEmail(), httpSession);
+			httpSession.setAttribute("sessSeq", kakaoLogin.getIfMmSeq());
+			httpSession.setAttribute("sessId", kakaoLogin.getIfMmId());
+			httpSession.setAttribute("sessName", kakaoLogin.getIfMmName());
+			httpSession.setAttribute("sessEmail", kakaoLogin.getIfMmEmail());
+			/*
+			 * session(kakaoLogin.getIfMmSeq(), kakaoLogin.getIfMmId(),
+			 * kakaoLogin.getIfMmName(), kakaoLogin.getIfMmEmail(), httpSession);
+			 */
 		}
 		
 		return "redirect:/home";

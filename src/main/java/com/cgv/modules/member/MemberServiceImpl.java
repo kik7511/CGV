@@ -104,8 +104,9 @@ public class MemberServiceImpl implements MemberService {
 		return dao.kakaoInst(dto);
 	}
 	
-	public Member kakaoLogin(Member dto) throws Exception{
-		return dao.login(dto);
+	@Override
+	public Member snsLogin(Member dto) throws Exception{
+		return dao.snsLogin(dto);
 	}
 	
 }

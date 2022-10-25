@@ -146,8 +146,22 @@
 			,a.ifMmRank
 		FROM infrMember a
 		WHERE 1=1
+			AND ifMmPassWord = #{ifMmPassWord}
 			AND ifMmId = #{ifMmId}
-			<if test = "ifMmPassWord != null">AND ifMmPassWord = #{ifMmPassWord}</if>
+			AND a.ifMmMangerNy = 0
+	</select>
+	
+	<select id="snsLogin" resultMap="resultMapObj">
+		SELECT
+			a.ifMmSeq
+			,a.ifMmId
+			,a.ifMmPassWord
+			,a.ifMmNickname
+			,a.ifMmName
+			,a.ifMmRank
+		FROM infrMember a
+		WHERE 1=1
+			AND ifMmId = #{id}
 			AND a.ifMmMangerNy = 0
 	</select>
 	
@@ -179,7 +193,7 @@
 			,#{phone}
 			,#{email}
 			,0
-			,1
+			,0
 		)
 		<selectKey resultType="String" keyProperty="ifMmSeq" order="AFTER">
 			SELECT last_insert_id()
