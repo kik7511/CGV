@@ -82,6 +82,33 @@
 		</selectKey>
 	</insert>
 	
+	<insert id="signup">
+		INSERT INTO infrMember (
+			ifMmName
+			,ifMmDob
+			,ifMmId
+			,ifMmPassWord
+			,ifMmEmail
+			,ifMmEmailAddress
+			,ifMmNickname
+			,ifMmDelNy
+			,ifMmMangerNy
+		)VALUES(
+			#{ifMmName}
+			,#{ifMmDob}
+			,#{ifMmId}
+			,#{ifMmPassWord}
+			,#{ifMmEmail}
+			,#{ifMmEmailAddress}
+			,#{ifMmNickname}
+			,0
+			,0
+		)
+		<selectKey resultType="String" keyProperty="ifMmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.*

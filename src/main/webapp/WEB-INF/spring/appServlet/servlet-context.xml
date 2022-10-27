@@ -51,6 +51,8 @@
 			<exclude-mapping path="/purchase/selectTime" />
 			<exclude-mapping path="/purchase/selectSeat" />
 			<exclude-mapping path="/purchase/afterTicketingView" />
+			<exclude-mapping path="/purchase/approve" />
+			<exclude-mapping path="/purchase/kakaopayApprove" />
 			<beans:bean id="checkLoginSessionInterception" class="com.cgv.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	

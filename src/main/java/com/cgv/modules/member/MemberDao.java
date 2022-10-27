@@ -36,6 +36,13 @@ public class MemberDao {
 		return result;
 	} 
 	
+	public int signup(Member dto) {
+		int result = sqlSession.insert(namespace + ".signup", dto);
+		System.out.println("dao.result: "+result);
+		return result;
+	}
+	
+	
 	public Member selectOne(MemberVo vo) {
 		Member item = sqlSession.selectOne(namespace + ".selectOne", vo);
 		return item;

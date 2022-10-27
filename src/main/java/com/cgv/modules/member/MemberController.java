@@ -112,7 +112,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "signupInst")
 	public String signupInst(Member dto) throws Exception{
-		service.insert(dto);
+		service.signup(dto);
 		return "redirect:/member/loginForm";
 	}
 	

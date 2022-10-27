@@ -207,7 +207,6 @@
 			}else{
 				$("#alert-success").css('display', 'none');
 				$("#alert-danger").css('display', 'block');
-				passwordRe.focus();
 			}
 		}
 	});

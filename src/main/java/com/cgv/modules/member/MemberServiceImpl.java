@@ -68,6 +68,13 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
+	public int signup(Member dto) throws Exception{
+		dto.setIfMmPassWord(UtilSecurity.encryptSha256(dto.getIfMmPassWord()));
+		return dao.signup(dto);
+	}
+
+	
+	
 	@Override
 	public int update(Member dto) throws Exception{
 		return dao.update(dto);

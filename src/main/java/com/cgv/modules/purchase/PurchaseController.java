@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/purchase/")
@@ -197,8 +198,8 @@ public class PurchaseController {
 			params.put("quantity", "1");
 			params.put("total_amount", price);
 			params.put("tax_free_amount", "0");
-			params.put("approval_url", "http://localhost:8080/purchase/afterTicketingView");
-//		params.put("approval_url", "http://localhost:8080/purchase/kakaopayApprove");
+			params.put("approval_url", "http://localhost:8080/purchase/approve");
+//			params.put("approval_url", "http://localhost:8080/purchase/kakaopayApprove");
 			params.put("cancel_url", "http://localhost:8080/purchase/selectPayment");
 			params.put("fail_url", "http://localhost:8080/purchase/selectPayment");
 
@@ -238,8 +239,11 @@ public class PurchaseController {
 	}
 
 	@RequestMapping(value = "purchaseInst")
-	public String purchaseInst(Purchase dto) throws Exception {
+	public String purchaseInst(Purchase dto, @ModelAttribute("vo") PurchaseVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		service.purchase(dto);
+		redirectAttributes.addFlashAttribute("dto", dto);
+		vo.setmSeq(dto.getmSeq());
+		
 		return "redirect:/purchase/afterTicketingView";
 	}
 
@@ -248,33 +252,62 @@ public class PurchaseController {
 		System.out.println(dto.getmNameKor());
 		return "infra/purchase/user/afterTicketingView";
 	}
+	
+	 @RequestMapping(value = "approve")
+	 public String approve(Purchase dto) throws Exception {
+			return "infra/purchase/user/approve";
+		}
 
-	/*
-	 * @RequestMapping(value = "kakaopayApprove") public String kakaopayApprove()
-	 * throws Exception{ try { URL url = new
-	 * URL("https://kapi.kakao.com/v1/payment/ready"); HttpURLConnection conn =
-	 * (HttpURLConnection) url.openConnection(); conn.setRequestMethod("POST");
-	 * conn.setRequestProperty("Authorization",
-	 * "KakaoAK 99a9ce2310007031e1a3de4d7c2f875f");
-	 * conn.setRequestProperty("Content-type",
-	 * "application/x-www-form-urlencoded;charset=utf-8"); conn.setDoOutput(true);
-	 * conn.setDoInput(true); Map<String, String> params = new HashMap<String,
-	 * String>(); params.put("cid", "TC0ONETIME"); String string_params = new
-	 * String(); for(Map.Entry<String, String> elem : params.entrySet()) {
-	 * string_params += (elem.getKey() + "=" + elem.getValue() + "&"); } String
-	 * successUrl = (String)obj.get("next_redirect_pc_url"); OutputStream give =
-	 * conn.getOutputStream(); DataOutputStream datagiven = new
-	 * DataOutputStream(give);
-	 * conn.getOutputStream().write(string_params.getBytes());
-	 * datagiven.write(string_params.getBytes()); datagiven.close();
-	 * 
-	 * int result = conn.getResponseCode();
-	 * 
-	 * InputStream receiver; if(result == 200) { receiver = conn.getInputStream();
-	 * }else { receiver = conn.getErrorStream(); } InputStreamReader reader = new
-	 * InputStreamReader(receiver); BufferedReader changer = new
-	 * BufferedReader(reader); return changer.readLine(); }
-	 * catch(MalformedURLException e) { e.printStackTrace(); } catch(IOException e)
-	 * { e.printStackTrace(); } return "redirect:/purchase/afterTicketingView"; }
-	 */
+	 @RequestMapping(value = "kakaopayApprove") 
+	 public String kakaopayApprove(@RequestParam("date") String date, @RequestParam("time") String time, @RequestParam("id") String id, @RequestParam("price") String price, @RequestParam("name") String name, @RequestParam("token") String token) throws Exception{
+		try {
+			URL url = new URL("https://kapi.kakao.com/v1/payment/approve");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "KakaoAK 99a9ce2310007031e1a3de4d7c2f875f");
+			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("cid", "TC0ONETIME");
+			params.put("partner_order_id", "CGV");
+			params.put("partner_user_id", id);
+			params.put("total_amount", price);
+			params.put("tax_free_amount", "0");
+			params.put("pg_token", token);
+			String string_params = new String();
+			for (Map.Entry<String, String> elem : params.entrySet()) {
+				string_params += (elem.getKey() + "=" + elem.getValue() + "&");
+			}
+			/* String successUrl = (String)obj.get("next_redirect_pc_url"); */
+			OutputStream give = conn.getOutputStream();
+			DataOutputStream datagiven = new DataOutputStream(give);
+			/* conn.getOutputStream().write(string_params.getBytes()); */
+			datagiven.write(string_params.getBytes());
+			datagiven.close();
+
+			int result = conn.getResponseCode();
+
+			InputStream receiver;
+			if (result == 200) {
+				receiver = conn.getInputStream();
+			} else {
+				receiver = conn.getErrorStream();
+			}
+			/*
+			 * BufferedReader in = new BufferedReader(new
+			 * InputStreamReader(conn.getInputStream())); JSONParser parser = new
+			 * JSONParser(); JSONObject obj = (JSONObject)parser.parse(in);
+			 */
+			InputStreamReader reader = new InputStreamReader(receiver);
+			BufferedReader changer = new BufferedReader(reader);
+			return changer.readLine();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "infra/purchase/user/approve"; 
+	 } 
+	 
 }
