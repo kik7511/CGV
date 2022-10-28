@@ -56,7 +56,7 @@ public class MemberController {
 	public String memberForm(Member dto, @ModelAttribute("vo") MemberVo vo, Model model) throws Exception{
 		
 		Member item = service.selectOne(vo);
-		model.addAttribute("item", item);
+		model.addAttribute("item", item); 
 		
 		return "infra/member/xdmin/memberForm";
 	}

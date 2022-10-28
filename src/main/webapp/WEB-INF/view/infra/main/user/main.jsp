@@ -30,6 +30,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<link href="/resources/images/user/logoRed_small.png" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
 <!-- start -->
