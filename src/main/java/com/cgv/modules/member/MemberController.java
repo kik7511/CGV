@@ -158,6 +158,23 @@ public class MemberController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "checkNickname")
+		public Map<String, Object> checkNickname(Member dto) throws Exception {
+	
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		int result = service.checkNickname(dto);
+		System.out.println("값은" + result);
+	
+		if (result > 0) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "loginProc")
 	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();

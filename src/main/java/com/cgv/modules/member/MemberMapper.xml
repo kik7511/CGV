@@ -163,6 +163,14 @@
 			AND ifMmId = #{ifMmId}
 	</select>
 	
+	<select id="checkNickname" resultMap="resultMapObj">
+	SELECT
+		SELECT COUNT(*)
+		FROM infrMember a
+	WHERE 1=1
+		AND ifMmNickname = #{ifMmNickname}
+	</select>
+	
 	<select id="login" resultMap="resultMapObj">
 		SELECT
 			a.ifMmSeq

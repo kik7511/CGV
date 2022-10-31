@@ -77,7 +77,7 @@
 												</tr>
 												<tr>
 													<th scope="row">닉네임</th>
-													<td><input type="text" placeholder="닉네임을 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmNickname" id="ifMmNickname"></td>													
+													<td><input type="text" placeholder="닉네임을 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmNickname" id="ifMmNickname"><div id="ifmmIdFeedback2" style="text-align: left; margin-left: -7px; font-weight: bold;"></div></td>													
 												</tr>
 												<tr>
 													<th scope="row">비밀번호</th>
@@ -168,22 +168,41 @@
 		<%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 		<!-- footer_area (s) -->
 	<script>
-	$("#ifMmId").on("focusout", function(){
+		setCheckboxValue = function(obj, targetObj) {
+			   if(obj.is(":checked")){
+				   targetObj.val("1");
+			    } else {
+			    	targetObj.val("0");
+			    }
+			}
+				
+			 validationUpdt = function() {
+		            if (!id_regex($('input[name=ifMmId]'), $('input[name=ifMmId]').val(), "입력 필요!", $('#id_msg'))) {
+		            	return false;
+		            } else if(!name_regex($('input[name=ifMmName]'), $('input[name=ifMmName').val(), "입력 필요!", $('#name_msg'))) {
+		                return false;
+		            }else{
+		            	return true;
+		            } 
+				}; 
+		
+	$("#ifMmNickname").on("focusout", function(){
 				$.ajax({
 					async: true 
 					,cache: false
 					,type: "post"
 					,dataType:"json" 
-					,url: "/member/checkId"
-					,data : { "ifMmId" : $("#ifMmId").val() }
+					,url: "/member/checkNickname"
+					,data : { "ifMmNickname" : $("#ifMmNickname").val() }
 					,success: function(response) {
+						alert("test");
 						if(response.rt == "success") {
-							document.getElementById("ifmmIdFeedback").innerText = "사용 가능 합니다.";
-							document.getElementById("ifmmIdFeedback").style.color = "#04B45F";
+							document.getElementById("ifmmIdFeedback2").innerText = "사용 가능 합니다.";
+							document.getElementById("ifmmIdFeedback2").style.color = "#04B45F";
 							
 						} else {
-							document.getElementById("ifmmIdFeedback").innerText = "사용 불가능 합니다";
-							document.getElementById("ifmmIdFeedback").style.color = "#d92742";
+							document.getElementById("ifmmIdFeedback2").innerText = "사용 불가능 합니다";
+							document.getElementById("ifmmIdFeedback2").style.color = "#d92742";
 						}
 					}
 					,error : function(jqXHR, textStatus, errorThrown){
@@ -191,6 +210,30 @@
 					}
 				});
 		});
+	
+	$("#ifMmId").on("focusout", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,dataType:"json" 
+			,url: "/member/checkId"
+			,data : { "ifMmId" : $("#ifMmId").val() }
+			,success: function(response) {
+				if(response.rt == "success") {
+					document.getElementById("ifmmIdFeedback").innerText = "사용 가능 합니다.";
+					document.getElementById("ifmmIdFeedback").style.color = "#04B45F";
+					
+				} else {
+					document.getElementById("ifmmIdFeedback").innerText = "사용 불가능 합니다";
+					document.getElementById("ifmmIdFeedback").style.color = "#d92742";
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+});
 	
 	/* 비밀번호 확인 */
 	

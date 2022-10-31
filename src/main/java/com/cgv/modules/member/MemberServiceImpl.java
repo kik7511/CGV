@@ -96,6 +96,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public int checkNickname(Member dto) throws Exception{
+		return dao.checkNickname(dto);
+	}
+	
+	@Override
 	public Member login(Member dto) throws Exception{
 		dto.setIfMmPassWord(UtilSecurity.encryptSha256(dto.getIfMmPassWord()));
 		return dao.login(dto);

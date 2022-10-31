@@ -13,6 +13,7 @@ public interface MemberService {
 	public int uelete(Member dto) throws Exception;
 	public int delete(MemberVo vo) throws Exception;
 	public int checkId(Member dto) throws Exception;
+	public int checkNickname(Member dto) throws Exception;
 	public Member login(Member dto) throws Exception;
 	public Member snsLogin(Member dto) throws Exception;
 	public Member loginM(Member dto) throws Exception;

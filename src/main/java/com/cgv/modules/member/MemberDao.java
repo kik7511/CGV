@@ -68,6 +68,11 @@ public class MemberDao {
 		return result;
 	}
 	
+	public int checkNickname(Member dto) {
+		int result = sqlSession.selectOne(namespace + ".checkNickname", dto);
+		return result;
+	}
+	
 	public Member login(Member dto) {
 		return sqlSession.selectOne(namespace + ".login", dto);
 	} 
