@@ -73,7 +73,7 @@
 												</tr>
 												<tr>
 													<th scope="row">아이디</th>
-													<td><input type="text" placeholder="아이디를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmId" id="ifMmId"><div id="ifmmIdFeedback" style="text-align: left; margin-left: -7px; "></div></td>
+													<td><input type="text" placeholder="아이디를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmId" id="ifMmId"><div id="ifmmIdFeedback" style="text-align: left; margin-left: -7px; font-weight: bold;"></div></td>
 												</tr>
 												<tr>
 													<th scope="row">닉네임</th>
@@ -87,7 +87,7 @@
 													<th scope="row">비밀번호 확인</th>
 													<td>
 														<input type="password" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px; position: relative;" name="ifMmPasswordRe" id="ifMmPassWordRe">
-														<div id="alert-success" style="display: none; margin-left: -5px; position: relative; text-align: left;">비밀번호가 일치합니다.</div>
+														<div id="alert-success" style="display: none; color: #04B45F; margin-left: -5px; font-weight: bold; position: relative; text-align: left;">비밀번호가 일치합니다.</div>
     													<div id="alert-danger" style="display: none; color: #d92742; margin-left: -5px; font-weight: bold; position: relative; text-align: left;">비밀번호가 일치하지 않습니다.</div>
 													</td>
 												</tr>
@@ -179,9 +179,11 @@
 					,success: function(response) {
 						if(response.rt == "success") {
 							document.getElementById("ifmmIdFeedback").innerText = "사용 가능 합니다.";
+							document.getElementById("ifmmIdFeedback").style.color = "#04B45F";
 							
 						} else {
 							document.getElementById("ifmmIdFeedback").innerText = "사용 불가능 합니다";
+							document.getElementById("ifmmIdFeedback").style.color = "#d92742";
 						}
 					}
 					,error : function(jqXHR, textStatus, errorThrown){

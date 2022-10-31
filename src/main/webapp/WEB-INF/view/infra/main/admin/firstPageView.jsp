@@ -36,28 +36,28 @@
 	    <!-- contents -->
 	    <div class="container">
 		    <div class="row">
-		        <div class="col" style="width: 100%; height: 100%; margin-right: 15px;">
-		            <div class="box">
-		                <a href="/main">
-		                	<button type="button" class="imgbutton" onclick="location.href='/main'">들어가기</button>
-		                </a>
-		                <img src="/resources/images/adminpage.png" alt="user mainPage">
-		                <div class="name">
-		                	<span>관리자 화면</span>
-		                </div>
-		            </div>
-		        </div>
 		        <div class="col" style="width: 100%; height:100%; margin-left: 15px;">
 		            <div class="box">
+		                <div class="name">
+		                	<span>유저 화면</span>
+		                </div>
 		                <a href="/home">
 		                	<button type="button" class="imgbutton" onclick="location.href='/home">들어가기</button>
 		                </a>
 		                <img src="/resources/images/mainpage.png" alt="user mainPage">
-		                <div class="name">
-		                	<span>유저 화면</span>
-		                </div>
 		            </div>
 		         </div>
+		        <div class="col" style="width: 100%; height: 100%; margin-right: 15px;">
+		            <div class="box">
+		                <div class="name">
+		                	<span>관리자 화면</span>
+		                </div>
+		                <a href="/main">
+		                	<button type="button" class="imgbutton" onclick="location.href='/main'">들어가기</button>
+		                </a>
+		                <img src="/resources/images/adminpage.png" alt="user mainPage">
+		            </div>
+		        </div>
 		     </div>			 
 		</div>    		
 	</div>
