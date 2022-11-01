@@ -93,6 +93,8 @@
 			,ifMmNickname
 			,ifMmDelNy
 			,ifMmMangerNy
+			,ifMmMarketing
+			,ifMmPrivate
 		)VALUES(
 			#{ifMmName}
 			,#{ifMmDob}
@@ -103,6 +105,8 @@
 			,#{ifMmNickname}
 			,0
 			,0
+			,#{ifMmMarketing}
+			,#{ifMmPrivate}
 		)
 		<selectKey resultType="String" keyProperty="ifMmSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -157,18 +161,17 @@
 	</delete>
 	
 	<select id= "checkId" resultType="int">
-		SELECT COUNT(*)
+	SELECT COUNT(*)
 		FROM infrMember a
 		WHERE 1=1
 			AND ifMmId = #{ifMmId}
 	</select>
 	
-	<select id="checkNickname" resultMap="resultMapObj">
-	SELECT
-		SELECT COUNT(*)
+	<select id= "checkNickname" resultType="int">
+	SELECT COUNT(*)
 		FROM infrMember a
-	WHERE 1=1
-		AND ifMmNickname = #{ifMmNickname}
+		WHERE 1=1
+			AND ifMmNickname = #{ifMmNickname}
 	</select>
 	
 	<select id="login" resultMap="resultMapObj">

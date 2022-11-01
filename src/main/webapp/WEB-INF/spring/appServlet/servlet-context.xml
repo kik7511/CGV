@@ -37,6 +37,7 @@
 			<exclude-mapping path="/member/loginProc" />
 			<exclude-mapping path="/member/loginMProc" />
 			<exclude-mapping path="/member/checkId" />
+			<exclude-mapping path="/member/checkNickname" />
 			<exclude-mapping path="/home" />
 			<exclude-mapping path="/first" />
 			<exclude-mapping path="/main" />
@@ -44,6 +45,7 @@
 			<exclude-mapping path="/movie/movieChartView" />
 			<exclude-mapping path="/movie/movieInfoView" />
 			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/rest/**" />
 			<exclude-mapping path="/purchase/ticketingForm" />
 			<exclude-mapping path="/purchase/selectTheater" />
 			<exclude-mapping path="/purchase/selectLocation" />

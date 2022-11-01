@@ -34,7 +34,14 @@ public class Member extends Base {
 	private String email;
 	private String gender;
 	private String dob;
+	private Integer ifMmPrivate;
 	
+	public Integer getIfMmPrivate() {
+		return ifMmPrivate;
+	}
+	public void setIfMmPrivate(Integer ifMmPrivate) {
+		this.ifMmPrivate = ifMmPrivate;
+	}
 	public String getName() {
 		return name;
 	}

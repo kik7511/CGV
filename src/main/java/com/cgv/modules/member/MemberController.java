@@ -164,7 +164,7 @@ public class MemberController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 
 		int result = service.checkNickname(dto);
-		System.out.println("값은" + result);
+		System.out.println("닉네임 값은" + result);
 	
 		if (result > 0) {
 			returnMap.put("rt", "fail");

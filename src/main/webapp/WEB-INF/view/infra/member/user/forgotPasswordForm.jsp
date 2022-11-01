@@ -76,8 +76,21 @@
 			                                   <h5>비밀번호를 재설정할 아이디를 입력해주세요.</h5>
 			                                   <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
 			                                       <label for="input_findpw_id">아이디</label>
-			                                       <input type="text" id="txtUserId" name="txtUserId">
-			                                       <button type="submit" id="submit" class="round inred btn_type_red" title="조회"><span>조회</span></button>
+			                                       <input type="text" id="ifMmId" name="ifMmId">
+			                                       <button type="button" id="submit" class="round inred btn_type_red" title="조회"><span>조회</span></button>
+			                                   </form>
+			                                </div>
+			                            </div>
+			                            <div class="col-confirm" style="display: none;">
+			                                <h4>비밀번호 재설정</h4>
+			                                <div class="box-confirm">
+			                                   <h5>재설정할 비밀번호를 입력해주세요.</h5>
+			                                   <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
+			                                       <label for="input_findpw_id">비밀번호</label>
+			                                       <input type="text" id="ifMmPassWord" name="ifMmPassWord">
+			                                       <label for="input_findpw_id">비밀번호 재입력</label>
+			                                       <input type="text" id="ifMmPassWordRe" name="ifMmPassWordRe">
+			                                       <button type="button" id="submit" class="round inred btn_type_red" title="조회"><span>조회</span></button>
 			                                   </form>
 			                                </div>
 			                            </div>
@@ -85,7 +98,7 @@
 			                    </div>
 			   <!-- ******************************************** 수정된 부분 끝! ******************************************** -->
 			    </div>    
-			    <div class="sect-loginguide">
+			    <div class="sect-loginguide" style="width: 921px; margin-left: 28px;">
 			        <dl class="box-operationguide">
 			            <dt>이용문의</dt>
 			            <dd>CGV 고객센터 : 1544-1122</dd>
@@ -103,38 +116,24 @@
 			
 			<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/crypto.js"></script>
 			<script type="text/javascript">
-			//<![CDATA[
-			
-			    (function ($) {
-			        $(function () {
-			
-			            var $frm = $('#form1');
-			
-			            $frm.validate({
-			                submitHandler: function (form) {
-			
-			                    var strUserID = $.trim($("#txtUserId").val());
-			                    
-			                    if (strUserID.length == 0) {
-			                        alert("아이디를 입력해 주세요.");
-			                        return false;
-			                    }
-			
-			                    var $AccountFrm = $('#frmFindAccount');
-			
-			                    $AccountFrm.find('#userid').val(app.crypto.AESEncryptToBase64($frm.find('#txtUserId').val()));
-			
-			                    $AccountFrm.submit();
-			                    return false;
-			                }
-			            });
-			
-			
-			
-			
-			        });
-			    })(jQuery);
-			//]]>
+			$("#submit").on("click", function(){
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					,dataType:"json" 
+					,url: "/member/checkId"
+					,data : { "ifMmId" : $("#ifMmId").val() }
+					,success: function(response) {
+						if(response.rt == "success") {
+							
+						} else {
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+		});
 			</script>
 			
 			            

@@ -327,7 +327,7 @@
 												<td>
 													<div class="row">
 														<div class="col">
-															<input type="date" class="form-control" name="ifMmDob"id="dob" value='<fmt:formatDate value="${item.ifMmDob}" pattern="yyyy-MM-dd" />'>
+															<input type="date" class="form-control" name="ifMmDob" id="dob" value='<fmt:formatDate value="${item.ifMmDob}" pattern="yyyy-MM-dd" />'>
 														</div>
 													</div>
 												</td>

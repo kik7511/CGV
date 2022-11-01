@@ -46,7 +46,7 @@
 		<!-- container -->
 		<div id="bodyWrap">
 			<div class="contnetsWrap">
-				<form name="form" method="post" action="/member/signupInst">
+				<form name="form">
 					<c:set var="listCodeEmail" value="${CodeServiceImpl.selectListCachedCode('12')}"/>
 					<div id="contents">
 						<div class="cont_header">
@@ -77,7 +77,7 @@
 												</tr>
 												<tr>
 													<th scope="row">닉네임</th>
-													<td><input type="text" placeholder="닉네임을 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmNickname" id="ifMmNickname"><div id="ifmmIdFeedback2" style="text-align: left; margin-left: -7px; font-weight: bold;"></div></td>													
+													<td><input type="text" placeholder="닉네임을 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmNickname" id="ifMmNickname"><div id="ifmmNicknameFeedback" style="text-align: left; margin-left: -7px; font-weight: bold;"></div></td>													
 												</tr>
 												<tr>
 													<th scope="row">비밀번호</th>
@@ -110,7 +110,7 @@
 												</tr>
 												<tr>
 													<th scope="row">생년월일</th>
-													<td><input type="text" placeholder="yyyy-MM-dd" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmDob"></td>													
+													<td><input type="date" autocomplete="off" style="margin-left: -560px; width: 180px;" name="ifMmDob" id="dob" value='<fmt:formatDate value="${item.ifMmDob}" pattern="yyyy-MM-dd" />'></td>													
 												</tr>
 											</tbody>
 										</table>
@@ -130,6 +130,7 @@
 													<th scope="row">개인정보 수집 활용 동의</th>
 													<td>
 														<div style="text-align: left; padding-top: 5px;">
+															<input type="hidden" id="ifMmPrivate" name="ifMmPrivate" value="0">
 															<input type="checkbox" id="checkinfoY">
 															<label for="checkinfoY">동의</label>
 															<input type="checkbox" id="checkinfoN">
@@ -141,6 +142,7 @@
 													<th scope="row">마케팅 및 이벤트 관련정보 <br> 메일 수신 동의</th>
 													<td>
 														<div style="text-align: left; padding-top: 14px;">
+															<input type="hidden" id="ifMmMarketing" name="ifMmMarketing" value="0">
 															<input type="checkbox" id="checkmarketingY">
 															<label for="checkinfoY">동의</label>
 															<input type="checkbox" id="checkmarketingN">
@@ -185,31 +187,41 @@
 		            	return true;
 		            } 
 				}; 
+				
+				var goUrlInst = "/member/signupInst"; 			/* #-> */
+				
+				
+				var form = $("form[name=form]");
+				
+				$("#btn_submit").on("click", function(){
+		 			setCheckboxValue($("#checkinfoY"), $("#ifMmPrivate"));
+					setCheckboxValue($("#checkmarketingY"), $("#ifMmMarketing"));
+			   		form.attr("action", goUrlInst).submit();
+				}); 
 		
 	$("#ifMmNickname").on("focusout", function(){
-				$.ajax({
-					async: true 
-					,cache: false
-					,type: "post"
-					,dataType:"json" 
-					,url: "/member/checkNickname"
-					,data : { "ifMmNickname" : $("#ifMmNickname").val() }
-					,success: function(response) {
-						alert("test");
-						if(response.rt == "success") {
-							document.getElementById("ifmmIdFeedback2").innerText = "사용 가능 합니다.";
-							document.getElementById("ifmmIdFeedback2").style.color = "#04B45F";
-							
-						} else {
-							document.getElementById("ifmmIdFeedback2").innerText = "사용 불가능 합니다";
-							document.getElementById("ifmmIdFeedback2").style.color = "#d92742";
-						}
-					}
-					,error : function(jqXHR, textStatus, errorThrown){
-						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-					}
-				});
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,dataType:"json" 
+			,url: "/member/checkNickname"
+			,data : { "ifMmNickname" : $("#ifMmNickname").val() }
+			,success: function(response) {
+				if(response.rt == "success") {
+					document.getElementById("ifmmNicknameFeedback").innerText = "사용 가능 합니다.";
+					document.getElementById("ifmmNicknameFeedback").style.color = "#04B45F";
+					
+				} else {
+					document.getElementById("ifmmNicknameFeedback").innerText = "사용 불가능 합니다";
+					document.getElementById("ifmmNicknameFeedback").style.color = "#d92742";
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
 		});
+});
 	
 	$("#ifMmId").on("focusout", function(){
 		$.ajax({
@@ -234,6 +246,33 @@
 			}
 		});
 });
+	
+	<!-- DatePicker -->
+	$(document).ready(function () {
+	    $.datepicker.regional['ko'] = {
+	        closeText: '닫기',
+	        prevText: '이전달',
+	        nextText: '다음달',
+	        currentText: '오늘',
+	        monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+	        '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+	        monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+	        '7월','8월','9월','10월','11월','12월'],
+	        dayNames: ['일','월','화','수','목','금','토'],
+	        dayNamesShort: ['일','월','화','수','목','금','토'],
+	        dayNamesMin: ['일','월','화','수','목','금','토'],
+	        weekHeader: 'Wk',
+	        dateFormat: 'yy-mm-dd',
+	        firstDay: 0,
+	        showMonthAfterYear: true,
+	        changeMonth: true,
+	        changeYear: true,
+	        yearRange: 'c-99:c+99',
+	    };	
+	    $.datepicker.setDefaults($.datepicker.regional['ko']);
+
+	    $('#dob').datepicker();
+	    });
 	
 	/* 비밀번호 확인 */
 	

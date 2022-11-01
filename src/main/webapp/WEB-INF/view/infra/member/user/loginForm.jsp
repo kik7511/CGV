@@ -129,7 +129,7 @@
 								<input type="hidden" name="profile_img"/>
 							</form>
 							<div align="center">
-								<a class="btn_loginNaver" id="kakaologin" style="margin-left: -120px; cursor: pointer;"><img src="/resources/images/user/kakao_login_medium_narrow.png" alt="네이버 로그인"></a>
+								<a class="btn_loginNaver" id="kakaologin" style="margin-left: -120px; cursor: pointer;"><img src="/resources/images/user/kakao_login_medium_wide.png" alt="카카오 로그인" style="width: 260px;"></a>
 							</div>
 				        </div>
    					 </div>    
