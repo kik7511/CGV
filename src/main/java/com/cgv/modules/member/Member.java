@@ -35,7 +35,113 @@ public class Member extends Base {
 	private String gender;
 	private String dob;
 	private Integer ifMmPrivate;
+	private Integer stPrice;
+	private String dDate;
+	private String dTime;
+	private String stRow;
+	private Integer stCol;
+	private Integer thLocation;
+	private String thName;
+	private String scScreenType;
+	private String dSeq;
+	private String mSeq;
+	private String stSeq;
+	private String mNameKor;
+	private String mAgeLimit;
+	private Integer src;
+	private String total;
 	
+	
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
+	}
+	public Integer getStPrice() {
+		return stPrice;
+	}
+	public void setStPrice(Integer stPrice) {
+		this.stPrice = stPrice;
+	}
+	public String getdDate() {
+		return dDate;
+	}
+	public void setdDate(String dDate) {
+		this.dDate = dDate;
+	}
+	public String getdTime() {
+		return dTime;
+	}
+	public void setdTime(String dTime) {
+		this.dTime = dTime;
+	}
+	public String getStRow() {
+		return stRow;
+	}
+	public void setStRow(String stRow) {
+		this.stRow = stRow;
+	}
+	public Integer getStCol() {
+		return stCol;
+	}
+	public void setStCol(Integer stCol) {
+		this.stCol = stCol;
+	}
+	public Integer getThLocation() {
+		return thLocation;
+	}
+	public void setThLocation(Integer thLocation) {
+		this.thLocation = thLocation;
+	}
+	public String getThName() {
+		return thName;
+	}
+	public void setThName(String thName) {
+		this.thName = thName;
+	}
+	public String getScScreenType() {
+		return scScreenType;
+	}
+	public void setScScreenType(String scScreenType) {
+		this.scScreenType = scScreenType;
+	}
+	public String getdSeq() {
+		return dSeq;
+	}
+	public void setdSeq(String dSeq) {
+		this.dSeq = dSeq;
+	}
+	public String getmSeq() {
+		return mSeq;
+	}
+	public void setmSeq(String mSeq) {
+		this.mSeq = mSeq;
+	}
+	public String getStSeq() {
+		return stSeq;
+	}
+	public void setStSeq(String stSeq) {
+		this.stSeq = stSeq;
+	}
+	public String getmNameKor() {
+		return mNameKor;
+	}
+	public void setmNameKor(String mNameKor) {
+		this.mNameKor = mNameKor;
+	}
+	public String getmAgeLimit() {
+		return mAgeLimit;
+	}
+	public void setmAgeLimit(String mAgeLimit) {
+		this.mAgeLimit = mAgeLimit;
+	}
+	public Integer getSrc() {
+		return src;
+	}
+	public void setSrc(Integer src) {
+		this.src = src;
+	}
 	public Integer getIfMmPrivate() {
 		return ifMmPrivate;
 	}

@@ -129,8 +129,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "mypageForm")
-	public String mypageForm() throws Exception{
-		
+	public String mypageForm(Member dto, Model model) throws Exception{
+		List<Member> list = service.myPage(dto);
+		model.addAttribute("list", list);
 		return "infra/member/user/mypageForm";
 	}
 	

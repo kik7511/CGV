@@ -121,4 +121,9 @@ public class MemberServiceImpl implements MemberService {
 		return dao.snsLogin(dto);
 	}
 	
+	@Override
+	public List<Member> myPage(Member dto) throws Exception{
+		return dao.myPage(dto);
+	}
+	
 }

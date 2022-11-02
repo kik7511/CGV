@@ -91,6 +91,11 @@ public class MemberDao {
 		return result;
 	} 
 	
+	public List<Member> myPage(Member dto){
+		List<Member> list = sqlSession.selectList(namespace + ".myPage", dto);
+		return list;		
+	}
+	
 //	uploaded
 	public int insertUploaded(Member dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
 	

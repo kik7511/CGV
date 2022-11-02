@@ -18,4 +18,5 @@ public interface MemberService {
 	public Member snsLogin(Member dto) throws Exception;
 	public Member loginM(Member dto) throws Exception;
 	public int kakaoInst(Member dto) throws Exception;
+	public List<Member> myPage(Member dto) throws Exception;
 }

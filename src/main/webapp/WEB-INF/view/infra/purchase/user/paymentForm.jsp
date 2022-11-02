@@ -371,7 +371,6 @@
 	var stRow = ${dto.stRow};
 	var scNumber = ${dto.scNumber};
 	var stCol = ${dto.stCol};
-	console.log(scNumber);
 	<c:set var="listCodeAge" value="${CodeServiceImpl.selectListCachedCode('7')}"/>
 		var arr = new Array();
 	<c:forEach items="${listCodeAge}" var="listAge" varStatus="listAgeStatus">

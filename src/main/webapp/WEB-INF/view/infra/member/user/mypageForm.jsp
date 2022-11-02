@@ -151,7 +151,7 @@
 							<div class="snb">
 								<ul>
 									<li class="on">
-										<a href="../member/mypageForm.html">MY CGV HOME <i></i></a>
+										<a href="/member/mypageForm">MY CGV HOME <i></i></a>
 									</li>
 									<li>
 										<a href="/member/mypageTicketForm" title="현재 선택">나의 예매내역 <i></i></a>                                    
@@ -178,7 +178,6 @@
 									<li>
 										<a href="/user/mycgv/myinfo/?g=1">회원정보<i></i></a>
 										<ul>
-	
 											<li>
 												<a href="/user/mycgv/myinfo/edit-myinfo-cjone.aspx?g=1">개인정보 변경</a>
 											</li>                                        
@@ -307,10 +306,10 @@
                             </div>
 							<div class="tit-mycgv">
 								<h3>MY 예매내역</h3>
-								<p><em>0건</em> <a href="/user/mycgv/reserve/">예매내역 더보기</a></p>
+								<p><em>${list.total}건</em> <a href="/member/mypageTicketForm">예매내역 더보기</a></p>
 								<span>예매번호로만 티켓을 찾을 수 있으니 반드시 확인 부탁드립니다.</span>
 							</div>
-							<form name="aspnetForm" method="post" action="./default.aspx" id="aspnetForm" novalidate="novalidate">
+							<!-- <form name="aspnetForm" method="post" action="./default.aspx" id="aspnetForm" novalidate="novalidate">
 								<div>
 									<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
 									<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
@@ -331,12 +330,11 @@
 									}
 								}
 								//]]>
-								</script>	
-
-								<div>								
+								</script> -->	
+								<!-- <div>								
 									<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="F268F2D4">
 									<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAANOZtRado8flmBd6Juf8OumAAaiyC+ogOIlg3pscMtiP2lKUwCIH8TI/sjrTPJzW37qSeqQYBLB9CRMYU4y53rNrIwxzA==">
-								</div>
+								</div> -->
 								<!-- 팝업시작 -->
 								<!-- 팝업 노출 시 .layer-wrap 에 클래스 .off는 없애고 .on 추가해주세요.-->
 								<div class="layer-wrap pop_corp_session logpopup off">
@@ -362,10 +360,59 @@
 								<input type="hidden" id="hidCancelReserveNo" name="hidCancelReserveNo">
 								<div class="sect-base-booking">
 									<div class="box-polaroid">
-										<div class="box-inner">																																
-											<div class="lst-item">
-												고객님의 최근 예매내역이 존재하지 않습니다.
-											</div>												
+										<div class="box-inner">			
+											<c:forEach items="${list}" var="list" varStatus="status">																												
+												<div class="lst-item">
+							                       <div class="box-number">
+							                           <em>예매번호</em>
+							                           <strong>0155-<i>1024-4210-364</i></strong>
+							                           <span>(${list.dDate})</span>
+							                       </div>
+							                       <div class="box-image">
+							                           <a href="/movie/movieInfoView/?mSeq=${list.mSeq}">
+									                    <span class="thumb-image"> 
+										                    <img src="/resources/images/user/${list.src}_320.jpg">
+									                    </span>
+								                    </a>
+							                       </div>
+							                       <div class="box-contents has_not_storeitem">
+							                           <dl>
+							                               <dt>
+							                                   <a href="/movie/movieInfoView/?mSeq=${list.mSeq}">${list.mNameKor}</a>
+							                               </dt>
+							                               <dd>
+							                                   <em>관람극장</em>
+							                                   <strong>${list.thName}</strong>
+							                               </dd>
+							                               <dd>
+							                                   <em>관람일시</em>
+							                                   <strong>${list.dDate} ${list.dTime}</strong>
+							                               </dd>
+							                               <dd>
+							                                   <em>관람좌석</em>
+							                                   <strong>${list.stRow}${list.stCol}</strong>
+							                               </dd>
+							                           </dl>
+							                       </div>
+							                       <div class="box-detail">
+							                                                                           
+							                       </div>
+							                       <div class="price-n-btns">
+							                           <div class="bd-wrap">
+							                               <dl>
+							                                   <dt>총 결제금액</dt>
+							                                   <dd>
+							                                       <strong class="txt-lightblue">
+							                                           ${list.stPrice}원</strong>
+							                                   </dd>
+							                               </dl>                                
+							                               <div class="set-btn">
+							                                   <input type="hidden" class="reserve-no" name="reserve-no" value="HQGbTPHR7oMOyxgOrAr6Qm6d/GuYUZzlaRAXI+DNRig=">
+							                               </div>
+							                           </div>
+							                       </div>
+							                   </div>	
+						                   </c:forEach>										
 										</div>
 									</div>
 								</div>

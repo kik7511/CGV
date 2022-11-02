@@ -229,13 +229,22 @@ public class PurchaseController {
 			 */
 			InputStreamReader reader = new InputStreamReader(receiver);
 			BufferedReader changer = new BufferedReader(reader);
+			
+			/*
+			 * StringBuilder stringBuilder = new StringBuilder(); String line; while ((line
+			 * = changer.readLine()) != null) { System.out.println("line: " + line);
+			 * stringBuilder.append(line); } System.out.println("stringBuilder.toString(): "
+			 * + stringBuilder.toString());
+			 */
+			
 			return changer.readLine();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "infra/purchase/user/afterTicketingView";
+		
+		return "infra/purchase/user/approve";
 	}
 
 	@RequestMapping(value = "purchaseInst")

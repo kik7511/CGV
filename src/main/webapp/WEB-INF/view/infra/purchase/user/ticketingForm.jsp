@@ -716,7 +716,8 @@
 	
 	const weekOfDay = ["일", "월", "화", "수", "목", "금", "토"]
 	const year = date.getFullYear();
-    const month = date.getMonth();
+    const month = (date.getMonth()+1);
+    const day = date.getDay();
     for (i = date.getDate(); i <= lastDay.getDate(); i++) {
     	const li = document.createElement("li");
     	const a = document.createElement("a");
@@ -742,7 +743,11 @@
         li.append(a);
         a.append(spanWeekOfDay);
         //날짜 넣기
+        if(i<10){
+        	spanDay.innerHTML = '0'+i;
+        	}else{
         spanDay.innerHTML = i;
+        	}
         a.append(spanDay);
         //button.append(i);
         a .append(spanSreader);
@@ -770,6 +775,7 @@
 						 console.log(month);
 						 console.log(day);
 						 var thisDay = $("span.day");
+						 console.log(thisDay.text());
 						 var arr2 = new Array();
 						 for(j=0; j<thisDay.text().length/2; j++){
 							if(j==0){ 
@@ -779,8 +785,8 @@
 							}
 							arr2.push(day2)
 						 } 
-						 // console.log(arr2);
-						 // console.log(day);
+						 console.log(arr2);
+						 console.log(day);
 						 var aImpact = $("a.noImpact");
 						 var thisDayWeek = $("span.dayweek");
 						 for(a=0; a<arr2.length; a++){
