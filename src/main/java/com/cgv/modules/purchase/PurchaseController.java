@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Controller
 @RequestMapping(value = "/purchase/")
 public class PurchaseController {
@@ -177,12 +179,8 @@ public class PurchaseController {
 	}
 
 	@RequestMapping(value = "kakaopay")
-	@ResponseBody
-	public String kakaopay(Purchase dto, @RequestParam("name") String name, @RequestParam("price") String price,
-			@RequestParam("row") String row, @RequestParam("col") String col, @RequestParam("date") String date,
-			@RequestParam("time") String time, @RequestParam("id") String id) throws Exception {
-		try {
-			System.out.println("영화 제목은 = " + name);
+	public String kakaopay(@ModelAttribute("dto") Purchase dto, Model model) throws Exception {
+			System.out.println("영화 제목은 = " + dto.getmNameKor());
 			URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
@@ -193,10 +191,10 @@ public class PurchaseController {
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("cid", "TC0ONETIME");
 			params.put("partner_order_id", "CGV");
-			params.put("partner_user_id", id);
-			params.put("item_name", name);
+			params.put("partner_user_id", dto.getIfMmId());
+			params.put("item_name", dto.getmNameKor());
 			params.put("quantity", "1");
-			params.put("total_amount", price);
+			params.put("total_amount", dto.getTotalPrice());
 			params.put("tax_free_amount", "0");
 			params.put("approval_url", "http://localhost:8080/purchase/approve");
 //			params.put("approval_url", "http://localhost:8080/purchase/kakaopayApprove");
@@ -212,7 +210,7 @@ public class PurchaseController {
 			DataOutputStream datagiven = new DataOutputStream(give);
 			/* conn.getOutputStream().write(string_params.getBytes()); */
 			datagiven.write(string_params.getBytes());
-			datagiven.close();
+			datagiven.close(); 
 
 			int result = conn.getResponseCode();
 
@@ -233,18 +231,41 @@ public class PurchaseController {
 			/*
 			 * StringBuilder stringBuilder = new StringBuilder(); String line; while ((line
 			 * = changer.readLine()) != null) { System.out.println("line: " + line);
+			 * stringBuilder.append(line); }
+			 */
+			
+			/*
+			 * changer.close(); conn.disconnect();
+			 */
+
+			
+//			json object + array string -> java map
+			
+			/*
+			 * System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
+			 * ObjectMapper objectMapper = new ObjectMapper(); Map<String, Object> map =
+			 * objectMapper.readValue(stringBuilder.toString(), Map.class);
+			 * 
+			 * System.out.println("######## Map"); for (String key : map.keySet()) { String
+			 * value = String.valueOf(map.get(key)); // ok System.out.println("[key]:" + key
+			 * + ", [value]:" + value); } String aaa = (String)
+			 * map.get("next_redirect_pc_url"); System.out.println("결과는: " + aaa);
+			 * model.addAttribute(map);
+			 */
+			
+			
+			/*
+			 * StringBuilder stringBuilder = new StringBuilder(); String line; while ((line
+			 * = changer.readLine()) != null) { System.out.println("line: " + line);
 			 * stringBuilder.append(line); } System.out.println("stringBuilder.toString(): "
 			 * + stringBuilder.toString());
 			 */
+			/*
+			 * URL url2 = new URL(aaa); HttpURLConnection conn2 = (HttpURLConnection)
+			 * url2.openConnection();
+			 */
 			
 			return changer.readLine();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return "infra/purchase/user/approve";
 	}
 
 	@RequestMapping(value = "purchaseInst")

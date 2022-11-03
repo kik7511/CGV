@@ -26,7 +26,7 @@ const setSuccess = element => {
 };
 
 id_regex = function(obj, value, message, hide) {
-    const re = /^[A-Za-z가-힣]{1}[A-Za-z가-힣]{2,19}$/g;
+    const re = /^[A-Za-z]{1}[A-Za-z]{2,19}$/g;
     if (!checkNull(obj, value) && !(re.test($.trim($(obj).val())))) {
         hide.parent().addClass('error')
         $(hide).text(message)

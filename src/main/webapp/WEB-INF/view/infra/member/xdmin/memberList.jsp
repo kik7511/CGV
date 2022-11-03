@@ -216,7 +216,7 @@
 					</div> -->
 				</div>
 				<div class="btn-group me-2 btn-group-sm" role="group" style="float: left;">
-					<button type="button" class="btn btn-success" id="" onclick="location.href='memberList.html'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" title="엑셀파일로 출력하기" >
+					<button type="button" class="btn btn-success" id="btnExcel" title="엑셀파일로 출력하기" >
 						<i class="fa-solid fa-copy"></i>
 					</button>
 				</div>
@@ -288,6 +288,7 @@
 		var goUrlDele = "/member/memberDelete";				/* #-> */
 		var goUrlForm = "/member/memberForm";				/* #-> */
 		var seq = $("input:hidden[name=ifMmSeq]");				/* #-> */
+		var excelUri = "/member/excelDownload";				/* #-> */
 		
 		var form = $("form[name=myForm]");
 		
@@ -309,6 +310,11 @@
 			$("input:hidden[name=thisPage]").val(thisPage);
 			form.attr("action", goUrlList).submit(); 
 		}
+		
+		$("#btnExcel").click(function() {
+			form.attr("action", excelUri).submit();
+		});
+		
 	</script>
 </body>
 </html>
