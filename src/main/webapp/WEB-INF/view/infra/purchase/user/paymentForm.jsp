@@ -230,11 +230,12 @@
 							<input type="hidden" name="ifMmSeq" value="${sessSeq}" id="ifMmSeq">
 							<input type="hidden" name="ifMmName" value="${sessName}" id="ifMmName">
 							<input type="hidden" name="ifMmId" value="${sessId}" id="ifMmId">
+							<input type="hidden" name="tid" value="" id="tid">
 						</form>
 						<!-- btn-right -->
 						<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
-						<%-- <a class="btn-right on" id="tnb_step_btn_right"title="결제하기" href="javascript:kakao('${dto.mNameKor}', '${dto.stPrice}', ${dto.stRow}, ${dto.stCol}, '${dto.thName}', '${dto.dDate}', '${dto.dTime}', '${sessId}')">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a> --%>
-						<a class="btn-right on" id="tnb_step_btn_right"title="결제하기" href="javascript:kakao()">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a>
+						<a class="btn-right on" id="tnb_step_btn_right"title="결제하기" href="javascript:kakao('${dto.mNameKor}', '${dto.stPrice}', ${dto.stRow}, ${dto.stCol}, '${dto.thName}', '${dto.dDate}', '${dto.dTime}', '${sessId}')">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a>
+						<!-- <a class="btn-right on" id="tnb_step_btn_right"title="결제하기" href="javascript:kakao()">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a> -->
 					</div>
 				</div>
 				<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
@@ -354,6 +355,8 @@
 	</div>
 <!-- end -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	var formVo = $("form[name=formVo]");
 	var goPurchase = "/purchase/ticketingForm";				/* #-> */
@@ -414,7 +417,7 @@
 	$('div.seat_no').children('span.data').text(seat + stCol);
 	});
 	
-	/* function kakao(name, price, row, col, location, date, time, id) {
+	 /* function kakao(name, price, row, col, location, date, time, id) {
 		$.ajax({
 			dataType:"json" 	
 			,url: "/purchase/kakaopay"
@@ -432,15 +435,45 @@
 				var box = data.next_redirect_pc_url;
 				var tid = data.tid;
 				console.log(tid);
+			    $("input[name=tid]").val(data.tid);
+			    formVo.attr("action", goAfter).submit(); 
 				window.open(box);
 				} ,
 				error:function(error){
 					alert(error);
 				}
 		});
-	}; */
-	function kakao(){
-		formVo.attr("action", goPay).submit();
+	};  */
+	
+	function kakao(name, price, row, col, location, date, time, id){
+		alert("확인");
+		//가맹점 식별코드
+		IMP.init('imp30146952');
+		IMP.request_pay({
+		    pg : 'kakao',
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : name , //결제창에서 보여질 이름
+		    amount : price, //실제 결제되는 가격
+		    buyer_email : 'iamport@siot.do',
+		    buyer_name : id,
+		    buyer_tel : '010-1234-5678',
+		    buyer_addr : '서울 강남구 도곡동',
+		    buyer_postcode : '123-456'
+		}, function(rsp) {
+			console.log(rsp);
+		    if ( rsp.success ) {
+		    	var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		    } else {
+		    	 var msg = '결제에 실패하였습니다.';
+		         msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
+		});
 	}
 	
 </script>

@@ -23,27 +23,15 @@
 			<div class="content">
 				<p>카카오페이 결제가 정상적으로 완료되었습니다.</p>
 				<p id="datetiem">결제일시: 2022-10-26T13:52:58</p>
-				<p id = "item">상품명: 커피</p>
-				<p id= "won">결제금액: 5500원</p>
+				<p id = "item">상품명: ${dto.mNameKor}</p>
+				<p id= "won">결제금액: ${dto.totalPrice}원</p>
+				<p>tid: ${dto.tid}</p>
 			</div>
 			<button id="" type="button" onclick="kakao()"></button>
 		</div>
 	</div>
 </body>
 <script>
-	var name = opener.$('#mNameKor').val();
-	var price = opener.$('#totalPrice').val();
-	var date = opener.$('#dDate').val();
-	var time = opener.$('#dTime').val();
-	var id = opener.$('#ifMmId').val();
-	
-	$(document).ready(function(){
-		console.log(name);
-		$('#datetiem').text('결제일시: ' + date + "" + time);
-		$('#item').text('상품명: ' + name);
-		$('#won').text('결제금액: ' + price + "원");
-	});
-	
 	function kakao() {
 		var site = window.location.href;
 		var url = new URl(site);

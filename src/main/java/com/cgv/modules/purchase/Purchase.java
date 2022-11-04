@@ -31,7 +31,14 @@ public class Purchase {
 	private String ifMmName;
 	private String ifMmId;
 	private String ptSeq;
+	private String tid;
 	
+	public String getTid() {
+		return tid;
+	}
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
 	public String getPtSeq() {
 		return ptSeq;
 	}
