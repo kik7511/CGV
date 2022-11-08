@@ -226,11 +226,30 @@
 							<div class="placeholder" title="좌석선택" style="display: none;"></div>
 						</div>
 						<form id="formVo" name="formVo">
-							<%@include file = "Purchase.jsp" %>
+							<input type = "hidden" name = "thLocation" id = "thLocation" value = "${dto.thLocation}" >
+							<input type = "hidden" name = "mNameKor" value = "${dto.mNameKor}" id = "mNameKor" >
+							<input type = "hidden" name = "src" value = "${dto.src}" id = "src" >
+							<input type = "hidden" name = "mAgeLimit" value = "${dto.mAgeLimit}" id = "mAgeLimit" >
+							<input type = "hidden" name = "thName" value = "${dto.thName}" id = "thName" >
+							<input type = "hidden" name = "dDate" value = "${dto.dDate}" id = "dDate" >
+							<input type = "hidden" name = "dSeq" value = "${dto.dSeq}" id = "dSeq" >
+							<input type = "hidden" name = "dTime" value = "${dto.dTime}" id = "dTime" >
+							<input type = "hidden" name = "scNumber" value = "${dto.scNumber}" id = "scNumber" >
+							<input type = "hidden" name = "mSeq" value = "${dto.mSeq}" id = "mSeq" >
+							<input type = "hidden" name = "scTotalSeat" value = "${dto.scTotalSeat}" id = "scTotalSeat" >
+							<input type = "hidden" name = "scScreenType" value = "${dto.scScreenType}" id = "scScreenType" >
+							<input type = "hidden" name = "scRow" value = "${dto.scRow}" id = "scRow" >
+							<input type = "hidden" name = "scCol" value = "${dto.scCol}" id = "scCol" > 
+							<input type = "hidden" name = "stSeq" value = "${dto.stSeq}" id = "stSeq" >
+							<input type = "hidden" name = "stRow" value = "${dto.stRow}" id = "stRow" >
+							<input type = "hidden" name = "stCol" value = "${dto.stCol}" id = "stCol" >
+							<input type = "hidden" name = "stPrice" value = "${dto.stPrice}" id = "stPrice">
+							<input type = "hidden" name = "totalPrice" value = "${dto.totalPrice}" id = "totalPrice"> 
 							<input type="hidden" name="ifMmSeq" value="${sessSeq}" id="ifMmSeq">
 							<input type="hidden" name="ifMmName" value="${sessName}" id="ifMmName">
 							<input type="hidden" name="ifMmId" value="${sessId}" id="ifMmId">
 							<input type="hidden" name="tid" value="" id="tid">
+							<input type="hidden" name="created_at" value="" id="created_at">
 						</form>
 						<!-- btn-right -->
 						<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
@@ -366,10 +385,6 @@
 		formVo.attr("action", goPurchase).submit();
 	});
 	
-/* 	$("#tnb_step_btn_right").on("click", function(){
-		formVo.attr("action", goAfter).submit();
-	}); */
-	 
 	$(document).ready(function(){
 	var scScreenType = ${dto.scScreenType};
 	var mAgeLimit = ${dto.mAgeLimit};
@@ -417,7 +432,8 @@
 	$('div.seat_no').children('span.data').text(seat + stCol);
 	});
 	
-	  /* function kakao(name, price, row, col, location, date, time, id) {
+	
+	function kakao(name, price, row, col, location, date, time, id) {
 		$.ajax({
 			dataType:"json" 	
 			,url: "/purchase/kakaopay"
@@ -430,55 +446,41 @@
 				date : date,
 				time : time,
 				id : id}
-				,success: function(data) {
+			,success: function(data) {
 				console.log(data);
 				var box = data.next_redirect_pc_url;
 				var tid = data.tid;
+				var created_at = data.created_at;	
 				console.log(tid);
 			    $("input[name=tid]").val(data.tid);
-			    formVo.attr("action", goAfter).submit(); 
-				window.open(box);
-				} ,
-				error:function(error){
-					alert(error);
-				}
-		});
-	}; */
-	
-	function kakao(name, price, row, col, location, date, time, id) {
-		$.ajax({
-			dataType:"json"
-			,type : "post"
-			,beforeSend : function(xhr){
-				xhr.setRequestHeader("Authorization", "KakaoAK 99a9ce2310007031e1a3de4d7c2f875f"); 
-				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded;charset=utf-8");
+			    $("input[name=created_at]").val(data.created_at);
+			    $.ajax({
+					dataType:"json" 	
+					,url: "/purchase/kakaopay"
+					,data:{
+						name : name,
+						price : price,
+						row : row,
+						col : col,
+						location : location,
+						date : date,
+						time : time,
+						id : id,
+						"tid": $("input[name=tid]").val(),
+			    		"created_at" : $("input[name=created_at]").val()}
+					,success: function(data) {
+						console.log(data);
+						var box = data.next_redirect_pc_url;
+					    formVo.attr("action", box).submit(); 
+					} ,
+					error:function(error){
+						alert(error);
+					}
+				});
+			} ,
+			error:function(error){
+				alert(error);
 			}
-			,url: "https://kapi.kakao.com/v1/payment/ready"
-			,data:{
-				"cid" : "TC0ONETIME",
-				"partner_order_id" : "CGV",
-				"partner_user_id" : id,
-				"item_name" : name,
-				"quantity" : 1,
-				"total_amount" : price,
-				"tax_free_amount" : 0,
-				"approval_url" : "http://localhost:8080/purchase/approve",
-				"fail_url" : "http://localhost:8080/purchase/selectPayment",
-				"cancel_url" : "http://localhost:8080/purchase/selectPayment",
-				}
-				,success: function(data) {
-				console.log(data);
-				var box = data.next_redirect_pc_url;
-				var tid = data.tid;
-				console.log(tid);
-			    $("input[name=tid]").val(data.tid);
-			    formVo.attr("action", box).submit();
-				/* window.open(box); */
-			   /*  window.location.href = box; */
-				} ,
-				error:function(error){
-					alert(error);
-				}
 		});
 	};
 	

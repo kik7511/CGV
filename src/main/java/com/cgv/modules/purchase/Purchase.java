@@ -20,7 +20,7 @@ public class Purchase {
 	private Integer scCol;
 	private String dDate;
 	private String dTime;
-	private String stRow;
+	private Integer stRow;
 	private Integer stCol;
 	private Integer stUseNy;
 	private Integer stPrice;
@@ -32,7 +32,14 @@ public class Purchase {
 	private String ifMmId;
 	private String ptSeq;
 	private String tid;
+	private String created_at;
 	
+	public String getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
 	public String getTid() {
 		return tid;
 	}
@@ -87,10 +94,10 @@ public class Purchase {
 	public void setStSeq(String stSeq) {
 		this.stSeq = stSeq;
 	}
-	public String getStRow() {
+	public Integer getStRow() {
 		return stRow;
 	}
-	public void setStRow(String stRow) {
+	public void setStRow(Integer stRow) {
 		this.stRow = stRow;
 	}
 	public Integer getStCol() {

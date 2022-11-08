@@ -41,6 +41,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class PurchaseController {
 	@Autowired
 	PurchaseServiceImpl service;
+	
+	public static String datetime = "";
+	public static String item = "";
+	public static String won = "";
+	public static String tid2 = "";
+	public static String ifmmSeq = "";
+	public static String ifmmName = "";
+	public static String ifmmId = "";
+	public static Integer mSrc;
+	public static String mSeq = "";
+	public static String mAgeLimit = "";
+	public static String dSeq = "";
+	public static String dDate = "";
+	public static String dTime = "";
+	public static Integer scTotalSeat;
+	public static Integer scScreenType;
+	public static Integer scNumber;
+	public static Integer scRow;
+	public static Integer scCol;
+	public static Integer stRow;
+	public static Integer stCol;
+	public static Integer stUseNy;
+	public static Integer stPrice;
+	public static String stSeq = "";
+	public static Integer thLocation;
+	public static String thName = "";
 
 	@RequestMapping(value = "ticketingForm")
 	public String ticketingForm(Model model, @ModelAttribute("vo") PurchaseVo vo, HttpSession httpSession)
@@ -209,6 +235,38 @@ public class PurchaseController {
         params.put("cancel_url", "http://localhost:8080/purchase/selectPayment");
         params.put("fail_url", "http://localhost:8080/purchase/selectPayment");
         
+        item = name;
+        won = price;
+        tid2 = dto.getTid();
+        datetime = dto.getCreated_at();
+        ifmmSeq = dto.getIfMmSeq();
+        ifmmName = dto.getIfMmName();
+        ifmmId = dto.getIfMmId(); 
+        mSrc = dto.getSrc();
+        mSeq = dto.getmSeq();
+        mAgeLimit = dto.getmAgeLimit();
+        dSeq = dto.getdSeq();
+        dDate = dto.getdDate();
+        dTime = dto.getdTime();
+        scTotalSeat = dto.getScTotalSeat();
+        scScreenType = dto.getScTotalSeat();
+        scNumber = dto.getScNumber();
+        scRow = dto.getScRow();
+        scCol = dto.getScCol();
+        stRow = dto.getStRow();
+        stCol = dto.getStCol();
+        stUseNy = dto.getStUseNy();
+        stPrice = dto.getStPrice();
+        stSeq = dto.getStSeq();
+        thLocation = dto.getThLocation();
+        thName = dto.getThName();
+        
+        System.out.println("ifmmId : " + ifmmId);
+        System.out.println("thName : " + thName);
+        System.out.println("tid : " + dto.getTid());
+        System.out.println("item : " + item);
+        System.out.println("won : " + won);
+        
         String string_params = new String();
 		for (Map.Entry<String, String> elem : params.entrySet()) {
 			string_params += (elem.getKey() + "=" + elem.getValue() + "&");
@@ -297,13 +355,43 @@ public class PurchaseController {
 	}
 	
 	 @RequestMapping(value = "approve")
-	 public String approve(@ModelAttribute("dto") Purchase dto) throws Exception {
-		 	System.out.println("상품은 " + dto.getmNameKor());
+	 public String approve(@ModelAttribute("dto") Purchase dto, Model model) throws Exception {
+		 	
+		 	System.out.println("상품은12 " + tid2);
+		 	System.out.println("상품은 " + item);
+		 	System.out.println("상품은 " + won);
+		 	
+		 	model.addAttribute("tid", tid2);
+		 	model.addAttribute("item", item);
+		 	model.addAttribute("won", won);
+		 	model.addAttribute("datetime", datetime);
+		 	model.addAttribute("ifmmSeq", ifmmSeq);
+		 	model.addAttribute("ifmmName", ifmmName);
+		 	model.addAttribute("ifmmId", ifmmId);
+		 	model.addAttribute("mSrc", mSrc);
+		 	model.addAttribute("mSeq", mSeq);
+		 	model.addAttribute("mAgeLimit", mAgeLimit);
+		 	model.addAttribute("dSeq", dSeq);
+		 	model.addAttribute("dDate", dDate);
+		 	model.addAttribute("dTime", dTime);
+		 	model.addAttribute("scTotalSeat", scTotalSeat);
+		 	model.addAttribute("scScreenType", scScreenType);
+		 	model.addAttribute("scNumber", scNumber);
+		 	model.addAttribute("scRow", scRow);
+		 	model.addAttribute("scCol", scCol);
+		 	model.addAttribute("stRow", stRow);
+		 	model.addAttribute("stCol", stCol);
+		 	model.addAttribute("stUseNy", stUseNy);
+		 	model.addAttribute("stPrice", stPrice);
+		 	model.addAttribute("stSeq", stSeq);
+		 	model.addAttribute("thLocation", thLocation);
+		 	model.addAttribute("thName", thName);
+		 	
 			return "infra/purchase/user/approve";
 		}
 
 	 @RequestMapping(value = "kakaopayApprove") 
-	 public String kakaopayApprove(@RequestParam("date") String date, @RequestParam("time") String time, @RequestParam("id") String id, @RequestParam("price") String price, @RequestParam("name") String name, @RequestParam("token") String token) throws Exception{
+	 public String kakaopayApprove(@RequestParam("id") String id, @RequestParam("price") String price, @RequestParam("name") String name, @RequestParam("token") String token, Purchase dto) throws Exception{
 		try {
 			URL url = new URL("https://kapi.kakao.com/v1/payment/approve");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -345,6 +433,9 @@ public class PurchaseController {
 			 */
 			InputStreamReader reader = new InputStreamReader(receiver);
 			BufferedReader changer = new BufferedReader(reader);
+			
+			service.purchase(dto);
+			
 			return changer.readLine();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
