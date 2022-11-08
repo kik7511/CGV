@@ -22,16 +22,28 @@
 		<div class="body">
 			<div class="content">
 				<p>카카오페이 결제가 정상적으로 완료되었습니다.</p>
-				<p id="datetiem">결제일시: 2022-10-26T13:52:58</p>
+				<p id="datetiem">결제일시: ${data.created_at}</p>
 				<p id = "item">상품명: ${dto.mNameKor}</p>
-				<p id= "won">결제금액: ${dto.totalPrice}원</p>
-				<p>tid: ${dto.tid}</p>
+				<p id= "won">결제금액: ${dat.totalPrice}원</p>
+				<p>tid: ${data.tid}</p>
+				<form name="form">
+					<%@include file = "Purchase.jsp" %>
+					<input type="hidden" name="ifMmSeq" value="${sessSeq}" id="ifMmSeq">
+					<input type="hidden" name="ifMmName" value="${sessName}" id="ifMmName">
+					<input type="hidden" name="ifMmId" value="${sessId}" id="ifMmId">
+					<input type="hidden" name="tid" value="" id="tid">
+				</form>
 			</div>
 			<button id="" type="button" onclick="kakao()"></button>
 		</div>
 	</div>
 </body>
 <script>
+	alert($("input[name=ifMmSeq]").val())
+	alert($("input[name=ifMmName]").val())
+	alert($("input[name=ifMmId]").val())
+	alert($("input[name=tid]").val())
+
 	function kakao() {
 		var site = window.location.href;
 		var url = new URl(site);
