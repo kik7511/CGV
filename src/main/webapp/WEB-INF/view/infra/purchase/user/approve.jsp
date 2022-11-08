@@ -27,31 +27,24 @@
 				<p id = "item">상품명: ${item}</p>
 				<p id= "won">결제금액: ${won}원</p>
 				<form name="form">
-					<input type = "hidden" name = "thLocation" id = "thLocation" value = "${thLocation}" >
 					<input type = "hidden" name = "mNameKor" value = "${item}" id = "mNameKor" >
-					<input type = "hidden" name = "src" value = "${mSrc}" id = "src" >
-					<input type = "hidden" name = "mAgeLimit" value = "${mAgeLimit}" id = "mAgeLimit" >
+					<input type = "hidden" name = "src" value = "${src}" id = "src" >
 					<input type = "hidden" name = "thName" value = "${thName}" id = "thName" >
 					<input type = "hidden" name = "dDate" value = "${dDate}" id = "dDate" >
-					<input type = "hidden" name = "dSeq" value = "${dSeq}" id = "dSeq" >
 					<input type = "hidden" name = "dTime" value = "${dTime}" id = "dTime" >
 					<input type = "hidden" name = "scNumber" value = "${scNumber}" id = "scNumber" >
-					<input type = "hidden" name = "mSeq" value = "${mSeq}" id = "mSeq" >
-					<input type = "hidden" name = "scTotalSeat" value = "${scTotalSeat}" id = "scTotalSeat" >
 					<input type = "hidden" name = "scScreenType" value = "${scScreenType}" id = "scScreenType" >
-					<input type = "hidden" name = "scRow" value = "${scRow}" id = "scRow" >
-					<input type = "hidden" name = "scCol" value = "${scCol}" id = "scCol" > 
-					<input type = "hidden" name = "stSeq" value = "${stSeq}" id = "stSeq" >
 					<input type = "hidden" name = "stRow" value = "${stRow}" id = "stRow" >
 					<input type = "hidden" name = "stCol" value = "${stCol}" id = "stCol" >
-					<input type = "hidden" name = "stPrice" value = "${stPrice}" id = "stPrice">
-					<input type = "hidden" name = "totalPrice" value = "${totalPrice}" id = "totalPrice"> 
-					<input type = "hidden" name="ifMmSeq" value="${ifmmSeq}" id="ifMmSeq">
-					<input type = "hidden" name="ifMmName" value="${ifmmName}" id="ifMmName">
-					<input type = "hidden" name="ifMmId" value="${ifmmId}" id="ifMmId">
+					<input type = "hidden" name = "stPrice" value = "${won}" id = "stPrice"> 
+					<input type = "hidden" name="ifMmName" value="${ifMmName}" id="ifMmName">
+					<input type = "hidden" name="ifMmId" value="${ifMmId}" id="ifMmId">
+					<input type = "hidden" name="pg_token" value="" id="pg_token">
+					<input type = "hidden" name="tokenUrl" value="${tokenUrl}" id="tokenUrl">
+					<input type = "hidden" name="tid" value="${tid}" id="tid">
 				</form>
 			</div>
-			<button id="" type="button" class="btn btn-info" onclick="kakaopayApprove()">확인</button>
+			<button id="" type="button" class="btn btn-info" onclick="kakaopayApprove('${item}', '${won}', '${stRow}', '${stCol}', '${thName}', '${dDate}', '${dTime}', '${ifMmId}', '${ifMmName}')">확인</button>
 		</div>
 	</div>
 </body>
@@ -59,30 +52,34 @@
 	<script src="https://kit.fontawesome.com/188ea9a4c6.js" crossorigin="anonymous"></script>
 <script>
 	var form = $("form[name=form]");
-	var goAfter = "/purchase/afterTicketingView";	
+	/* var goAfter = "/purchase/afterTicketingView"; */
+	var goAfter = "/purchase/purchaseInst";
 	
-	function kakaopayApprove() {
-		const urlParams = new URL(location.href).searchParams;
-
+	function kakaopayApprove(item, price, row, col, location, date, time, id, name) {
+		var url = $('input[name=tokenUrl]').val();
+		const urlParams = new URL(url).searchParams;
 		var pg_token = urlParams.get('pg_token');
-
 		console.log(pg_token);
+		$("input[name=pg_token]").val(pg_token);
 		
-		var item = {item};
-		var won = ${won};
-		var id = $("input[name=ifMmId]").val();
-		console.log(item);
-		console.log(won);
-		console.log(ifmmId);
+		/* window.location.href = "https://kapi.kakao.com/v1/payment/approve?cid=TC0ONETIME&tid=" + $('input[name=tid]').val() + "&partner_order_id=CGV&partner_user_id=" + $('input[name=ifMmId]').val() + "&pg_token=" + pg_token;; */
+		console.log($('input[name=ifMmId]').val());
+		console.log($('input[name=pg_token]').val());
+		console.log( $('input[name=tid]').val());
+		
 		
 		$.ajax({
 			dataType:"json" 	
-			,url: "/purchase/kakaopayApprove"
+			,url: "https://kapi.kakao.com/v1/payment/approve"
+			,headers: {'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+				'Authorization': 'KakaoAK 99a9ce2310007031e1a3de4d7c2f875f'
+			}
 			,data:{
-				"name" : item,
-				"price" : won,
-				"token" : pg_token,
-				"id" : id
+				cid : "TC0ONETIME",
+				tid : $('input[name=tid]').val(),
+				partner_order_id : "CGV",
+				partner_user_id : $('input[name=ifMmId]').val(),
+				pg_token : $('input[name=pg_token]').val()
 					}
 				,success: function(data) {
 					form.attr("action", goAfter).submit();
@@ -90,7 +87,7 @@
 				error:function(error){
 					alert(error);
 				}
-		});
+		}); 
 	};
 	
 </script>

@@ -8,33 +8,22 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping(value = "/purchase/")
@@ -46,27 +35,17 @@ public class PurchaseController {
 	public static String item = "";
 	public static String won = "";
 	public static String tid2 = "";
-	public static String ifmmSeq = "";
-	public static String ifmmName = "";
-	public static String ifmmId = "";
-	public static Integer mSrc;
-	public static String mSeq = "";
-	public static String mAgeLimit = "";
-	public static String dSeq = "";
-	public static String dDate = "";
-	public static String dTime = "";
-	public static Integer scTotalSeat;
-	public static Integer scScreenType;
-	public static Integer scNumber;
-	public static Integer scRow;
-	public static Integer scCol;
 	public static Integer stRow;
 	public static Integer stCol;
-	public static Integer stUseNy;
-	public static Integer stPrice;
-	public static String stSeq = "";
-	public static Integer thLocation;
+	public static Integer src;
+	public static String ifMmName = "";
 	public static String thName = "";
+	public static String dDate = "";
+	public static String dTime = "";
+	public static Integer scNumber;
+	public static String scSceenType = "";
+	public static String ifMmId = "";
+	public static String token = "";
 
 	@RequestMapping(value = "ticketingForm")
 	public String ticketingForm(Model model, @ModelAttribute("vo") PurchaseVo vo, HttpSession httpSession)
@@ -239,33 +218,26 @@ public class PurchaseController {
         won = price;
         tid2 = dto.getTid();
         datetime = dto.getCreated_at();
-        ifmmSeq = dto.getIfMmSeq();
-        ifmmName = dto.getIfMmName();
-        ifmmId = dto.getIfMmId(); 
-        mSrc = dto.getSrc();
-        mSeq = dto.getmSeq();
-        mAgeLimit = dto.getmAgeLimit();
-        dSeq = dto.getdSeq();
-        dDate = dto.getdDate();
-        dTime = dto.getdTime();
-        scTotalSeat = dto.getScTotalSeat();
-        scScreenType = dto.getScTotalSeat();
-        scNumber = dto.getScNumber();
-        scRow = dto.getScRow();
-        scCol = dto.getScCol();
         stRow = dto.getStRow();
         stCol = dto.getStCol();
-        stUseNy = dto.getStUseNy();
-        stPrice = dto.getStPrice();
-        stSeq = dto.getStSeq();
-        thLocation = dto.getThLocation();
+        src = dto.getSrc();
+        ifMmName = dto.getIfMmName();
         thName = dto.getThName();
+        dDate = dto.getdDate();
+        dTime = dto.getdTime();
+        scNumber = dto.getScNumber();
+        scSceenType = dto.getScScreenType();
+        ifMmId = id;
         
-        System.out.println("ifmmId : " + ifmmId);
-        System.out.println("thName : " + thName);
         System.out.println("tid : " + dto.getTid());
         System.out.println("item : " + item);
-        System.out.println("won : " + won);
+        System.out.println("stRow : " + stRow);
+        System.out.println("stCol" + stCol);
+        System.out.println("src : " + src);
+        System.out.println("ifMmName : " + ifMmName);
+        System.out.println("thName : " + thName);
+        System.out.println("dDate : " + dDate);
+        System.out.println("dTime : " + dTime);
         
         String string_params = new String();
 		for (Map.Entry<String, String> elem : params.entrySet()) {
@@ -355,37 +327,29 @@ public class PurchaseController {
 	}
 	
 	 @RequestMapping(value = "approve")
-	 public String approve(@ModelAttribute("dto") Purchase dto, Model model) throws Exception {
+	 public String approve(@ModelAttribute("dto") Purchase dto, Model model, HttpServletRequest request) throws Exception {
 		 	
+		    String a = request.getRequestURL().toString() + "?" + request.getQueryString();
+		    System.out.println(a);
 		 	System.out.println("상품은12 " + tid2);
 		 	System.out.println("상품은 " + item);
 		 	System.out.println("상품은 " + won);
 		 	
+		 	model.addAttribute("tokenUrl", a);
 		 	model.addAttribute("tid", tid2);
 		 	model.addAttribute("item", item);
 		 	model.addAttribute("won", won);
 		 	model.addAttribute("datetime", datetime);
-		 	model.addAttribute("ifmmSeq", ifmmSeq);
-		 	model.addAttribute("ifmmName", ifmmName);
-		 	model.addAttribute("ifmmId", ifmmId);
-		 	model.addAttribute("mSrc", mSrc);
-		 	model.addAttribute("mSeq", mSeq);
-		 	model.addAttribute("mAgeLimit", mAgeLimit);
-		 	model.addAttribute("dSeq", dSeq);
-		 	model.addAttribute("dDate", dDate);
-		 	model.addAttribute("dTime", dTime);
-		 	model.addAttribute("scTotalSeat", scTotalSeat);
-		 	model.addAttribute("scScreenType", scScreenType);
-		 	model.addAttribute("scNumber", scNumber);
-		 	model.addAttribute("scRow", scRow);
-		 	model.addAttribute("scCol", scCol);
 		 	model.addAttribute("stRow", stRow);
 		 	model.addAttribute("stCol", stCol);
-		 	model.addAttribute("stUseNy", stUseNy);
-		 	model.addAttribute("stPrice", stPrice);
-		 	model.addAttribute("stSeq", stSeq);
-		 	model.addAttribute("thLocation", thLocation);
+		 	model.addAttribute("src", src);
+		 	model.addAttribute("ifMmName", ifMmName);
 		 	model.addAttribute("thName", thName);
+		 	model.addAttribute("dDate", dDate);
+		 	model.addAttribute("dTime", dTime);
+		 	model.addAttribute("scNumber", scNumber);
+		 	model.addAttribute("scSceenType", scSceenType);
+		 	model.addAttribute("ifMmId", ifMmId);
 		 	
 			return "infra/purchase/user/approve";
 		}
@@ -401,6 +365,7 @@ public class PurchaseController {
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
 			Map<String, String> params = new HashMap<String, String>();
+			token = dto.getPg_token();
 			params.put("cid", "TC0ONETIME");
 			params.put("partner_order_id", "CGV");
 			params.put("partner_user_id", id);

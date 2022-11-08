@@ -33,7 +33,14 @@ public class Purchase {
 	private String ptSeq;
 	private String tid;
 	private String created_at;
+	private String pg_token;
 	
+	public String getPg_token() {
+		return pg_token;
+	}
+	public void setPg_token(String pg_token) {
+		this.pg_token = pg_token;
+	}
 	public String getCreated_at() {
 		return created_at;
 	}

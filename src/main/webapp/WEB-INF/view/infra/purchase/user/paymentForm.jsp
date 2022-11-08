@@ -226,25 +226,7 @@
 							<div class="placeholder" title="좌석선택" style="display: none;"></div>
 						</div>
 						<form id="formVo" name="formVo">
-							<input type = "hidden" name = "thLocation" id = "thLocation" value = "${dto.thLocation}" >
-							<input type = "hidden" name = "mNameKor" value = "${dto.mNameKor}" id = "mNameKor" >
-							<input type = "hidden" name = "src" value = "${dto.src}" id = "src" >
-							<input type = "hidden" name = "mAgeLimit" value = "${dto.mAgeLimit}" id = "mAgeLimit" >
-							<input type = "hidden" name = "thName" value = "${dto.thName}" id = "thName" >
-							<input type = "hidden" name = "dDate" value = "${dto.dDate}" id = "dDate" >
-							<input type = "hidden" name = "dSeq" value = "${dto.dSeq}" id = "dSeq" >
-							<input type = "hidden" name = "dTime" value = "${dto.dTime}" id = "dTime" >
-							<input type = "hidden" name = "scNumber" value = "${dto.scNumber}" id = "scNumber" >
-							<input type = "hidden" name = "mSeq" value = "${dto.mSeq}" id = "mSeq" >
-							<input type = "hidden" name = "scTotalSeat" value = "${dto.scTotalSeat}" id = "scTotalSeat" >
-							<input type = "hidden" name = "scScreenType" value = "${dto.scScreenType}" id = "scScreenType" >
-							<input type = "hidden" name = "scRow" value = "${dto.scRow}" id = "scRow" >
-							<input type = "hidden" name = "scCol" value = "${dto.scCol}" id = "scCol" > 
-							<input type = "hidden" name = "stSeq" value = "${dto.stSeq}" id = "stSeq" >
-							<input type = "hidden" name = "stRow" value = "${dto.stRow}" id = "stRow" >
-							<input type = "hidden" name = "stCol" value = "${dto.stCol}" id = "stCol" >
-							<input type = "hidden" name = "stPrice" value = "${dto.stPrice}" id = "stPrice">
-							<input type = "hidden" name = "totalPrice" value = "${dto.totalPrice}" id = "totalPrice"> 
+							<%@include file = "Purchase.jsp" %>
 							<input type="hidden" name="ifMmSeq" value="${sessSeq}" id="ifMmSeq">
 							<input type="hidden" name="ifMmName" value="${sessName}" id="ifMmName">
 							<input type="hidden" name="ifMmId" value="${sessId}" id="ifMmId">
@@ -451,7 +433,7 @@
 				var box = data.next_redirect_pc_url;
 				var tid = data.tid;
 				var created_at = data.created_at;	
-				console.log(tid);
+				alert(tid);
 			    $("input[name=tid]").val(data.tid);
 			    $("input[name=created_at]").val(data.created_at);
 			    $.ajax({
@@ -467,11 +449,25 @@
 						time : time,
 						id : id,
 						"tid": $("input[name=tid]").val(),
-			    		"created_at" : $("input[name=created_at]").val()}
+			    		"created_at" : $("input[name=created_at]").val(),
+			    		"stRow" : $("input[name=stRow]").val(),
+			    		"stCol" : $("input[name=stCol]").val(),
+						"ifMmName" : $("input[name=ifMmName]").val(),
+						"src" : $("input[name=src]").val(),
+						"thName" : $("input[name=thName]").val(),  
+						"dDate" : $("input[name=dDate]").val(),
+						"dTime" : $("input[name=dTime]").val(),
+						"scNumber" : $("input[name=scNumber]").val(),
+						"scSceenType" : $("input[name=scSceenType]").val()
+			    		}
+			    		
 					,success: function(data) {
 						console.log(data);
+						var tid2 = data.tid;
+						alert(tid2);
 						var box = data.next_redirect_pc_url;
-					    formVo.attr("action", box).submit(); 
+					    window.location.href = box; 
+					    
 					} ,
 					error:function(error){
 						alert(error);
