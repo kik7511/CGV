@@ -415,7 +415,7 @@
 	});
 	
 	
-	function kakao(name, price, row, col, location, date, time, id) {
+	/* function kakao(name, price, row, col, location, date, time, id) {
 		$.ajax({
 			dataType:"json" 	
 			,url: "/purchase/kakaopay"
@@ -466,12 +466,54 @@
 						var tid2 = data.tid;
 						var box = data.next_redirect_pc_url;
 					    window.location.href = box; 
-					    
 					} ,
 					error:function(error){
 						alert(error);
 					}
 				});
+			} ,
+			error:function(error){
+				alert(error);
+			}
+		});
+	}; */
+	
+	
+	function kakao(name, price, row, col, location, date, time, id) {
+		var kakaopay = new KakaoPay();
+		$.ajax({
+			dataType:"json" 	
+			,url: "/purchase/kakaopay"
+			,data:{
+				name : name,
+				price : price,
+				row : row,
+				col : col,
+				location : location,
+				date : date,
+				time : time,
+				id : id,
+				"stRow" : $("input[name=stRow]").val(),
+	    		"stCol" : $("input[name=stCol]").val(),
+				"ifMmName" : $("input[name=ifMmName]").val(),
+				"src" : $("input[name=src]").val(),
+				"thName" : $("input[name=thName]").val(),  
+				"dDate" : $("input[name=dDate]").val(),
+				"dTime" : $("input[name=dTime]").val(),
+				"scNumber" : $("input[name=scNumber]").val(),
+				"scSceenType" : $("input[name=scSceenType]").val()
+				}
+			,success: function(data) {
+				console.log(data);
+				var box = data.next_redirect_pc_url;
+				var tid = data.tid;
+				var created_at = data.created_at;	
+				alert(tid);				
+			    $("input[name=tid]").val(data.tid);
+			    $("input[name=created_at]").val(data.created_at);
+				var box = data.next_redirect_pc_url;
+				kakao = setMyTid(tid);
+			    window.location.href = box;
 			} ,
 			error:function(error){
 				alert(error);

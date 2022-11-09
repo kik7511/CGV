@@ -66,8 +66,9 @@
 		console.log($('input[name=ifMmId]').val());
 		console.log($('input[name=pg_token]').val());
 		console.log( $('input[name=tid]').val());
-		
-		
+		var myTid = sessionStorage.getItem("myTid");
+		var dateTime = sessionStorage.getItem("dateTime");
+		alert(myTid);
 		$.ajax({
 			dataType:"json" 	
 			,url: "https://kapi.kakao.com/v1/payment/approve"

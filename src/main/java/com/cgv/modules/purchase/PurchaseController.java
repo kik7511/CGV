@@ -25,16 +25,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Controller
 @RequestMapping(value = "/purchase/")
 public class PurchaseController {
 	@Autowired
 	PurchaseServiceImpl service;
 	
-	public static String datetime = "";
 	public static String item = "";
 	public static String won = "";
-	public static String tid2 = "";
 	public static Integer stRow;
 	public static Integer stCol;
 	public static Integer src;
@@ -46,6 +46,7 @@ public class PurchaseController {
 	public static String scSceenType = "";
 	public static String ifMmId = "";
 	public static String token = "";
+	public static String tid = "";
 
 	@RequestMapping(value = "ticketingForm")
 	public String ticketingForm(Model model, @ModelAttribute("vo") PurchaseVo vo, HttpSession httpSession)
@@ -216,8 +217,6 @@ public class PurchaseController {
         
         item = name;
         won = price;
-        tid2 = dto.getTid();
-        datetime = dto.getCreated_at();
         stRow = dto.getStRow();
         stCol = dto.getStCol();
         src = dto.getSrc();
@@ -229,7 +228,6 @@ public class PurchaseController {
         scSceenType = dto.getScScreenType();
         ifMmId = id;
         
-        System.out.println("tid : " + dto.getTid());
         System.out.println("item : " + item);
         System.out.println("stRow : " + stRow);
         System.out.println("stCol" + stCol);
@@ -249,6 +247,7 @@ public class PurchaseController {
 		/* conn.getOutputStream().write(string_params.getBytes()); */
 		datagiven.write(string_params.getBytes());
 		datagiven.close(); 
+		
 
 		int result = conn.getResponseCode();
 		BufferedReader changer;
@@ -271,11 +270,13 @@ public class PurchaseController {
 		/*
 		 * changer.close(); conn.disconnect();
 		 */
+		
 		/*
 		 * StringBuilder stringBuilder = new StringBuilder(); String line; while ((line
 		 * = changer.readLine()) != null) { System.out.println("line: " + line);
 		 * stringBuilder.append(line); }
 		 */
+		
 		
 		/*
 		 * changer.close(); conn.disconnect();
@@ -284,17 +285,19 @@ public class PurchaseController {
 		
 //		json object + array string -> java map
 		
+		
+		
 		/*
 		 * System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
 		 * ObjectMapper objectMapper = new ObjectMapper(); Map<String, Object> map =
 		 * objectMapper.readValue(stringBuilder.toString(), Map.class);
-		 * 
 		 * System.out.println("######## Map"); for (String key : map.keySet()) { String
 		 * value = String.valueOf(map.get(key)); // ok System.out.println("[key]:" + key
-		 * + ", [value]:" + value); } String aaa = (String)
-		 * map.get("next_redirect_pc_url"); System.out.println("결과는: " + aaa);
-		 * model.addAttribute(map);
+		 * + ", [value]:" + value); } String aaa = (String) map.get("tid");
+		 * System.out.println("결과는: " + aaa); model.addAttribute("tid", aaa); String
+		 * site = (String) map.get("next_redirect_pc_url");
 		 */
+		 
 		
 		
 		/*
@@ -327,19 +330,17 @@ public class PurchaseController {
 	}
 	
 	 @RequestMapping(value = "approve")
-	 public String approve(@ModelAttribute("dto") Purchase dto, Model model, HttpServletRequest request) throws Exception {
-		 	
+	 public String approve(@ModelAttribute("dto") Purchase dto, Model model, HttpServletRequest request, HttpSession httpSession) throws Exception {
 		    String a = request.getRequestURL().toString() + "?" + request.getQueryString();
 		    System.out.println(a);
-		 	System.out.println("상품은12 " + tid2);
+			/* System.out.println("상품은12 " + tid2); */
 		 	System.out.println("상품은 " + item);
 		 	System.out.println("상품은 " + won);
-		 	
 		 	model.addAttribute("tokenUrl", a);
-		 	model.addAttribute("tid", tid2);
+			/* model.addAttribute("tid", tid2); */
 		 	model.addAttribute("item", item);
 		 	model.addAttribute("won", won);
-		 	model.addAttribute("datetime", datetime);
+			/* model.addAttribute("datetime", datetime); */
 		 	model.addAttribute("stRow", stRow);
 		 	model.addAttribute("stCol", stCol);
 		 	model.addAttribute("src", src);
