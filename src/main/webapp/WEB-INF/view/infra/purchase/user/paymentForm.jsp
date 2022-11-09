@@ -464,7 +464,6 @@
 					,success: function(data) {
 						console.log(data);
 						var tid2 = data.tid;
-						alert(tid2);
 						var box = data.next_redirect_pc_url;
 					    window.location.href = box; 
 					    
