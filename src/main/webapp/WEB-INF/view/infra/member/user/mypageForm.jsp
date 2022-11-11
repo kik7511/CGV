@@ -312,34 +312,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- //MY 참여이력 -->
-							<!-- MY 구매정보 -->
-							<!-- 비노출 처리 : 20211013
-							<div class="sect-mycgv-buying">
-								<div class="box-polaroid">
-									<div class="box-inner">
-										<div class="tit-mycgv">
-											<h3>MY 구매정보</h3>
-											<span>현재 사용하실 수 있는 쿠폰정보입니다. 상품명을 클릭하시면 내역조회페이지로 이동합니다.</span>
-										</div>
-										<ul>
-											<li class="booth">
-												<a href="/user/mycgv/popcorn-store/default.aspx"><strong>내 기프트콘</strong></a>
-												<span><em>0</em> 개</span>
-											</li>		      
-											<li class="funcon">
-												<a href="/user/mycgv/culture-shop/fun-con.aspx"><strong>FUN-CON 기프트콘</strong></a>
-												<span><em></em>준비중</span>
-											</li>
-											<li class="collage">
-												<a href="/user/mycgv/culture-shop/movie-collage-passcard/"><strong>무비꼴라쥬 패스카드</strong></a>
-												<span><em>0</em> 개</span>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							//-->
 							<form name="targetform" id="targetform" method="post" novalidate="novalidate">
 								<input type="hidden" name="reverse_no" id="reverse_no">
 							</form>
@@ -347,6 +319,7 @@
                     </div>
                 </div>
             </div>
+           </div>
 		<!-- E Contaniner -->
     	  <!-- S Footer -->
 		<!-- footer_area (s) -->
