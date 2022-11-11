@@ -73,7 +73,7 @@
 		                        <tbody>
 		                            <tr class="ticket_no">
 		                                <th scope="row">예매번호</th> 
-		                                <td><span class="red">0155-0805-4772-271</span></td>
+		                                <td><span class="red">${dto.aid}</span></td>
 		                            </tr>
 		                            <tr class="movie_name">
 		                                <th scope="row">영화</th>
@@ -101,7 +101,7 @@
 		                            </tr>
 		                            <tr class="payment_price">
 		                                <th scope="row">결제금액</th>
-		                                <td><span class="price">${dto.totalPrice}</span> 원</td>
+		                                <td><span class="price">${dto.stPrice}</span> 원</td>
 		                            </tr>
 		                            <tr class="payment_method">
 		                                <th scope="row">결제수단</th>
@@ -118,7 +118,7 @@
 		                                    -->
 		                                	<div class="row">
 		                                		<span class="title"><em>카카오페이</em></span>
-		                                		<span class="content"><span class="price">${dto.totalPrice}</span> 원</span>
+		                                		<span class="content"><span class="price">${dto.stPrice}</span> 원</span>
 		                               		</div>
 		                                </td>
 		                            </tr>
@@ -345,7 +345,7 @@
 					</div>
 				</div>
 				<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
-					<img src="/resources/images/user/0803_996x140.jpg" alt="由щ명" onload="ticketNeedResize();" style="width:996px;height:140px">
+					<img src="/resources/images/user/0803_996x140.jpg" style="width:996px;height:140px">
 				</div>
 				<div id="ticket_banner" class="ticket_banner">
 					<div>

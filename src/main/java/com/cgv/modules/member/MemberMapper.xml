@@ -239,26 +239,26 @@
 	</insert>
 	
 	<select id="myPage" resultMap="resultMapObj">
-	SELECT
-		mNameKor
-		,(SELECT COUNT(*) FROM purchaseTicket) as total
+	SELECT 
+		ifMmId
+		,ifMmName
+		,mNameKor 
+		,src 
+		,mAgeLimit 
 		,mSeq
-		,src
-		,mAgeLimit
-		,dDate
-		,dTime
-		,dSeq
+		,dDate 
+		,dTime 
 		,scScreenType
-		,scNumber
-		,stRow
-		,stCol
-		,stPrice
-		,stSeq
-		,thLocation
-		,thName
-	FROM purchaseTicket
-	WHERE 1=1
-		AND dDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) and now()
+		,scNumber 
+		,stRow 
+		,stCol 
+		,stPrice 
+		,thName 
+		,aid
+	FROM purchaseTicket 
+	where 1=1
+	<!-- AND ifMmId = #{ifMmId} -->
+	AND dDate >= SUBDATE(CURDATE(), INTERVAL 1 MONTH)
 	</select>
 	
 	

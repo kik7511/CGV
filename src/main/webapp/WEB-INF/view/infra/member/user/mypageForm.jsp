@@ -53,6 +53,7 @@
 						<div class="sect-person-info">
 							<h2 class="hidden">개인화 영역</h2>
 							<input type="hidden" name = "sessSeq" value="<c:out value="${sessSeq}"/>"/>
+							<input type="hidden" name = "ifMmId" value="${sessId}">
 							<c:set var="listCodeRank" value="${CodeServiceImpl.selectListCachedCode('14')}"/>
 							<div class="box-image">
 								<span class="thumb-image">
@@ -156,25 +157,6 @@
 									<li>
 										<a href="/member/mypageTicketForm" title="현재 선택">나의 예매내역 <i></i></a>                                    
 									</li>                                                                
-									<!-- 비노출 처리
-	
-									<li >
-										<a href="javascript:fncMoveToPhototicket()" >내가꾸민포토티켓 <i></i></a>
-	
-										<script language="javascript">
-											function fncMoveToPhototicket() {
-												alert('<리뉴얼작업에 따른 홈페이지 포토티켓 서비스 종료 안내>\n\nCGV에서는 보다 폭넓은 서비스를 제공하기 위해 ‘포토티켓’ 서비스를 리뉴얼하고 있습니다.\n이에 따라 홈페이지 포토티켓 서비스는 2020년 7월 28일부로 종료될 예정이며,\n리뉴얼 이후 CGV APP을 통해 포토티켓 서비스를 이용하실 수 있습니다');
-	
-												//var sWidth = Number($(window).width()) + Number(12);    //parent 창의 크기와 동일하게 만들어준다.
-												//var sHeight = Number($(window).height()) + Number(35);
-	
-												//var substr = 'scrollbars=yes,menubar=yes,resizable=yes,width=' + sWidth + 'px,height=' + sHeight + 'px';
-	
-												window.open('http://phototicket.cgv.co.kr/Phototicket/HTML/myPhototicket.aspx?g=1');
-											}
-										</script>
-									</li>
-									//-->                                                           
 									<li>
 										<a href="/user/mycgv/myinfo/?g=1">회원정보<i></i></a>
 										<ul>
@@ -195,93 +177,6 @@
 						</div>
 						<div class="col-detail" id="mycgv_contents">
 							
-							<script type="text/javascript">
-								//<![CDATA[
-		
-								var myVar;
-								jQuery(document).ready(function () {
-									myVar = setInterval(function () { checkCookieExp() }, 1000 * 10);
-								});
-		
-								function checkCookieExp() {
-									//alert("도는건가");
-									$.ajax({
-										type: "POST",
-										url: "/common/ajax/loginExpireCheck.aspx/expireCheck",
-										data: "{ pageSize : 20 }",
-										contentType: "application/json; charset=utf-8",
-										dataType: "json",
-		
-										success: function (data) {
-											var rst = $.parseJSON(data.d);
-											rst = Number(rst) + 2;
-											if (rst > 1 && rst < 62) {
-												//alert("크다");
-												jQuery(".logpopup").removeClass("on").removeClass("off");
-												jQuery(".logpopup").addClass("on");
-												$('#expTime').text(rst);
-												clearInterval(myVar);
-												timerMyVar = setInterval(function () { expTimeValue() }, 1000);
-		
-											} else {
-												jQuery(".logpopup").removeClass("on").removeClass("off");
-												jQuery(".logpopup").addClass("off");
-											}
-										},
-										error: function (request, error) {
-											//alert("error:" + error);
-											clearInterval(myVar);
-										}
-									});
-		
-		
-		
-									// 로그인 연장 확인 클릭 시
-									//clearInterval(myVar);
-								}
-								function expTimeValue() {
-		
-									if (Number($('#expTime').text()) <= 0) {
-										clearInterval(timerMyVar);
-										window.location.href = "http://www.cgv.co.kr/user/login/logoutAuto.aspx";
-									}
-									else {
-										$('#expTime').text($('#expTime').text() - 1);
-									}
-								}
-		
-		
-								//팝업 닫기 
-								jQuery(document).ready(function () {
-									$('.pop_corp_session .btn-close').click(function () {
-										$('.pop_corp_session').removeClass('on');
-									});
-								});
-		
-		
-		
-								//팝업 닫기 
-								jQuery(document).ready(function () {
-									$('.photi_agree .btn-close').click(function () {
-										$('.layer-wrap.photi_agree').hide();
-									});
-								});
-		
-								//팝업 창 가운데로 뜨도록  
-								function fnOpenChapter() {
-									var obj = $('#layer-wrap');
-									var iHeight = (document.body.clientHeight / 2) - obj.height() / 2 + document.body.scrollTop;
-									var iWidth = (document.body.clientWidth / 2) - obj.width() / 2 + document.body.scrollLeft;
-		
-									obj.css({
-										position: 'absolute'
-											, display: 'block'
-											, top: iHeight
-											, left: iWidth
-									});
-								}
-								//]]>
-							</script>
                             <div class="sect-mycgv-reserve movielog col3">
                                 <div class="box-polaroid">
                                     <div class="box-inner preegg">
@@ -306,35 +201,9 @@
                             </div>
 							<div class="tit-mycgv">
 								<h3>MY 예매내역</h3>
-								<p><em>${list.total}건</em> <a href="/member/mypageTicketForm">예매내역 더보기</a></p>
+								<p><em>건</em> <a href="/member/mypageTicketForm">예매내역 더보기</a></p>
 								<span>예매번호로만 티켓을 찾을 수 있으니 반드시 확인 부탁드립니다.</span>
 							</div>
-							<!-- <form name="aspnetForm" method="post" action="./default.aspx" id="aspnetForm" novalidate="novalidate">
-								<div>
-									<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
-									<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
-									<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTc0NzIwMTk3M2RkGpTZbHfO8pvW/Ta9En5loRX6E2E=">
-								</div>
-								
-								<script type="text/javascript">
-								//<![CDATA[
-								var theForm = document.forms['aspnetForm'];
-								if (!theForm) {
-									theForm = document.aspnetForm;
-								}
-								function __doPostBack(eventTarget, eventArgument) {
-									if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
-										theForm.__EVENTTARGET.value = eventTarget;
-										theForm.__EVENTARGUMENT.value = eventArgument;
-										theForm.submit();
-									}
-								}
-								//]]>
-								</script> -->	
-								<!-- <div>								
-									<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="F268F2D4">
-									<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAANOZtRado8flmBd6Juf8OumAAaiyC+ogOIlg3pscMtiP2lKUwCIH8TI/sjrTPJzW37qSeqQYBLB9CRMYU4y53rNrIwxzA==">
-								</div> -->
 								<!-- 팝업시작 -->
 								<!-- 팝업 노출 시 .layer-wrap 에 클래스 .off는 없애고 .on 추가해주세요.-->
 								<div class="layer-wrap pop_corp_session logpopup off">
@@ -365,7 +234,7 @@
 												<div class="lst-item">
 							                       <div class="box-number">
 							                           <em>예매번호</em>
-							                           <strong>0155-<i>1024-4210-364</i></strong>
+							                           <strong>${list.aid}</strong>
 							                           <span>(${list.dDate})</span>
 							                       </div>
 							                       <div class="box-image">
@@ -474,18 +343,15 @@
 							<form name="targetform" id="targetform" method="post" novalidate="novalidate">
 								<input type="hidden" name="reverse_no" id="reverse_no">
 							</form>
-							<script type="text/javascript" src=""></script>							
                         </div>						
                     </div>
                 </div>
             </div>
-        </div>							
 		<!-- E Contaniner -->
     	  <!-- S Footer -->
 		<!-- footer_area (s) -->
 		<%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 		<!-- footer_area (s) -->
-	</div>
 <!-- end -->
 </body>
 </html>

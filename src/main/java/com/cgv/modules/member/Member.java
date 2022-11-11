@@ -50,8 +50,22 @@ public class Member extends Base {
 	private String mAgeLimit;
 	private Integer src;
 	private String total;
+	private String aid;
+	private String sessId;
 	
 	
+	public String getSessId() {
+		return sessId;
+	}
+	public void setSessId(String sessId) {
+		this.sessId = sessId;
+	}
+	public String getAid() {
+		return aid;
+	}
+	public void setAid(String aid) {
+		this.aid = aid;
+	}
 	public String getTotal() {
 		return total;
 	}

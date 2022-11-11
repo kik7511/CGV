@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.cgv.modules.member.Member;
 
 @Repository
 public class PurchaseDao {
@@ -66,6 +65,11 @@ public class PurchaseDao {
 	
 	public int purchase(Purchase dto) {
 		int result = sqlSession.insert(namespace+ ".purchase", dto);
+		return result;
+	}
+	
+	public int update(Purchase dto) {
+		int result = sqlSession.update(namespace+ ".update", dto);
 		return result;
 	}
 }

@@ -195,58 +195,53 @@
 	
 	<insert id="purchase">
 		INSERT INTO purchaseTicket (
-			ifMmSeq
-			,ifMmName
+			ifMmName
 			,ifMmId
 			,mNameKor
-			,mSeq
 			,src
 			,mAgeLimit
-			,dSeq
 			,dDate
 			,dTime
-			,scTotalSeat
 			,scScreenType
 			,scNumber
-			,scRow
-			,scCol
 			,stRow
 			,stCol
 			,stUseNy
 			,stPrice
-			,stSeq
-			,thLocation
 			,thName
+			,aid
+			,tid
 		)Values (
-			#{ifMmSeq}
-			,#{ifMmName}
+			#{ifMmName}
 			,#{ifMmId}
 			,#{mNameKor}
-			,#{mSeq}
 			,#{src}
 			,#{mAgeLimit}
-			,#{dSeq}
 			,#{dDate}
 			,#{dTime}
-			,#{scTotalSeat}
 			,#{scScreenType}
 			,#{scNumber}
-			,#{scRow}
-			,#{scCol}
 			,#{stRow}
 			,#{stCol}
 			,1
 			,#{stPrice}
-			,#{stSeq}
-			,#{thLocation}
 			,#{thName}
+			,#{aid}
+			,#{tid}
 		)
 		<selectKey resultType="String" keyProperty="ptSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
 	
-	
+	<update id="update">
+	UPDATE seat
+	SET
+		stUseNy = 1
+		WHERE 1=1
+			AND stRow = #{stRow}
+			AND stCol = #{stCol}
+	</update>
 	
 	
 </mapper>	

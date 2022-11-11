@@ -415,7 +415,7 @@
 	});
 	
 	
-	/* function kakao(name, price, row, col, location, date, time, id) {
+	function kakao(name, price, row, col, location, date, time, id) {
 		$.ajax({
 			dataType:"json" 	
 			,url: "/purchase/kakaopay"
@@ -433,12 +433,12 @@
 				var box = data.next_redirect_pc_url;
 				var tid = data.tid;
 				var created_at = data.created_at;	
-				alert(tid);
 			    $("input[name=tid]").val(data.tid);
 			    $("input[name=created_at]").val(data.created_at);
+			    $("input[name=pc_url]").val(box);
 			    $.ajax({
 					dataType:"json" 	
-					,url: "/purchase/kakaopay"
+					,url: "/purchase/test"
 					,data:{
 						name : name,
 						price : price,
@@ -458,14 +458,15 @@
 						"dDate" : $("input[name=dDate]").val(),
 						"dTime" : $("input[name=dTime]").val(),
 						"scNumber" : $("input[name=scNumber]").val(),
-						"scSceenType" : $("input[name=scSceenType]").val()
+						"scScreenType" : $("input[name=scScreenType]").val(),
+						"mAgeLimit" : $("input[name=mAgeLimit]").val()
 			    		}
-			    		
-					,success: function(data) {
-						console.log(data);
-						var tid2 = data.tid;
-						var box = data.next_redirect_pc_url;
-					    window.location.href = box; 
+					,success: function(response) {
+						if (response.rt == "success") {
+						    window.location.href = box; 
+						} else {
+							alert("실패");
+						}					    
 					} ,
 					error:function(error){
 						alert(error);
@@ -476,11 +477,10 @@
 				alert(error);
 			}
 		});
-	}; */
+	};
 	
 	
-	function kakao(name, price, row, col, location, date, time, id) {
-		var kakaopay = new KakaoPay();
+	/* function kakao(name, price, row, col, location, date, time, id) {
 		$.ajax({
 			dataType:"json" 	
 			,url: "/purchase/kakaopay"
@@ -509,17 +509,17 @@
 				var tid = data.tid;
 				var created_at = data.created_at;	
 				alert(tid);				
-			    $("input[name=tid]").val(data.tid);
+			    $("input[name=tid]").val(tid);
 			    $("input[name=created_at]").val(data.created_at);
 				var box = data.next_redirect_pc_url;
-				kakao = setMyTid(tid);
-			    window.location.href = box;
+				formVo.attr("action", goAfter).submit();
+				 window.location.href = box;  
 			} ,
 			error:function(error){
 				alert(error);
 			}
 		});
-	};
+	}; */
 	
 	
 </script>

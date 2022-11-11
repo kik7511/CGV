@@ -13,7 +13,7 @@ public class Purchase {
 	private Date dDateTime;
 	private Integer thLocation;
 	private String thName;
-	private String scScreenType;
+	private Integer scScreenType;
 	private Integer scTotalSeat;
 	private Integer scNumber;
 	private Integer scRow;
@@ -34,7 +34,23 @@ public class Purchase {
 	private String tid;
 	private String created_at;
 	private String pg_token;
+	private String aid;
+	private String total;
 	
+	
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
+	}
+	
+	public String getAid() {
+		return aid;
+	}
+	public void setAid(String aid) {
+		this.aid = aid;
+	}
 	public String getPg_token() {
 		return pg_token;
 	}
@@ -185,10 +201,10 @@ public class Purchase {
 	public void setThName(String thName) {
 		this.thName = thName;
 	}
-	public String getScScreenType() {
+	public Integer getScScreenType() {
 		return scScreenType;
 	}
-	public void setScScreenType(String scScreenType) {
+	public void setScScreenType(Integer scScreenType) {
 		this.scScreenType = scScreenType;
 	}
 	public Integer getScTotalSeat() {

@@ -26,6 +26,8 @@
 				<p id="datetiem">결제일시: ${datetime}</p>
 				<p id = "item">상품명: ${item}</p>
 				<p id= "won">결제금액: ${won}원</p>
+					<input type = "hidden" name="sessId" value="${sessId}" id="sessId">
+					<input type = "hidden" name="sessName" value="${sessName}" id="sessName">
 				<form name="form">
 					<input type = "hidden" name = "mNameKor" value = "${item}" id = "mNameKor" >
 					<input type = "hidden" name = "src" value = "${src}" id = "src" >
@@ -39,10 +41,12 @@
 					<input type = "hidden" name = "stPrice" value = "${won}" id = "stPrice"> 
 					<input type = "hidden" name="ifMmName" value="${ifMmName}" id="ifMmName">
 					<input type = "hidden" name="ifMmId" value="${ifMmId}" id="ifMmId">
-					<input type = "hidden" name="pg_token" value="" id="pg_token">
-					<input type = "hidden" name="tokenUrl" value="${tokenUrl}" id="tokenUrl">
+					<input type = "hidden" name="aid" value="" id="aid">
 					<input type = "hidden" name="tid" value="${tid}" id="tid">
+					<input type = "hidden" name="mAgeLimit" value="${mAgeLimit}" id="mAgeLimit">
 				</form>
+					<input type = "hidden" name="tokenUrl" value="${tokenUrl}" id="tokenUrl">
+					<input type = "hidden" name="pg_token" value="" id="pg_token">
 			</div>
 			<button id="" type="button" class="btn btn-info" onclick="kakaopayApprove('${item}', '${won}', '${stRow}', '${stCol}', '${thName}', '${dDate}', '${dTime}', '${ifMmId}', '${ifMmName}')">확인</button>
 		</div>
@@ -57,32 +61,30 @@
 	
 	function kakaopayApprove(item, price, row, col, location, date, time, id, name) {
 		var url = $('input[name=tokenUrl]').val();
+		var tid = $('input[name=tid]').val();
 		const urlParams = new URL(url).searchParams;
 		var pg_token = urlParams.get('pg_token');
-		console.log(pg_token);
 		$("input[name=pg_token]").val(pg_token);
-		
-		/* window.location.href = "https://kapi.kakao.com/v1/payment/approve?cid=TC0ONETIME&tid=" + $('input[name=tid]').val() + "&partner_order_id=CGV&partner_user_id=" + $('input[name=ifMmId]').val() + "&pg_token=" + pg_token;; */
-		console.log($('input[name=ifMmId]').val());
-		console.log($('input[name=pg_token]').val());
-		console.log( $('input[name=tid]').val());
-		var myTid = sessionStorage.getItem("myTid");
-		var dateTime = sessionStorage.getItem("dateTime");
-		alert(myTid);
 		$.ajax({
 			dataType:"json" 	
-			,url: "https://kapi.kakao.com/v1/payment/approve"
-			,headers: {'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-				'Authorization': 'KakaoAK 99a9ce2310007031e1a3de4d7c2f875f'
-			}
+			,url: "/purchase/kakaopayApprove"
 			,data:{
-				cid : "TC0ONETIME",
-				tid : $('input[name=tid]').val(),
-				partner_order_id : "CGV",
-				partner_user_id : $('input[name=ifMmId]').val(),
-				pg_token : $('input[name=pg_token]').val()
+				name : name,
+				price : price,
+				row : row,
+				col : col,
+				location : location,
+				date : date,
+				time : time,
+				id : id,
+				item : item,
+				tid : tid,
+				pg_token : pg_token
 					}
 				,success: function(data) {
+					console.log(data);
+					var aid = data.aid;
+					$("input[name=aid]").val(aid);
 					form.attr("action", goAfter).submit();
 				} ,
 				error:function(error){

@@ -62,6 +62,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return dao.purchase(dto);
 	}
 	
+	@Override
+	public int update(Purchase dto) throws Exception{
+		return dao.update(dto);
+	}
+	
 }	
 
     
