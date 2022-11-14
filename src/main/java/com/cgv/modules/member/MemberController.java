@@ -60,6 +60,29 @@ public class MemberController {
 		
 		return "infra/member/xdmin/memberList";
 	}
+	
+	@RequestMapping(value = "memberAjaxList")
+	public String memberAjaxList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		
+		setSearchAndPaging(vo);
+
+		return "infra/member/xdmin/memberAjaxList";
+	}
+	
+	
+	@RequestMapping(value = "memberAjaxLita")
+	public String memberAjaxLita(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+
+		if (vo.getTotalRows() > 0) {
+			List<Member> list = service.selectList(vo);
+			model.addAttribute("list", list);
+		}
+
+		return "infra/member/xdmin/memberAjaxLita";
+	}
+
 		
 	@RequestMapping(value = "memberForm")
 	public String memberForm(Member dto, @ModelAttribute("vo") MemberVo vo, Model model) throws Exception{

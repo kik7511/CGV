@@ -30,7 +30,7 @@
 							<c:when test="${not empty sessId}">
 								<li><span style="font-size: 18px;"><c:out value="${sessName}"/></span> 님</li>
 								<li><a style="cursor: pointer;" id="btnLogout"><img src="/resources/images/user/loginPassword.png" alt="로그아웃"><span>로그아웃</span></a></li>
-								<li><a href="/member/mypageForm"><img src="/resources/images/user/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
+								<li><a href="/member/mypageForm?ifMmId=${sessId}"><img src="/resources/images/user/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
 							</c:when>
 							<c:otherwise>
 								<li><a href="/member/loginForm"><img src="/resources/images/user/loginPassword.png" alt="로그인"><span>로그인</span></a></li>

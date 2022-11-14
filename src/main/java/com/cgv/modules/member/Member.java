@@ -52,8 +52,15 @@ public class Member extends Base {
 	private String total;
 	private String aid;
 	private String sessId;
+	private String sessSeq;
 	
 	
+	public String getSessSeq() {
+		return sessSeq;
+	}
+	public void setSessSeq(String sessSeq) {
+		this.sessSeq = sessSeq;
+	}
 	public String getSessId() {
 		return sessId;
 	}

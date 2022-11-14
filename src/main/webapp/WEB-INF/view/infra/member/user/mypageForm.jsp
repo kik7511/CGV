@@ -33,6 +33,8 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/reservation_step3_step2.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/reservation_popup.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/mypagenew.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
 
@@ -42,6 +44,7 @@
         <div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
 			<!-- Contents Area -->
 			<div id="contents" class="">
+				<form>
 				<!-- Contents Start -->
 				<div class="sect-common">
 					<input type="hidden" id="isTown" name="isTown" value="Y">
@@ -152,10 +155,10 @@
 							<div class="snb">
 								<ul>
 									<li class="on">
-										<a href="/member/mypageForm">MY CGV HOME <i></i></a>
+										<a href="/member/mypageForm?ifMmId=${sessId}">MY CGV HOME <i></i></a>
 									</li>
 									<li>
-										<a href="/member/mypageTicketForm" title="현재 선택">나의 예매내역 <i></i></a>                                    
+										<a href="/member/mypageTicketForm?ifMmId=${sessId}" title="현재 선택">나의 예매내역 <i></i></a>                                    
 									</li>                                                                
 									<li>
 										<a href="/user/mycgv/myinfo/?g=1">회원정보<i></i></a>
@@ -201,7 +204,7 @@
                             </div>
 							<div class="tit-mycgv">
 								<h3>MY 예매내역</h3>
-								<p><em>건</em> <a href="/member/mypageTicketForm">예매내역 더보기</a></p>
+								<p><em>건</em> <a href="/member/mypageTicketForm?ifMmId=${sessId}">예매내역 더보기</a></p>
 								<span>예매번호로만 티켓을 찾을 수 있으니 반드시 확인 부탁드립니다.</span>
 							</div>
 								<!-- 팝업시작 -->
@@ -259,7 +262,10 @@
 							                               </dd>
 							                               <dd>
 							                                   <em>관람좌석</em>
-							                                   <strong>${list.stRow}${list.stCol}</strong>
+							                                   <strong>
+							                                   		${list.stRow}
+							                                   		${list.stCol}
+						                                   	   </strong>
 							                               </dd>
 							                           </dl>
 							                       </div>
@@ -271,8 +277,7 @@
 							                               <dl>
 							                                   <dt>총 결제금액</dt>
 							                                   <dd>
-							                                       <strong class="txt-lightblue">
-							                                           ${list.stPrice}원</strong>
+							                                       <strong class="txt-lightblue"><fmt:formatNumber value="${list.stPrice}" type="currency" currencySymbol="" />원</strong>
 							                                   </dd>
 							                               </dl>                                
 							                               <div class="set-btn">
@@ -285,7 +290,6 @@
 										</div>
 									</div>
 								</div>
-							</form>
 							<div class="sect-mycgv-part">
 								<div class="box-polaroid type1">
 								  <!--  <div class="box-inner">
@@ -312,11 +316,9 @@
 									</div>
 								</div>
 							</div>
-							<form name="targetform" id="targetform" method="post" novalidate="novalidate">
-								<input type="hidden" name="reverse_no" id="reverse_no">
-							</form>
                         </div>						
                     </div>
+                    </form>
                 </div>
             </div>
            </div>
@@ -325,6 +327,8 @@
 		<!-- footer_area (s) -->
 		<%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 		<!-- footer_area (s) -->
+		<script>
+		</script>
 <!-- end -->
 </body>
 </html>

@@ -257,7 +257,7 @@
 		,aid
 	FROM purchaseTicket 
 	where 1=1
-	<!-- AND ifMmId = #{ifMmId} -->
+	AND ifMmId = #{ifMmId}
 	AND dDate >= SUBDATE(CURDATE(), INTERVAL 1 MONTH)
 	</select>
 	

@@ -970,7 +970,7 @@
 					for(var j=0; j<arr2.length; j++){
 						if(arr2[j].num == response.result[0].scScreenType){
 							var screenType = arr2[j].name;
-						}
+						} 
 					};
 					
 					var arr3 = ["A", "B", "C", "D", "E", "F", "G", "H"];
