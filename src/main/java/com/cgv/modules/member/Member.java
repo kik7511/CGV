@@ -53,8 +53,14 @@ public class Member extends Base {
 	private String aid;
 	private String sessId;
 	private String sessSeq;
+	private Integer scNumber;
 	
-	
+	public Integer getScNumber() {
+		return scNumber;
+	}
+	public void setScNumber(Integer scNumber) {
+		this.scNumber = scNumber;
+	}
 	public String getSessSeq() {
 		return sessSeq;
 	}

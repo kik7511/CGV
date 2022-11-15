@@ -34,6 +34,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/reservation_step3_popup.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="shortcut icon" href="/resources/images/user/favicon.ico" type="image/x-icon">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>

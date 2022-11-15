@@ -12,6 +12,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script src="/demo/pay/assets/js/jquery-3.4.1.min.js"></script>
+	<link rel="shortcut icon" href="/resources/images/user/favicon.ico" type="image/x-icon">
 </head>
 <body>
 	<div id="payment">

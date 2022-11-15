@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="CodeServiceImpl" class="com.cgv.modules.code.CodeServiceImpl"/>
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
@@ -34,6 +35,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/mypagenew.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="shortcut icon" href="/resources/images/user/favicon.ico" type="image/x-icon">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
@@ -154,30 +156,11 @@
 							<div class="snb">
 								<ul>
 									<li>
-										<a href="/member/mypageForm">MY CGV HOME <i></i></a>
+										<a href="/member/mypageForm?ifMmId=${sessId}">MY CGV HOME <i></i></a>
 									</li>
 									<li class="on">
-										<a href="/member/mypageTicketForm" title="현재 선택">나의 예매내역 <i></i></a>                                    
+										<a href="/member/mypageTicketForm?ifMmId=${sessId}" title="현재 선택">나의 예매내역 <i></i></a>                                    
 									</li>                                                                
-									<!-- 비노출 처리
-	
-									<li >
-										<a href="javascript:fncMoveToPhototicket()" >내가꾸민포토티켓 <i></i></a>
-	
-										<script language="javascript">
-											function fncMoveToPhototicket() {
-												alert('<리뉴얼작업에 따른 홈페이지 포토티켓 서비스 종료 안내>\n\nCGV에서는 보다 폭넓은 서비스를 제공하기 위해 ‘포토티켓’ 서비스를 리뉴얼하고 있습니다.\n이에 따라 홈페이지 포토티켓 서비스는 2020년 7월 28일부로 종료될 예정이며,\n리뉴얼 이후 CGV APP을 통해 포토티켓 서비스를 이용하실 수 있습니다');
-	
-												//var sWidth = Number($(window).width()) + Number(12);    //parent 창의 크기와 동일하게 만들어준다.
-												//var sHeight = Number($(window).height()) + Number(35);
-	
-												//var substr = 'scrollbars=yes,menubar=yes,resizable=yes,width=' + sWidth + 'px,height=' + sHeight + 'px';
-	
-												window.open('http://phototicket.cgv.co.kr/Phototicket/HTML/myPhototicket.aspx?g=1');
-											}
-										</script>
-									</li>
-									//-->                                                           
 									<li>
 										<a href="">회원정보<i></i></a>
 										<ul>
@@ -323,45 +306,39 @@
 									</p>
 								</div>                    
 								<div class="lst-item">
+								<c:forEach items="${list}" var="list" varStatus="status">
 									<div class="box-set-info">
 										<div class="box-number">
 											<em>예매번호</em>
-											<strong>0155-<i>0805-4772-271</i></strong>
+											<strong>${list.aid}</strong>
 										</div>                                            
-										<!-- 
-											Description js 20190904
-											PC홈페이지 추가
-											s:나의예매내역 출력 수정
-										-->  
 										<div class="box-info">
 											<div class="box-image">
 												<a href="">
 													<span class="thumb-image">
-														<img src="/resources/images/user/83280_126.jpg" alt="한산-용의 출현 포스터" onerror="errorImage(this)">
-														<span class="ico-grade grade-12">												
-														</span>
+														<img src="/resources/images/user/${list.src}_320.jpg">
+														<span class="ico-grade grade-${list.mAgeLimit}"></span>
 													</span>
 												</a>
 											</div>                                                
 											<div class="detail-area">
 												<div class="reservation-info-wrap">
 													<h2 class="box-contents artHouse">
-														<a href="" class="res-title">한산-용의 출현</a>                                                                          
-														<span class="res-price">28,000원</span>
+														<a href="/movie/movieInfoView/?mSeq=${list.mSeq}" class="res-title">${list.mNameKor}</a>                                                                          
+														<span class="res-price"><fmt:formatNumber value="${list.stPrice}" type="currency" currencySymbol="" />원</span>
 													</h2>
 													<ul class="reservation-mv-info">
 														<li>
 															<dl>
 																<dt>관람극장</dt>
-																<dd>CGV 범계                                                        
-																	<a href="javascript:theaterMove('0155');">[극장정보]</a>
+																<dd>${list.thName}                                     
 																</dd>
 															</dl>
 														</li>
 														<li>
 															<dl>
 																<dt>관람인원</dt>
-																<dd> 리클라이너 일반 2</dd>
+																<dd> ${list.scScreenType} 일반 1</dd>
 															</dl>
 														</li>
 														<li>
@@ -379,18 +356,17 @@
 														<li>
 															<dl>
 																<dt>상영관</dt>
-																<dd>2관 (리클라이너)</dd>
+																<dd>${list.scNumber}관 (${list.scScreenType})</dd>
 															</dl>
 														</li>
 														<li>
 															<dl>
 																<dt>매수</dt>
-																<dd>2매</dd>
+																<dd>1매</dd>
 															</dl>
 														</li>
 													</ul>
 												</div>
-			
 												<div class="reservation-info-wrap store-history" style="display: none;">
 													<h2>
 														<span class="res-title">                                                                                       
@@ -410,23 +386,21 @@
 											<div class="resevation-payment">
 												<p class="resevation-payment-total">
 													<span class="totel-title">총 결제금액</span>
-													<span class="res-price">28,000원</span>
+													<span class="res-price"><fmt:formatNumber value="${list.stPrice}" type="currency" currencySymbol="" />원</span>
 												</p>
-												<p class="resevation-payment-part"><span>카카오페이</span><span class="part-price">28,000원</span></p>
+												<p class="resevation-payment-part"><span>카카오페이</span><span class="part-price"><fmt:formatNumber value="${list.stPrice}" type="currency" currencySymbol="" />원</span></p>
 											</div>
 										</div>
 										<div class="set-btn">
 											<input type="hidden" class="reserve-no" name="reserve-no" value="6AOTxRA4BgTvL9WNTyOcntgb11biHrn6ODNiXRxcSVU=">
-											<div class="col-edit"></div><div class="col-print"> <button type="button" title="새창" data="6AOTxRA4BgTvL9WNTyOcntgb11biHrn6ODNiXRxcSVU%3d" class="round inblack hometicket"><span>예매정보 출력</span></button> <button type="button" title="새창" class="round black sendsmspopup"><span>문자보내기</span></button> <button type="button" data-status="94" onclick="noshowYN('N', '20220806', '00', '01', '1746.82445159833', '', '' )" class="round black cancel"><span>예매취소</span></button></div>
+											<div class="col-edit"></div><div class="col-print"> <button type="button" title="새창" class="round inblack hometicket"><span>예매정보 출력</span></button> <button type="button" title="새창" class="round black sendsmspopup"><span>문자보내기</span></button> <button type="button" data-status="94" onclick="noshowYN('N', '20220806', '00', '01', '1746.82445159833', '', '' )" class="round black cancel"><span>예매취소</span></button></div>
 										</div>
-										<!-- 
-											e:나의예매내역 출력 수정
-										-->  
 									</div>
+									</c:forEach>		
 								</div>                                     
 							</div>
 						<!-- TODAY BEST 무비차트 -->
-						<div class="sect-today-best">
+						<!-- <div class="sect-today-best">
 							<div class="info-log best">TODAY BEST 무비차트</div>
 								<div class="sect-slider">
 									<div class="slider" id="slider">
@@ -448,7 +422,7 @@
 															</a>
 															<div class="score">
 																<strong class="percent">예매율<span>22.4%</span></strong>
-																<!-- 2020.05.07 개봉전 프리에그 노출, 개봉후 골든에그지수 노출변경 -->
+																2020.05.07 개봉전 프리에그 노출, 개봉후 골든에그지수 노출변경
 																<div class="egg-gage small">
 																	<span class="egg great"></span>
 																	<span class="percent">95%</span>
@@ -475,7 +449,7 @@
 															</a>
 															<div class="score">
 																<strong class="percent">예매율<span>2.1%</span></strong>
-																<!-- 2020.05.07 개봉전 프리에그 노출, 개봉후 골든에그지수 노출변경 -->
+																2020.05.07 개봉전 프리에그 노출, 개봉후 골든에그지수 노출변경
 																<div class="egg-gage small">
 																	<span class="sprite_preegg default"></span>
 																	<span class="percent">92%</span>
@@ -502,7 +476,7 @@
 															</a>
 															<div class="score">
 																<strong class="percent">예매율<span>12.7%</span></strong>
-																<!-- 2020.05.07 개봉전 프리에그 노출, 개봉후 골든에그지수 노출변경 -->
+																2020.05.07 개봉전 프리에그 노출, 개봉후 골든에그지수 노출변경
 																<div class="egg-gage small">
 																	<span class="egg great"></span>
 																	<span class="percent">99%</span>
@@ -521,7 +495,7 @@
 										<button class="btn-next" type="button">다음 페이지 이동</button>
 									</div>
 								</div>
-						</div>					
+						</div>	 -->				
 						
 						<div class="sect-mycgv-cancle">
 							<div class="tit-mycgv">
@@ -542,28 +516,13 @@
 									</thead>
 									<tbody>                                        
 										<tr>
-											<td>                                                    
-												한산-용의 출현                                                    
+											<td>                                          
 											</td>
-											<td>CGV 범계</td>
-											<td>2022.08.12(금) 10:55</td>
-											<td>2022.08.08(월)</td>
-											<td><strong>
-											11,000                        
-											</strong> 원 </td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td><strong></strong></td>
 										</tr>
-									
-										<tr>
-											<td>                                                    
-												한산-용의 출현                                                    
-											</td>
-											<td>CGV 범계</td>
-											<td>2022.08.06(토) 16:00</td>
-											<td>2022.08.05(금)</td>
-											<td><strong>
-											28,000                        
-											</strong> 원 </td>
-										</tr>                                                                                   
 									</tbody>
 								</table>
 							</div>

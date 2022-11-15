@@ -26,6 +26,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/user/sebfont.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="shortcut icon" href="/resources/images/user/favicon.ico" type="image/x-icon">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
@@ -100,7 +101,7 @@
 				<!-- 실컨텐츠 시작 -->
 				<div class="wrap-login">
     				<div class="sect-login">
-        				<div class="box-login">
+        				<div class="box-login" style="height: 300px;">
             				<h3 class="hidden">회원 로그인</h3>
 				            <form id="form1" method="post" onsubmit="return frmCheck();">
 					            <fieldset style="text-align: center;">
@@ -129,7 +130,9 @@
 								<input type="hidden" name="profile_img"/>
 							</form>
 							<div align="center">
-								<a class="btn_loginNaver" id="kakaologin" style="margin-left: -120px; cursor: pointer;"><img src="/resources/images/user/kakao_login_medium_wide.png" alt="카카오 로그인" style="width: 260px;"></a>
+								<a class="btn_loginNaver" id="kakaologin" style="margin-left: -120px; cursor: pointer; display: block;"><img src="/resources/images/user/kakao_login_medium_wide.png" alt="카카오 로그인" style="width: 260px;"></a>
+								<a href="javascript:naverLoginClick();" class="btn_loginNaver" style="margin-left: -120px; margin-top : 5px; display: block;"><img src="https://img.cgv.co.kr/image_gt/login/btn_loginNaver.jpg" alt="네이버 로그인"></a>
+							</div>
 							</div>
 				        </div>
    					 </div>    
@@ -163,6 +166,7 @@
 <!-- end -->
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js" integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
 	<script>
 	$("#btnLogin").on("click", function(){
@@ -186,6 +190,46 @@
 			}
 		});
 	});
+	
+	var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "Qz4S3X6x5DF5Xm6y6Cbz",
+				callbackUrl: "http://localhost:8080/member/loginForm",
+				isPopup: true,
+			}
+		);
+	
+	naverLogin.init();
+		
+	naverLoginClick = function(){
+		naverLogin.getLoginStatus(function (status) {
+			
+			if(!status)
+				naverLogin.authorize();
+                setLoginStatus();  //하늘님 메소드 실행 -> Ajax
+		});
+    }
+	
+	function setLoginStatus() {
+	$.ajax({
+		async: true
+		,cache: false
+		,type:"POST"
+		,url: "/member/naverLoginProc"
+		,data: {"name": naverLogin.user.name, "id": "네이버로그인", "phone": naverLogin.user.mobile, "email": naverLogin.user.email}
+		,success : function(response) {
+			if (response.rt == "success") {
+				window.location.href = "/home";
+			} else {
+				alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+				return false;
+			}
+		},
+		error : function(jqXHR, status, error) {
+			alert("알 수 없는 에러 [ " + error + " ]");
+		}
+	});
+}
 	</script>
 	<script>
 	Kakao.init('036d65cb9b7cdfe66aa8d121ce7c81b4');
@@ -219,6 +263,7 @@
 	      },
 	    })
 	});
+	
 	</script>
 </body>
 </html>

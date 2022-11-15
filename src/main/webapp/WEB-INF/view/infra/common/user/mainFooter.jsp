@@ -44,6 +44,8 @@ $("#btnLogout").on("click", function(){
 			if(response.rt == "success") {
 					location.href = "/home";
 			} else {
+				localStorage.clear();
+				location.href = "/home";
 			}
 		}
 		,error : function(jqXHR, textStatus, errorThrown){

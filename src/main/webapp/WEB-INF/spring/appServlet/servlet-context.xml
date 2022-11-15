@@ -31,6 +31,7 @@
 			<exclude-mapping path="/member/signupForm" />
 			<exclude-mapping path="/member/signupInst" />
 			<exclude-mapping path="/member/kakaoLoginProc" />
+			<exclude-mapping path="/member/naverLoginProc" />
 			<exclude-mapping path="/member/kakaoCallback" />
 			<exclude-mapping path="/member/forgotIdForm" />
 			<exclude-mapping path="/member/forgotPasswordForm" />
