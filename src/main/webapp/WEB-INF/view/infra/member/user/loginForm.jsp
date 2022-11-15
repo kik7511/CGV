@@ -194,7 +194,7 @@
 	var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "Qz4S3X6x5DF5Xm6y6Cbz",
-				callbackUrl: "http://localhost:8080/member/loginForm",
+				callbackUrl: "http://localhost:8080/home",
 				isPopup: true,
 			}
 		);
