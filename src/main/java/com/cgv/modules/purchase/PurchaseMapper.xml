@@ -63,6 +63,7 @@
 		WHERE 1=1
 			AND mSeq= #{mSeq}
 			AND thLocation = #{thLocation}
+			AND thName = #{thName}
 		group by b.dDate;
 	</select>
 	
@@ -129,7 +130,7 @@
 		WHERE 1=1
 			AND mSeq= #{mSeq}
 			AND thLocation = #{thLocation}
-			AND thName like #{thName}
+			AND thName = #{thName}
 			AND DATE_FORMAT(b.dDate, '%Y-%m-%d') = #{dDate}
             AND b.dTime = #{dTime}
             AND c.scNumber = #{scNumber}
@@ -164,7 +165,7 @@
 		WHERE 1=1
 			AND mSeq= #{mSeq}
 			AND thLocation = #{thLocation}
-			AND thName like #{thName}
+			AND thName = #{thName}
 			AND DATE_FORMAT(b.dDate, '%Y-%m-%d') = #{dDate}
             AND b.dTime = #{dTime}
             AND c.scNumber = #{scNumber}
@@ -184,7 +185,7 @@
 	Where 1=1
 		AND mSeq= #{mSeq}
 			AND thLocation = #{thLocation}
-			AND thName like #{thName}
+			AND thName = #{thName}
 			AND DATE_FORMAT(b.dDate, '%Y-%m-%d') = #{dDate}
             AND b.dTime = #{dTime}
             AND c.scNumber = #{scNumber}

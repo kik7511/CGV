@@ -205,7 +205,7 @@
                             </div>
 							<div class="tit-mycgv">
 								<h3>MY 예매내역</h3>
-								<p><em>건</em> <a href="/member/mypageTicketForm?ifMmId=${sessId}">예매내역 더보기</a></p>
+								<p><em>${result}건</em> <a href="/member/mypageTicketForm?ifMmId=${sessId}">예매내역 더보기</a></p>
 								<span>예매번호로만 티켓을 찾을 수 있으니 반드시 확인 부탁드립니다.</span>
 							</div>
 								<!-- 팝업시작 -->
@@ -238,7 +238,7 @@
 												<div class="lst-item">
 							                       <div class="box-number">
 							                           <em>예매번호</em>
-							                           <strong>${list.aid}</strong>
+							                           <strong id="aid_number">${list.aid}</strong>
 							                           <span>(${list.dDate})</span>
 							                       </div>
 							                       <div class="box-image">

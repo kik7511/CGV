@@ -698,7 +698,7 @@
 					location.empty();
 					for(var i=0; i<response.result.length; i++){
 						 var list = response.result[i];
-						 location.append('<li class="" data-index="1" areaindex="0" style="display: list-item;"><a href="javascript:selectDate(' + seq + ', '+ list.thLocation +')"><span>' + list.thName + '</span><span class="sreader"></span></a></li>');
+						 location.append('<li class="" data-index="1" areaindex="0" style="display: list-item;"><a href="javascript:selectDate(' + seq + ', '+ list.thLocation + ', ' + "'" + list.thName + "'" +')"><span>' + list.thName + '</span><span class="sreader"></span></a></li>');
 					}
 				} else {
 					//byPass
@@ -755,14 +755,14 @@
         reserveDate.append(li);
     }
     
-    function selectDate(seq, location){
+    function selectDate(seq, location, thName){
 		$.ajax({
 			async: true 
 			,cache: false
 			,type: "post"
 			,dataType:"json" 	
 			,url: "/purchase/selectDate"
-			,data : {"mSeq" : seq, "thLocation" : location}
+			,data : {"mSeq" : seq, "thLocation" : location, "thName" : thName}
 			,success: function(response) {
 				if(response.rt == "success") {
 					$('#reserveDate').children('li').addClass('dimmed');
@@ -966,7 +966,7 @@
 						if(arr[i].num == response.result[0].mAgeLimit){
 							var ageLimit = arr[i].name;
 						}
-					};
+					}; 
 					
 					for(var j=0; j<arr2.length; j++){
 						if(arr2[j].num == response.result[0].scScreenType){

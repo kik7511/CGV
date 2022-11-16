@@ -261,5 +261,12 @@
 	AND dDate >= SUBDATE(CURDATE(), INTERVAL 1 MONTH)
 	</select>
 	
+	<select id= "myPageCheck" resultType="int">
+	SELECT COUNT(*)
+		FROM purchaseTicket 
+		WHERE 1=1
+			AND ifMmId = #{ifMmId}
+	</select>
+	
 	
 </mapper>	

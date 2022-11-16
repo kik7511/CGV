@@ -96,6 +96,11 @@ public class MemberDao {
 		return list;		
 	}
 	
+	public int myPageCheck(Member dto) {
+		int result = sqlSession.selectOne(namespace + ".myPageCheck", dto);
+		return result;
+	}
+	
 //	uploaded
 	public int insertUploaded(Member dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
 	

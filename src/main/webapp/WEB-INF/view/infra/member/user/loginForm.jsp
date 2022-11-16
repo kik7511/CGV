@@ -128,6 +128,7 @@
 								<input type="hidden" name="email"/>
 								<input type="hidden" name="gender"/>
 								<input type="hidden" name="profile_img"/>
+								<input type="hidden" name="naver" value="${sessSeq}"/>
 							</form>
 							<div align="center">
 								<a class="btn_loginNaver" id="kakaologin" style="margin-left: -120px; cursor: pointer; display: block;"><img src="/resources/images/user/kakao_login_medium_wide.png" alt="카카오 로그인" style="width: 260px;"></a>
@@ -194,7 +195,8 @@
 	var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "Qz4S3X6x5DF5Xm6y6Cbz",
-				callbackUrl: "http://localhost:8080/home",
+				callbackUrl: "http://localhost:8080/member/loginForm", 
+				//callbackUrl: "http://localhost:8080/home",
 				isPopup: true,
 			}
 		);
@@ -209,6 +211,14 @@
                 setLoginStatus();  //하늘님 메소드 실행 -> Ajax
 		});
     }
+	
+	 if ($("input[name=naver]").val() != null && $("input[name=naver]").val() != "") {
+			naverLogin.getLoginStatus(function (status) {
+				if (status) {
+					setLoginStatus();
+				}
+			});
+		}  	
 	
 	function setLoginStatus() {
 	$.ajax({

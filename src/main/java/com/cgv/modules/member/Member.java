@@ -49,7 +49,7 @@ public class Member extends Base {
 	private String mNameKor;
 	private String mAgeLimit;
 	private Integer src;
-	private String total;
+	private int total;
 	private String aid;
 	private String sessId;
 	private String sessSeq;
@@ -79,10 +79,10 @@ public class Member extends Base {
 	public void setAid(String aid) {
 		this.aid = aid;
 	}
-	public String getTotal() {
+	public int getTotal() {
 		return total;
 	}
-	public void setTotal(String total) {
+	public void setTotal(int total) {
 		this.total = total;
 	}
 	public Integer getStPrice() {

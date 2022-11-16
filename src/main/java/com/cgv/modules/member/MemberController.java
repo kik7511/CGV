@@ -163,7 +163,10 @@ public class MemberController {
 	@RequestMapping(value = "mypageForm")
 	public String mypageForm(Member dto, Model model) throws Exception{
 		List<Member> list = service.myPage(dto);
+		int result = service.myPageCheck(dto);
+		System.out.println("총합은: " + dto.getTotal());
 		model.addAttribute("list", list);
+		model.addAttribute("result", result);
 		return "infra/member/user/mypageForm";
 	}
 	

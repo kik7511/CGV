@@ -125,5 +125,9 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> myPage(Member dto) throws Exception{
 		return dao.myPage(dto);
 	}
+	@Override
+	public int myPageCheck(Member dto) throws Exception{
+		return dao.myPageCheck(dto);
+	}
 	
 }
