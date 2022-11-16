@@ -132,8 +132,13 @@
 							</form>
 							<div align="center">
 								<a class="btn_loginNaver" id="kakaologin" style="margin-left: -120px; cursor: pointer; display: block;"><img src="/resources/images/user/kakao_login_medium_wide.png" alt="카카오 로그인" style="width: 260px;"></a>
-								<a href="javascript:naverLoginClick();" class="btn_loginNaver" style="margin-left: -120px; margin-top : 5px; display: block;"><img src="https://img.cgv.co.kr/image_gt/login/btn_loginNaver.jpg" alt="네이버 로그인"></a>
-							</div>
+								<!-- <a href="" class="btn_loginNaver" style="margin-left: -120px; margin-top : 5px; display: block;"><img src="https://img.cgv.co.kr/image_gt/login/btn_loginNaver.jpg" alt="네이버 로그인"></a> -->
+								<div class="btn_login_wrap">
+									<div id="naverIdLogin">
+										<a id="naverIdLogin_loginButton" href="#" ><img src="https://static.nid.naver.com/oauth/big_g.PNG?version=js-2.0.1" height="39" width="260" style="margin-left: -120px; margin-top : 5px;"></a>
+									</div>
+                             	  </div>
+							</div>	
 							</div>
 				        </div>
    					 </div>    
@@ -197,13 +202,22 @@
 				clientId: "Qz4S3X6x5DF5Xm6y6Cbz",
 				callbackUrl: "http://localhost:8080/member/loginForm", 
 				//callbackUrl: "http://localhost:8080/home",
-				isPopup: true,
+				isPopup: false,
 			}
 		);
 	
 	naverLogin.init();
+	
+	window.addEventListener('load', function () {
+			naverLogin.getLoginStatus(function (status) {
+				if (status) {
+					/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+					setLoginStatus();
+				}
+			});
+		});
 		
-	naverLoginClick = function(){
+	/* naverLoginClick = function(){
 		naverLogin.getLoginStatus(function (status) {
 			
 			if(!status)
@@ -212,13 +226,13 @@
 		});
     }
 	
-	 if ($("input[name=naver]").val() != null && $("input[name=naver]").val() != "") {
+	  if ($("input[name=naver]").val() != null && $("input[name=naver]").val() != "") {
 			naverLogin.getLoginStatus(function (status) {
 				if (status) {
 					setLoginStatus();
 				}
 			});
-		}  	
+		}   */
 	
 	function setLoginStatus() {
 	$.ajax({
