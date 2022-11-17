@@ -238,7 +238,7 @@
 												<div class="lst-item">
 							                       <div class="box-number">
 							                           <em>예매번호</em>
-							                           <strong id="aid_number">${list.aid}</strong>
+							                           <strong class="aid_number">${list.aid}</strong>
 							                           <span>(${list.dDate})</span>
 							                       </div>
 							                       <div class="box-image">
@@ -329,6 +329,7 @@
 		<%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 		<!-- footer_area (s) -->
 		<script>
+		
 		</script>
 <!-- end -->
 </body>

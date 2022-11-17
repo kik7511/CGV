@@ -208,14 +208,35 @@
 	
 	naverLogin.init();
 	
-	window.addEventListener('load', function () {
+	/* window.addEventListener('load', function () {
 			naverLogin.getLoginStatus(function (status) {
 				if (status) {
-					/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+					 (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. 
 					setLoginStatus();
 				}
 			});
-		});
+		}); */
+		
+		$("#naverIdLogin").on("click", function() {
+   			naverLogin.getLoginStatus(function (status) {
+  				if (!status) {
+  					naverLogin.authorize();
+  				} else {
+					setLoginStatus();
+  				}
+  			});
+		})
+   		
+		window.addEventListener('load', function () {
+			if (naverLogin.accessToken != null) { 
+	  			naverLogin.getLoginStatus(function (status) {
+	  				if (status) {
+	  					setLoginStatus();
+	  				}
+  				});
+			}
+   		});
+		
 		
 	/* naverLoginClick = function(){
 		naverLogin.getLoginStatus(function (status) {
