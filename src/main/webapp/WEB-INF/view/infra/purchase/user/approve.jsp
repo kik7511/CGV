@@ -27,6 +27,7 @@
 				<p id="datetiem">결제일시: ${datetime}</p>
 				<p id = "item">상품명: ${item}</p>
 				<p id= "won">결제금액: ${won}원</p>
+				<p id= "won">tid: ${tid}원</p>
 					<input type = "hidden" name="sessId" value="${sessId}" id="sessId">
 					<input type = "hidden" name="sessName" value="${sessName}" id="sessName">
 				<form name="form">

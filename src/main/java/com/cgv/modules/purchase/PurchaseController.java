@@ -201,7 +201,9 @@ public class PurchaseController {
 		conn.setRequestProperty("Authorization", "KakaoAK 99a9ce2310007031e1a3de4d7c2f875f");
 		conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		conn.setDoOutput(true);
+		// OutputStream으로 POST 데이터를 넘겨주겠다는 옵션.
 		conn.setDoInput(true);
+		// InputStream으로 서버로 부터 응답을 받겠다는 옵션.
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("cid", "TC0ONETIME");
         params.put("partner_order_id", "CGV");
@@ -214,39 +216,34 @@ public class PurchaseController {
         params.put("cancel_url", "http://localhost:8080/purchase/selectPayment");
         params.put("fail_url", "http://localhost:8080/purchase/selectPayment");
         
-		/*
-		 * item = name; won = price; stRow = dto.getStRow(); stCol = dto.getStCol(); src
-		 * = dto.getSrc(); ifMmName = dto.getIfMmName(); thName = dto.getThName(); dDate
-		 * = dto.getdDate(); dTime = dto.getdTime(); scNumber = dto.getScNumber();
-		 * scSceenType = dto.getScScreenType(); ifMmId = id;
-		 * 
-		 * System.out.println("item : " + item); System.out.println("stRow : " + stRow);
-		 * System.out.println("stCol" + stCol); System.out.println("src : " + src);
-		 * System.out.println("ifMmName : " + ifMmName); System.out.println("thName : "
-		 * + thName); System.out.println("dDate : " + dDate);
-		 * System.out.println("dTime : " + dTime); System.out.println("scSceenType : " +
-		 * scSceenType);
-		 */
-        
         String string_params = new String();
 		for (Map.Entry<String, String> elem : params.entrySet()) {
 			string_params += (elem.getKey() + "=" + elem.getValue() + "&");
 		}
 		OutputStream give = conn.getOutputStream();
-		DataOutputStream datagiven = new DataOutputStream(give);
-		datagiven.write(string_params.getBytes());
-		datagiven.close(); 
+		// Request Body에 Data를 담기위해 OutputStream 객체를 생성.
 		
+		DataOutputStream datagiven = new DataOutputStream(give);
+		//데이터의 정보를 출력하는 객체
+		
+		datagiven.write(string_params.getBytes());
+		// Request Body에 Data 셋팅.
+		
+		datagiven.close(); 
+		// OutputStream 종료.
 
 		int result = conn.getResponseCode();
+		// 실제 서버로 Request 요청 하는 부분. (응답 코드를 받는다. 200 성공, 나머지 에러)
 		BufferedReader changer;
 		if (result == 200) {
 			changer = new BufferedReader((new InputStreamReader(conn.getInputStream())));
+			//결과 받아서 저장
 		} else {
 			changer = new BufferedReader((new InputStreamReader(conn.getErrorStream())));
 		}
 		
 		return changer.readLine();
+		//결과를 한 줄로 나타냄 - url에 파라미터 저장한 것 나오게 함 
 	}
 
 	@RequestMapping(value = "purchaseInst")
@@ -268,12 +265,13 @@ public class PurchaseController {
 	 @RequestMapping(value = "approve")
 	 public String approve(@ModelAttribute("dto") Purchase dto, Model model, HttpServletRequest request, HttpSession httpSession) throws Exception {
 		    String a = request.getRequestURL().toString() + "?" + request.getQueryString();
+		    System.out.println("리미트는 " + dto.getTid());
 		    System.out.println(a);
 			System.out.println("상품은12 " + tid2); 
 		 	System.out.println("상품은 " + item);
 		 	System.out.println("상품은 " + won);
 		 	model.addAttribute("tokenUrl", a);
-			model.addAttribute("tid", tid2);
+			/* model.addAttribute("tid", tid2); */
 		 	model.addAttribute("item", item);
 		 	model.addAttribute("won", won);
 			model.addAttribute("datetime", datetime);
@@ -330,13 +328,13 @@ public class PurchaseController {
 		return changer.readLine();
 	}
 	 
-	@ResponseBody
 	@RequestMapping(value = "test")
-	public Map<String, Object> test(Purchase dto, @RequestParam("name") String name, @RequestParam("price") String price, @RequestParam("id") String id) throws Exception {
-		Map<String, Object> returnMap = new HashMap<>();
+	@ResponseBody
+	public String test(Purchase dto, @RequestParam("name") String name, @RequestParam("price") String price, @RequestParam("id") String id, RedirectAttributes rttr) {
 		item = name;
         won = price;
         tid2 = dto.getTid();
+        rttr.addFlashAttribute("tid", tid2);
         datetime = dto.getCreated_at();
         stRow = dto.getStRow();
         stCol = dto.getStCol();
@@ -361,9 +359,9 @@ public class PurchaseController {
         System.out.println("dTime : " + dTime);
         System.out.println("scScreenType : " + scScreenType);
         System.out.println("mAgeLimit : " + mAgeLimit);
-		returnMap.put("rt", "success");
 		
-		return returnMap;
+		return "redirect:/purchase/approve";
+
 	}
 	 
 }
