@@ -434,6 +434,9 @@
 				var box = data.next_redirect_pc_url;
 				var tid = data.tid;
 				var created_at = data.created_at;	
+			    $("input[name=tid]").val(data.tid);
+			    $("input[name=created_at]").val(data.created_at);
+			    $("input[name=pc_url]").val(box);
 			    $.ajax({
 					dataType:"json" 	
 					,url: "/purchase/test"
@@ -446,8 +449,8 @@
 						date : date,
 						time : time,
 						id : id,
-						"tid": tid,
-			    		"created_at" : created_at,
+						"tid": $("input[name=tid]").val(),
+			    		"created_at" : $("input[name=created_at]").val(),
 			    		"stRow" : $("input[name=stRow]").val(),
 			    		"stCol" : $("input[name=stCol]").val(),
 						"ifMmName" : $("input[name=ifMmName]").val(),
@@ -459,8 +462,17 @@
 						"scScreenType" : $("input[name=scScreenType]").val(),
 						"mAgeLimit" : $("input[name=mAgeLimit]").val()
 			    		}
+					,success: function(response) {
+						if (response.rt == "success") {
+						    window.location.href = box; 
+						} else {
+							alert("실패");
+						}					    
+					} ,
+					error:function(error){
+						alert(error);
+					}
 				});
-			    window.location.href = box; 
 			} ,
 			error:function(error){
 				alert(error);

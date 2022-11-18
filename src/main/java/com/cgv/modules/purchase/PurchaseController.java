@@ -243,7 +243,7 @@ public class PurchaseController {
 		}
 		
 		return changer.readLine();
-		//결과를 한 줄로 나타냄 - url에 파라미터 저장한 것 나오게 함 
+		//결과를 한 줄로 나타냄 - url
 	}
 
 	@RequestMapping(value = "purchaseInst")
@@ -265,13 +265,12 @@ public class PurchaseController {
 	 @RequestMapping(value = "approve")
 	 public String approve(@ModelAttribute("dto") Purchase dto, Model model, HttpServletRequest request, HttpSession httpSession) throws Exception {
 		    String a = request.getRequestURL().toString() + "?" + request.getQueryString();
-		    System.out.println("리미트는 " + dto.getTid());
 		    System.out.println(a);
 			System.out.println("상품은12 " + tid2); 
 		 	System.out.println("상품은 " + item);
 		 	System.out.println("상품은 " + won);
 		 	model.addAttribute("tokenUrl", a);
-			/* model.addAttribute("tid", tid2); */
+			model.addAttribute("tid", tid2);
 		 	model.addAttribute("item", item);
 		 	model.addAttribute("won", won);
 			model.addAttribute("datetime", datetime);
@@ -328,13 +327,13 @@ public class PurchaseController {
 		return changer.readLine();
 	}
 	 
-	@RequestMapping(value = "test")
 	@ResponseBody
-	public String test(Purchase dto, @RequestParam("name") String name, @RequestParam("price") String price, @RequestParam("id") String id, RedirectAttributes rttr) {
+	@RequestMapping(value = "test")
+	public Map<String, Object> test(Purchase dto, @RequestParam("name") String name, @RequestParam("price") String price, @RequestParam("id") String id) throws Exception {
+		Map<String, Object> returnMap = new HashMap<>();
 		item = name;
         won = price;
         tid2 = dto.getTid();
-        rttr.addFlashAttribute("tid", tid2);
         datetime = dto.getCreated_at();
         stRow = dto.getStRow();
         stCol = dto.getStCol();
@@ -359,9 +358,9 @@ public class PurchaseController {
         System.out.println("dTime : " + dTime);
         System.out.println("scScreenType : " + scScreenType);
         System.out.println("mAgeLimit : " + mAgeLimit);
+		returnMap.put("rt", "success");
 		
-		return "redirect:/purchase/approve";
-
+		return returnMap;
 	}
 	 
 }
