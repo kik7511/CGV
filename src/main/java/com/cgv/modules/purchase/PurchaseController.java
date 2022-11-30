@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cgv.modules.movie.Movie;
@@ -29,9 +30,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping(value = "/purchase/")
+@SessionAttributes({"dto", "tid"}) //dto, tid 를 세션에 올림
 public class PurchaseController {
 	@Autowired
 	PurchaseServiceImpl service;
+	
+	@ModelAttribute("dto")
+	public Purchase setEmptyPurchase() {  //빈 dto를 만들어줘야 세션 오류 안남
+		return new Purchase();
+	}
 	
 	/*
 	 * public static String item = ""; public static String won = ""; public static
@@ -371,24 +378,25 @@ public class PurchaseController {
 			}
 			
 			dto.setmNameKor(map.get("item_name").toString());
-			dto.setTdttSeq(map.get("item_code").toString());
-			dto.setTdbkTotalCost(amount.get("total").toString());
-			dto.setIfmmSeq((String)httpSession.getAttribute("sessSeq"));
+			dto.setPtSeq(map.get("item_code").toString());
+			dto.setStPrice(amount.get("total").toString());
+			dto.setIfMmSeq((String)httpSession.getAttribute("sessSeq"));
 			
 			Purchase purchase = (Purchase) httpSession.getAttribute("dto");
 			
-			dto.setTdbkSeq(dto.getTdbkSeq());
+			dto.setPtSeq(dto.getPtSeq());
 			service.purchase(dto);
 			
-			for(int i = 0; i < booking.getTdbsSeatNums().length; i++) {
-				dto.setTdbsSeatNum(booking.getTdbsSeatNums()[i]);
-				service.insertBookingSeat(dto);
-			}
+			/*
+			 * for(int i = 0; i < booking.getTdbsSeatNums().length; i++) {
+			 * dto.setTdbsSeatNum(booking.getTdbsSeatNums()[i]);
+			 * service.insertBookingSeat(dto); }
+			 */
 			
-			Booking result = service.selectListAfterPay(dto);
-			model.addAttribute("result", result);
+			/* Purchase list = service.selectListAfterPay(dto); */
+			/* model.addAttribute("list", list); */
 				
-			return "infra/booking/user/bookingResult";
+			return "infra/purchase/user/afterTicketingView";
 		}
 		
 		// 결제 취소시 실행 url

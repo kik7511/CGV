@@ -237,7 +237,8 @@
 						</form>
 						<!-- btn-right -->
 						<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
-						<a class="btn-right on" id="tnb_step_btn_right"title="결제하기" href="javascript:kakao('${dto.mNameKor}', '${dto.stPrice}', ${dto.stRow}, ${dto.stCol}, '${dto.thName}', '${dto.dDate}', '${dto.dTime}', '${sessId}')">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a>
+						<%-- <a class="btn-right on" id="tnb_step_btn_right"title="결제하기" href="javascript:kakao('${dto.mNameKor}', '${dto.stPrice}', ${dto.stRow}, ${dto.stCol}, '${dto.thName}', '${dto.dDate}', '${dto.dTime}', '${sessId}')">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a> --%>
+						<a class="btn-right on" id="tnb_step_btn_right"title="결제하기" href="javascript:kakao()"></a>
 						<!-- <a class="btn-right on" id="tnb_step_btn_right"title="결제하기" href="javascript:kakao()">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a> -->
 					</div>
 				</div>
@@ -523,16 +524,6 @@
 		});
 	}; */
 	
-	var goUrlResult = "/booking/bookingResult";
-	var form = $("form[name=formVo]");
-	var tid = $("input:hidden[name=tid]").val();
-	
-	startPay = function(){
-		form.attr("action", goUrlResult).submit();
-	}
-	$("#pagePrevious").on("click", function(){
-		form.attr("action", goUrlSeat).submit();
-	});
 	
 	kakao = function(){
 		
@@ -542,12 +533,10 @@
 			,method: "post"
 			,url: "/purhcase/kakaopayReady"
 			,data: {
-					form : $("#formVo").serialize()
-					
+				formVo : $("#formVo").serialize()
 			}
 			,success: function(response){
 				location.href= response.next_redirect_pc_url
-				
 			}
 			,error : function(){
 				alert("ajax error..");

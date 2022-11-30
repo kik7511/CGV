@@ -101,7 +101,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 			params.add("partner_user_id", dto.getIfMmId());
 			params.add("item_name",	dto.getmNameKor());
 			params.add("quantity", "1");
-			params.add("total_amount", price);
+			params.add("total_amount", dto.getStPrice());
 			params.add("tax_free_amount", "0");
 			params.add("approval_url", "http://localhost:8080/purchase/kakaopayApproval");
 			params.add("cancel_url", "http://localhost:8080/purchase/kakaopayCancel");

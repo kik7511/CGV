@@ -23,7 +23,7 @@ public class Purchase {
 	private Integer stRow;
 	private Integer stCol;
 	private Integer stUseNy;
-	private Integer stPrice;
+	private String stPrice;
 	private String totalPrice;
 	private String thisTime;
 	private String thisDate;
@@ -135,11 +135,11 @@ public class Purchase {
 	public void setStUseNy(Integer stUseNy) {
 		this.stUseNy = stUseNy;
 	}
-	public Integer getStPrice() {
+	public String getStPrice() {
 		return stPrice;
 	}
-	public void setStPrice(Integer stPrice) {
-		this.stPrice = stPrice;
+	public void setStPrice(String string) {
+		this.stPrice = string;
 	}
 	public String getdTime() {
 		return dTime;
