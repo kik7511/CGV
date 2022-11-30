@@ -614,6 +614,7 @@
 					<input type="hidden" name="scCol" value="">
 					<input type="hidden" name="stSeq" value="">
 				</form>
+				<form name=form2 id="form2"></form>
 				<div class="banner" id="ticket_bottom_banner" style="padding-top: 0px;">
 					<img src="/resources/images/user/0803_996x140.jpg" alt="由щ명"  style="width:996px;height:140px">
 				</div>
@@ -640,6 +641,18 @@
 	</div>
 <!-- end -->
 	<script>
+		$(document).ready(function() {
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				,dataType:"json" 	
+				,url: "/purchase/dateUpdate"
+				,success: function(response) {
+					}
+				})
+	    });
+	
 		function selectTheater(seq){
 			$.ajax({
 				async: true 

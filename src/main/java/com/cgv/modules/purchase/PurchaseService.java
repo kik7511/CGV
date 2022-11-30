@@ -14,4 +14,5 @@ public interface PurchaseService {
 	public int selectpurchaseUp(Purchase dto) throws Exception;
 	public int purchase(Purchase dto) throws Exception;
 	public int update(Purchase dto) throws Exception;
+	public int dateUpdate(Purchase dto) throws Exception;
 }

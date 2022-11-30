@@ -1,4 +1,4 @@
-package com.cgv.modules.codegroup;
+	package com.cgv.modules.codegroup;
 
 import java.util.List;
 
@@ -10,7 +10,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CodeGroupDao {
-
+	
+	@Inject
+	@Resource(name = "sqlSessionOracle")
+	private SqlSession sqlSessionOracle;
+	
 	@Inject
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
@@ -68,5 +72,7 @@ public class CodeGroupDao {
 		System.out.println("dao result: " +  result);
 		return result;
 	}
+	
+	
 	
 }

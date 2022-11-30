@@ -72,4 +72,9 @@ public class PurchaseDao {
 		int result = sqlSession.update(namespace+ ".update", dto);
 		return result;
 	}
+	
+	public int dateUpdate(Purchase dto) {
+		int result = sqlSession.update(namespace+ ".dateUpdate", dto);
+		return result;
+	}
 }

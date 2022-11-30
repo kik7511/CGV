@@ -244,5 +244,11 @@
 			AND stCol = #{stCol}
 	</update>
 	
+	<update id="dateUpdate">
+	UPDATE date
+	SET
+		dDate = curdate()
+	</update>
+	
 	
 </mapper>	

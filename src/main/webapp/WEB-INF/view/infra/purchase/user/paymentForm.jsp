@@ -232,6 +232,7 @@
 							<input type="hidden" name="ifMmName" value="${sessName}" id="ifMmName">
 							<input type="hidden" name="ifMmId" value="${sessId}" id="ifMmId">
 							<input type="hidden" name="tid" value="" id="tid">
+							<input type="hidden" name="pc_url" value="" id="pc_url">
 							<input type="hidden" name="created_at" value="" id="created_at">
 						</form>
 						<!-- btn-right -->
@@ -522,6 +523,37 @@
 		});
 	}; */
 	
+	var goUrlResult = "/booking/bookingResult";
+	var form = $("form[name=formVo]");
+	var tid = $("input:hidden[name=tid]").val();
+	
+	startPay = function(){
+		form.attr("action", goUrlResult).submit();
+	}
+	$("#pagePrevious").on("click", function(){
+		form.attr("action", goUrlSeat).submit();
+	});
+	
+	kakao = function(){
+		
+		$.ajax({
+			async: true
+			,cach: false
+			,method: "post"
+			,url: "/purhcase/kakaopayReady"
+			,data: {
+					form : $("#formVo").serialize()
+					
+			}
+			,success: function(response){
+				location.href= response.next_redirect_pc_url
+				
+			}
+			,error : function(){
+				alert("ajax error..");
+			}
+		});
+	}
 	
 </script>
 </body>
