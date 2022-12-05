@@ -30,12 +30,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping(value = "/purchase/")
-@SessionAttributes({"dto", "tid"}) //dto, tid 를 세션에 올림
+@SessionAttributes({"dtoBk", "tid"}) //dto, tid 를 세션에 올림
 public class PurchaseController {
 	@Autowired
 	PurchaseServiceImpl service;
 	
-	@ModelAttribute("dto")
+	@ModelAttribute("dtoBk")
 	public Purchase setEmptyPurchase() {  //빈 dto를 만들어줘야 세션 오류 안남
 		return new Purchase();
 	}
@@ -206,19 +206,11 @@ public class PurchaseController {
 	}
 
 	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "kakaopay") public String
-	 * kakaopay(@ModelAttribute("dto") Purchase dto, Model
-	 * model, @RequestParam("name") String name, @RequestParam("price") String
-	 * price, @RequestParam("row") String row, @RequestParam("col") String
-	 * col, @RequestParam("location") String location, @RequestParam("date") String
-	 * date, @RequestParam("time") String time, @RequestParam("id") String id)
-	 * throws Exception {
-	 * 
-	 * URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
-	 * HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	 * conn.setRequestMethod("POST"); conn.setRequestProperty("Authorization",
+	 @ResponseBody
+	 @RequestMapping(value = "kakaopay") public String kakaopay(@ModelAttribute("dto") Purchase dto, Model model, @RequestParam("name") String name, @RequestParam("price") String price, @RequestParam("row") String row, @RequestParam("col") String col, @RequestParam("location") String location, @RequestParam("date") String date, @RequestParam("time") String time, @RequestParam("id") String id) throws Exception {
+		 URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
+		 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	 conn.setRequestMethod("POST"); conn.setRequestProperty("Authorization",
 	 * "KakaoAK 99a9ce2310007031e1a3de4d7c2f875f");
 	 * conn.setRequestProperty("Content-type",
 	 * "application/x-www-form-urlencoded;charset=utf-8"); conn.setDoOutput(true);
@@ -346,23 +338,23 @@ public class PurchaseController {
 	//카카오페이
 		@ResponseBody
 		@RequestMapping(value="kakaopayReady")
-		public KakaopayReady payReady (@ModelAttribute("dto") Purchase dto, Model model) throws Exception {
+		public Purchase payReady (@ModelAttribute("dtoBk") Purchase dto, Model model) throws Exception {
 			 
-			KakaopayReady kakaopayReady = service.payReady(dto);
-			model.addAttribute("tid", kakaopayReady.getTid());
-			System.out.println("tid??" + kakaopayReady.getTid());
+			Purchase Purchase = service.payReady(dto);
+			model.addAttribute("tid", Purchase.getTid());
+			System.out.println("tid??" + Purchase.getTid());
 			
-			return kakaopayReady;
+			return Purchase;
 		}
 		
 		@RequestMapping(value="kakaopayApproval")
 		public String payCompleted(@RequestParam("pg_token") String pgToken, @ModelAttribute("tid") String tid,  @ModelAttribute("dto") Purchase dto,  Model model, HttpSession httpSession,  Movie dto1) throws Exception {
 			
 			// 카카오 결제 요청하기
-			KakaopayApproval kakaoayApproval = service.payApprove(tid, pgToken, dto);
+			Purchase Purchase = service.payApprove(tid, pgToken, dto);
 			
 			ObjectMapper objectMapper = new ObjectMapper();
-			Map<String, Object> map = objectMapper.convertValue(kakaoayApproval, Map.class);
+			Map<String, Object> map = objectMapper.convertValue(Purchase, Map.class);
 			
 			for(String key : map.keySet()) {
 				String value = String.valueOf(map.get(key));

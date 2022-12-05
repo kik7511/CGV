@@ -90,7 +90,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		}
 		
 		//결제준비
-		public KakaopayReady payReady(Purchase dto) throws Exception {
+		public Purchase payReady(Purchase dto) throws Exception {
 			
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 			
@@ -112,13 +112,13 @@ public class PurchaseServiceImpl implements PurchaseService {
 			RestTemplate template = new RestTemplate();
 			String url = "https://kapi.kakao.com/v1/payment/ready";
 	        // template으로 값을 보내고 받아온 ReadyResponse값 readyResponse에 저장.
-			KakaopayReady KakaopayReady = template.postForObject(url, body, KakaopayReady.class);
+			Purchase Purchase = template.postForObject(url, body, Purchase.class);
 			
-			return KakaopayReady;
+			return Purchase;
 		}
 		
 		//결제승인
-		public KakaopayApproval payApprove(String tid, String pgToken, Purchase dto) throws Exception  {
+		public Purchase payApprove(String tid, String pgToken, Purchase dto) throws Exception  {
 			
 			// request값 담기.
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
@@ -135,12 +135,12 @@ public class PurchaseServiceImpl implements PurchaseService {
 			RestTemplate template = new RestTemplate();
 			String url = "https://kapi.kakao.com/v1/payment/approve";
 	        // 보낼 외부 url, 요청 메시지(header,parameter), 처리후 값을 받아올 클래스. 
-			KakaopayApproval KakaoPayApproval = template.postForObject(url, requestEntity, KakaopayApproval.class);
+			Purchase Purchase = template.postForObject(url, requestEntity, Purchase.class);
 			System.out.println("카카오페이 서비스임플");
-			System.out.println(KakaoPayApproval.getAmount());
-			System.out.println(KakaoPayApproval.getPg_token());
+			System.out.println(Purchase.getAmount());
+			System.out.println(Purchase.getPg_token());
 			
-			return KakaoPayApproval;
+			return Purchase;
 
 			}
 
