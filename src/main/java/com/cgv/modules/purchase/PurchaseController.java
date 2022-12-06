@@ -1,16 +1,9 @@
 package com.cgv.modules.purchase;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping(value = "/purchase/")
-@SessionAttributes({"dtoBk", "tid"}) //dto, tid 를 세션에 올림
+@SessionAttributes({"dtoBk"}) 
 public class PurchaseController {
 	@Autowired
 	PurchaseServiceImpl service;
@@ -39,7 +32,8 @@ public class PurchaseController {
 	public Purchase setEmptyPurchase() {  //빈 dto를 만들어줘야 세션 오류 안남
 		return new Purchase();
 	}
-	
+	public static String tip;
+	Map<String, Object> result = new HashMap<String, Object>();
 	/*
 	 * public static String item = ""; public static String won = ""; public static
 	 * Integer stRow; public static Integer stCol; public static Integer src; public
@@ -338,20 +332,34 @@ public class PurchaseController {
 	//카카오페이
 		@ResponseBody
 		@RequestMapping(value="kakaopayReady")
-		public Purchase payReady (@ModelAttribute("dtoBk") Purchase dto, Model model) throws Exception {
-			 
+		public Purchase payReady (@ModelAttribute("dto") Purchase dto, Model model, HttpSession session) throws Exception {
+			System.out.println("사진은 : " + dto.getSrc()); 
+			result.put("ifMmId", dto.getIfMmId());
+			result.put("ifMmName", dto.getIfMmName());
+			result.put("thName", dto.getThName());
+			result.put("dDate", dto.getdDate());
+			result.put("dTime", dto.getdTime());
+			result.put("mAgeLimit", dto.getmAgeLimit());
+			result.put("scScreenType", dto.getScScreenType());
+			result.put("stRow", dto.getStRow());
+			result.put("stCol", dto.getStCol());
+			System.out.println(result);
 			Purchase Purchase = service.payReady(dto);
-			model.addAttribute("tid", Purchase.getTid());
 			System.out.println("tid??" + Purchase.getTid());
+			model.addAttribute("tid", Purchase.getTid());
+			session.setAttribute("tid", Purchase.getTid());
+			System.out.println("session 값은 : " + session.getAttribute("tid"));
+			tip = Purchase.getTid();
+			System.out.println("tip 값은 : " + tip);
 			
 			return Purchase;
 		}
 		
 		@RequestMapping(value="kakaopayApproval")
-		public String payCompleted(@RequestParam("pg_token") String pgToken, @ModelAttribute("tid") String tid,  @ModelAttribute("dto") Purchase dto,  Model model, HttpSession httpSession,  Movie dto1) throws Exception {
-			
+		public String payCompleted(@RequestParam("pg_token") String pgToken, @ModelAttribute("tid") String tid,  @ModelAttribute("dto") Purchase dto,  Model model, HttpSession httpSession,  Movie dto1, RedirectAttributes redirectAttributes) throws Exception {
+			System.out.println("컨트롤러 tid = " + tip);
 			// 카카오 결제 요청하기
-			Purchase Purchase = service.payApprove(tid, pgToken, dto);
+			Purchase Purchase = service.payApprove(tip, pgToken, dto);
 			
 			ObjectMapper objectMapper = new ObjectMapper();
 			Map<String, Object> map = objectMapper.convertValue(Purchase, Map.class);
@@ -369,8 +377,14 @@ public class PurchaseController {
 				System.out.println("[key]: " + key + ", [value]: " + value);
 			}
 			
+			for (String key : result.keySet()) {
+				String value = String.valueOf(result.get(key));
+				System.out.println("[key]: " + key + ", [value]: " + value);
+			}
+			
+			dto.setAid(map.get("item_name").toString());
+			dto.setmAgeLimit(result.get("mAgeLimit").toString());
 			dto.setmNameKor(map.get("item_name").toString());
-			dto.setPtSeq(map.get("item_code").toString());
 			dto.setStPrice(amount.get("total").toString());
 			dto.setIfMmSeq((String)httpSession.getAttribute("sessSeq"));
 			
@@ -378,17 +392,17 @@ public class PurchaseController {
 			
 			dto.setPtSeq(dto.getPtSeq());
 			service.purchase(dto);
-			
+			redirectAttributes.addFlashAttribute("dto", dto);
 			/*
-			 * for(int i = 0; i < booking.getTdbsSeatNums().length; i++) {
-			 * dto.setTdbsSeatNum(booking.getTdbsSeatNums()[i]);
-			 * service.insertBookingSeat(dto); }
+			 for(int i = 0; i < booking.getTdbsSeatNums().length; i++) {
+			 dto.setTdbsSeatNum(booking.getTdbsSeatNums()[i]);
+			  service.insertBookingSeat(dto); }
 			 */
 			
 			/* Purchase list = service.selectListAfterPay(dto); */
 			/* model.addAttribute("list", list); */
 				
-			return "infra/purchase/user/afterTicketingView";
+			return "redirect:/purchase/afterTicketingView";
 		}
 		
 		// 결제 취소시 실행 url
@@ -398,7 +412,7 @@ public class PurchaseController {
 		}
 	    
 		// 결제 실패시 실행 url    	
-		@GetMapping("/kakaopayFail")
+		@GetMapping("kakaopayFail")
 		public String payFail() {
 			return "redirect:/purchase/ticketingForm"; 
 		}

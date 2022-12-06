@@ -231,9 +231,6 @@
 							<input type="hidden" name="ifMmSeq" value="${sessSeq}" id="ifMmSeq">
 							<input type="hidden" name="ifMmName" value="${sessName}" id="ifMmName">
 							<input type="hidden" name="ifMmId" value="${sessId}" id="ifMmId">
-							<input type="hidden" name="tid" value="" id="tid">
-							<input type="hidden" name="pc_url" value="" id="pc_url">
-							<input type="hidden" name="created_at" value="" id="created_at">
 						</form>
 						<!-- btn-right -->
 						<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
@@ -364,8 +361,6 @@
 <script>
 	var formVo = $("form[name=formVo]");
 	var goPurchase = "/purchase/ticketingForm";				/* #-> */
-	var goAfter = "/purchase/approve";
-	var goPay = "/purchase/kakaopay"
 	$("#backTo").on("click", function(){
 		formVo.attr("action", goPurchase).submit();
 	});
@@ -526,17 +521,31 @@
 	
 	
 	kakao = function(){
-		
+		var id = $('input:hidden[name=ifMmId]').val();
+		var movie = $('input:hidden[name=mNameKor]').val();
+		var price = $('input:hidden[name=stPrice]').val();
+		console.log(id);
+		console.log(movie);
+		console.log(price);
 		$.ajax({
-			async: true
-			,cach: false
-			,method: "post"
-			,url: "/purhcase/kakaopayReady"
+			dataType : 'json'
+			,type: "post"
+			,url: "/purchase/kakaopayReady"
 			,data: {
-				formVo : $("#formVo").serialize()
+				"ifMmId" : id,
+				"ifMmName" : $('input:hidden[name=ifMmName]').val(),
+				"mNameKor" : movie,
+				"stPrice" : price,
+				"thName" : $('input:hidden[name=thName]').val(),
+				"dDate" : $('input:hidden[name=dDate]').val(),
+				"dTime" : $('input:hidden[name=dTime]').val(),
+				"mAgeLimit" : $('input:hidden[name=mAgeLimit]').val(),
+				"scScreenType" : $('input:hidden[name=scScreenType]').val(),
+				"stRow" : $('input:hidden[name=stRow]').val(),
+				"stCol" : $('input:hidden[name=stCol]').val()
 			}
 			,success: function(response){
-				location.href= response.next_redirect_pc_url
+				window.location.href= response.next_redirect_pc_url
 			}
 			,error : function(){
 				alert("ajax error..");

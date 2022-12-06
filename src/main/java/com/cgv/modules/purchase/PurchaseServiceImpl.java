@@ -15,6 +15,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	
 	@Autowired
 	PurchaseDao dao;
+	private String user_id;
 	
 	@Override
 	public List<Purchase> selectMovie(PurchaseVo vo) throws Exception{
@@ -91,11 +92,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 		
 		//결제준비
 		public Purchase payReady(Purchase dto) throws Exception {
-			
+			user_id = dto.getIfMmId();
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-			
-			String price = dto.getStPrice().toString();
-			
+			System.out.println("ready 아이디는 : " + dto.getIfMmId());
 			params.add("cid", "TC0ONETIME");
 			params.add("partner_order_id", "CGV");
 			params.add("partner_user_id", dto.getIfMmId());
@@ -113,19 +112,19 @@ public class PurchaseServiceImpl implements PurchaseService {
 			String url = "https://kapi.kakao.com/v1/payment/ready";
 	        // template으로 값을 보내고 받아온 ReadyResponse값 readyResponse에 저장.
 			Purchase Purchase = template.postForObject(url, body, Purchase.class);
-			
 			return Purchase;
 		}
 		
 		//결제승인
 		public Purchase payApprove(String tid, String pgToken, Purchase dto) throws Exception  {
-			
 			// request값 담기.
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+			System.out.println("approve 아이디는 : " + user_id);
+			System.out.println("tid 값은 : " + tid);
 			params.add("cid", "TC0ONETIME");
 			params.add("tid", tid);
 			params.add("partner_order_id", "CGV"); // 주문명
-			params.add("partner_user_id", dto.getIfMmId());
+			params.add("partner_user_id", user_id);
 			params.add("pg_token", pgToken);
 			
 	        // 하나의 map안에 header와 parameter값을 담아줌.
