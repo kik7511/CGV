@@ -39,6 +39,7 @@
 	<link rel="shortcut icon" href="/resources/images/user/favicon.ico" type="image/x-icon">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script src="/resources/js/validation.js"></script>
 </head>
 <body>
 
@@ -90,6 +91,7 @@
 														<input type="password" placeholder="비밀번호를 입력하시오" autocomplete="off" style="margin-left: -560px; width: 180px; position: relative;" name="ifMmPasswordRe" id="ifMmPassWordRe">
 														<div id="alert-success" style="display: none; color: #04B45F; margin-left: -5px; font-weight: bold; position: relative; text-align: left;">비밀번호가 일치합니다.</div>
     													<div id="alert-danger" style="display: none; color: #d92742; margin-left: -5px; font-weight: bold; position: relative; text-align: left;">비밀번호가 일치하지 않습니다.</div>
+    													<div id="alert-danger" class="noneimpact" style="display: none; color: #d92742; margin-left: -5px; font-weight: bold; position: relative; text-align: left;">비밀번호가 일치하지 않습니다.</div>
 													</td>
 												</tr>
 												<tr>
@@ -132,9 +134,9 @@
 													<td>
 														<div style="text-align: left; padding-top: 5px;">
 															<input type="hidden" id="ifMmPrivate" name="ifMmPrivate" value="0">
-															<input type="checkbox" id="checkinfoY">
+															<input type="radio" id="checkinfoY" name="YN">
 															<label for="checkinfoY">동의</label>
-															<input type="checkbox" id="checkinfoN">
+															<input type="radio" id="checkinfoN" name="YN">
 															<label for="checkinfoN">미동의</label>
 														</div>
 													</td>
@@ -144,9 +146,9 @@
 													<td>
 														<div style="text-align: left; padding-top: 14px;">
 															<input type="hidden" id="ifMmMarketing" name="ifMmMarketing" value="0">
-															<input type="checkbox" id="checkmarketingY">
+															<input type="radio" id="checkmarketingY" name="YorN">
 															<label for="checkinfoY">동의</label>
-															<input type="checkbox" id="checkmarketingN">
+															<input type="radio" id="checkmarketingN" name="YorN">
 															<label for="checkinfoN">미동의</label>
 														</div>
 													</td>
@@ -187,7 +189,9 @@
 		            }else{
 		            	return true;
 		            } 
-				}; 
+				};
+			var num_check1 = $('input[name="YN"]:checked').length;
+			var num_check2 = $('input[name="YorN"]:checked').length;
 				
 				var goUrlInst = "/member/signupInst"; 			/* #-> */
 				
@@ -195,6 +199,9 @@
 				var form = $("form[name=form]");
 				
 				$("#btn_submit").on("click", function(){
+					if(validationUpdt() == false) return false;
+					alert(num_check1);
+					alert(num_check2);
 		 			setCheckboxValue($("#checkinfoY"), $("#ifMmPrivate"));
 					setCheckboxValue($("#checkmarketingY"), $("#ifMmMarketing"));
 			   		form.attr("action", goUrlInst).submit();
