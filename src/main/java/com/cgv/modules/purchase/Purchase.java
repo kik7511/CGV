@@ -31,7 +31,14 @@ public class Purchase {
 	private String ifMmName;
 	private String ifMmId;
 	private String ptSeq;
+	private String sessId;
 	
+	public String getSessId() {
+		return sessId;
+	}
+	public void setSessId(String sessId) {
+		this.sessId = sessId;
+	}
 	//response
 	public String tid;
 	public String next_redirect_pc_url;

@@ -248,7 +248,7 @@ public class PurchaseController {
 	}
 
 	@RequestMapping(value = "afterTicketingView")
-	public String afterTicketingView(@ModelAttribute("dto")Purchase dto) throws Exception {
+	public String afterTicketingView(@ModelAttribute("dto")Purchase dto, HttpSession session) throws Exception {
 		System.out.println(dto.getmNameKor());
 		System.out.println(dto.getAid());
 		return "infra/purchase/user/afterTicketingView";
@@ -343,6 +343,9 @@ public class PurchaseController {
 			result.put("scScreenType", dto.getScScreenType());
 			result.put("stRow", dto.getStRow());
 			result.put("stCol", dto.getStCol());
+			result.put("src", dto.getSrc());
+			result.put("scNumber", dto.getScNumber());
+			result.put("sessId", dto.getSessId());
 			System.out.println(result);
 			Purchase Purchase = service.payReady(dto);
 			System.out.println("tid??" + Purchase.getTid());
@@ -351,6 +354,7 @@ public class PurchaseController {
 			System.out.println("session 값은 : " + session.getAttribute("tid"));
 			tip = Purchase.getTid();
 			System.out.println("tip 값은 : " + tip);
+			System.out.println("아이디값은 " + session.getAttribute("sessId"));
 			
 			return Purchase;
 		}
@@ -358,6 +362,7 @@ public class PurchaseController {
 		@RequestMapping(value="kakaopayApproval")
 		public String payCompleted(@RequestParam("pg_token") String pgToken, @ModelAttribute("tid") String tid,  @ModelAttribute("dto") Purchase dto,  Model model, HttpSession httpSession,  Movie dto1, RedirectAttributes redirectAttributes) throws Exception {
 			System.out.println("컨트롤러 tid = " + tip);
+			System.out.println("아이디값은 " + httpSession.getAttribute("sessId"));
 			// 카카오 결제 요청하기
 			Purchase Purchase = service.payApprove(tip, pgToken, dto);
 			
@@ -381,9 +386,19 @@ public class PurchaseController {
 				String value = String.valueOf(result.get(key));
 				System.out.println("[key]: " + key + ", [value]: " + value);
 			}
-			
-			dto.setAid(map.get("item_name").toString());
+			dto.setAid(map.get("aid").toString());
 			dto.setmAgeLimit(result.get("mAgeLimit").toString());
+			dto.setIfMmId(result.get("ifMmId").toString());
+			dto.setSessId(result.get("sessId").toString());
+			dto.setIfMmName(result.get("ifMmName").toString());
+			dto.setThName(result.get("thName").toString());
+			dto.setdDate(result.get("dDate").toString());
+			dto.setdTime(result.get("dTime").toString());
+			dto.setScScreenType((Integer) result.get("scScreenType"));
+			dto.setStRow((Integer)result.get("stRow"));
+			dto.setStCol((Integer)result.get("stCol"));
+			dto.setSrc((Integer)result.get("src"));
+			dto.setScNumber((Integer)result.get("scNumber"));
 			dto.setmNameKor(map.get("item_name").toString());
 			dto.setStPrice(amount.get("total").toString());
 			dto.setIfMmSeq((String)httpSession.getAttribute("sessSeq"));
@@ -393,7 +408,7 @@ public class PurchaseController {
 			dto.setPtSeq(dto.getPtSeq());
 			service.purchase(dto);
 			redirectAttributes.addFlashAttribute("dto", dto);
-			/*
+			/* 
 			 for(int i = 0; i < booking.getTdbsSeatNums().length; i++) {
 			 dto.setTdbsSeatNum(booking.getTdbsSeatNums()[i]);
 			  service.insertBookingSeat(dto); }

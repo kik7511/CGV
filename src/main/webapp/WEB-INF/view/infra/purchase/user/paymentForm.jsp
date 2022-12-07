@@ -231,6 +231,7 @@
 							<input type="hidden" name="ifMmSeq" value="${sessSeq}" id="ifMmSeq">
 							<input type="hidden" name="ifMmName" value="${sessName}" id="ifMmName">
 							<input type="hidden" name="ifMmId" value="${sessId}" id="ifMmId">
+							<input type="hidden" name="sessId" value="${sessId}">
 						</form>
 						<!-- btn-right -->
 						<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
@@ -541,7 +542,10 @@
 				"dTime" : $('input:hidden[name=dTime]').val(),
 				"mAgeLimit" : $('input:hidden[name=mAgeLimit]').val(),
 				"scScreenType" : $('input:hidden[name=scScreenType]').val(),
+				"scNumber" : $('input:hidden[name=scNumber]').val(),
 				"stRow" : $('input:hidden[name=stRow]').val(),
+				"src" : $('input:hidden[name=src]').val(),
+				"sessId" : $('input:hidden[name=sessId]').val(),
 				"stCol" : $('input:hidden[name=stCol]').val()
 			}
 			,success: function(response){
