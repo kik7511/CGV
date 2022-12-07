@@ -74,7 +74,8 @@
 		                        <tbody>
 		                            <tr class="ticket_no">
 		                                <th scope="row">예매번호</th> 
-		                                <td><span class="red">${dto.aid}</span></td>
+		                                <td><span class="red" id="aid_number"></span></td>
+		                                <input type="hidden" name = "aid" value="${dto.aid}">
 		                            </tr>
 		                            <tr class="movie_name">
 		                                <th scope="row">영화</th>
@@ -98,11 +99,14 @@
 		                            </tr>
 		                            <tr class="seat">
 		                                <th scope="row">좌석</th>
-		                                <td><em>${dto.stRow}${dto.stCol}</em></td>
+		                                <td><em id = "seat_number"></em></td>
+		                                <input type="hidden" name = "stRow" value="${dto.stRow}">
+		                                <input type="hidden" name = "stCol" value="${dto.stCol}">
 		                            </tr>
 		                            <tr class="payment_price">
 		                                <th scope="row">결제금액</th>
-		                                <td><span class="price">${dto.stPrice}</span> 원</td>
+		                                <td><span class="price" id="price_number">${dto.stPrice}</span> 원</td>
+		                                <input type="hidden" name = "stPrice" value="${dto.stPrice}">
 		                            </tr>
 		                            <tr class="payment_method">
 		                                <th scope="row">결제수단</th>
@@ -119,7 +123,7 @@
 		                                    -->
 		                                	<div class="row">
 		                                		<span class="title"><em>카카오페이</em></span>
-		                                		<span class="content"><span class="price">${dto.stPrice}</span> 원</span>
+		                                		<span class="content"><span class="price" id= "price_number2">${dto.stPrice}</span> 원</span>
 		                               		</div>
 		                                </td>
 		                            </tr>
@@ -487,5 +491,29 @@
     <!-- S Footer -->
 	    <%@include file = "../../../infra/common/user/mainFooter.jsp" %>
 <!-- end -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+$(document).ready(function(){
+	var aid = $('input:hidden[name=aid]').val();
+	var aid_lice = aid.slice(0, 5) + "-" + aid.slice(5, 10) + "-" + aid.slice(10, 15) + "-" + aid.slice(15, 20);
+	$('#aid_number').text(aid_lice);
+	var stPrice = $('input:hidden[name=stPrice]').val();
+	stPrice.toString();
+	var stPrice_count = stPrice.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	$('#price_number').text(stPrice_count);
+	$('#price_number2').text(stPrice_count);
+	var row = $('input:hidden[name=stRow]').val();
+	var col = $('input:hidden[name=stCol]').val();
+	var arr3 = ["A", "B", "C", "D", "E", "F", "G", "H"];
+	var seat;	
+		for(var k=0; k<arr3.length; k++){
+			if(k+1 == row){
+				seat = arr3[k];
+			}
+		}
+	$('#seat_number').text(seat + col);
+})
+</script>
 </body>
 </html>
